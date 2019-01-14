@@ -8,6 +8,7 @@ import matplotlib.dates as mdates
 from matplotlib.figure import Figure
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
+from mpldatacursor import datacursor
 # import os
 # from pathlib import Path
 
@@ -24,12 +25,15 @@ def main():
     sht_er_plot = wb.sheets['ER Plot']
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Draw CP Plot
+    # Fetch Dataframe for CP
     df_cp = sht_asfe1_cp.range('A10').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASFE1-CP'
-    # sht_cp_plot.range('A1').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
-    
+    df_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_cp = df_cp[["Date (MM/DD/YY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
+    # sht_cp_plot.range('A25').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
+
+    # Draw CP Plot
     fig_cp, ax_cp = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_cp = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
     ax_cp.xaxis.set_major_formatter(monthyearFmt_cp)
@@ -40,33 +44,37 @@ def main():
     plt.plot(df_cp["Date (MM/DD/YY)"], df_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
     plt.plot(df_cp["Date (MM/DD/YY)"], df_cp["UCL"], linestyle='-', color='#FF1493')        # plot date vs UCL
     plt.xlabel('Date', fontsize=18)      # xlabel
-    plt.ylabel('CP (no.s)', fontsize=18)     # ylabel
+    plt.ylabel('delta CP (no.s)', fontsize=18)     # ylabel
     # Custom Legends
     custom_lines = [
         Line2D([0], [0], color='#FF7F50', lw=4),
         Line2D([0], [0], color='#0000CD', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_cp.legend(custom_lines, ['CP', 'USL', 'UCL'], fontsize=11)        
+    ax_cp.legend(custom_lines, ['CP', 'USL', 'UCL'], fontsize=11)  
+    lines_cp = ax_cp.plot(df_cp["Date (MM/DD/YY)"], df_cp["delta CP"], visible=False)
+    datacursor(lines_cp, hover=True, point_labels=df_cp['Remarks'])
+    # plt.show()
+    # sht_cp_plot.activate()
+    # pic_cp = plt.show()
+    # plt.show('ASFE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
     sht_cp_plot.pictures.add(fig_cp, name= "ASFE1_CP_Plot", update= True)
+    # sht_cp_plot.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
 
     #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Fetch Dataframe    
+    # Fetch Dataframe for ER   
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file = pd.ExcelFile("H:\\excel\\dryetch\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm")
-    df_er_all = excel_file.parse('ASFE1-ER')                            # copy a sheet and paste into another sheet
-    df_er = df_er_all.drop([0,1,2,3,4,5,6])                             # drop the rows with index '0' to '6'
-    df_er = df_er.rename(columns=df_er.iloc[0])                         # rename the column name to row with index '0'
-    df_er = df_er.reset_index(drop=True)                                # Resets the index, but adds an index column, Also dropped col by setting true.
-    df_er = df_er.drop([0])                                             # remove row with index '0' which contained the column header - Date, Pre thickness, ...
-    df_er = df_er[["Date (MM/DD/YY)", "Etch Rate (A/Min)", "LSL", "LCL", "UCL"]]             # considering 5 columns for plot: x-1, y-4
+    excel_file = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm")
+    df_er = excel_file.parse('ASFE1-ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_er = df_er[["Date (MM/DD/YY)", "Etch Rate (A/Min)", "LSL", "LCL", "UCL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_er = df_er.dropna()                                              # dropping rows where at least one element is missing
     # sht_er_plot.range('A28').options(index=False).value = df_er        # show the dataframe values into sheet- 'CP Plot'
     
-    # Draw PLot
+    # Draw ER PLot
     fig_er, ax_er = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_er = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
     ax_er.xaxis.set_major_formatter(monthyearFmt_er)
@@ -86,7 +94,10 @@ def main():
         Line2D([0], [0], color='#0000CD', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_er.legend(custom_lines, ['ER', 'UCL', 'LSL', 'LCL'], fontsize=11)        
+    ax_er.legend(custom_lines, ['ER', 'UCL', 'LSL', 'LCL'], fontsize=11) 
+    lines_er = ax_er.plot(df_er["Date (MM/DD/YY)"], df_er["Etch Rate (A/Min)"], visible=False)
+    datacursor(lines_er, hover=True, point_labels=df_er['Remarks'])
+    # plt.show()        # shows 2 figures in different windows
     sht_er_plot.pictures.add(fig_er, name= "ASFE1_ER_Plot", update= True)
 
 
