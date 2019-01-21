@@ -9,6 +9,8 @@ from matplotlib.figure import Figure
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
 from mpldatacursor import datacursor
+# import plotly.plotly as py
+# import plotly.graph_objs as go
 # import os
 # from pathlib import Path
 
@@ -23,6 +25,7 @@ def main():
     sht_asfe1_er = wb.sheets['ASFE1-ER']
     sht_cp_plot = wb.sheets['CP Plot']
     sht_er_plot = wb.sheets['ER Plot']
+
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Fetch Dataframe for CP
@@ -46,12 +49,12 @@ def main():
     plt.xlabel('Date', fontsize=18)      # xlabel
     plt.ylabel('delta CP (no.s)', fontsize=18)     # ylabel
     # Custom Legends
-    custom_lines = [
+    custom_lines_cp = [
         Line2D([0], [0], color='#FF7F50', lw=4),
         Line2D([0], [0], color='#0000CD', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_cp.legend(custom_lines, ['CP', 'USL', 'UCL'], fontsize=11)  
+    ax_cp.legend(custom_lines_cp, ['CP', 'USL', 'UCL'], fontsize=11)  
     lines_cp = ax_cp.plot(df_cp["Date (MM/DD/YY)"], df_cp["delta CP"], visible=False)
     datacursor(lines_cp, hover=True, point_labels=df_cp['Remarks'])
     # plt.show()
@@ -60,6 +63,7 @@ def main():
     # plt.show('ASFE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
     sht_cp_plot.pictures.add(fig_cp, name= "ASFE1_CP_Plot", update= True)
     # sht_cp_plot.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
+
 
     #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Fetch Dataframe for ER   
@@ -75,7 +79,7 @@ def main():
     # sht_er_plot.range('A28').options(index=False).value = df_er        # show the dataframe values into sheet- 'CP Plot'
     
     # Draw ER PLot
-    fig_er, ax_er = plt.subplots(1,1, figsize=(20,6))
+    fig_er, ax_er = plt.subplots(1,1, figsize=(20   ,6))
     monthyearFmt_er = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
     ax_er.xaxis.set_major_formatter(monthyearFmt_er)
     _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
@@ -88,16 +92,16 @@ def main():
     plt.xlabel('Date', fontsize=18)      # xlabel
     plt.ylabel('Etch Rate (A/min)', fontsize=18)     # ylabel
     # Custom Legends
-    custom_lines = [
+    custom_lines_er = [
         Line2D([0], [0], color='#FF7F50', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4),
         Line2D([0], [0], color='#0000CD', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_er.legend(custom_lines, ['ER', 'UCL', 'LSL', 'LCL'], fontsize=11) 
+    ax_er.legend(custom_lines_er, ['ER', 'UCL', 'LSL', 'LCL'], fontsize=11) 
     lines_er = ax_er.plot(df_er["Date (MM/DD/YY)"], df_er["Etch Rate (A/Min)"], visible=False)
     datacursor(lines_er, hover=True, point_labels=df_er['Remarks'])
-    # plt.show()        # shows 2 figures in different windows
+    plt.show()        # shows 2 figures in different windows
     sht_er_plot.pictures.add(fig_er, name= "ASFE1_ER_Plot", update= True)
 
 
@@ -111,5 +115,3 @@ def hello(name):
 
 
 
-## REFERENCES
-# https://stackoverflow.com/questions/22937650/pandas-reading-excel-with-merged-cells
