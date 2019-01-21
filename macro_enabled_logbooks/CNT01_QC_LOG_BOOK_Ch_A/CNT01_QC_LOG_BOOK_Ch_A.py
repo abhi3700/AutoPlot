@@ -18,7 +18,7 @@ def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
 
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Define sheets
     sht_repl1a_cp = wb.sheets['REPL1A-CP']
     sht_repl1a_er_nit = wb.sheets['REPL1A-ERNit']
@@ -27,8 +27,7 @@ def main():
     sht_plot_nit = wb.sheets['SiN Plot']
     sht_plot_poly = wb.sheets['Poly Plot']
 
-
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
     df_cp = sht_repl1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
@@ -37,7 +36,7 @@ def main():
     df_cp = df_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
     # sht_cp_plot.range('A25').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
 
-    #**********************************************************************************************************************************************************
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
     fig_cp, ax_cp = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_cp = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -66,7 +65,7 @@ def main():
     sht_cp_plot.pictures.add(fig_cp, name= "REPL1A_CP_Plot", update= True)
 
 
-    #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Fetch Dataframe for NIT  
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
@@ -80,7 +79,7 @@ def main():
     df_sht_nit = df_sht_nit.dropna()                                              # dropping rows where at least one element is missing
     # sht_plot_nit.range('A28').options(index=False).value = df_sht_nit        # show the dataframe values into sheet- 'CP Plot'
     
-    #**********************************************************************************************************************************************************
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw NIT ER PLot
     fig_er_nit, ax_er_nit = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_er_nit = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -110,7 +109,7 @@ def main():
     # plt.show()        # shows 2 figures in different windows
     sht_plot_nit.pictures.add(fig_er_nit, name= "REPL1A_NIT_ER_Plot", update= True)
 
-    #**********************************************************************************************************************************************************
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	# Draw NIT Unif PLot
     fig_unif_nit, ax_unif_nit = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_unif_nit = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -137,7 +136,7 @@ def main():
     sht_plot_nit.pictures.add(fig_unif_nit, name= "REPL1A_NIT_UNIF_Plot", update= True)
 
 
-    #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Fetch Dataframe for POLY   
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
@@ -151,7 +150,7 @@ def main():
     df_sht_poly = df_sht_poly.dropna()                                              # dropping rows where at least one element is missing
     # sht_plot_poly.range('A28').options(index=False).value = df_sht_poly        # show the dataframe values into sheet- 'CP Plot'
     
-    #**********************************************************************************************************************************************************
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw POLY ER PLot
     fig_er_poly, ax_er_poly = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_er_poly = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -181,7 +180,7 @@ def main():
     # plt.show()        # shows 2 figures in different windows
     sht_plot_poly.pictures.add(fig_er_poly, name= "REPL1A_POLY_ER_Plot", update= True)
 
-    #**********************************************************************************************************************************************************
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw POLY Unif PLot
     fig_unif_poly, ax_unif_poly = plt.subplots(1,1, figsize=(20,6))
     monthyearFmt_unif_poly = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -208,9 +207,9 @@ def main():
     sht_plot_poly.pictures.add(fig_unif_poly, name= "REPL1A_POLY_UNIF_Plot", update= True)
 
 
-#--------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
-#--------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 @xw.func
 def hello(name):
     return "hello {0}".format(name)
