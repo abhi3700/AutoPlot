@@ -18,7 +18,7 @@ def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
 
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Define sheets
     sht_asbe1_cp = wb.sheets['ASBE1-CP']
     sht_asbe1_er = wb.sheets['ASBE1-ER']
@@ -26,15 +26,16 @@ def main():
     sht_er_plot = wb.sheets['ER Plot']
 
 
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
     df_cp = sht_asbe1_cp.range('A10').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
     df_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_cp = df_cp[["Date (MM/DD/YY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
+    df_cp = df_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
     # sht_cp_plot.range('A25').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
 
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
     fig_cp, ax_cp = plt.subplots(1,1, figsize=(25,6))
     monthyearFmt_cp = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -42,9 +43,9 @@ def main():
     _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
     ax_cp.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
     ax_cp.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    plt.plot(df_cp["Date (MM/DD/YY)"], df_cp["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    plt.plot(df_cp["Date (MM/DD/YY)"], df_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    plt.plot(df_cp["Date (MM/DD/YY)"], df_cp["UCL"], linestyle='-', color='#FF1493')        # plot date vs UCL
+    plt.plot(df_cp["Date (MM/DD/YYYY)"], df_cp["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
+    plt.plot(df_cp["Date (MM/DD/YYYY)"], df_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
+    plt.plot(df_cp["Date (MM/DD/YYYY)"], df_cp["UCL"], linestyle='-', color='#FF1493')        # plot date vs UCL
     plt.xlabel('Date', fontsize=18)      # xlabel
     plt.ylabel('delta CP (no.s)', fontsize=18)     # ylabel
     # Custom Legends
@@ -53,8 +54,8 @@ def main():
         Line2D([0], [0], color='#0000CD', lw=4),
         Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_cp.legend(custom_lines_cp, ['CP', 'USL', 'UCL'], fontsize=11)  
-    lines_cp = ax_cp.plot(df_cp["Date (MM/DD/YY)"], df_cp["delta CP"], visible=False)
+    ax_cp.legend(custom_lines_cp, ['CP', 'USL', 'UCL'], fontsize=11, loc='upper right')  
+    lines_cp = ax_cp.plot(df_cp["Date (MM/DD/YYYY)"], df_cp["delta CP"], visible=False)
     datacursor(lines_cp, hover=True, point_labels=df_cp['Remarks'])
     # plt.show()
     # sht_cp_plot.activate()
@@ -64,20 +65,22 @@ def main():
     sht_cp_plot.pictures.add(fig_cp, name= "ASBE1_CP_Plot", update= True)
 
 
-    #-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    #****************************************************************************************************************************************************************
     # Fetch Dataframe for ER   
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm")
-    df_er = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
+    # excel_file = pd.ExcelFile("\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm")
+    df_sht_pr = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
     
-    df_er = df_er[["Date (MM/DD/YY)", "Etch Rate (A/Min)", "LSL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
-    df_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_er = df_er.dropna()                                              # dropping rows where at least one element is missing
-    # sht_er_plot.range('A28').options(index=False).value = df_er        # show the dataframe values into sheet- 'CP Plot'
+    df_sht_pr = df_sht_pr[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
+    df_sht_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_sht_pr = df_sht_pr.dropna()                                              # dropping rows where at least one element is missing
+    # sht_er_plot.range('A28').options(index=False).value = df_sht_pr        # show the dataframe values into sheet- 'CP Plot'
     
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------        
     # Draw ER PLot
     fig_er, ax_er = plt.subplots(1,1, figsize=(25,6))
     monthyearFmt_er = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
@@ -85,23 +88,41 @@ def main():
     _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
     ax_er.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
     ax_er.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    plt.plot(df_er["Date (MM/DD/YY)"], df_er["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    plt.plot(df_er["Date (MM/DD/YY)"], df_er["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
+    plt.plot(df_sht_pr["Date (MM/DD/YYYY)"], df_sht_pr["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
+    plt.plot(df_sht_pr["Date (MM/DD/YYYY)"], df_sht_pr["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
     plt.xlabel('Date', fontsize=18)      # xlabel
     plt.ylabel('Etch Rate (A/min)', fontsize=18)     # ylabel
     # Custom Legends
     custom_lines_er = [
         Line2D([0], [0], color='#FF7F50', lw=4),
-        # Line2D([0], [0], color='#FF1493', lw=4),
         Line2D([0], [0], color='#0000CD', lw=4),
-        # Line2D([0], [0], color='#FF1493', lw=4)        
         ]
-    ax_er.legend(custom_lines_er, ['ER', 'LSL'], fontsize=11) 
-    lines_er = ax_er.plot(df_er["Date (MM/DD/YY)"], df_er["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er, hover=True, point_labels=df_er['Remarks'])
+    ax_er.legend(custom_lines_er, ['ER', 'LSL'], fontsize=11, loc='upper right') 
+    lines_er = ax_er.plot(df_sht_pr["Date (MM/DD/YYYY)"], df_sht_pr["Etch Rate (A/Min)"], visible=False)
+    datacursor(lines_er, hover=True, point_labels=df_sht_pr['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_er_plot.pictures.add(fig_er, name= "ASBE1_ER_Plot", update= True)
 
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------        
+    # Draw Unif PLot
+    fig_unif, ax_unif = plt.subplots(1,1, figsize=(25,6))
+    monthyearFmt_unif = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
+    ax_unif.xaxis.set_major_formatter(monthyearFmt_unif)
+    _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
+    ax_unif.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
+    ax_unif.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
+    plt.plot(df_sht_pr["Date (MM/DD/YYYY)"], df_sht_pr["% Uni"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
+    plt.xlabel('Date', fontsize=18)      # xlabel
+    plt.ylabel('Uniformity (%)', fontsize=18)     # ylabel
+    # Custom Legends
+    custom_lines_unif = [
+        Line2D([0], [0], color='#FF7F50', lw=4),
+        ]
+    ax_unif.legend(custom_lines_unif, ['Unif'], fontsize=11, loc='upper right') 
+    lines_unif = ax_er.plot(df_sht_pr["Date (MM/DD/YYYY)"], df_sht_pr["% Uni"], visible=False)
+    datacursor(lines_unif, hover=True, point_labels=df_sht_pr['Remarks'])
+    # plt.show()        # shows 2 figures in different windows
+    sht_er_plot.pictures.add(fig_unif, name= "ASBE1_Unif_Plot", update= True)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------

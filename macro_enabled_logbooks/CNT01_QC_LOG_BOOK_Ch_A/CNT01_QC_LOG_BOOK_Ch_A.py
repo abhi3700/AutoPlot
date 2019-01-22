@@ -54,7 +54,7 @@ def main():
         Line2D([0], [0], color='#FF7F50', lw=4),
         Line2D([0], [0], color='#0000CD', lw=4),
         ]
-    ax_cp.legend(custom_lines_cp, ['CP', 'USL'], fontsize=11)  
+    ax_cp.legend(custom_lines_cp, ['CP', 'USL'], fontsize=11, loc='upper right')  
     lines_cp = ax_cp.plot(df_cp["Date (MM/DD/YYYY)"], df_cp["delta CP"], visible=False)
     datacursor(lines_cp, hover=True, point_labels=df_cp['Remarks'])
     # plt.show()
@@ -103,7 +103,7 @@ def main():
         Line2D([0], [0], color='#FF1493', lw=4),	# UCL
         Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
         ]
-    ax_er_nit.legend(custom_lines_er_nit, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11) 
+    ax_er_nit.legend(custom_lines_er_nit, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, , loc='upper right') 
     lines_er_nit = ax_er_nit.plot(df_sht_nit["Date (MM/DD/YYYY)"], df_sht_nit["Etch Rate (A/Min)"], visible=False)
     datacursor(lines_er_nit, hover=True, point_labels=df_sht_nit['Remarks'])
     # plt.show()        # shows 2 figures in different windows
@@ -129,7 +129,7 @@ def main():
         Line2D([0], [0], color='#0000CD', lw=4),	# USL
         Line2D([0], [0], color='#FF1493', lw=4),	# UCL
         ]
-    ax_unif_nit.legend(custom_lines_unif_nit, ['Unif', 'USL', 'UCL'], fontsize=11) 
+    ax_unif_nit.legend(custom_lines_unif_nit, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
     lines_unif_nit = ax_unif_nit.plot(df_sht_nit["Date (MM/DD/YYYY)"], df_sht_nit["% Uniformity"], visible=False)
     datacursor(lines_unif_nit, hover=True, point_labels=df_sht_nit['Remarks'])
     # plt.show()        # shows 2 figures in different windows
@@ -174,7 +174,7 @@ def main():
         Line2D([0], [0], color='#FF1493', lw=4),	# UCL
         Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
         ]
-    ax_er_poly.legend(custom_lines_er_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11) 
+    ax_er_poly.legend(custom_lines_er_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_er_poly = ax_er_poly.plot(df_sht_poly["Date (MM/DD/YYYY)"], df_sht_poly["Etch Rate (A/Min)"], visible=False)
     datacursor(lines_er_poly, hover=True, point_labels=df_sht_poly['Remarks'])
     # plt.show()        # shows 2 figures in different windows
@@ -200,7 +200,7 @@ def main():
         Line2D([0], [0], color='#0000CD', lw=4),	# USL
         Line2D([0], [0], color='#FF1493', lw=4),	# UCL
         ]
-    ax_unif_poly.legend(custom_lines_unif_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11) 
+    ax_unif_poly.legend(custom_lines_unif_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_unif_poly = ax_unif_poly.plot(df_sht_poly["Date (MM/DD/YYYY)"], df_sht_poly["% Uniformity"], visible=False)
     datacursor(lines_unif_poly, hover=True, point_labels=df_sht_poly['Remarks'])
     # plt.show()        # shows 2 figures in different windows
