@@ -34,64 +34,67 @@ def main():
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
     df_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_cp = df_cp[["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
-    # sht_cp_plot.range('A25').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
-    # df_cp_ch_a					# dataframe for DPS (chamber A)	@TODO
-    # df_cp_ch_c					# dataframe for ASP (chamber C)	@TODO
+    # sht_plot_cp.range('A46').options(index=False).value = df_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    df_cp_ch_a = df_cp[df_cp["Chamber"] == 'DPS']					# dataframe for DPS (chamber A)
+    # sht_plot_cp.range('A46').options(index=False).value = df_cp_ch_a           # show the dataframe values into sheet- 'CP Plot'
+    df_cp_ch_c = df_cp[df_cp["Chamber"] == 'ASP']					# dataframe for ASP (chamber C)
+    # sht_plot_cp.range('G46').options(index=False).value = df_cp_ch_c           # show the dataframe values into sheet- 'CP Plot'
+
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot for DPS chamber i.e. Ch-A
-    # fig_cp_ch_a, ax_cp_ch_a = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_cp_ch_a = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_cp_ch_a.xaxis.set_major_formatter(monthyearFmt_cp_ch_a)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_cp_ch_a.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
-    # ax_cp_ch_a.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_cp_ch_a.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    # plt.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('delta CP (no.s)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_cp_ch_a = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),
-    #     Line2D([0], [0], color='#0000CD', lw=4),
-    #     ]
-    # ax_cp_ch_a.legend(custom_lines_cp_ch_a, ['CP', 'USL'], fontsize=11, loc='upper right')  
-    # lines_cp_ch_a = ax_cp_ch_a.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["delta CP"], visible=False)
-    # datacursor(lines_cp_ch_a, hover=True, point_labels=df_cp_ch_a['Remarks'])
-    # # plt.show()
-    # # sht_cp_plot.activate()
-    # # pic_cp = plt.show()
-    # # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
-    # # sh_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
-    # # sht_plot_cp.pictures.add(fig_cp_ch_a, name= "REPL1A_DPS_CP_Plot", update= True)
+    fig_cp_ch_a, ax_cp_ch_a = plt.subplots(1,1, figsize=(20,6))
+    monthyearFmt_cp_ch_a = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
+    ax_cp_ch_a.xaxis.set_major_formatter(monthyearFmt_cp_ch_a)
+    _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
+    # ax_cp_ch_a.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
+    ax_cp_ch_a.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
+    ax_cp_ch_a.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
+    plt.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
+    plt.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
+    plt.xlabel('Date', fontsize=18)      # xlabel
+    plt.ylabel('DPS delta CP (no.s)', fontsize=18)     # ylabel
+    # Custom Legends
+    custom_lines_cp_ch_a = [
+        Line2D([0], [0], color='#FF7F50', lw=4),
+        Line2D([0], [0], color='#0000CD', lw=4),
+        ]
+    ax_cp_ch_a.legend(custom_lines_cp_ch_a, ['CP', 'USL'], fontsize=11, loc='upper right')  
+    lines_cp_ch_a = ax_cp_ch_a.plot(df_cp_ch_a["Date (MM/DD/YYYY)"], df_cp_ch_a["delta CP"], visible=False)
+    datacursor(lines_cp_ch_a, hover=True, point_labels=df_cp_ch_a['Remarks'])
+    # plt.show()
+    # sht_cp_plot.activate()
+    # pic_cp = plt.show()
+    # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
+    # sh_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
+    sht_plot_cp.pictures.add(fig_cp_ch_a, name= "REML1_DPS_CP_Plot", update= True)
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot for ASP chamber i.e. Ch-C
-    # fig_cp_ch_c, ax_cp_ch_c = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_cp_ch_c = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_cp_ch_a.xaxis.set_major_formatter(monthyearFmt_cp_ch_c)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_cp_ch_a.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
-    # ax_cp_ch_a.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_cp_ch_a.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    # plt.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Ch C delta CP (no.s)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_cp_ch_c = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),
-    #     Line2D([0], [0], color='#0000CD', lw=4),
-    #     ]
-    # ax_cp_ch_a.legend(custom_lines_cp_ch_c, ['CP', 'USL'], fontsize=11, loc='upper right')  
-    # lines_cp_ch_c = ax_cp_ch_a.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["delta CP"], visible=False)
-    # datacursor(lines_cp_ch_c, hover=True, point_labels=df_cp_ch_c['Remarks'])
-    # # plt.show()
-    # # sht_cp_plot.activate()
-    # # pic_cp = plt.show()
-    # # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
-    # # sht_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
-    # # sht_plot_cp.pictures.add(fig_cp_ch_a, name= "REPL1A_DPS_CP_Plot", update= True)
+    fig_cp_ch_c, ax_cp_ch_c = plt.subplots(1,1, figsize=(20,6))
+    monthyearFmt_cp_ch_c = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
+    ax_cp_ch_c.xaxis.set_major_formatter(monthyearFmt_cp_ch_c)
+    _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
+    # ax_cp_ch_c.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
+    ax_cp_ch_c.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
+    ax_cp_ch_c.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
+    plt.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
+    plt.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
+    plt.xlabel('Date', fontsize=18)      # xlabel
+    plt.ylabel('ASP delta CP (no.s)', fontsize=18)     # ylabel
+    # Custom Legends
+    custom_lines_cp_ch_c = [
+        Line2D([0], [0], color='#FF7F50', lw=4),
+        Line2D([0], [0], color='#0000CD', lw=4),
+        ]
+    ax_cp_ch_c.legend(custom_lines_cp_ch_c, ['CP', 'USL'], fontsize=11, loc='upper right')  
+    lines_cp_ch_c = ax_cp_ch_c.plot(df_cp_ch_c["Date (MM/DD/YYYY)"], df_cp_ch_c["delta CP"], visible=False)
+    datacursor(lines_cp_ch_c, hover=True, point_labels=df_cp_ch_c['Remarks'])
+    # plt.show()
+    # sht_cp_plot.activate()
+    # pic_cp = plt.show()
+    # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
+    # sht_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
+    sht_plot_cp.pictures.add(fig_cp_ch_c, name= "REML1_ASP_CP_Plot", update= True)
 
 
     #****************************************************************************************************************************************************************
