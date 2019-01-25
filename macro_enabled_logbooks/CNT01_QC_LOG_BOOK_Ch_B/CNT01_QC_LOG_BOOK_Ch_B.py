@@ -72,7 +72,8 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_nit = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_B\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
+    # excel_file_sht_nit = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_B\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
+    excel_file_sht_nit = pd.ExcelFile("\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_B_macro\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
     df_sht_nit = excel_file_sht_nit.parse('REPL1B-ERNit', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_sht_nit = df_sht_nit[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uniformity", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
@@ -144,7 +145,8 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_poly = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_B\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
+    # excel_file_sht_poly = pd.ExcelFile("H:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_B\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
+    excel_file_sht_poly = pd.ExcelFile("\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_B_macro\\CNT01_QC_LOG_BOOK_Ch_B.xlsm")
     df_sht_poly = excel_file_sht_poly.parse('REPL1B-ERPoly', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_sht_poly = df_sht_poly[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uniformity", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
