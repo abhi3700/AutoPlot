@@ -81,6 +81,28 @@
 17. `ax_reml1_er_ch_c_pr`: axis for (5)
 
 ### RESP1A
+1. "RESP1A-CP": `sht_resp1a_cp`
+2. "RESP1A-ER": `sht_resp1a_er`
+3. "CP Plot": `sht_resp1a_plot_cp`
+4. "SiN 1st Step Plot": `sht_resp1a_plot_sin_1st`
+5. "SiN 2nd Step Plot": `sht_resp1a_plot_sin_2nd`
+6. "TEOS 1st Step Plot": `sht_resp1a_plot_teos_1st`
+7. "TEOS 2nd Step Plot": `sht_resp1a_plot_teos_2nd`
+8. `df_resp1a_cp`: dataframe for (1)
+9. `df_resp1a_sin_1st`: dataframe for (2)
+10. `df_resp1a_sin_2nd`: dataframe for (2)
+11. `df_resp1a_teos_1st`: dataframe for (2)
+12. `df_resp1a_teos_2nd`: dataframe for (2)
+13. `fig_resp1a_cp`: figure for (3)
+14. `fig_resp1a_er_sin_1st`: figure for (4)
+15. `fig_resp1a_er_sin_2nd`: figure for (5)
+16. `fig_resp1a_er_teos_1st`: figure for (6)
+17. `fig_resp1a_er_teos_2nd`: figure for (7)
+18. `fig_resp1a_cp`: figure for (3)
+19. `ax_resp1a_er_sin_1st`: figure for (4)
+20. `ax_resp1a_er_sin_2nd`: figure for (5)
+21. `ax_resp1a_er_teos_1st`: figure for (6)
+22. `ax_resp1a_er_teos_2nd`: figure for (7)
 
 ### RESP1B
 
