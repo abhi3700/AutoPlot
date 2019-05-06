@@ -20,8 +20,10 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_resp1a_cp = wb.sheets['RESP1A-CP']
-    sht_resp1a_er = wb.sheets['RESP1A-ER']
+    # sht_resp1a_cp = wb.sheets['RESP1A-CP']
+    sht_resp1a_cp = wb.sheets['CP']
+    # sht_resp1a_er = wb.sheets['RESP1A-ER']
+    sht_resp1a_er = wb.sheets['ER']
     sht_resp1a_plot_cp = wb.sheets['CP Plot']
     sht_resp1a_plot_sin_1st = wb.sheets['SiN 1st Step Plot']
     sht_resp1a_plot_sin_2nd = wb.sheets['SiN 2nd Step Plot']
@@ -33,9 +35,9 @@ def main():
     df_resp1a_cp = sht_resp1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
-    df_resp1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_resp1a_cp = df_resp1a_cp[["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]]        # The final dataframe with required columns
-    # sht_resp1a_plot_cp.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    df_resp1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    sht_resp1a_plot_cp.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
@@ -86,7 +88,8 @@ def main():
     df_resp1a_er = excel_file_sht_er.parse('RESP1A-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
     df_resp1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'    
     df_resp1a_er = df_resp1a_er[["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uniformity", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_resp1a_teos = df_resp1a_er.drop(columns=["% Uni UCL"])      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined
+    df_resp1a_teos = df_resp1a_er.drop('% Uni UCL', axis=1, inplace=True)      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined
+    # df_resp1a_teos = df_resp1a_er.drop(columns=["% Uni UCL"])      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined
     df_resp1a_er = df_resp1a_er.dropna()                                              # dropping rows where at least one element is missing
     df_resp1a_sin_1st = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'SiN-1Step']
     df_resp1a_sin_2nd = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'SiN-2Step']
