@@ -2,7 +2,7 @@
 ## Sheets, Dataframes, Figures, Axes
 **NOTE: CP is for chambers, ER for layers**
 
-### ASFE1
+### A. ASFE1
 1. "ASFE1-CP": `sht_asfe1_cp`
 2. "ASFE1-ER": `sht_asfe1_er`
 3. "CP Plot": `sht_asfe1_plot_cp`
@@ -14,7 +14,7 @@
 9. `ax_asfe1_cp`: axis for (3)
 10. `ax_asfe1_er`: axis for (4)
 
-### ASBE1
+### B. ASBE1
 1. "ASBE1-CP": `sht_asbe1_cp`
 2. "ASBE1-ER": `sht_asbe1_er`
 3. "CP Plot": `sht_asbe1_plot_cp`
@@ -26,7 +26,7 @@
 9. `ax_asbe1_cp`: axis for (3)
 10. `ax_asbe1_er`: axis for (4)
 
-### REPL1A
+### C. REPL1A
 1. "REPL1A-CP": `sht_repl1a_cp`
 2. "REPL1A-ERNit": `sht_repl1a_er_nit`
 3. "REPL1A-ERPoly": `sht_repl1a_er_poly`
@@ -43,7 +43,7 @@
 14. `ax_repl1a_er_sin`: axis for (5)
 15. `ax_repl1a_er_poly`: axis for (6)
 
-### REPL1B
+### D. REPL1B
 1. "REPL1B-CP": `sht_repl1b_cp`
 2. "REPL1B-ERNit": `sht_repl1b_er_nit`
 3. "REPL1B-ERPoly": `sht_repl1b_er_poly`
@@ -60,7 +60,7 @@
 14. `ax_repl1b_er_sin`: axis for (5)
 15. `ax_repl1b_er_poly`: axis for (6)
 
-### REML1
+### E. REML1
 1. "REML1-CP": `sht_reml1_cp`
 2. "PR Ch A ER": `sht_reml1_er_ch_a_pr`
 3. "PR Ch C ER": `sht_reml1_er_ch_c_pr`
@@ -80,7 +80,7 @@
 16. `ax_reml1_er_ch_a_pr`: axis for (5)
 17. `ax_reml1_er_ch_c_pr`: axis for (5)
 
-### RESP1A
+### F. RESP1A
 1. "RESP1A-CP": `sht_resp1a_cp`
 2. "RESP1A-ER": `sht_resp1a_er`
 3. "CP Plot": `sht_resp1a_plot_cp`
@@ -104,13 +104,13 @@
 21. `ax_resp1a_er_teos_1st`: figure for (6)
 22. `ax_resp1a_er_teos_2nd`: figure for (7)
 
-### RESP1B
+### G. RESP1B
 
-### REOX1A
+### H. REOX1A
 
-### REOX1B
+### I. REOX1B
 
-### REOX1C
+### J. REOX1C
 
 
 
