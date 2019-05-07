@@ -1,15 +1,15 @@
 # Import packages
 import xlwings as xw
-import datetime as dt
-import win32api
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.dates as mdates
-from matplotlib.figure import Figure
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
 import plotly as py
 import plotly.graph_objs as go
+# from matplotlib.figure import Figure
+# import datetime as dt
+# import win32api
 # import os
 # from pathlib import Path
 
