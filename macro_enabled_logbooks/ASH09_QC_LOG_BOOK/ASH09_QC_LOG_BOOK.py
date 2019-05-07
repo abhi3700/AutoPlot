@@ -129,7 +129,7 @@ def draw_asfe1_unif_plot(plot_sht, x, y0, y1):
     plot_sht.pictures.add(fig_asfe1_unif, name= "ASFE1_Unif-Plot", update= True)
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-def draw_plotly_asfe1_cp_plot(x, y0, y1, y2):
+def draw_plotly_asfe1_cp_plot(x, y0, y1, y2, remarks):
     trace0 = go.Scatter(
             x = x,
             y = y0,
@@ -144,7 +144,8 @@ def draw_plotly_asfe1_cp_plot(x, y0, y1, y2):
                     line = dict(
                         color = '#ffffff',
                         width = 0.5),
-                    )
+                    ),
+            text = remarks
     )
 
     trace1 = go.Scatter(
@@ -205,6 +206,7 @@ def main():
     df_asfe1_cp_delta_cp = df_asfe1_cp["delta CP"]
     df_asfe1_cp_usl = df_asfe1_cp["USL"]
     df_asfe1_cp_ucl = df_asfe1_cp["UCL"]
+    df_asfe1_cp_remarks = df_asfe1_cp["Remarks"]
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot in sheet - "CP Plot"
     draw_asfe1_cp_plot(
@@ -220,7 +222,8 @@ def main():
         x = df_asfe1_cp_date, 
         y0 = df_asfe1_cp_delta_cp, 
         y1 = df_asfe1_cp_usl, 
-        y2 = df_asfe1_cp_ucl
+        y2 = df_asfe1_cp_ucl,
+        remarks = df_asfe1_cp_remarks
         )
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for ER   
