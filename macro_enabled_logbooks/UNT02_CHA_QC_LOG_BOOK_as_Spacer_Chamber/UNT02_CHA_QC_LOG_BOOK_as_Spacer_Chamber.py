@@ -1,19 +1,83 @@
-# Import modules
+# Import packages
 import xlwings as xw
-import datetime as dt
-import win32api
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.dates as mdates
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
-from mpldatacursor import datacursor
-# import plotly.plotly as py
-# import plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
+# from matplotlib.figure import Figure
+# import datetime as dt
+# import win32api
 # import os
 # from pathlib import Path
 
 
+
+
+#==================================================================================================================================================================
+# Global variables
+line_color = '#3f51b5'      # line (trace0) color
+marker_color = '#43a047'  # marker color
+cl_color = '#ffa000'    # control limit line color
+sl_color = '#e53935'    # spec limit line color
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# def draw_plotly_resp1a_cp_plot(x, y0, y1, y2, remarks):
+def draw_plotly_resp1a_cp_plot(x, y0, y1, remarks):
+    trace0 = go.Scatter(
+            x = x,
+            y = y0,
+            name = 'delta-CP',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color,
+                    width = 2),
+            marker = dict(
+                    color = marker_color,
+                    size = 8,
+                    line = dict(
+                        color = '#ffffff',
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace1 = go.Scatter(
+            x = x,
+            y = y1,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    # trace2 = go.Scatter(
+    #         x = x,
+    #         y = y2,
+    #         name = 'UCL',
+    #         mode = 'lines',
+    #         line = dict(
+    #                 color = cl_color,
+    #                 width = 3)
+    # )
+
+    # data = [trace0, trace1, trace2]
+    data = [trace0, trace1]
+    layout = dict(
+            title = 'CP Plot for RESP1A',
+            xaxis = dict(title= 'Date'),
+            yaxis = dict(title= 'delta CP (no.s)')
+        )
+    fig = dict(data= data, layout = layout)
+    py.offline.plot(fig, filename='RESP1A_CP-Plot.html')
+
+#====================================================================================================================================================================
+#####################################################################################################################################################################
 def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
@@ -38,6 +102,13 @@ def main():
     df_resp1a_cp = df_resp1a_cp[["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]]        # The final dataframe with required columns
     df_resp1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     sht_resp1a_plot_cp.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param
+    df_resp1a_cp_date = df_resp1a_cp["Date (MM/DD/YYYY)"]
+    df_resp1a_cp_delta_cp = df_resp1a_cp["delta CP"]
+    df_resp1a_cp_usl = df_resp1a_cp["USL"]
+    # df_resp1a_cp_ucl = df_resp1a_cp["UCL"]
+    df_resp1a_cp_remarks = df_resp1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
@@ -68,6 +139,16 @@ def main():
     # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
     # sht_resp1a_cp_plot.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
     sht_resp1a_plot_cp.pictures.add(fig_resp1a_cp, name= "RESP1A_CP_Plot", update= True)
+
+
+    # Draw CP Plot (using Plotly) in Browser 
+    draw_plotly_resp1a_cp_plot(
+        x = df_resp1a_cp_date, 
+        y0 = df_resp1a_cp_delta_cp, 
+        y1 = df_resp1a_cp_usl, 
+        # y2 = df_resp1a_cp_ucl,
+        remarks = df_resp1a_cp_remarks
+        )
 
 
     #****************************************************************************************************************************************************************

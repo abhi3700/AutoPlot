@@ -1,20 +1,80 @@
-# Import modules
+# Import packages
 import xlwings as xw
-import datetime as dt
-import win32api
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.dates as mdates
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
-from mpldatacursor import datacursor
-import matplotlib.ticker as mticker
-# import plotly.plotly as py
-# import plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
+# from matplotlib.figure import Figure
+# import datetime as dt
+# import win32api
 # import os
 # from pathlib import Path
 
 
+
+
+#==================================================================================================================================================================
+# Global variables
+line_color = '#3f51b5'      # line (trace0) color
+marker_color = '#43a047'  # marker color
+cl_color = '#ffa000'    # control limit line color
+sl_color = '#e53935'    # spec limit line color
+
+# def draw_plotly_repl1b_cp_plot(x, y0, y1, y2, remarks):
+def draw_plotly_repl1b_cp_plot(x, y0, y1, remarks):
+    trace0 = go.Scatter(
+            x = x,
+            y = y0,
+            name = 'delta-CP',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color,
+                    width = 2),
+            marker = dict(
+                    color = marker_color,
+                    size = 8,
+                    line = dict(
+                        color = '#ffffff',
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace1 = go.Scatter(
+            x = x,
+            y = y1,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    # trace2 = go.Scatter(
+    #         x = x,
+    #         y = y2,
+    #         name = 'UCL',
+    #         mode = 'lines',
+    #         line = dict(
+    #                 color = cl_color,
+    #                 width = 3)
+    # )
+
+    # data = [trace0, trace1, trace2]
+    data = [trace0, trace1]
+    layout = dict(
+            title = 'CP Plot for REPL1B',
+            xaxis = dict(title= 'Date'),
+            yaxis = dict(title= 'delta CP (no.s)')
+        )
+    fig = dict(data= data, layout = layout)
+    py.offline.plot(fig, filename='REPL1B_CP-Plot.html')
+
+#====================================================================================================================================================================
+#####################################################################################################################################################################
 def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
@@ -36,6 +96,15 @@ def main():
     df_repl1b_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1b_cp = df_repl1b_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
     # sht_repl1b_plot_cp.range('A25').options(index=False).value = df_repl1b_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param
+    df_repl1b_cp_date = df_repl1b_cp["Date (MM/DD/YYYY)"]
+    df_repl1b_cp_delta_cp = df_repl1b_cp["delta CP"]
+    df_repl1b_cp_usl = df_repl1b_cp["USL"]
+    # df_repl1b_cp_ucl = df_repl1b_cp["UCL"]
+    df_repl1b_cp_remarks = df_repl1b_cp["Remarks"]
+
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
@@ -57,7 +126,7 @@ def main():
         ]
     ax_repl1b_cp.legend(custom_lines_cp, ['CP', 'USL'], fontsize=11, loc='upper right')  
     lines_cp = ax_repl1b_cp.plot(df_repl1b_cp["Date (MM/DD/YYYY)"], df_repl1b_cp["delta CP"], visible=False)
-    datacursor(lines_cp, hover=True, point_labels=df_repl1b_cp['Remarks'])
+    # datacursor(lines_cp, hover=True, point_labels=df_repl1b_cp['Remarks'])
     # plt.show()
     # sht_repl1b_plot_cp.activate()
     # pic_cp = plt.show()
@@ -65,6 +134,14 @@ def main():
     # sht_repl1b_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
     sht_repl1b_plot_cp.pictures.add(fig_repl1b_cp, name= "REPL1B_CP_Plot", update= True)
 
+    # Draw CP Plot (using Plotly) in Browser 
+    draw_plotly_repl1b_cp_plot(
+        x = df_repl1b_cp_date, 
+        y0 = df_repl1b_cp_delta_cp, 
+        y1 = df_repl1b_cp_usl, 
+        # y2 = df_repl1b_cp_ucl,
+        remarks = df_repl1b_cp_remarks
+        )
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for NIT  
@@ -108,7 +185,7 @@ def main():
         ]
     ax_repl1b_er_sin.legend(custom_lines_er_nit, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_er_nit = ax_repl1b_er_sin.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
+    # datacursor(lines_er_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_repl1b_plot_er_nit.pictures.add(fig_repl1b_er_sin, name= "REPL1B_NIT_ER_Plot", update= True)
 
@@ -134,7 +211,7 @@ def main():
         ]
     ax_repl1b_unif_sin.legend(custom_lines_unif_nit, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
     lines_unif_nit = ax_repl1b_unif_sin.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["% Uniformity"], visible=False)
-    datacursor(lines_unif_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
+    # datacursor(lines_unif_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_repl1b_plot_er_nit.pictures.add(fig_repl1b_unif_sin, name= "REPL1B_NIT_UNIF_Plot", update= True)
 
@@ -180,7 +257,7 @@ def main():
         ]
     ax_repl1b_er_poly.legend(custom_lines_er_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_er_poly = ax_repl1b_er_poly.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
+    # datacursor(lines_er_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_repl1b_plot_er_poly.pictures.add(fig_repl1b_er_poly, name= "REPL1B_POLY_ER_Plot", update= True)
 
@@ -206,7 +283,7 @@ def main():
         ]
     ax_repl1b_unif_poly.legend(custom_lines_unif_poly, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
     lines_unif_poly = ax_repl1b_unif_poly.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["% Uniformity"], visible=False)
-    datacursor(lines_unif_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
+    # datacursor(lines_unif_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_repl1b_plot_er_poly.pictures.add(fig_repl1b_unif_poly, name= "REPL1B_POLY_UNIF_Plot", update= True)
 

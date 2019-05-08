@@ -1,19 +1,83 @@
-# Import modules
+# Import packages
 import xlwings as xw
-import datetime as dt
-import win32api
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.dates as mdates
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
-from mpldatacursor import datacursor
-# import plotly.plotly as py
-# import plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
+# from matplotlib.figure import Figure
+# import datetime as dt
+# import win32api
 # import os
 # from pathlib import Path
 
 
+
+
+
+
+#==================================================================================================================================================================
+# Global variables
+line_color = '#3f51b5'      # line (trace0) color
+marker_color = '#43a047'  # marker color
+cl_color = '#ffa000'    # control limit line color
+sl_color = '#e53935'    # spec limit line color
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def draw_plotly_asbe1_cp_plot(x, y0, y1, y2, remarks):
+# def draw_plotly_asbe1_cp_plot(x, y0, remarks):
+    trace0 = go.Scatter(
+            x = x,
+            y = y0,
+            name = 'delta-CP',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color,
+                    width = 2),
+            marker = dict(
+                    color = marker_color,
+                    size = 8,
+                    line = dict(
+                        color = '#ffffff',
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace1 = go.Scatter(
+            x = x,
+            y = y1,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    trace2 = go.Scatter(
+            x = x,
+            y = y2,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
+
+    data = [trace0, trace1, trace2]
+    layout = dict(
+            title = 'CP Plot for ASBE1',
+            xaxis = dict(title= 'Date'),
+            yaxis = dict(title= 'delta CP (no.s)')
+        )
+    fig = dict(data= data, layout = layout)
+    py.offline.plot(fig, filename='ASBE1_CP-Plot.html')
+
+#====================================================================================================================================================================
+#####################################################################################################################################################################
 def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
@@ -34,6 +98,14 @@ def main():
     df_asbe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_cp = df_asbe1_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
     # sht_asbe1_plot_cp.range('A25').options(index=False).value = df_asbe1_cp   	    # show the dataframe values into sheet- 'CP Plot'
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param
+    df_asbe1_cp_date = df_asbe1_cp["Date (MM/DD/YYYY)"]
+    df_asbe1_cp_delta_cp = df_asbe1_cp["delta CP"]
+    df_asbe1_cp_usl = df_asbe1_cp["USL"]
+    df_asbe1_cp_ucl = df_asbe1_cp["UCL"]
+    df_asbe1_cp_remarks = df_asbe1_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot
@@ -56,7 +128,7 @@ def main():
         ]
     ax_asbe1_cp.legend(custom_lines_asbe1_cp, ['CP', 'USL', 'UCL'], fontsize=11, loc='upper right')  
     lines_cp = ax_asbe1_cp.plot(df_asbe1_cp["Date (MM/DD/YYYY)"], df_asbe1_cp["delta CP"], visible=False)
-    datacursor(lines_cp, hover=True, point_labels=df_asbe1_cp['Remarks'])
+    # datacursor(lines_cp, hover=True, point_labels=df_asbe1_cp['Remarks'])
     # plt.show()
     # sht_asbe1_plot_cp.activate()
     # pic_cp = plt.show()
@@ -64,6 +136,14 @@ def main():
     # sht_asbe1_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
     sht_asbe1_plot_cp.pictures.add(fig_asbe1_cp, name= "ASBE1_CP_Plot", update= True)
 
+    # Draw CP Plot (using Plotly) in Browser 
+    draw_plotly_asbe1_cp_plot(
+        x = df_asbe1_cp_date, 
+        y0 = df_asbe1_cp_delta_cp, 
+        y1 = df_asbe1_cp_usl, 
+        y2 = df_asbe1_cp_ucl,
+        remarks = df_asbe1_cp_remarks
+        )
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for ER   
@@ -99,7 +179,7 @@ def main():
         ]
     ax_asbe1_er.legend(custom_lines_er, ['ER', 'LSL'], fontsize=11, loc='upper right') 
     lines_er = ax_asbe1_er.plot(df_asbe1_er["Date (MM/DD/YYYY)"], df_asbe1_er["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er, hover=True, point_labels=df_asbe1_er['Remarks'])
+    # datacursor(lines_er, hover=True, point_labels=df_asbe1_er['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_asfe1_plot_er.pictures.add(fig_asbe1_er, name= "ASBE1_ER_Plot", update= True)
 
@@ -120,7 +200,7 @@ def main():
         ]
     ax_asbe1_unif.legend(custom_lines_unif, ['Unif'], fontsize=11, loc='upper right') 
     lines_unif = ax_asbe1_unif.plot(df_asbe1_er["Date (MM/DD/YYYY)"], df_asbe1_er["% Uni"], visible=False)
-    datacursor(lines_unif, hover=True, point_labels=df_asbe1_er['Remarks'])
+    # datacursor(lines_unif, hover=True, point_labels=df_asbe1_er['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_asfe1_plot_er.pictures.add(fig_asbe1_unif, name= "ASBE1_Unif_Plot", update= True)
 

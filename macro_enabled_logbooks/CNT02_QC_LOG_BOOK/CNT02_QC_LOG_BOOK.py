@@ -1,19 +1,134 @@
-# Import modules
+# Import packages
 import xlwings as xw
-import datetime as dt
-import win32api
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.dates as mdates
 from matplotlib.dates import MO, TU, WE, TH, FR, SA, SU
 from matplotlib.lines import Line2D
-from mpldatacursor import datacursor
-# import plotly.plotly as py
-# import plotly.graph_objs as go
+import plotly as py
+import plotly.graph_objs as go
+# from matplotlib.figure import Figure
+# import datetime as dt
+# import win32api
 # import os
 # from pathlib import Path
 
 
+
+
+#==================================================================================================================================================================
+# Global variables
+line_color = '#3f51b5'      # line (trace0) color
+marker_color = '#43a047'  # marker color
+cl_color = '#ffa000'    # control limit line color
+sl_color = '#e53935'    # spec limit line color
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# def draw_plotly_reml1a_cp_plot(x, y0, y1, y2, remarks):
+def draw_plotly_reml1a_cp_plot(x, y0, y1, remarks):
+    trace0 = go.Scatter(
+            x = x,
+            y = y0,
+            name = 'delta-CP',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color,
+                    width = 2),
+            marker = dict(
+                    color = marker_color,
+                    size = 8,
+                    line = dict(
+                        color = '#ffffff',
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace1 = go.Scatter(
+            x = x,
+            y = y1,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    # trace2 = go.Scatter(
+    #         x = x,
+    #         y = y2,
+    #         name = 'UCL',
+    #         mode = 'lines',
+    #         line = dict(
+    #                 color = cl_color,
+    #                 width = 3)
+    # )
+
+    # data = [trace0, trace1, trace2]
+    data = [trace0, trace1]
+    layout = dict(
+            title = 'CP Plot for REML1A',
+            xaxis = dict(title= 'Date'),
+            yaxis = dict(title= 'delta CP (no.s)')
+        )
+    fig = dict(data= data, layout = layout)
+    py.offline.plot(fig, filename='REML1A_CP-Plot.html')
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# def draw_plotly_reml1c_cp_plot(x, y0, y1, y2, remarks):
+def draw_plotly_reml1c_cp_plot(x, y0, y1, remarks):
+    trace0 = go.Scatter(
+            x = x,
+            y = y0,
+            name = 'delta-CP',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color,
+                    width = 2),
+            marker = dict(
+                    color = marker_color,
+                    size = 8,
+                    line = dict(
+                        color = '#ffffff',
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace1 = go.Scatter(
+            x = x,
+            y = y1,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    # trace2 = go.Scatter(
+    #         x = x,
+    #         y = y2,
+    #         name = 'UCL',
+    #         mode = 'lines',
+    #         line = dict(
+    #                 color = cl_color,
+    #                 width = 3)
+    # )
+
+    # data = [trace0, trace1, trace2]
+    data = [trace0, trace1]
+    layout = dict(
+            title = 'CP Plot for REML1C',
+            xaxis = dict(title= 'Date'),
+            yaxis = dict(title= 'delta CP (no.s)')
+        )
+    fig = dict(data= data, layout = layout)
+    py.offline.plot(fig, filename='REML1C_CP-Plot.html')
+
+#====================================================================================================================================================================
+#####################################################################################################################################################################
 def main():
     wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
@@ -39,6 +154,21 @@ def main():
     # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1_cp_ch_a           # show the dataframe values into sheet- 'CP Plot'
     df_reml1_cp_ch_c = df_reml1_cp[df_reml1_cp["Chamber"] == 'ASP']					# dataframe for ASP (chamber C)
     # sht_reml1_plot_cp.range('G46').options(index=False).value = df_reml1_cp_ch_c           # show the dataframe values into sheet- 'CP Plot'
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param
+    df_reml1_cp_ch_a_date = df_reml1_cp_ch_a["Date (MM/DD/YYYY)"]
+    df_reml1_cp_ch_a_delta_cp = df_reml1_cp_ch_a["delta CP"]
+    df_reml1_cp_ch_a_usl = df_reml1_cp_ch_a["USL"]
+    # df_reml1_cp_ch_a_ucl = df_reml1_cp_ch_a["UCL"]
+    df_reml1_cp_ch_a_remarks = df_reml1_cp_ch_a["Remarks"]
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param
+    df_reml1_cp_ch_c_date = df_reml1_cp_ch_c["Date (MM/DD/YYYY)"]
+    df_reml1_cp_ch_c_delta_cp = df_reml1_cp_ch_c["delta CP"]
+    df_reml1_cp_ch_c_usl = df_reml1_cp_ch_c["USL"]
+    # df_reml1_cp_ch_c_ucl = df_reml1_cp_ch_c["UCL"]
+    df_reml1_cp_ch_c_remarks = df_reml1_cp_ch_c["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot for DPS chamber i.e. Ch-A
@@ -60,13 +190,23 @@ def main():
         ]
     ax_reml1_cp_ch_a.legend(custom_lines_cp_ch_a, ['CP', 'USL'], fontsize=11, loc='upper right')  
     lines_cp_ch_a = ax_reml1_cp_ch_a.plot(df_reml1_cp_ch_a["Date (MM/DD/YYYY)"], df_reml1_cp_ch_a["delta CP"], visible=False)
-    datacursor(lines_cp_ch_a, hover=True, point_labels=df_reml1_cp_ch_a['Remarks'])
+    # datacursor(lines_cp_ch_a, hover=True, point_labels=df_reml1_cp_ch_a['Remarks'])
     # plt.show()
     # sht_cp_plot.activate()
     # pic_cp = plt.show()
     # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
     # sh_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
     sht_reml1_plot_cp.pictures.add(fig_reml1_cp_ch_a, name= "REML1_DPS_CP_Plot", update= True)
+
+
+    # Draw CP Plot (using Plotly) in Browser 
+    draw_plotly_reml1a_cp_plot(
+        x = df_reml1_cp_ch_a_date, 
+        y0 = df_reml1_cp_ch_a_delta_cp, 
+        y1 = df_reml1_cp_ch_a_usl, 
+        # y2 = df_repl1a_cp_ucl,
+        remarks = df_reml1_cp_ch_a_remarks
+        )
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot for ASP chamber i.e. Ch-C
@@ -88,7 +228,7 @@ def main():
         ]
     ax_reml1_cp_ch_c.legend(custom_lines_cp_ch_c, ['CP', 'USL'], fontsize=11, loc='upper right')  
     lines_cp_ch_c = ax_reml1_cp_ch_c.plot(df_reml1_cp_ch_c["Date (MM/DD/YYYY)"], df_reml1_cp_ch_c["delta CP"], visible=False)
-    datacursor(lines_cp_ch_c, hover=True, point_labels=df_reml1_cp_ch_c['Remarks'])
+    # datacursor(lines_cp_ch_c, hover=True, point_labels=df_reml1_cp_ch_c['Remarks'])
     # plt.show()
     # sht_cp_plot.activate()
     # pic_cp = plt.show()
@@ -96,6 +236,14 @@ def main():
     # sht_reml1_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
     sht_reml1_plot_cp.pictures.add(fig_reml1_cp_ch_c, name= "REML1_ASP_CP_Plot", update= True)
 
+    # Draw CP Plot (using Plotly) in Browser 
+    draw_plotly_reml1c_cp_plot(
+        x = df_reml1_cp_ch_c_date, 
+        y0 = df_reml1_cp_ch_c_delta_cp, 
+        y1 = df_reml1_cp_ch_c_usl, 
+        # y2 = df_repl1a_cp_ucl,
+        remarks = df_reml1_cp_ch_c_remarks
+        )
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for Ch A PR i.e. DPS chamber 
@@ -138,7 +286,7 @@ def main():
         ]
     ax_reml1_er_ch_a_pr.legend(custom_lines_er_cha_pr, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_er_ch_a_pr = ax_reml1_er_ch_a_pr.plot(df_reml1_er_ch_a_pr["Date (MM/DD/YYYY)"], df_reml1_er_ch_a_pr["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er_ch_a_pr, hover=True, point_labels=df_reml1_er_ch_a_pr['Remarks'])
+    # datacursor(lines_er_ch_a_pr, hover=True, point_labels=df_reml1_er_ch_a_pr['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_reml1_plot_er_ch_a_pr.pictures.add(fig_reml1_er_ch_a_pr, name= "REML1_CH_A_PR_ER_Plot", update= True)
 
@@ -164,7 +312,7 @@ def main():
         ]
     ax_reml1_unif_ch_a_pr.legend(custom_lines_unif_ch_a_pr, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
     lines_unif_ch_a_pr = ax_reml1_unif_ch_a_pr.plot(df_reml1_er_ch_a_pr["Date (MM/DD/YYYY)"], df_reml1_er_ch_a_pr["% Uniformity"], visible=False)
-    datacursor(lines_unif_ch_a_pr, hover=True, point_labels=df_reml1_er_ch_a_pr['Remarks'])
+    # datacursor(lines_unif_ch_a_pr, hover=True, point_labels=df_reml1_er_ch_a_pr['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_reml1_plot_er_ch_a_pr.pictures.add(fig_reml1_unif_ch_a_pr, name= "REML1_CH_A_PR_UNIF_Plot", update= True)
 
@@ -210,7 +358,7 @@ def main():
         ]
     ax_reml1_er_ch_c_pr.legend(custom_lines_er_ch_c_pr, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
     lines_er_ch_c_pr = ax_reml1_er_ch_c_pr.plot(df_reml1_er_ch_c_pr["Date (MM/DD/YYYY)"], df_reml1_er_ch_c_pr["Etch Rate (A/Min)"], visible=False)
-    datacursor(lines_er_ch_c_pr, hover=True, point_labels=df_reml1_er_ch_c_pr['Remarks'])
+    # datacursor(lines_er_ch_c_pr, hover=True, point_labels=df_reml1_er_ch_c_pr['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_reml1_plot_er_ch_c_pr.pictures.add(fig_reml1_er_ch_c_pr, name= "REML1_CH_C_PR_ER_Plot", update= True)
 
@@ -235,7 +383,7 @@ def main():
         ]
     ax_reml1_unif_ch_c_pr.legend(custom_lines_unif_ch_c_pr, ['Unif', 'USL'], fontsize=11, loc='upper right') 
     lines_unif_ch_c_pr = ax_reml1_unif_ch_c_pr.plot(df_reml1_er_ch_c_pr["Date (MM/DD/YYYY)"], df_reml1_er_ch_c_pr["% Uniformity"], visible=False)
-    datacursor(lines_unif_ch_c_pr, hover=True, point_labels=df_reml1_er_ch_c_pr['Remarks'])
+    # datacursor(lines_unif_ch_c_pr, hover=True, point_labels=df_reml1_er_ch_c_pr['Remarks'])
     # plt.show()        # shows 2 figures in different windows
     sht_reml1_plot_er_ch_c_pr.pictures.add(fig_reml1_unif_ch_c_pr, name= "REML1_CH_C_PR_UNIF_Plot", update= True)
 
