@@ -1,0 +1,9 @@
+# ignore all opened MS Office files 
+~$*
+
+# ignore all folders
+# *
+
+# Allow these specific files
+!'Production log book.xlsx'
+!README.txt
