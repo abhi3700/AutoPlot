@@ -128,7 +128,7 @@ def main():
         ).value											                # fetch the data from sheet- 'REOX1A-CP'
     df_reox1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reox1a_cp = df_reox1a_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
-    # sht_reox1a_plot_cp.range('A25').options(index=False).value = df_reox1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    sht_reox1a_plot_cp.range('A25').options(index=False).value = df_reox1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
