@@ -22,18 +22,21 @@ cp_chart_title = 'CP Plot for ASFE1'  # title for CP chart
 cp_chart_xlabel = 'Date'   # xaxis name for CP chart
 cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
 cp_chart_html_file = 'ASFE1_CP-Plot.html'   # HTML filename for CP chart
+cp_chart_trace_count = 3    # no. of traces in CP chart
 er_chart_title = 'ER Plot for ASFE1'  # title for ER chart
 er_chart_xlabel = 'Date'        # xaxis name for ER chart
 er_chart_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER chart
 er_chart_html_file = 'ASFE1_ER-Plot.html'   # HTML filename for ER chart
+er_chart_trace_count = 4    # no. of traces in ER chart
 unif_chart_title = 'Uniformity Plot for ASFE1'  # title for UNIF chart
 unif_chart_xlabel = 'Date'      # xaxis name for Unif chart
 unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
 unif_chart_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif chart
+unif_chart_trace_count = 2    # no. of traces in Unif chart
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots CP Chart with 3 traces v/s Date.
+"Description": This function plots CP Chart with `cp_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
@@ -89,7 +92,7 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with 4 traces v/s Date.
+"Description": This function plots ER Chart with `er_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": LSL (y-axis) for ER Chart
@@ -156,7 +159,7 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with 2 traces v/s Date.
+"Description": This function plots Unif Chart with `unif_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": UCL (y-axis) for Unif Chart
