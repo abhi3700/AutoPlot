@@ -220,6 +220,7 @@ def main():
         ).value                                                         # fetch the data from sheet- 'ASFE1-CP'
     df_asfe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_cp = df_asfe1_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
+    df_asfe1_cp = df_asfe1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_asfe1_plot_cp.range('A25').options(index=False).value = df_asfe1_cp           # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
