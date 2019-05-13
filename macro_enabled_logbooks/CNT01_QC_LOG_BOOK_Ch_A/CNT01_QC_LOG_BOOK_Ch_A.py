@@ -23,16 +23,16 @@ cp_chart_xlabel = 'Date'   # xaxis name for CP chart
 cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
 cp_chart_html_file = 'REPL1A_CP-Plot.html'   # HTML filename for CP chart
 cp_chart_trace_count = 2    # no. of traces in CP chart
-er_nit_chart_title = 'Nit ER Plot for REPL1A'  # title for SiN ER chart
-er_nit_chart_xlabel = 'Date'        # xaxis name for SiN ER chart
-er_nit_chart_ylabel = 'Nit ER (A/min)'   # yaxis name for SiN ER chart
-er_nit_chart_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for SiN ER chart
-er_nit_chart_trace_count = 5    # no. of traces in SiN ER chart
-unif_nit_chart_title = 'Nit Uniformity Plot for REPL1A'  # title for SiN Unif chart
-unif_nit_chart_xlabel = 'Date'      # xaxis name for SiN Unif chart
-unif_nit_chart_ylabel = 'Nit Unif (%)'    # yaxis name for SiN Unif chart
-unif_nit_chart_html_file = 'REPL1A_Nit_Unif-Plot.html'   # HTML filename for SiN Unif chart
-unif_nit_chart_trace_count = 3    # no. of traces in SiN Unif chart
+er_nit_chart_title = 'Nit ER Plot for REPL1A'  # title for Nit ER chart
+er_nit_chart_xlabel = 'Date'        # xaxis name for Nit ER chart
+er_nit_chart_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER chart
+er_nit_chart_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for Nit ER chart
+er_nit_chart_trace_count = 5    # no. of traces in Nit ER chart
+unif_nit_chart_title = 'Nit Uniformity Plot for REPL1A'  # title for Nit Unif chart
+unif_nit_chart_xlabel = 'Date'      # xaxis name for Nit Unif chart
+unif_nit_chart_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif chart
+unif_nit_chart_html_file = 'REPL1A_Nit_Unif-Plot.html'   # HTML filename for Nit Unif chart
+unif_nit_chart_trace_count = 3    # no. of traces in Nit Unif chart
 er_poly_chart_title = 'Poly ER Plot for REPL1A'  # title for Poly ER chart
 er_poly_chart_xlabel = 'Date'        # xaxis name for Poly ER chart
 er_poly_chart_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER chart
@@ -118,7 +118,7 @@ def draw_plotly_repl1a_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'SiN ER',
+            name = 'Nit ER',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -386,7 +386,7 @@ def main():
     sht_repl1a_er_nit = wb.sheets['REPL1A-ERNit']
     sht_repl1a_er_poly = wb.sheets['REPL1A-ERPoly']
     # sht_repl1a_plot_cp = wb.sheets['CP Plot']
-    # sht_repl1a_plot_er_nit = wb.sheets['SiN Plot']
+    # sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
     # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
 
     #****************************************************************************************************************************************************************
@@ -396,7 +396,7 @@ def main():
         ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
     df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
-    df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is misnitg
+    df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_repl1a_plot_cp.range('A25').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -432,7 +432,7 @@ def main():
     # sht_repl1a_plot_er_nit.range('A28').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for SiN ER & Unif PLot
+    # Assigning variable to each param for Nit ER & Unif PLot
     df_repl1a_er_nit_date = df_repl1a_er_nit["Date (MM/DD/YYYY)"]
     df_repl1a_er_nit_er = df_repl1a_er_nit["Etch Rate (A/Min)"]
     df_repl1a_er_nit_usl = df_repl1a_er_nit["USL"]
@@ -480,7 +480,7 @@ def main():
     # sht_repl1a_plot_er_poly.range('A28').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
  
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for SiN ER & Unif PLot
+    # Assigning variable to each param for Nit ER & Unif PLot
     df_repl1a_er_poly_date = df_repl1a_er_poly["Date (MM/DD/YYYY)"]
     df_repl1a_er_poly_er = df_repl1a_er_poly["Etch Rate (A/Min)"]
     df_repl1a_er_poly_usl = df_repl1a_er_poly["USL"]
