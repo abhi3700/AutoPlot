@@ -3,62 +3,60 @@
 **NOTE: CP is for chambers, ER for layers**
 
 ### A. ASFE1
-1. "ASFE1-CP": `sht_asfe1_cp`
-2. "ASFE1-ER": `sht_asfe1_er`
-3. "CP Plot": `sht_asfe1_plot_cp`
-4. "ER Plot": `sht_asfe1_plot_er`
-5. `df_asfe1_cp`: dataframe for (1)
-6. `df_asfe1_er`: dataframe for (2)
-7. `fig_asfe1_cp`: figure for (3)
-8. `fig_asfe1_er`: figure for (4)
-9. `ax_asfe1_cp`: axis for (3)
-10. `ax_asfe1_er`: axis for (4)
+* Sheets:
+	- "ASFE1-CP": `sht_asfe1_cp`
+	- "ASFE1-ER": `sht_asfe1_er`
+* Dataframes:
+	- `df_asfe1_cp`: dataframe for ASFE1 CP
+	- `df_asfe1_er`: dataframe for ASFE1 ER & Unif
+* Charts:
+	- `draw_plotly_asfe1_cp_plot`: Plotly chart for ASFE1 CP
+	- `draw_plotly_asfe1_er_plot`: Plotly chart for ASFE1 ER
+	- `draw_plotly_asfe1_unif_plot`: Plotly chart for ASFE1 Unif
 
 ### B. ASBE1
-1. "ASBE1-CP": `sht_asbe1_cp`
-2. "ASBE1-ER": `sht_asbe1_er`
-3. "CP Plot": `sht_asbe1_plot_cp`
-4. "ER Plot": `sht_asbe1_plot_er`
-5. `df_asbe1_cp`: dataframe for (1)
-6. `df_asbe1_er`: dataframe for (2)
-7. `fig_asbe1_cp`: figure for (3)
-8. `fig_asbe1_er`: figure for (4)
-9. `ax_asbe1_cp`: axis for (3)
-10. `ax_asbe1_er`: axis for (4)
+* Sheets:
+	- "ASBE1-CP": `sht_asbe1_cp`
+	- "ASBE1-ER": `sht_asbe1_er`
+* Dataframes:
+	- `df_asbe1_cp`: dataframe for ASBE1 CP
+	- `df_asbe1_er`: dataframe for ASBE1 ER & Unif
+* Charts:
+	- `draw_plotly_asbe1_cp_plot`: Plotly chart for ASBE1 CP
+	- `draw_plotly_asbe1_er_plot`: Plotly chart for ASBE1 ER
+	- `draw_plotly_asbe1_unif_plot`: Plotly chart for ASBE1 Unif
 
 ### C. REPL1A
-1. "REPL1A-CP": `sht_repl1a_cp`
-2. "REPL1A-ERNit": `sht_repl1a_er_nit`
-3. "REPL1A-ERPoly": `sht_repl1a_er_poly`
-4. "CP Plot": `sht_repl1a_plot_cp`
-5. "SiN Plot": `sht_repl1a_plot_er_sin`
-6. "Poly Plot": `sht_repl1a_plot_er_poly`
-7. `df_repl1a_cp`: dataframe for (1)
-8. `df_repl1a_er_nit`: dataframe for (2)
-9. `df_repl1a_er_poly`: dataframe for (3)
-10. `fig_repl1a_cp`: figure for (4)
-11. `fig_repl1a_er_sin`: figure for (5)
-12. `fig_repl1a_er_poly`: figure for (6)
-13. `ax_repl1a_cp`: axis for (4)
-14. `ax_repl1a_er_sin`: axis for (5)
-15. `ax_repl1a_er_poly`: axis for (6)
+* Sheets:
+	- "REPL1A-CP": `sht_repl1a_cp`
+	- "REPL1A-ERNit": `sht_repl1a_er_nit`
+	- "REPL1A-ERPoly": `sht_repl1a_er_poly`
+* Dataframes:
+	- `df_repl1a_cp`: dataframe for REPL1A CP
+	- `df_repl1a_er_nit`: dataframe for REPL1A Nit ER & Unif
+	- `df_repl1a_er_poly`: dataframe for REPL1A Poly ER & Unif
+* Charts:
+	- `draw_plotly_repl1a_cp_plot`: Plotly chart for REPL1A CP
+	- `draw_plotly_repl1a_er_nit_plot`: Plotly chart for REPL1A Nit ER
+	- `draw_plotly_repl1a_unif_nit_plot`: Plotly chart for REPL1A Nit Unif
+	- `draw_plotly_repl1a_er_poly_plot`: Plotly chart for REPL1A Poly ER
+	- `draw_plotly_repl1a_unif_poly_plot`: Plotly chart for REPL1A Poly Unif
 
 ### D. REPL1B
-1. "REPL1B-CP": `sht_repl1b_cp`
-2. "REPL1B-ERNit": `sht_repl1b_er_nit`
-3. "REPL1B-ERPoly": `sht_repl1b_er_poly`
-4. "CP Plot": `sht_repl1b_plot_cp`
-5. "SiN Plot": `sht_repl1b_plot_er_sin`
-6. "Poly Plot": `sht_repl1b_plot_er_poly`
-7. `df_repl1b_cp`: dataframe for (1)
-8. `df_repl1b_er_nit`: dataframe for (2)
-9. `df_repl1b_er_poly`: dataframe for (3)
-10. `fig_repl1b_cp`: figure for (4)
-11. `fig_repl1b_er_sin`: figure for (5)
-12. `fig_repl1b_er_poly`: figure for (6)
-13. `ax_repl1b_cp`: axis for (4)
-14. `ax_repl1b_er_sin`: axis for (5)
-15. `ax_repl1b_er_poly`: axis for (6)
+* Sheets:
+	- "REPL1B-CP": `sht_repl1b_cp`
+	- "REPL1B-ERNit": `sht_repl1b_er_nit`
+	- "REPL1B-ERPoly": `sht_repl1b_er_poly`
+* Dataframes:
+	- `df_repl1b_cp`: dataframe for REPL1B CP
+	- `df_repl1b_er_nit`: dataframe for REPL1B Nit ER & Unif
+	- `df_repl1b_er_poly`: dataframe for REPL1B Poly ER & Unif
+* Charts:
+	- `draw_plotly_repl1b_cp_plot`: Plotly chart for REPL1B CP
+	- `draw_plotly_repl1b_er_nit_plot`: Plotly chart for REPL1B Nit ER
+	- `draw_plotly_repl1b_unif_nit_plot`: Plotly chart for REPL1B Nit Unif
+	- `draw_plotly_repl1b_er_poly_plot`: Plotly chart for REPL1B Poly ER
+	- `draw_plotly_repl1b_unif_poly_plot`: Plotly chart for REPL1B Poly Unif
 
 ### E. REML1
 1. "REML1-CP": `sht_reml1_cp`
