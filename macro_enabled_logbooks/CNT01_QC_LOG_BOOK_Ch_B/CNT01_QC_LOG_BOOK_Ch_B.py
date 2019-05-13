@@ -407,33 +407,6 @@ def main():
 
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Draw CP Plot
-    # fig_repl1b_cp, ax_repl1b_cp = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_cp = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_repl1b_cp.xaxis.set_major_formatter(monthyearFmt_cp)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_repl1b_cp.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
-    # ax_repl1b_cp.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_repl1b_cp.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_repl1b_cp["Date (MM/DD/YYYY)"], df_repl1b_cp["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    # plt.plot(df_repl1b_cp["Date (MM/DD/YYYY)"], df_repl1b_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('delta CP (no.s)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_cp = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),
-    #     Line2D([0], [0], color='#0000CD', lw=4),
-    #     ]
-    # ax_repl1b_cp.legend(custom_lines_cp, ['CP', 'USL'], fontsize=11, loc='upper right')  
-    # lines_cp = ax_repl1b_cp.plot(df_repl1b_cp["Date (MM/DD/YYYY)"], df_repl1b_cp["delta CP"], visible=False)
-    # # datacursor(lines_cp, hover=True, point_labels=df_repl1b_cp['Remarks'])
-    # # plt.show()
-    # # sht_repl1b_plot_cp.activate()
-    # # pic_cp = plt.show()
-    # # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
-    # # sht_repl1b_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
-    # sht_repl1b_plot_cp.pictures.add(fig_repl1b_cp, name= "REPL1B_CP_Plot", update= True)
-
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_repl1b_cp_plot(
         x = df_repl1b_cp_date, 
@@ -444,7 +417,7 @@ def main():
         )
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for NIT  
+    # Fetch Dataframe for NIT ER & Unif Plot  
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
@@ -492,65 +465,9 @@ def main():
         )
 
 
-    # # Draw NIT ER PLot
-    # fig_repl1b_er_sin, ax_repl1b_er_sin = plt.subplots(1,1, figsize=(20,6))
-    # # mticker.Locator.MAXTICKS = 2000		# set max ticks
-    # monthyearFmt_er_nit = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_repl1b_er_sin.xaxis.set_major_formatter(monthyearFmt_er_nit)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_repl1b_er_sin.xaxis.set_major_locator(mdates.MonthLocator(interval=1))         # set ticks after every 2 Mondays
-    # ax_repl1b_er_sin.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_repl1b_er_sin.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["UCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["LCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Nit ER (A/min)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_er_nit = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# LSL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
-    #     ]
-    # ax_repl1b_er_sin.legend(custom_lines_er_nit, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
-    # lines_er_nit = ax_repl1b_er_sin.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["Etch Rate (A/Min)"], visible=False)
-    # # datacursor(lines_er_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_repl1b_plot_er_nit.pictures.add(fig_repl1b_er_sin, name= "REPL1B_NIT_ER_Plot", update= True)
-
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-	# # Draw NIT Unif PLot
- #    fig_repl1b_unif_sin, ax_repl1b_unif_sin = plt.subplots(1,1, figsize=(20,6))
- #    monthyearFmt_unif_nit = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
- #    ax_repl1b_unif_sin.xaxis.set_major_formatter(monthyearFmt_unif_nit)
- #    _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
- #    # ax_repl1b_unif_sin.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
- #    ax_repl1b_unif_sin.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
- #    ax_repl1b_unif_sin.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
- #    plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["% Uniformity"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
- #    plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["% Uni USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
- #    plt.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["% Uni UCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
- #    plt.xlabel('Date', fontsize=18)      # xlabel
- #    plt.ylabel('Nit Unif (%)', fontsize=18)     # ylabel
- #    # Custom Legends
- #    custom_lines_unif_nit = [
- #        Line2D([0], [0], color='#FF7F50', lw=4),	# ER
- #        Line2D([0], [0], color='#0000CD', lw=4),	# USL
- #        Line2D([0], [0], color='#FF1493', lw=4),	# UCL
- #        ]
- #    ax_repl1b_unif_sin.legend(custom_lines_unif_nit, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
- #    lines_unif_nit = ax_repl1b_unif_sin.plot(df_repl1b_er_nit["Date (MM/DD/YYYY)"], df_repl1b_er_nit["% Uniformity"], visible=False)
- #    # datacursor(lines_unif_nit, hover=True, point_labels=df_repl1b_er_nit['Remarks'])
- #    # plt.show()        # shows 2 figures in different windows
- #    sht_repl1b_plot_er_nit.pictures.add(fig_repl1b_unif_sin, name= "REPL1B_NIT_UNIF_Plot", update= True)
-
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for POLY   
+    # Fetch Dataframe for POLY ER & Unif PLot
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
@@ -596,61 +513,6 @@ def main():
         y3 = df_repl1b_er_poly_unif_ucl,
         remarks = df_repl1b_er_poly_remarks
         )
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # # Draw POLY ER PLot
-    # fig_repl1b_er_poly, ax_repl1b_er_poly = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_er_poly = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_repl1b_er_poly.xaxis.set_major_formatter(monthyearFmt_er_poly)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_repl1b_er_poly.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
-    # ax_repl1b_er_poly.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=1))          # set ticks after every 2 Mondays
-    # ax_repl1b_er_poly.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["UCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["LCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Poly ER (A/min)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_er_poly = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# LSL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
-    #     ]
-    # ax_repl1b_er_poly.legend(custom_lines_er_poly, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
-    # lines_er_poly = ax_repl1b_er_poly.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["Etch Rate (A/Min)"], visible=False)
-    # # datacursor(lines_er_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_repl1b_plot_er_poly.pictures.add(fig_repl1b_er_poly, name= "REPL1B_POLY_ER_Plot", update= True)
-
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Draw POLY Unif PLot
-    # fig_repl1b_unif_poly, ax_repl1b_unif_poly = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_unif_poly = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_repl1b_unif_poly.xaxis.set_major_formatter(monthyearFmt_unif_poly)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_repl1b_unif_poly.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
-    # ax_repl1b_unif_poly.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_repl1b_unif_poly.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["% Uniformity"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["% Uni USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["% Uni UCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Poly Unif (%)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_unif_poly = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     ]
-    # ax_repl1b_unif_poly.legend(custom_lines_unif_poly, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
-    # lines_unif_poly = ax_repl1b_unif_poly.plot(df_repl1b_er_poly["Date (MM/DD/YYYY)"], df_repl1b_er_poly["% Uniformity"], visible=False)
-    # # datacursor(lines_unif_poly, hover=True, point_labels=df_repl1b_er_poly['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_repl1b_plot_er_poly.pictures.add(fig_repl1b_unif_poly, name= "REPL1B_POLY_UNIF_Plot", update= True)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
