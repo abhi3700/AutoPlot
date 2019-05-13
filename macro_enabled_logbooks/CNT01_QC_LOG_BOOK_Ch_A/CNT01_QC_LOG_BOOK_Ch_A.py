@@ -118,7 +118,7 @@ def draw_plotly_repl1a_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'Nit ER',
+            name = 'ER',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -252,7 +252,7 @@ def draw_plotly_repl1a_er_poly_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'Poly ER',
+            name = 'ER',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
