@@ -34,6 +34,9 @@ unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
 unif_chart_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif chart
 unif_chart_trace_count = 2    # no. of traces in Unif chart
 
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK_macro\\ASH09_QC_LOG_BOOK.xlsm"
+
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
 "Description": This function plots CP Chart with `cp_chart_trace_count` traces v/s Date.
@@ -248,9 +251,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file = pd.ExcelFile("I:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm")
-    # excel_file = pd.ExcelFile("C:\\Users\\abhijit\\Desktop\\dryetch-excel-py-macros\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm")
-    # excel_file = pd.ExcelFile("\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK_macro\\ASH09_QC_LOG_BOOK.xlsm")
+    excel_file = pd.ExcelFile(excel_file_directory)
     df_asfe1_er = excel_file.parse('ASFE1-ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asfe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_er = df_asfe1_er[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "LCL", "UCL", "Remarks", "% Uni UCL"]]             # The final Dataframe with 5 columns for plot: x-1, y-4

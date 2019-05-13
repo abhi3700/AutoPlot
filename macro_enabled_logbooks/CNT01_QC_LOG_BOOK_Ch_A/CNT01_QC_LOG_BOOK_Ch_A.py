@@ -44,7 +44,7 @@ unif_poly_chart_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif chart
 unif_poly_chart_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif chart
 unif_poly_chart_trace_count = 3    # no. of traces in Poly Unif chart
 
-excel_file_directory = "I:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_A\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_A\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------

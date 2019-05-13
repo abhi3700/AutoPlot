@@ -34,6 +34,9 @@ unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
 unif_chart_html_file = 'ASBE1_Unif-Plot.html'   # HTML filename for Unif chart
 unif_chart_trace_count = 2    # no. of traces in Unif chart
 
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm"
+
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
 "Description": This function plots CP Chart with 3 traces v/s Date.
@@ -254,8 +257,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file = pd.ExcelFile("I:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm")
-    # excel_file = pd.ExcelFile("\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm")
+    excel_file = pd.ExcelFile(excel_file_directory)
     df_asbe1_er = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
     
     df_asbe1_er = df_asbe1_er[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
