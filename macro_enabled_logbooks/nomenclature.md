@@ -59,24 +59,22 @@
 	- `draw_plotly_repl1b_unif_poly_plot`: Plotly chart for REPL1B Poly Unif
 
 ### E. REML1
-1. "REML1-CP": `sht_reml1_cp`
-2. "PR Ch A ER": `sht_reml1_er_ch_a_pr`
-3. "PR Ch C ER": `sht_reml1_er_ch_c_pr`
-4. "CP Plot": `sht_reml1_plot_cp`
-5. "PR Ch A Plot": `sht_reml1_plot_er_ch_a_pr`
-6. "PR Ch C Plot": `sht_reml1_plot_er_ch_c_pr`
-7. `df_reml1_cp_ch_a`: dataframe for (1)
-8. `df_reml1_cp_ch_c`: dataframe for (1)
-8. `df_reml1_er_ch_a_pr`: dataframe for (2)
-9. `df_reml1_er_ch_c_pr`: dataframe for (3)
-10. `fig_reml1_cp_ch_a`: figure for (4)
-11. `fig_reml1_cp_ch_c`: figure for (4)
-12. `fig_reml1_er_ch_a_pr`: figure for (5)
-13. `fig_reml1_er_ch_c_pr`: figure for (5)
-14. `ax_reml1_cp_ch_a`: axis for (4)
-15. `ax_reml1_cp_ch_c`: axis for (4)
-16. `ax_reml1_er_ch_a_pr`: axis for (5)
-17. `ax_reml1_er_ch_c_pr`: axis for (5)
+* Sheets:
+	- "REML1-CP": `sht_reml1_cp`
+	- "PR Ch A ER": `sht_reml1a_er_pr`
+	- "PR Ch C ER": `sht_reml1c_er_pr`
+* Dataframes:
+	- `df_reml1a_cp`: dataframe for REML1A CP
+	- `df_reml1c_cp`: dataframe for REML1C CP
+	- `df_reml1a_er_pr`: dataframe for REML1A PR ER & Unif
+	- `df_reml1c_er_pr`: dataframe for REML1C PR ER & Unif
+* Charts:
+	- `draw_plotly_reml1a_cp_plot`: Plotly chart for REML1A CP
+	- `draw_plotly_reml1c_cp_plot`: Plotly chart for REML1C CP
+	- `draw_plotly_reml1a_er_pr_plot`: Plotly chart for REML1A PR ER
+	- `draw_plotly_reml1a_unif_pr_plot`: Plotly chart for REML1A PR Unif
+	- `draw_plotly_reml1c_er_pr_plot`: Plotly chart for REML1C PR ER
+	- `draw_plotly_reml1c_unif_pr_plot`: Plotly chart for REML1C PR Unif
 
 ### F. RESP1A
 1. "RESP1A-CP": `sht_resp1a_cp`
