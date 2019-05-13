@@ -23,25 +23,25 @@ cp_chart_xlabel = 'Date'   # xaxis name for CP chart
 cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
 cp_chart_html_file = 'REPL1A_CP-Plot.html'   # HTML filename for CP chart
 cp_chart_trace_count = 2    # no. of traces in CP chart
-er_sin_chart_title = 'SiN ER Plot for REPL1A'  # title for SiN ER chart
-er_sin_chart_xlabel = 'Date'        # xaxis name for SiN ER chart
-er_sin_chart_ylabel = 'Etch Rate (A/min)'   # yaxis name for SiN ER chart
-er_sin_chart_html_file = 'REPL1A_ER-Plot.html'   # HTML filename for SiN ER chart
-er_sin_chart_trace_count = 5    # no. of traces in SiN ER chart
-unif_sin_chart_title = 'Uniformity Plot for REPL1A'  # title for SiN Unif chart
-unif_sin_chart_xlabel = 'Date'      # xaxis name for SiN Unif chart
-unif_sin_chart_ylabel = 'Uniformity (%)'    # yaxis name for SiN Unif chart
-unif_sin_chart_html_file = 'REPL1A_Unif-Plot.html'   # HTML filename for SiN Unif chart
-unif_sin_chart_trace_count = 3    # no. of traces in SiN Unif chart
+er_nit_chart_title = 'Nit ER Plot for REPL1A'  # title for SiN ER chart
+er_nit_chart_xlabel = 'Date'        # xaxis name for SiN ER chart
+er_nit_chart_ylabel = 'Nit ER (A/min)'   # yaxis name for SiN ER chart
+er_nit_chart_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for SiN ER chart
+er_nit_chart_trace_count = 5    # no. of traces in SiN ER chart
+unif_nit_chart_title = 'Nit Uniformity Plot for REPL1A'  # title for SiN Unif chart
+unif_nit_chart_xlabel = 'Date'      # xaxis name for SiN Unif chart
+unif_nit_chart_ylabel = 'Nit Unif (%)'    # yaxis name for SiN Unif chart
+unif_nit_chart_html_file = 'REPL1A_Nit_Unif-Plot.html'   # HTML filename for SiN Unif chart
+unif_nit_chart_trace_count = 3    # no. of traces in SiN Unif chart
 er_poly_chart_title = 'Poly ER Plot for REPL1A'  # title for Poly ER chart
 er_poly_chart_xlabel = 'Date'        # xaxis name for Poly ER chart
-er_poly_chart_ylabel = 'Etch Rate (A/min)'   # yaxis name for Poly ER chart
-er_poly_chart_html_file = 'REPL1A_ER-Plot.html'   # HTML filename for Poly ER chart
+er_poly_chart_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER chart
+er_poly_chart_html_file = 'REPL1A_Poly_ER-Plot.html'   # HTML filename for Poly ER chart
 er_poly_chart_trace_count = 5    # no. of traces in Poly ER chart
-unif_poly_chart_title = 'Uniformity Plot for REPL1A'  # title for Poly Unif chart
+unif_poly_chart_title = 'Poly Uniformity Plot for REPL1A'  # title for Poly Unif chart
 unif_poly_chart_xlabel = 'Date'      # xaxis name for Poly Unif chart
-unif_poly_chart_ylabel = 'Uniformity (%)'    # yaxis name for Poly Unif chart
-unif_poly_chart_html_file = 'REPL1A_Unif-Plot.html'   # HTML filename for Poly Unif chart
+unif_poly_chart_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif chart
+unif_poly_chart_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif chart
 unif_poly_chart_trace_count = 3    # no. of traces in Poly Unif chart
 
 excel_file_directory = "I:\\excel\\dryetch\\Excel-office\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_A\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
@@ -106,7 +106,7 @@ def draw_plotly_repl1a_cp_plot(x, y1, y2, remarks):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_sin_chart_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with `er_nit_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": USL (y-axis) for ER Chart
@@ -114,7 +114,7 @@ def draw_plotly_repl1a_cp_plot(x, y1, y2, remarks):
 "y4": UCL (y-axis) for ER Chart
 "y5": LCL (y-axis) for ER Chart
 """
-def draw_plotly_repl1a_er_sin_plot(x, y1, y2, y3, y4, y5, remarks):
+def draw_plotly_repl1a_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -175,22 +175,22 @@ def draw_plotly_repl1a_er_sin_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_chart_title,
-            xaxis = dict(title= er_chart_xlabel),
-            yaxis = dict(title= er_chart_ylabel)
+            title = er_nit_chart_title,
+            xaxis = dict(title= er_nit_chart_xlabel),
+            yaxis = dict(title= er_nit_chart_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chart_html_file)
+    py.offline.plot(fig, filename= er_nit_chart_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_sin_chart_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with `unif_nit_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
 "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_repl1a_unif_sin_plot(x, y1, y2, y3, remarks):
+def draw_plotly_repl1a_unif_nit_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -209,7 +209,7 @@ def draw_plotly_repl1a_unif_sin_plot(x, y1, y2, y3, remarks):
             text = remarks
     )
 
-    trace2 = go.Scatter(;
+    trace2 = go.Scatter(
             x = x,
             y = y2,
             name = 'USL',
@@ -219,7 +219,7 @@ def draw_plotly_repl1a_unif_sin_plot(x, y1, y2, y3, remarks):
                     width = 3)
     )
 
-    trace3 = go.Scatter(;
+    trace3 = go.Scatter(
             x = x,
             y = y3,
             name = 'UCL',
@@ -231,12 +231,12 @@ def draw_plotly_repl1a_unif_sin_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_chart_title,
-            xaxis = dict(title= unif_chart_xlabel),
-            yaxis = dict(title= unif_chart_ylabel)
+            title = unif_nit_chart_title,
+            xaxis = dict(title= unif_nit_chart_xlabel),
+            yaxis = dict(title= unif_nit_chart_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chart_html_file)
+    py.offline.plot(fig, filename= unif_nit_chart_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -309,16 +309,16 @@ def draw_plotly_repl1a_er_poly_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_chart_title,
-            xaxis = dict(title= er_chart_xlabel),
-            yaxis = dict(title= er_chart_ylabel)
+            title = er_poly_chart_title,
+            xaxis = dict(title= er_poly_chart_xlabel),
+            yaxis = dict(title= er_poly_chart_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chart_html_file)
+    py.offline.plot(fig, filename= er_poly_chart_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_sin_chart_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with `unif_nit_chart_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
@@ -343,7 +343,7 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
             text = remarks
     )
 
-    trace2 = go.Scatter(;
+    trace2 = go.Scatter(
             x = x,
             y = y2,
             name = 'USL',
@@ -353,7 +353,7 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
                     width = 3)
     )
 
-    trace3 = go.Scatter(;
+    trace3 = go.Scatter(
             x = x,
             y = y3,
             name = 'UCL',
@@ -365,12 +365,12 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_chart_title,
-            xaxis = dict(title= unif_chart_xlabel),
-            yaxis = dict(title= unif_chart_ylabel)
+            title = unif_poly_chart_title,
+            xaxis = dict(title= unif_poly_chart_xlabel),
+            yaxis = dict(title= unif_poly_chart_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chart_html_file)
+    py.offline.plot(fig, filename= unif_poly_chart_html_file)
 
 
 
@@ -386,17 +386,17 @@ def main():
     sht_repl1a_er_nit = wb.sheets['REPL1A-ERNit']
     sht_repl1a_er_poly = wb.sheets['REPL1A-ERPoly']
     # sht_repl1a_plot_cp = wb.sheets['CP Plot']
-    # sht_repl1a_plot_er_sin = wb.sheets['SiN Plot']
+    # sht_repl1a_plot_er_nit = wb.sheets['SiN Plot']
     # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for CP
+    # Fetch Dataframe for CP Plot
     df_repl1a_cp = sht_repl1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
     df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
-    df_asfe1_cp = df_asfe1_cp.dropna()                                              # dropping rows where at least one element is missing
+    df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is misnitg
     # sht_repl1a_plot_cp.range('A25').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -435,7 +435,7 @@ def main():
     # # sht_repl1a_plot_cp.pictures.add(pic_cp, name= "REPL1A_CP_Plot", update= True)
     # # sht_repl1a_plot_cp.pictures.add(fig_repl1a_cp, name= "REPL1A_CP_Plot", update= True)
 
-    # Draw CP Plot (using Plotly) in Browser 
+    # Draw CP Plot (unitg Plotly) in Browser 
     draw_plotly_repl1a_cp_plot(
         x = df_repl1a_cp_date, 
         y1 = df_repl1a_cp_delta_cp, 
@@ -445,7 +445,7 @@ def main():
         )
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for NIT  
+    # Fetch Dataframe for NIT ER & UNif PLot
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
@@ -453,14 +453,26 @@ def main():
     excel_file_sht_nit = pd.ExcelFile(excel_file_directory)
     df_repl1a_er_nit = excel_file_sht_nit.parse('REPL1A-ERNit', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
-    df_repl1a_er_nit = df_repl1a_er_nit[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uniformity", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_repl1a_er_nit = df_repl1a_er_nit[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1a_er_nit = df_repl1a_er_nit.dropna()                                              # dropping rows where at least one element is missing
-    # sht_repl1a_plot_er_sin.range('A28').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
-    
+    df_repl1a_er_nit = df_repl1a_er_nit.dropna()                                              # dropping rows where at least one element is misnitg
+    # sht_repl1a_plot_er_nit.range('A28').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param for SiN ER & Unif PLot
+    df_repl1a_er_nit_date = df_repl1a_er_nit["Date (MM/DD/YYYY)"]
+    df_repl1a_er_nit_er = df_repl1a_er_nit["Etch Rate (A/Min)"]
+    df_repl1a_er_nit_usl = df_repl1a_er_nit["USL"]
+    df_repl1a_er_nit_lsl = df_repl1a_er_nit["LSL"]
+    df_repl1a_er_nit_ucl = df_repl1a_er_nit["UCL"]
+    df_repl1a_er_nit_lcl = df_repl1a_er_nit["LCL"]
+    df_repl1a_er_nit_unif = df_repl1a_er_nit["% Uni"]
+    df_repl1a_er_nit_unif_usl = df_repl1a_er_nit["% Uni USL"]
+    df_repl1a_er_nit_unif_ucl = df_repl1a_er_nit["% Uni UCL"]
+    df_repl1a_er_nit_remarks = df_repl1a_er_nit["Remarks"]
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # # Draw NIT ER PLot
-    # fig_repl1a_er_sin, ax_repl1a_er_nit = plt.subplots(1,1, figsize=(20,6))
+    # fig_repl1a_er_nit, ax_repl1a_er_nit = plt.subplots(1,1, figsize=(20,6))
     # monthyearFmt_er_nit = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
     # ax_repl1a_er_nit.xaxis.set_major_formatter(monthyearFmt_er_nit)
     # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
@@ -486,8 +498,28 @@ def main():
     # lines_er_nit = ax_repl1a_er_nit.plot(df_repl1a_er_nit["Date (MM/DD/YYYY)"], df_repl1a_er_nit["Etch Rate (A/Min)"], visible=False)
     # # datacursor(lines_er_nit, hover=True, point_labels=df_repl1a_er_nit['Remarks'])
     # # plt.show()        # shows 2 figures in different windows
-    # sht_repl1a_plot_er_sin.pictures.add(fig_repl1a_er_sin, name= "REPL1A_NIT_ER_Plot", update= True)
+    # sht_repl1a_plot_er_nit.pictures.add(fig_repl1a_er_nit, name= "REPL1A_NIT_ER_Plot", update= True)
 
+    # Draw Nit ER Plot (unitg Plotly) in Browser 
+    draw_plotly_repl1a_er_nit_plot(
+        x = df_repl1a_er_nit_date, 
+        y1 = df_repl1a_er_nit_er,
+        y2 = df_repl1a_er_nit_usl, 
+        y3 = df_repl1a_er_nit_lsl,
+        y4 = df_repl1a_er_nit_ucl,
+        y5 = df_repl1a_er_nit_lcl,
+        remarks = df_repl1a_er_nit_remarks
+        )
+   
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Draw Nit Unif Plot (unitg Plotly) in Browser     
+    draw_plotly_repl1a_unif_nit_plot(
+        x = df_repl1a_er_nit_date, 
+        y1 = df_repl1a_er_nit_unif, 
+        y2 = df_repl1a_er_nit_unif_usl,
+        y3 = df_repl1a_er_nit_unif_ucl,
+        remarks = df_repl1a_er_nit_remarks
+        )
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # # Draw NIT Unif PLot
  #    fig_repl1a_unif_nit, ax_repl1a_unif_nit = plt.subplots(1,1, figsize=(20,6))
@@ -512,11 +544,11 @@ def main():
  #    lines_unif_nit = ax_repl1a_unif_nit.plot(df_repl1a_er_nit["Date (MM/DD/YYYY)"], df_repl1a_er_nit["% Uniformity"], visible=False)
  #    # datacursor(lines_unif_nit, hover=True, point_labels=df_repl1a_er_nit['Remarks'])
  #    # plt.show()        # shows 2 figures in different windows
- #    sht_repl1a_plot_er_sin.pictures.add(fig_repl1a_unif_nit, name= "REPL1A_NIT_UNIF_Plot", update= True)
+ #    sht_repl1a_plot_er_nit.pictures.add(fig_repl1a_unif_nit, name= "REPL1A_NIT_UNIF_Plot", update= True)
 
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for POLY   
+    # Fetch Dataframe for POLY ER & Unif PLot  
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
@@ -524,11 +556,23 @@ def main():
     excel_file_sht_poly = pd.ExcelFile(excel_file_directory)
     df_repl1a_er_poly = excel_file_sht_poly.parse('REPL1A-ERPoly', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
-    df_repl1a_er_poly = df_repl1a_er_poly[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uniformity", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_repl1a_er_poly = df_repl1a_er_poly[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1a_er_poly = df_repl1a_er_poly.dropna()                                              # dropping rows where at least one element is missing
+    df_repl1a_er_poly = df_repl1a_er_poly.dropna()                                              # dropping rows where at least one element is misnitg
     # sht_repl1a_plot_er_poly.range('A28').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
-    
+ 
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Assigning variable to each param for SiN ER & Unif PLot
+    df_repl1a_er_poly_date = df_repl1a_er_poly["Date (MM/DD/YYYY)"]
+    df_repl1a_er_poly_er = df_repl1a_er_poly["Etch Rate (A/Min)"]
+    df_repl1a_er_poly_usl = df_repl1a_er_poly["USL"]
+    df_repl1a_er_poly_lsl = df_repl1a_er_poly["LSL"]
+    df_repl1a_er_poly_ucl = df_repl1a_er_poly["UCL"]
+    df_repl1a_er_poly_lcl = df_repl1a_er_poly["LCL"]
+    df_repl1a_er_poly_unif = df_repl1a_er_poly["% Uni"]
+    df_repl1a_er_poly_unif_usl = df_repl1a_er_poly["% Uni USL"]
+    df_repl1a_er_poly_unif_ucl = df_repl1a_er_poly["% Uni UCL"]
+    df_repl1a_er_poly_remarks = df_repl1a_er_poly["Remarks"]
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # # Draw POLY ER PLot
     # fig_repl1a_er_poly, ax_repl1a_er_poly = plt.subplots(1,1, figsize=(20,6))
@@ -558,6 +602,27 @@ def main():
     # # datacursor(lines_er_poly, hover=True, point_labels=df_repl1a_er_poly['Remarks'])
     # # plt.show()        # shows 2 figures in different windows
     # sht_repl1a_plot_er_poly.pictures.add(fig_repl1a_er_poly, name= "REPL1A_POLY_ER_Plot", update= True)
+
+    # Draw Poly ER Plot (using Plotly) in Browser 
+    draw_plotly_repl1a_er_poly_plot(
+        x = df_repl1a_er_poly_date, 
+        y1 = df_repl1a_er_poly_er,
+        y2 = df_repl1a_er_poly_usl, 
+        y3 = df_repl1a_er_poly_lsl,
+        y4 = df_repl1a_er_poly_ucl,
+        y5 = df_repl1a_er_poly_lcl,
+        remarks = df_repl1a_er_poly_remarks
+        )
+   
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Draw Poly Unif Plot (using Plotly) in Browser     
+    draw_plotly_repl1a_unif_poly_plot(
+        x = df_repl1a_er_poly_date, 
+        y1 = df_repl1a_er_poly_unif, 
+        y2 = df_repl1a_er_poly_unif_usl,
+        y3 = df_repl1a_er_poly_unif_ucl,
+        remarks = df_repl1a_er_poly_remarks
+        )
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw POLY Unif PLot
