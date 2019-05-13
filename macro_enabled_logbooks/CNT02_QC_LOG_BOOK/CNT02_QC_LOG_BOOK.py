@@ -478,35 +478,7 @@ def main():
     df_reml1c_cp_remarks = df_reml1c_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # # Draw CP Plot for DPS chamber i.e. Ch-A
-    # fig_reml1_cp_ch_a, ax_reml1_cp_ch_a = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_cp_ch_a = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_reml1_cp_ch_a.xaxis.set_major_formatter(monthyearFmt_cp_ch_a)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_reml1_cp_ch_a.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
-    # ax_reml1_cp_ch_a.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_reml1_cp_ch_a.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_reml1a_cp["Date (MM/DD/YYYY)"], df_reml1a_cp["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    # plt.plot(df_reml1a_cp["Date (MM/DD/YYYY)"], df_reml1a_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('DPS delta CP (no.s)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_cp_ch_a = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),
-    #     Line2D([0], [0], color='#0000CD', lw=4),
-    #     ]
-    # ax_reml1_cp_ch_a.legend(custom_lines_cp_ch_a, ['CP', 'USL'], fontsize=11, loc='upper right')  
-    # lines_cp_ch_a = ax_reml1_cp_ch_a.plot(df_reml1a_cp["Date (MM/DD/YYYY)"], df_reml1a_cp["delta CP"], visible=False)
-    # # datacursor(lines_cp_ch_a, hover=True, point_labels=df_reml1a_cp['Remarks'])
-    # # plt.show()
-    # # sht_cp_plot.activate()
-    # # pic_cp = plt.show()
-    # # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
-    # # sh_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
-    # sht_reml1_plot_cp.pictures.add(fig_reml1_cp_ch_a, name= "REML1_DPS_CP_Plot", update= True)
-
-
-    # Draw CP Plot (using Plotly) in Browser 
+    # Draw REML1A CP Plot (using Plotly) in Browser 
     draw_plotly_reml1a_cp_plot(
         x = df_reml1a_cp_date, 
         y1 = df_reml1a_cp_delta_cp, 
@@ -516,34 +488,7 @@ def main():
         )
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # # Draw CP Plot for ASP chamber i.e. Ch-C
-    # fig_reml1_cp_ch_c, ax_reml1_cp_ch_c = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_cp_ch_c = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_reml1_cp_ch_c.xaxis.set_major_formatter(monthyearFmt_cp_ch_c)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_reml1_cp_ch_c.xaxis.set_major_locator(mdates.MonthLocator())          # set ticks after every Month
-    # ax_reml1_cp_ch_c.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_reml1_cp_ch_c.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_reml1c_cp["Date (MM/DD/YYYY)"], df_reml1c_cp["delta CP"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs CP
-    # plt.plot(df_reml1c_cp["Date (MM/DD/YYYY)"], df_reml1c_cp["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('ASP delta CP (no.s)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_cp_ch_c = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),
-    #     Line2D([0], [0], color='#0000CD', lw=4),
-    #     ]
-    # ax_reml1_cp_ch_c.legend(custom_lines_cp_ch_c, ['CP', 'USL'], fontsize=11, loc='upper right')  
-    # lines_cp_ch_c = ax_reml1_cp_ch_c.plot(df_reml1c_cp["Date (MM/DD/YYYY)"], df_reml1c_cp["delta CP"], visible=False)
-    # # datacursor(lines_cp_ch_c, hover=True, point_labels=df_reml1c_cp['Remarks'])
-    # # plt.show()
-    # # sht_cp_plot.activate()
-    # # pic_cp = plt.show()
-    # # plt.show('ASBE1_CP_Plot', left=xw.Range('A1').left, top=xw.Range('A1').top)      # this would activate hover 
-    # # sht_reml1_plot_cp.pictures.add(pic_cp, name= "ASFE1_CP_Plot", update= True)
-    # sht_reml1_plot_cp.pictures.add(fig_reml1_cp_ch_c, name= "REML1_ASP_CP_Plot", update= True)
-
-    # Draw CP Plot (using Plotly) in Browser 
+    # Draw REML1C CP Plot (using Plotly) in Browser 
     draw_plotly_reml1c_cp_plot(
         x = df_reml1c_cp_date, 
         y1 = df_reml1c_cp_delta_cp, 
@@ -580,61 +525,6 @@ def main():
     df_reml1a_er_pr_remarks = df_reml1a_er_pr["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # # Draw Ch A PR ER PLot
-    # fig_reml1_er_ch_a_pr, ax_reml1_er_ch_a_pr = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_er_pr = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_reml1_er_ch_a_pr.xaxis.set_major_formatter(monthyearFmt_er_pr)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_reml1_er_ch_a_pr.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
-    # ax_reml1_er_ch_a_pr.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_reml1_er_ch_a_pr.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["USL"], linestyle='-', color='#0000CD')        # plot date vs USL
-    # plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["UCL"], linestyle='-', color='#FF1493')        # plot date vs UCL
-    # plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["LCL"], linestyle='-', color='#FF1493')        # plot date vs LCL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Ch A PR ER (A/min)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_er_cha_pr = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# LSL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
-    #     ]
-    # ax_reml1_er_ch_a_pr.legend(custom_lines_er_cha_pr, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
-    # lines_er_ch_a_pr = ax_reml1_er_ch_a_pr.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["Etch Rate (A/Min)"], visible=False)
-    # # datacursor(lines_er_ch_a_pr, hover=True, point_labels=df_reml1a_er_pr['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_reml1_plot_er_ch_a_pr.pictures.add(fig_reml1_er_ch_a_pr, name= "REML1_CH_A_PR_ER_Plot", update= True)
-
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-	# # Draw ChA PR Unif PLot
- #    fig_reml1_unif_ch_a_pr, ax_reml1_unif_ch_a_pr = plt.subplots(1,1, figsize=(20,6))
- #    monthyearFmt_unif_ch_a_pr = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
- #    ax_reml1_unif_ch_a_pr.xaxis.set_major_formatter(monthyearFmt_unif_ch_a_pr)
- #    _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
- #    # ax_reml1_unif_ch_a_pr.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
- #    ax_reml1_unif_ch_a_pr.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
- #    ax_reml1_unif_ch_a_pr.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
- #    plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["% Uniformity"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
- #    plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["% Uni USL"], linestyle='-', color='#0000CD')        # plot date vs USL
- #    plt.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["% Uni UCL"], linestyle='-', color='#FF1493')        # plot date vs UCL
- #    plt.xlabel('Date', fontsize=18)      # xlabel
- #    plt.ylabel('Ch A PR Unif (%)', fontsize=18)     # ylabel
- #    # Custom Legends
- #    custom_lines_unif_ch_a_pr = [
- #        Line2D([0], [0], color='#FF7F50', lw=4),	# ER
- #        Line2D([0], [0], color='#0000CD', lw=4),	# USL
- #        Line2D([0], [0], color='#FF1493', lw=4),	# UCL
- #        ]
- #    ax_reml1_unif_ch_a_pr.legend(custom_lines_unif_ch_a_pr, ['Unif', 'USL', 'UCL'], fontsize=11, loc='upper right') 
- #    lines_unif_ch_a_pr = ax_reml1_unif_ch_a_pr.plot(df_reml1a_er_pr["Date (MM/DD/YYYY)"], df_reml1a_er_pr["% Uniformity"], visible=False)
- #    # datacursor(lines_unif_ch_a_pr, hover=True, point_labels=df_reml1a_er_pr['Remarks'])
- #    # plt.show()        # shows 2 figures in different windows
- #    sht_reml1_plot_er_ch_a_pr.pictures.add(fig_reml1_unif_ch_a_pr, name= "REML1_CH_A_PR_UNIF_Plot", update= True)
-
     # Draw REML1A PR ER Plot (using Plotly) in Browser 
     draw_plotly_reml1a_er_pr_plot(
         x = df_reml1a_er_pr_date, 
@@ -682,61 +572,8 @@ def main():
     df_reml1c_er_pr_unif_usl = df_reml1c_er_pr["% Uni USL"]
     # df_reml1c_er_pr_unif_ucl = df_reml1c_er_pr["% Uni UCL"]
     df_reml1c_er_pr_remarks = df_reml1c_er_pr["Remarks"]
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # # Draw ChC ER PLot
-    # fig_reml1_er_ch_c_pr, ax_reml1_er_ch_c_pr = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_er_ch_c_pr = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_reml1_er_ch_c_pr.xaxis.set_major_formatter(monthyearFmt_er_ch_c_pr)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_reml1_er_ch_c_pr.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
-    # ax_reml1_er_ch_c_pr.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_reml1_er_ch_c_pr.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["Etch Rate (A/Min)"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["LSL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["UCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["LCL"], linestyle='-', color='#FF1493')        # plot date vs LSL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Ch C PR ER (A/min)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_er_ch_c_pr = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# LSL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     Line2D([0], [0], color='#FF1493', lw=4)		# LCL        
-    #     ]
-    # ax_reml1_er_ch_c_pr.legend(custom_lines_er_ch_c_pr, ['ER', 'USL', 'LSL', 'UCL', 'LCL'], fontsize=11, loc='upper right') 
-    # lines_er_ch_c_pr = ax_reml1_er_ch_c_pr.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["Etch Rate (A/Min)"], visible=False)
-    # # datacursor(lines_er_ch_c_pr, hover=True, point_labels=df_reml1c_er_pr['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_reml1_plot_er_ch_c_pr.pictures.add(fig_reml1_er_ch_c_pr, name= "REML1_CH_C_PR_ER_Plot", update= True)
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # # Draw ChC UNIF PLot
-    # fig_reml1_unif_ch_c_pr, ax_reml1_unif_ch_c_pr = plt.subplots(1,1, figsize=(20,6))
-    # monthyearFmt_unif_ch_c_pr = mdates.DateFormatter('%Y-%b-%d')                        # formatting as 2017-Jan-14
-    # ax_reml1_unif_ch_c_pr.xaxis.set_major_formatter(monthyearFmt_unif_ch_c_pr)
-    # _ = plt.xticks(rotation=90)                                         # rotating 90 counterclockwise
-    # # ax_reml1_unif_ch_c_pr.xaxis.set_major_locator(mdates.MonthLocator())         # set ticks after every 2 Mondays
-    # ax_reml1_unif_ch_c_pr.xaxis.set_major_locator(mdates.WeekdayLocator(byweekday=MO, interval=2))          # set ticks after every 2 Mondays
-    # ax_reml1_unif_ch_c_pr.grid(which='both', alpha=0.15)           # set grid with transparency to 0.15
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["% Uniformity"], linestyle='-', marker='o', markerfacecolor='#008000', color='#FF7F50')    # plot date vs ER
-    # plt.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["% Uni USL"], linestyle='-', color='#0000CD')        # plot date vs LSL
-    # plt.xlabel('Date', fontsize=18)      # xlabel
-    # plt.ylabel('Ch C PR Unif (%)', fontsize=18)     # ylabel
-    # # Custom Legends
-    # custom_lines_unif_ch_c_pr = [
-    #     Line2D([0], [0], color='#FF7F50', lw=4),	# ER
-    #     Line2D([0], [0], color='#0000CD', lw=4),	# USL
-    #     Line2D([0], [0], color='#FF1493', lw=4),	# UCL
-    #     ]
-    # ax_reml1_unif_ch_c_pr.legend(custom_lines_unif_ch_c_pr, ['Unif', 'USL'], fontsize=11, loc='upper right') 
-    # lines_unif_ch_c_pr = ax_reml1_unif_ch_c_pr.plot(df_reml1c_er_pr["Date (MM/DD/YYYY)"], df_reml1c_er_pr["% Uniformity"], visible=False)
-    # # datacursor(lines_unif_ch_c_pr, hover=True, point_labels=df_reml1c_er_pr['Remarks'])
-    # # plt.show()        # shows 2 figures in different windows
-    # sht_reml1_plot_er_ch_c_pr.pictures.add(fig_reml1_unif_ch_c_pr, name= "REML1_CH_C_PR_UNIF_Plot", update= True)
-
     # Draw REML1C PR ER Plot (using Plotly) in Browser 
     draw_plotly_reml1c_er_pr_plot(
         x = df_reml1c_er_pr_date, 
