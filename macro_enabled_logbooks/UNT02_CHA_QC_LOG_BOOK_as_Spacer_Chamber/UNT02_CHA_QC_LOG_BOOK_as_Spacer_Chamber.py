@@ -64,7 +64,8 @@ unif_teos_2nd_chart_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif chart
 unif_teos_2nd_chart_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif chart
 unif_teos_2nd_chart_trace_count = 2    # no. of traces in Nit Unif chart
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"
+# excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"	# Home PC Pendrive
+excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"		# Office PC Pendrive
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
