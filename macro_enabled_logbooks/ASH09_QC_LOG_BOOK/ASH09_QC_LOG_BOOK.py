@@ -34,7 +34,8 @@ unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
 unif_chart_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif chart
 unif_chart_trace_count = 2    # no. of traces in Unif chart
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"	# Home laptop pendrive 
+excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"		# Office PC pendrive
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK_macro\\ASH09_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
