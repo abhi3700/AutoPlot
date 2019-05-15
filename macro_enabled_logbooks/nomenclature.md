@@ -98,6 +98,26 @@
 	- `draw_plotly_resp1a_unif_teos_2nd_plot`: Plotly chart for RESP1A TEOS-2nd Unif
 
 ### G. RESP1B
+* Sheets:
+	- "RESP1B-CP": `sht_resp1b_cp`
+	- "ER-BARC,PR & TEOS": `sht_resp1b_er_barc_pr_teos`
+	- "SIN ER": `sht_resp1b_er_sin`
+* Dataframes:
+	- `df_resp1b_cp`: dataframe for RESP1A CP
+	- `df_resp1b_er_barc`: dataframe for RESP1B BARC ER & Unif
+	- `df_resp1b_er_pr`: dataframe for RESP1B PR ER & Unif
+	- `df_resp1b_er_teos`: dataframe for RESP1B TEOS ER & Unif
+	- `df_resp1b_er_sin`: dataframe for RESP1B SiN ER & Unif
+* Charts:
+	- `draw_plotly_resp1b_cp_plot`: Plotly chart for RESP1A CP
+	- `draw_plotly_resp1b_er_barc_plot`: Plotly chart for RESP1B BARC ER
+	- `draw_plotly_resp1b_unif_barc_plot`: Plotly chart for RESP1B BARC Unif
+	- `draw_plotly_resp1b_er_pr_plot`: Plotly chart for RESP1B PR ER
+	- `draw_plotly_resp1b_unif_pr_plot`: Plotly chart for RESP1B PR Unif
+	- `draw_plotly_resp1b_er_teos_plot`: Plotly chart for RESP1B TEOS ER
+	- `draw_plotly_resp1b_unif_teos_plot`: Plotly chart for RESP1B TEOS Unif
+	- `draw_plotly_resp1b_er_sin_plot`: Plotly chart for RESP1B SiN ER
+	- `draw_plotly_resp1b_unif_sin_plot`: Plotly chart for RESP1B SiN Unif
 
 ### H. REOX1A
 
