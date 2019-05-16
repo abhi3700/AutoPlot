@@ -13,6 +13,10 @@
 	- `draw_plotly_asfe1_cp_plot`: Plotly chart for ASFE1 CP
 	- `draw_plotly_asfe1_er_plot`: Plotly chart for ASFE1 ER
 	- `draw_plotly_asfe1_unif_plot`: Plotly chart for ASFE1 Unif
+* Traces count:
+	- `cp_plot_trace_count`: 3 for ASFE1 CP
+	- `er_plot_trace_count`: 4 for ASFE1 ER
+	- `unif_plot_trace_count`: 2 for ASFE1 Unif
 
 ### B. ASBE1
 * Sheets:
@@ -25,6 +29,10 @@
 	- `draw_plotly_asbe1_cp_plot`: Plotly chart for ASBE1 CP
 	- `draw_plotly_asbe1_er_plot`: Plotly chart for ASBE1 ER
 	- `draw_plotly_asbe1_unif_plot`: Plotly chart for ASBE1 Unif
+* Traces count:
+	- `cp_plot_trace_count`: 3 for ASBE1 CP
+	- `er_plot_trace_count`: 4 for ASBE1 ER
+	- `unif_plot_trace_count`: 2 for ASBE1 Unif
 
 ### C. REPL1A
 * Sheets:
@@ -41,6 +49,12 @@
 	- `draw_plotly_repl1a_unif_nit_plot`: Plotly chart for REPL1A Nit Unif
 	- `draw_plotly_repl1a_er_poly_plot`: Plotly chart for REPL1A Poly ER
 	- `draw_plotly_repl1a_unif_poly_plot`: Plotly chart for REPL1A Poly Unif
+* Traces count:
+	- `cp_plot_trace_count`: 2 for REPL1A CP
+	- `er_nit_plot_trace_count`: 5 for REPL1A Nit ER
+	- `unif_nit_plot_trace_count`: 3 for REPL1A Nit Unif
+	- `er_poly_plot_trace_count`: 5 for REPL1A Poly ER
+	- `unif_poly_plot_trace_count`: 3 for REPL1A Poly Unif
 
 ### D. REPL1B
 * Sheets:
@@ -57,6 +71,12 @@
 	- `draw_plotly_repl1b_unif_nit_plot`: Plotly chart for REPL1B Nit Unif
 	- `draw_plotly_repl1b_er_poly_plot`: Plotly chart for REPL1B Poly ER
 	- `draw_plotly_repl1b_unif_poly_plot`: Plotly chart for REPL1B Poly Unif
+* Traces count:
+	- `cp_plot_trace_count`: 2 for REPL1B CP
+	- `er_nit_plot_trace_count`: 5 for REPL1B Nit ER
+	- `unif_nit_plot_trace_count`: 3 for REPL1B Nit Unif
+	- `er_poly_plot_trace_count`: 5 for REPL1B Poly ER
+	- `unif_poly_plot_trace_count`: 3 for REPL1B Poly Unif
 
 ### E. REML1
 * Sheets:
@@ -75,6 +95,13 @@
 	- `draw_plotly_reml1a_unif_pr_plot`: Plotly chart for REML1A PR Unif
 	- `draw_plotly_reml1c_er_pr_plot`: Plotly chart for REML1C PR ER
 	- `draw_plotly_reml1c_unif_pr_plot`: Plotly chart for REML1C PR Unif
+* Traces count:
+	- `cp_cha_plot_trace_count`: 2 for REML1A CP
+	- `cp_chc_plot_trace_count`: 2 for REML1C CP
+	- `er_cha_pr_plot_trace_count`: 5 for REML1A PR ER
+	- `unif_cha_pr_plot_trace_count`: 3 for REML1A PR Unif
+	- `er_chc_pr_plot_trace_count`: 5 for REML1C PR ER
+	- `unif_chc_pr_plot_trace_count`: 3 for REML1C PR Unif
 
 ### F. RESP1A
 * Sheets:
@@ -96,6 +123,16 @@
 	- `draw_plotly_resp1a_unif_teos_1st_plot`: Plotly chart for RESP1A TEOS-1st Unif
 	- `draw_plotly_resp1a_er_teos_2nd_plot`: Plotly chart for RESP1A TEOS-2nd ER
 	- `draw_plotly_resp1a_unif_teos_2nd_plot`: Plotly chart for RESP1A TEOS-2nd Unif
+* Traces Count:
+	- `cp_plot_trace_count`: 3 for RESP1A CP
+	- `er_sin_1st_plot_trace_count`: 5 for RESP1A SiN-1st ER
+	- `unif_sin_1st_plot_trace_count`: 3 for RESP1A SiN-1st Unif
+	- `er_sin_2nd_plot_trace_count`: 5 for RESP1A SiN-2nd ER
+	- `unif_sin_2nd_plot_trace_count`: 3 for RESP1A SiN-2nd Unif
+	- `er_teos_1st_plot_trace_count`: 5 for RESP1A TEOS-1st ER
+	- `unif_teos_1st_plot_trace_count`: 2 for RESP1A TEOS-1st Unif
+	- `er_teos_2nd_plot_trace_count`: 5 for RESP1A TEOS-2nd ER
+	- `unif_teos_2nd_plot_trace_count`: 2 for RESP1B TEOS-2nd Unif
 
 ### G. RESP1B
 * Sheets:
@@ -118,6 +155,16 @@
 	- `draw_plotly_resp1b_unif_teos_plot`: Plotly chart for RESP1B TEOS Unif
 	- `draw_plotly_resp1b_er_sin_plot`: Plotly chart for RESP1B SiN ER
 	- `draw_plotly_resp1b_unif_sin_plot`: Plotly chart for RESP1B SiN Unif
+* Traces Count:
+	- `cp_plot_trace_count`: 2 for RESP1A CP
+	- `er_barc_plot_trace_count`: 5 for RESP1B BARC ER
+	- `unif_barc_plot_trace_count`: 2 for RESP1B BARC Unif
+	- `er_pr_plot_trace_count`: 5 for RESP1B PR ER
+	- `unif_pr_plot_trace_count`: 2 for RESP1B PR Unif
+	- `er_teos_plot_trace_count`: 5 for RESP1B TEOS ER
+	- `unif_teos_plot_trace_count`: 3 for RESP1B TEOS Unif
+	- `er_sin_plot_trace_count`: 5 for RESP1B SiN ER
+	- `unif_sin_plot_trace_count`: 3 for RESP1B SiN Unif
 
 ### H. REOX1A
 
