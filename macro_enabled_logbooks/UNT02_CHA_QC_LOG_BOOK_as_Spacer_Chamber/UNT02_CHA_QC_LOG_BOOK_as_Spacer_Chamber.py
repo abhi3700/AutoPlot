@@ -125,7 +125,7 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, remarks):
     #                 width = 3)
     # )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_chart_title,
             xaxis = dict(title= cp_chart_xlabel),
