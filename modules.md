@@ -24,10 +24,14 @@ unif_barc_plot_ylabel = 'BARC Unif (%)'    # yaxis name for Unif plot
 unif_barc_plot_html_file = 'RESP1B_BARC_Unif-Plot.html'   # HTML filename for Unif plot
 unif_barc_plot_trace_count = 2    # no. of traces in Unif plot
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]	# Columns for CP Dataframe
-sht_er_barc_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]		# Columns for BARC Layer Dataframe
+
+# Columns for BARC Layer Dataframe
+sht_er_barc_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", 
+"Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]		
 
 # Excel file directory
-excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
+excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH" + 
+"\\QC Log Book\\Final QC Log Book\\UNT_02_LOG_BOOK\\\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
 ```
 ## CP Plot
 ```py
