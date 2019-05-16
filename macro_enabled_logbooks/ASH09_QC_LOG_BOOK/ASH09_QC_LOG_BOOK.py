@@ -13,26 +13,26 @@ import plotly.graph_objs as go
 
 #==================================================================================================================================================================
 # Global variables
-line_color = '#3f51b5'      # line (trace0) color for any chart
-marker_color = '#43a047'    # marker color for any chart
-marker_border_color = '#ffffff'     # marker border color for any chart
-cl_color = '#ffa000'    # control limit line color for any chart
-sl_color = '#e53935'    # spec limit line color for any chart
-cp_chart_title = 'CP Plot for ASFE1'  # title for CP chart
-cp_chart_xlabel = 'Date'   # xaxis name for CP chart
-cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
-cp_chart_html_file = 'ASFE1_CP-Plot.html'   # HTML filename for CP chart
-cp_chart_trace_count = 3    # no. of traces in CP chart
-er_chart_title = 'ER Plot for ASFE1'  # title for ER chart
-er_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_chart_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER chart
-er_chart_html_file = 'ASFE1_ER-Plot.html'   # HTML filename for ER chart
-er_chart_trace_count = 4    # no. of traces in ER chart
-unif_chart_title = 'Uniformity Plot for ASFE1'  # title for UNIF chart
-unif_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
-unif_chart_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif chart
-unif_chart_trace_count = 2    # no. of traces in Unif chart
+line_color = '#3f51b5'      # line (trace0) color for any plot
+marker_color = '#43a047'    # marker color for any plot
+marker_border_color = '#ffffff'     # marker border color for any plot
+cl_color = '#ffa000'    # control limit line color for any plot
+sl_color = '#e53935'    # spec limit line color for any plot
+cp_plot_title = 'CP Plot for ASFE1'  # title for CP plot
+cp_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_html_file = 'ASFE1_CP-Plot.html'   # HTML filename for CP plot
+cp_plot_trace_count = 3    # no. of traces in CP plot
+er_plot_title = 'ER Plot for ASFE1'  # title for ER plot
+er_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_plot_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER plot
+er_plot_html_file = 'ASFE1_ER-Plot.html'   # HTML filename for ER plot
+er_plot_trace_count = 4    # no. of traces in ER plot
+unif_plot_title = 'Uniformity Plot for ASFE1'  # title for UNIF plot
+unif_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_plot_ylabel = 'Uniformity (%)'    # yaxis name for Unif plot
+unif_plot_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif plot
+unif_plot_trace_count = 2    # no. of traces in Unif plot
 
 # excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"	# Home laptop pendrive 
 excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"		# Office PC pendrive
@@ -40,7 +40,7 @@ excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH0
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots CP Chart with `cp_chart_trace_count` traces v/s Date.
+"Description": This function plots CP Chart with `cp_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
@@ -87,16 +87,16 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = cp_chart_title,
-            xaxis = dict(title= cp_chart_xlabel),
-            yaxis = dict(title= cp_chart_ylabel)
+            title = cp_plot_title,
+            xaxis = dict(title= cp_plot_xlabel),
+            yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chart_html_file)
+    py.offline.plot(fig, filename= cp_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_chart_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with `er_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": LSL (y-axis) for ER Chart
@@ -154,16 +154,16 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
 
     data = [trace1, trace2, trace3, trace4]
     layout = dict(
-            title = er_chart_title,
-            xaxis = dict(title= er_chart_xlabel),
-            yaxis = dict(title= er_chart_ylabel)
+            title = er_plot_title,
+            xaxis = dict(title= er_plot_xlabel),
+            yaxis = dict(title= er_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chart_html_file)
+    py.offline.plot(fig, filename= er_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_chart_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with `unif_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": UCL (y-axis) for Unif Chart
@@ -199,12 +199,12 @@ def draw_plotly_asfe1_unif_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = unif_chart_title,
-            xaxis = dict(title= unif_chart_xlabel),
-            yaxis = dict(title= unif_chart_ylabel)
+            title = unif_plot_title,
+            xaxis = dict(title= unif_plot_xlabel),
+            yaxis = dict(title= unif_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chart_html_file)
+    py.offline.plot(fig, filename= unif_plot_html_file)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################

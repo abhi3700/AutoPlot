@@ -13,48 +13,48 @@ import plotly.graph_objs as go
 
 #==================================================================================================================================================================
 # Global variables
-line_color = '#3f51b5'      # line (trace0) color for any chart
-marker_color = '#43a047'    # marker color for any chart
-marker_border_color = '#ffffff'     # marker border color for any chart
-cl_color = '#ffa000'    # control limit line color for any chart
-sl_color = '#e53935'    # spec limit line color for any chart
-cp_cha_chart_title = 'CP Plot for REML1A'  # title for CP chart
-cp_cha_chart_xlabel = 'Date'   # xaxis name for CP chart
-cp_cha_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
-cp_cha_chart_html_file = 'REML1A_CP-Plot.html'   # HTML filename for CP chart
-cp_cha_chart_trace_count = 2    # no. of traces in CP chart
-cp_chc_chart_title = 'CP Plot for REML1C'  # title for CP chart
-cp_chc_chart_xlabel = 'Date'   # xaxis name for CP chart
-cp_chc_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
-cp_chc_chart_html_file = 'REML1C_CP-Plot.html'   # HTML filename for CP chart
-cp_chc_chart_trace_count = 2    # no. of traces in CP chart
-er_cha_pr_chart_title = 'PR ER Plot for REML1A'  # title for ER chart
-er_cha_pr_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_cha_pr_chart_ylabel = 'PR ER (A/min)'   # yaxis name for ER chart
-er_cha_pr_chart_html_file = 'REML1A_PR_ER-Plot.html'   # HTML filename for ER chart
-er_cha_pr_chart_trace_count = 5    # no. of traces in Nit ER chart
-unif_cha_pr_chart_title = 'PR Uniformity Plot for REML1A'  # title for Unif chart
-unif_cha_pr_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_cha_pr_chart_ylabel = 'PR Unif (%)'    # yaxis name for Unif chart
-unif_cha_pr_chart_html_file = 'REML1A_PR_Unif-Plot.html'   # HTML filename for Unif chart
-unif_cha_pr_chart_trace_count = 3    # no. of traces in Nit Unif chart
-er_chc_pr_chart_title = 'PR ER Plot for REML1C'  # title for ER chart
-er_chc_pr_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_chc_pr_chart_ylabel = 'PR ER (A/min)'   # yaxis name for ER chart
-er_chc_pr_chart_html_file = 'REML1C_PR_ER-Plot.html'   # HTML filename for ER chart
-er_chc_pr_chart_trace_count = 5    # no. of traces in ER chart
-unif_chc_pr_chart_title = 'PR Uniformity Plot for REML1C'  # title for Unif chart
-unif_chc_pr_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_chc_pr_chart_ylabel = 'PR Unif (%)'    # yaxis name for Unif chart
-unif_chc_pr_chart_html_file = 'REML1C_PR_Unif-Plot.html'   # HTML filename for Unif chart
-unif_chc_pr_chart_trace_count = 3    # no. of traces in Unif chart
+line_color = '#3f51b5'      # line (trace0) color for any plot
+marker_color = '#43a047'    # marker color for any plot
+marker_border_color = '#ffffff'     # marker border color for any plot
+cl_color = '#ffa000'    # control limit line color for any plot
+sl_color = '#e53935'    # spec limit line color for any plot
+cp_cha_plot_title = 'CP Plot for REML1A'  # title for CP plot
+cp_cha_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_cha_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_cha_plot_html_file = 'REML1A_CP-Plot.html'   # HTML filename for CP plot
+cp_cha_plot_trace_count = 2    # no. of traces in CP plot
+cp_chc_plot_title = 'CP Plot for REML1C'  # title for CP plot
+cp_chc_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_chc_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_chc_plot_html_file = 'REML1C_CP-Plot.html'   # HTML filename for CP plot
+cp_chc_plot_trace_count = 2    # no. of traces in CP plot
+er_cha_pr_plot_title = 'PR ER Plot for REML1A'  # title for ER plot
+er_cha_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_cha_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
+er_cha_pr_plot_html_file = 'REML1A_PR_ER-Plot.html'   # HTML filename for ER plot
+er_cha_pr_plot_trace_count = 5    # no. of traces in Nit ER plot
+unif_cha_pr_plot_title = 'PR Uniformity Plot for REML1A'  # title for Unif plot
+unif_cha_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_cha_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
+unif_cha_pr_plot_html_file = 'REML1A_PR_Unif-Plot.html'   # HTML filename for Unif plot
+unif_cha_pr_plot_trace_count = 3    # no. of traces in Nit Unif plot
+er_chc_pr_plot_title = 'PR ER Plot for REML1C'  # title for ER plot
+er_chc_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_chc_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
+er_chc_pr_plot_html_file = 'REML1C_PR_ER-Plot.html'   # HTML filename for ER plot
+er_chc_pr_plot_trace_count = 5    # no. of traces in ER plot
+unif_chc_pr_plot_title = 'PR Uniformity Plot for REML1C'  # title for Unif plot
+unif_chc_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_chc_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
+unif_chc_pr_plot_html_file = 'REML1C_PR_Unif-Plot.html'   # HTML filename for Unif plot
+unif_chc_pr_plot_trace_count = 3    # no. of traces in Unif plot
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_02_LOG_BOOK\\CNT02_QC_LOG_BOOK_macro\\CNT02_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots CP Chart with `cp_chart_trace_count` traces v/s Date.
+"Description": This function plots CP Chart with `cp_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
@@ -101,17 +101,17 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = cp_cha_chart_title,
-            xaxis = dict(title= cp_cha_chart_xlabel),
-            yaxis = dict(title= cp_cha_chart_ylabel)
+            title = cp_cha_plot_title,
+            xaxis = dict(title= cp_cha_plot_xlabel),
+            yaxis = dict(title= cp_cha_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_cha_chart_html_file)
+    py.offline.plot(fig, filename= cp_cha_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 """
-"Description": This function plots CP Chart with `cp_chart_trace_count` traces v/s Date.
+"Description": This function plots CP Chart with `cp_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
@@ -158,16 +158,16 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = cp_chc_chart_title,
-            xaxis = dict(title= cp_chc_chart_xlabel),
-            yaxis = dict(title= cp_chc_chart_ylabel)
+            title = cp_chc_plot_title,
+            xaxis = dict(title= cp_chc_plot_xlabel),
+            yaxis = dict(title= cp_chc_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chc_chart_html_file)
+    py.offline.plot(fig, filename= cp_chc_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_nit_chart_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with `er_nit_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": USL (y-axis) for ER Chart
@@ -236,16 +236,16 @@ def draw_plotly_reml1a_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_cha_pr_chart_title,
-            xaxis = dict(title= er_cha_pr_chart_xlabel),
-            yaxis = dict(title= er_cha_pr_chart_ylabel)
+            title = er_cha_pr_plot_title,
+            xaxis = dict(title= er_cha_pr_plot_xlabel),
+            yaxis = dict(title= er_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_cha_pr_chart_html_file)
+    py.offline.plot(fig, filename= er_cha_pr_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_nit_chart_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with `unif_nit_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
@@ -292,16 +292,16 @@ def draw_plotly_reml1a_unif_pr_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_cha_pr_chart_title,
-            xaxis = dict(title= unif_cha_pr_chart_xlabel),
-            yaxis = dict(title= unif_cha_pr_chart_ylabel)
+            title = unif_cha_pr_plot_title,
+            xaxis = dict(title= unif_cha_pr_plot_xlabel),
+            yaxis = dict(title= unif_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_cha_pr_chart_html_file)
+    py.offline.plot(fig, filename= unif_cha_pr_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_nit_chart_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with `er_nit_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": USL (y-axis) for ER Chart
@@ -370,16 +370,16 @@ def draw_plotly_reml1c_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_chc_pr_chart_title,
-            xaxis = dict(title= er_chc_pr_chart_xlabel),
-            yaxis = dict(title= er_chc_pr_chart_ylabel)
+            title = er_chc_pr_plot_title,
+            xaxis = dict(title= er_chc_pr_plot_xlabel),
+            yaxis = dict(title= er_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chc_pr_chart_html_file)
+    py.offline.plot(fig, filename= er_chc_pr_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_nit_chart_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with `unif_nit_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
@@ -426,12 +426,12 @@ def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = unif_chc_pr_chart_title,
-            xaxis = dict(title= unif_chc_pr_chart_xlabel),
-            yaxis = dict(title= unif_chc_pr_chart_ylabel)
+            title = unif_chc_pr_plot_title,
+            xaxis = dict(title= unif_chc_pr_plot_xlabel),
+            yaxis = dict(title= unif_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chc_pr_chart_html_file)
+    py.offline.plot(fig, filename= unif_chc_pr_plot_html_file)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################

@@ -13,56 +13,56 @@ import plotly.graph_objs as go
 
 #==================================================================================================================================================================
 # Global variables
-line_color = '#3f51b5'      # line (trace0) color for any chart
-marker_color = '#43a047'    # marker color for any chart
-marker_border_color = '#ffffff'     # marker border color for any chart
-cl_color = '#ffa000'    # control limit line color for any chart
-sl_color = '#e53935'    # spec limit line color for any chart
-cp_chart_title = 'CP Plot for RESP1A'  # title for CP chart
-cp_chart_xlabel = 'Date'   # xaxis name for CP chart
-cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
-cp_chart_html_file = 'RESP1A_CP-Plot.html'   # HTML filename for CP chart
-cp_chart_trace_count = 3    # no. of traces in CP chart
-er_sin_1st_chart_title = 'SiN-1st ER Plot for RESP1A'  # title for ER chart
-er_sin_1st_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_sin_1st_chart_ylabel = 'SiN-1st ER (A/min)'   # yaxis name for ER chart
-er_sin_1st_chart_html_file = 'RESP1A_SiN_1st_ER-Plot.html'   # HTML filename for ER chart
-er_sin_1st_chart_trace_count = 5    # no. of traces in Nit ER chart
-unif_sin_1st_chart_title = 'SiN-1st Uniformity Plot for RESP1A'  # title for Unif chart
-unif_sin_1st_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_sin_1st_chart_ylabel = 'SiN-1st Unif (%)'    # yaxis name for Unif chart
-unif_sin_1st_chart_html_file = 'RESP1A_SiN_1st_Unif-Plot.html'   # HTML filename for Unif chart
-unif_sin_1st_chart_trace_count = 3    # no. of traces in Nit Unif chart
-er_sin_2nd_chart_title = 'SiN-2nd ER Plot for RESP1A'  # title for ER chart
-er_sin_2nd_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_sin_2nd_chart_ylabel = 'SiN-2nd ER (A/min)'   # yaxis name for ER chart
-er_sin_2nd_chart_html_file = 'RESP1A_SiN_2nd_ER-Plot.html'   # HTML filename for ER chart
-er_sin_2nd_chart_trace_count = 5    # no. of traces in Nit ER chart
-unif_sin_2nd_chart_title = 'SiN-2nd Uniformity Plot for RESP1A'  # title for Unif chart
-unif_sin_2nd_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_sin_2nd_chart_ylabel = 'SiN-2nd Unif (%)'    # yaxis name for Unif chart
-unif_sin_2nd_chart_html_file = 'RESP1A_SiN_2nd_Unif-Plot.html'   # HTML filename for Unif chart
-unif_sin_2nd_chart_trace_count = 3    # no. of traces in Nit Unif chart
-er_teos_1st_chart_title = 'TEOS-1st ER Plot for RESP1A'  # title for ER chart
-er_teos_1st_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_teos_1st_chart_ylabel = 'TEOS-1st ER (A/min)'   # yaxis name for ER chart
-er_teos_1st_chart_html_file = 'RESP1A_TEOS_1st_ER-Plot.html'   # HTML filename for ER chart
-er_teos_1st_chart_trace_count = 5    # no. of traces in Nit ER chart
-unif_teos_1st_chart_title = 'TEOS-1st Uniformity Plot for RESP1A'  # title for Unif chart
-unif_teos_1st_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_teos_1st_chart_ylabel = 'TEOS-1st Unif (%)'    # yaxis name for Unif chart
-unif_teos_1st_chart_html_file = 'RESP1A_TEOS_1st_Unif-Plot.html'   # HTML filename for Unif chart
-unif_teos_1st_chart_trace_count = 2    # no. of traces in Nit Unif chart
-er_teos_2nd_chart_title = 'TEOS-2nd ER Plot for RESP1A'  # title for ER chart
-er_teos_2nd_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_teos_2nd_chart_ylabel = 'TEOS-2nd ER (A/min)'   # yaxis name for ER chart
-er_teos_2nd_chart_html_file = 'RESP1A_TEOS_2nd_ER-Plot.html'   # HTML filename for ER chart
-er_teos_2nd_chart_trace_count = 5    # no. of traces in Nit ER chart
-unif_teos_2nd_chart_title = 'TEOS-2nd Uniformity Plot for RESP1A'  # title for Unif chart
-unif_teos_2nd_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_teos_2nd_chart_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif chart
-unif_teos_2nd_chart_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif chart
-unif_teos_2nd_chart_trace_count = 2    # no. of traces in Nit Unif chart
+line_color = '#3f51b5'      # line (trace0) color for any plot
+marker_color = '#43a047'    # marker color for any plot
+marker_border_color = '#ffffff'     # marker border color for any plot
+cl_color = '#ffa000'    # control limit line color for any plot
+sl_color = '#e53935'    # spec limit line color for any plot
+cp_plot_title = 'CP Plot for RESP1A'  # title for CP plot
+cp_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_html_file = 'RESP1A_CP-Plot.html'   # HTML filename for CP plot
+cp_plot_trace_count = 3    # no. of traces in CP plot
+er_sin_1st_plot_title = 'SiN-1st ER Plot for RESP1A'  # title for ER plot
+er_sin_1st_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_sin_1st_plot_ylabel = 'SiN-1st ER (A/min)'   # yaxis name for ER plot
+er_sin_1st_plot_html_file = 'RESP1A_SiN_1st_ER-Plot.html'   # HTML filename for ER plot
+er_sin_1st_plot_trace_count = 5    # no. of traces in Nit ER plot
+unif_sin_1st_plot_title = 'SiN-1st Uniformity Plot for RESP1A'  # title for Unif plot
+unif_sin_1st_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_sin_1st_plot_ylabel = 'SiN-1st Unif (%)'    # yaxis name for Unif plot
+unif_sin_1st_plot_html_file = 'RESP1A_SiN_1st_Unif-Plot.html'   # HTML filename for Unif plot
+unif_sin_1st_plot_trace_count = 3    # no. of traces in Nit Unif plot
+er_sin_2nd_plot_title = 'SiN-2nd ER Plot for RESP1A'  # title for ER plot
+er_sin_2nd_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_sin_2nd_plot_ylabel = 'SiN-2nd ER (A/min)'   # yaxis name for ER plot
+er_sin_2nd_plot_html_file = 'RESP1A_SiN_2nd_ER-Plot.html'   # HTML filename for ER plot
+er_sin_2nd_plot_trace_count = 5    # no. of traces in Nit ER plot
+unif_sin_2nd_plot_title = 'SiN-2nd Uniformity Plot for RESP1A'  # title for Unif plot
+unif_sin_2nd_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_sin_2nd_plot_ylabel = 'SiN-2nd Unif (%)'    # yaxis name for Unif plot
+unif_sin_2nd_plot_html_file = 'RESP1A_SiN_2nd_Unif-Plot.html'   # HTML filename for Unif plot
+unif_sin_2nd_plot_trace_count = 3    # no. of traces in Nit Unif plot
+er_teos_1st_plot_title = 'TEOS-1st ER Plot for RESP1A'  # title for ER plot
+er_teos_1st_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_teos_1st_plot_ylabel = 'TEOS-1st ER (A/min)'   # yaxis name for ER plot
+er_teos_1st_plot_html_file = 'RESP1A_TEOS_1st_ER-Plot.html'   # HTML filename for ER plot
+er_teos_1st_plot_trace_count = 5    # no. of traces in Nit ER plot
+unif_teos_1st_plot_title = 'TEOS-1st Uniformity Plot for RESP1A'  # title for Unif plot
+unif_teos_1st_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_teos_1st_plot_ylabel = 'TEOS-1st Unif (%)'    # yaxis name for Unif plot
+unif_teos_1st_plot_html_file = 'RESP1A_TEOS_1st_Unif-Plot.html'   # HTML filename for Unif plot
+unif_teos_1st_plot_trace_count = 2    # no. of traces in Nit Unif plot
+er_teos_2nd_plot_title = 'TEOS-2nd ER Plot for RESP1A'  # title for ER plot
+er_teos_2nd_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_teos_2nd_plot_ylabel = 'TEOS-2nd ER (A/min)'   # yaxis name for ER plot
+er_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_ER-Plot.html'   # HTML filename for ER plot
+er_teos_2nd_plot_trace_count = 5    # no. of traces in Nit ER plot
+unif_teos_2nd_plot_title = 'TEOS-2nd Uniformity Plot for RESP1A'  # title for Unif plot
+unif_teos_2nd_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_teos_2nd_plot_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif plot
+unif_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif plot
+unif_teos_2nd_plot_trace_count = 2    # no. of traces in Nit Unif plot
 
 # excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"	# Home PC Pendrive
 excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"		# Office PC Pendrive
@@ -127,12 +127,12 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = cp_chart_title,
-            xaxis = dict(title= cp_chart_xlabel),
-            yaxis = dict(title= cp_chart_ylabel)
+            title = cp_plot_title,
+            xaxis = dict(title= cp_plot_xlabel),
+            yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chart_html_file)
+    py.offline.plot(fig, filename= cp_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -205,12 +205,12 @@ def draw_plotly_resp1a_er_sin_1st_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_sin_1st_chart_title,
-            xaxis = dict(title= er_sin_1st_chart_xlabel),
-            yaxis = dict(title= er_sin_1st_chart_ylabel)
+            title = er_sin_1st_plot_title,
+            xaxis = dict(title= er_sin_1st_plot_xlabel),
+            yaxis = dict(title= er_sin_1st_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_sin_1st_chart_html_file)
+    py.offline.plot(fig, filename= er_sin_1st_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -261,12 +261,12 @@ def draw_plotly_resp1a_unif_sin_1st_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_sin_1st_chart_title,
-            xaxis = dict(title= unif_sin_1st_chart_xlabel),
-            yaxis = dict(title= unif_sin_1st_chart_ylabel)
+            title = unif_sin_1st_plot_title,
+            xaxis = dict(title= unif_sin_1st_plot_xlabel),
+            yaxis = dict(title= unif_sin_1st_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_sin_1st_chart_html_file)
+    py.offline.plot(fig, filename= unif_sin_1st_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -339,12 +339,12 @@ def draw_plotly_resp1a_er_sin_2nd_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_sin_2nd_chart_title,
-            xaxis = dict(title= er_sin_2nd_chart_xlabel),
-            yaxis = dict(title= er_sin_2nd_chart_ylabel)
+            title = er_sin_2nd_plot_title,
+            xaxis = dict(title= er_sin_2nd_plot_xlabel),
+            yaxis = dict(title= er_sin_2nd_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_sin_2nd_chart_html_file)
+    py.offline.plot(fig, filename= er_sin_2nd_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -395,12 +395,12 @@ def draw_plotly_resp1a_unif_sin_2nd_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_sin_2nd_chart_title,
-            xaxis = dict(title= unif_sin_2nd_chart_xlabel),
-            yaxis = dict(title= unif_sin_2nd_chart_ylabel)
+            title = unif_sin_2nd_plot_title,
+            xaxis = dict(title= unif_sin_2nd_plot_xlabel),
+            yaxis = dict(title= unif_sin_2nd_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_sin_2nd_chart_html_file)
+    py.offline.plot(fig, filename= unif_sin_2nd_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -473,12 +473,12 @@ def draw_plotly_resp1a_er_teos_1st_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_teos_1st_chart_title,
-            xaxis = dict(title= er_teos_1st_chart_xlabel),
-            yaxis = dict(title= er_teos_1st_chart_ylabel)
+            title = er_teos_1st_plot_title,
+            xaxis = dict(title= er_teos_1st_plot_xlabel),
+            yaxis = dict(title= er_teos_1st_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_teos_1st_chart_html_file)
+    py.offline.plot(fig, filename= er_teos_1st_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -529,12 +529,12 @@ def draw_plotly_resp1a_unif_teos_1st_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = unif_teos_1st_chart_title,
-            xaxis = dict(title= unif_teos_1st_chart_xlabel),
-            yaxis = dict(title= unif_teos_1st_chart_ylabel)
+            title = unif_teos_1st_plot_title,
+            xaxis = dict(title= unif_teos_1st_plot_xlabel),
+            yaxis = dict(title= unif_teos_1st_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_teos_1st_chart_html_file)
+    py.offline.plot(fig, filename= unif_teos_1st_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -607,12 +607,12 @@ def draw_plotly_resp1a_er_teos_2nd_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_teos_2nd_chart_title,
-            xaxis = dict(title= er_teos_2nd_chart_xlabel),
-            yaxis = dict(title= er_teos_2nd_chart_ylabel)
+            title = er_teos_2nd_plot_title,
+            xaxis = dict(title= er_teos_2nd_plot_xlabel),
+            yaxis = dict(title= er_teos_2nd_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_teos_2nd_chart_html_file)
+    py.offline.plot(fig, filename= er_teos_2nd_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -663,12 +663,12 @@ def draw_plotly_resp1a_unif_teos_2nd_plot(x, y1, y2, remarks):
 
     data = [trace1, trace2]
     layout = dict(
-            title = unif_teos_2nd_chart_title,
-            xaxis = dict(title= unif_teos_2nd_chart_xlabel),
-            yaxis = dict(title= unif_teos_2nd_chart_ylabel)
+            title = unif_teos_2nd_plot_title,
+            xaxis = dict(title= unif_teos_2nd_plot_xlabel),
+            yaxis = dict(title= unif_teos_2nd_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_teos_2nd_chart_html_file)
+    py.offline.plot(fig, filename= unif_teos_2nd_plot_html_file)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################

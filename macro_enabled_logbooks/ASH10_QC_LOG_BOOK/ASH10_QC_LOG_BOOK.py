@@ -13,26 +13,26 @@ import plotly.graph_objs as go
 
 #==================================================================================================================================================================
 # Global variables
-line_color = '#3f51b5'      # line (trace0) color for any chart
-marker_color = '#43a047'    # marker color for any chart
-marker_border_color = '#ffffff'     # marker border color for any chart
-cl_color = '#ffa000'    # control limit line color for any chart
-sl_color = '#e53935'    # spec limit line color for any chart
-cp_chart_title = 'CP Plot for ASBE1'  # title for CP chart
-cp_chart_xlabel = 'Date'   # xaxis name for CP chart
-cp_chart_ylabel = 'delta CP (no.s)'     # yaxis name for CP chart
-cp_chart_html_file = 'ASBE1_CP-Plot.html'   # HTML filename for CP chart
-cp_chart_trace_count = 3    # no. of traces in CP chart
-er_chart_title = 'ER Plot for ASBE1'  # title for ER chart
-er_chart_xlabel = 'Date'        # xaxis name for ER chart
-er_chart_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER chart
-er_chart_html_file = 'ASBE1_ER-Plot.html'   # HTML filename for ER chart
-er_chart_trace_count = 4    # no. of traces in ER chart
-unif_chart_title = 'Uniformity Plot for ASBE1'  # title for UNIF chart
-unif_chart_xlabel = 'Date'      # xaxis name for Unif chart
-unif_chart_ylabel = 'Uniformity (%)'    # yaxis name for Unif chart
-unif_chart_html_file = 'ASBE1_Unif-Plot.html'   # HTML filename for Unif chart
-unif_chart_trace_count = 2    # no. of traces in Unif chart
+line_color = '#3f51b5'      # line (trace0) color for any plot
+marker_color = '#43a047'    # marker color for any plot
+marker_border_color = '#ffffff'     # marker border color for any plot
+cl_color = '#ffa000'    # control limit line color for any plot
+sl_color = '#e53935'    # spec limit line color for any plot
+cp_plot_title = 'CP Plot for ASBE1'  # title for CP plot
+cp_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_html_file = 'ASBE1_CP-Plot.html'   # HTML filename for CP plot
+cp_plot_trace_count = 3    # no. of traces in CP plot
+er_plot_title = 'ER Plot for ASBE1'  # title for ER plot
+er_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_plot_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER plot
+er_plot_html_file = 'ASBE1_ER-Plot.html'   # HTML filename for ER plot
+er_plot_trace_count = 4    # no. of traces in ER plot
+unif_plot_title = 'Uniformity Plot for ASBE1'  # title for UNIF plot
+unif_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_plot_ylabel = 'Uniformity (%)'    # yaxis name for Unif plot
+unif_plot_html_file = 'ASBE1_Unif-Plot.html'   # HTML filename for Unif plot
+unif_plot_trace_count = 2    # no. of traces in Unif plot
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm"
@@ -86,12 +86,12 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = cp_chart_title,
-            xaxis = dict(title= cp_chart_xlabel),
-            yaxis = dict(title= cp_chart_ylabel)
+            title = cp_plot_title,
+            xaxis = dict(title= cp_plot_xlabel),
+            yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chart_html_file)
+    py.offline.plot(fig, filename= cp_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -155,12 +155,12 @@ def draw_plotly_asbe1_er_plot(x, y1, y2, remarks):
     # data = [trace1, trace2, trace3, trace4]
     data = [trace1, trace2]
     layout = dict(
-            title = er_chart_title,
-            xaxis = dict(title= er_chart_xlabel),
-            yaxis = dict(title= er_chart_ylabel)
+            title = er_plot_title,
+            xaxis = dict(title= er_plot_xlabel),
+            yaxis = dict(title= er_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chart_html_file)
+    py.offline.plot(fig, filename= er_plot_html_file)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -202,12 +202,12 @@ def draw_plotly_asbe1_unif_plot(x, y1, remarks):
     # data = [trace1, trace2]
     data = [trace1]
     layout = dict(
-            title = unif_chart_title,
-            xaxis = dict(title= unif_chart_xlabel),
-            yaxis = dict(title= unif_chart_ylabel)
+            title = unif_plot_title,
+            xaxis = dict(title= unif_plot_xlabel),
+            yaxis = dict(title= unif_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chart_html_file)
+    py.offline.plot(fig, filename= unif_plot_html_file)
 
 
 #====================================================================================================================================================================
