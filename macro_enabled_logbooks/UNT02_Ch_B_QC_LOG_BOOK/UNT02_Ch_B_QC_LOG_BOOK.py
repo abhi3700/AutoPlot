@@ -43,10 +43,10 @@ unif_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
 unif_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
 unif_pr_plot_html_file = 'RESP1B_PR_Unif-Plot.html'   # HTML filename for Unif plot
 unif_pr_plot_trace_count = 2    # no. of traces in Unif plot
-er_teos_plot_title = 'TEOS-1st ER Plot for RESP1B'  # title for ER plot
+er_teos_plot_title = 'TEOS ER Plot for RESP1B'  # title for ER plot
 er_teos_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_teos_plot_ylabel = 'TEOS-1st ER (A/min)'   # yaxis name for ER plot
-er_teos_plot_html_file = 'RESP1B_TEOS_1st_ER-Plot.html'   # HTML filename for ER plot
+er_teos_plot_ylabel = 'TEOS ER (A/min)'   # yaxis name for ER plot
+er_teos_plot_html_file = 'RESP1B_TEOS_ER-Plot.html'   # HTML filename for ER plot
 er_teos_plot_trace_count = 5    # no. of traces in ER plot
 unif_teos_plot_title = 'TEOS Uniformity Plot for RESP1B'  # title for Unif plot
 unif_teos_plot_xlabel = 'Date'      # xaxis name for Unif plot
@@ -58,18 +58,17 @@ er_sin_plot_xlabel = 'Date'        # xaxis name for ER plot
 er_sin_plot_ylabel = 'SiN ER (A/min)'   # yaxis name for ER plot
 er_sin_plot_html_file = 'RESP1B_SiN_ER-Plot.html'   # HTML filename for ER plot
 er_sin_plot_trace_count = 5    # no. of traces in ER plot
-unif_sin_plot_title = 'TEOS-2nd Uniformity Plot for RESP1B'  # title for Unif plot
+unif_sin_plot_title = 'SiN Uniformity Plot for RESP1B'  # title for Unif plot
 unif_sin_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_sin_plot_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif plot
-unif_sin_plot_html_file = 'RESP1B_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif plot
+unif_sin_plot_ylabel = 'SiN Unif (%)'    # yaxis name for Unif plot
+unif_sin_plot_html_file = 'RESP1B_SiN_Unif-Plot.html'   # HTML filename for Unif plot
 unif_sin_plot_trace_count = 3    # no. of traces in Unif plot
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
 sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
-# excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_Ch_B_QC_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\UNT_02_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -481,7 +480,7 @@ def draw_plotly_resp1b_er_teos_plot(x, y1, y2, y3, y4, y5, remarks):
 "y2": USL (y-axis) for Unif Chart
 # "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1b_unif_teos_plot(x, y1, y2, remarks):
+def draw_plotly_resp1b_unif_teos_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -510,17 +509,17 @@ def draw_plotly_resp1b_unif_teos_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_teos_plot_title,
             xaxis = dict(title= unif_teos_plot_xlabel),
@@ -613,9 +612,9 @@ def draw_plotly_resp1b_er_sin_plot(x, y1, y2, y3, y4, y5, remarks):
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
-# "y3": UCL (y-axis) for Unif Chart
+"y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1b_unif_sin_plot(x, y1, y2, remarks):
+def draw_plotly_resp1b_unif_sin_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -684,7 +683,7 @@ def main():
     # Fetch Dataframe for CP
     df_resp1b_cp = sht_resp1b_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
-        ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
+        ).value                                                         # fetch the data from sheet- 'RESP1B-CP'
     df_resp1b_cp = df_resp1b_cp[sht_cp_columns]        # The final dataframe with required columns
     df_resp1b_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_resp1b_cp = df_resp1b_cp.dropna()                                              # dropping rows where at least one element is missing
@@ -711,35 +710,30 @@ def main():
     #****************************************************************************************************************************************************************
     """
     Fetch Dataframes for 
-        - SIN-1st step, 
-        - SIN-2nd step, 
-        - TEOS-1st step, 
-        - TEOS-2nd step  
-    
+        - BARC, 
+        - PR, 
+        - TEOS 
     """
     # data_folder = Path(os.getcwd())
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_resp1b_er = excel_file_sht_er.parse('RESP1B-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_resp1b_er = excel_file_sht_er.parse('ER-BARC,PR & TEOS', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_resp1b_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
-    df_resp1b_er = df_resp1b_er[]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_resp1b_teos = df_resp1b_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
-    df_resp1b_er_barc = df_resp1b_er[df_resp1b_er["Layer-Step"] == 'SiN-1Step']
-    df_resp1b_er_barc = df_resp1b_er_barc.dropna()
-    df_resp1b_er_pr = df_resp1b_er[df_resp1b_er["Layer-Step"] == 'SiN-2Step']
-    df_resp1b_er_pr = df_resp1b_er_pr.dropna()
-    df_resp1b_er_teos_1st = df_resp1b_teos[df_resp1b_teos["Layer-Step"] == 'TEOS-1Step']
-    df_resp1b_er_teos_1st = df_resp1b_er_teos_1st.dropna()
-    df_resp1b_er_teos_2nd = df_resp1b_teos[df_resp1b_teos["Layer-Step"] == 'TEOS-2Step']
-    df_resp1b_er_teos_2nd = df_resp1b_er_teos_2nd.dropna()
+    df_resp1b_er = df_resp1b_er[sht_er_barc_pr_teos_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_resp1b_barc_pr = df_resp1b_er.drop(columns='% Uni USL')      # in BARC, PR, '% Uni USL' is not defined, so drop this column.
+    df_resp1b_er_barc = df_resp1b_barc_pr[df_resp1b_er["Layer"] == 'BARC']
+    df_resp1b_er_barc = df_resp1b_er_barc.dropna()		# dropping rows where at least one element is missing
+    df_resp1b_er_pr = df_resp1b_barc_pr[df_resp1b_er["Layer"] == 'PR']
+    df_resp1b_er_pr = df_resp1b_er_pr.dropna()			# dropping rows where at least one element is missing
+    df_resp1b_er_teos = df_resp1b_er[df_resp1b_er["Layer"] == 'TEOS']
+    df_resp1b_er_teos = df_resp1b_er_teos.dropna()		# dropping rows where at least one element is missing
 
     # Display the dataframes in respective sheets
     # sht_resp1b_plot_barc.range('A25').options(index=False).value = df_resp1b_barc
     # sht_resp1b_plot_pr.range('A25').options(index=False).value = df_resp1b_pr
-    # sht_resp1b_plot_teos_1st.range('A25').options(index=False).value = df_resp1b_teos
-    # sht_resp1b_plot_teos_2nd.range('A25').options(index=False).value = df_resp1b_teos_2nd
+    # sht_resp1b_plot_teos.range('A25').options(index=False).value = df_resp1b_teos
 
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -751,12 +745,12 @@ def main():
     df_resp1b_er_barc_ucl = df_resp1b_er_barc["UCL"]
     df_resp1b_er_barc_lcl = df_resp1b_er_barc["LCL"]
     df_resp1b_er_barc_unif = df_resp1b_er_barc["% Uni"]
-    df_resp1b_er_barc_unif_usl = df_resp1b_er_barc["% Uni USL"]
+    # df_resp1b_er_barc_unif_usl = df_resp1b_er_barc["% Uni USL"]
     df_resp1b_er_barc_unif_ucl = df_resp1b_er_barc["% Uni UCL"]
     df_resp1b_er_barc_remarks = df_resp1b_er_barc["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw SiN-1st ER Plot (using Plotly) in Browser 
+    # Draw BARC ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_barc_plot(
         x = df_resp1b_er_barc_date, 
         y1 = df_resp1b_er_barc_er,
@@ -768,11 +762,11 @@ def main():
         )
    
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw SiN-1st Unif Plot (using Plotly) in Browser     
+    # Draw BARC Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_barc_plot(
         x = df_resp1b_er_barc_date, 
         y1 = df_resp1b_er_barc_unif, 
-        y2 = df_resp1b_er_barc_unif_usl,
+        # y2 = df_resp1b_er_barc_unif_usl,
         y3 = df_resp1b_er_barc_unif_ucl,
         remarks = df_resp1b_er_barc_remarks
         )
@@ -786,7 +780,7 @@ def main():
     df_resp1b_er_pr_ucl = df_resp1b_er_pr["UCL"]
     df_resp1b_er_pr_lcl = df_resp1b_er_pr["LCL"]
     df_resp1b_er_pr_unif = df_resp1b_er_pr["% Uni"]
-    df_resp1b_er_pr_unif_usl = df_resp1b_er_pr["% Uni USL"]
+    # df_resp1b_er_pr_unif_usl = df_resp1b_er_pr["% Uni USL"]
     df_resp1b_er_pr_unif_ucl = df_resp1b_er_pr["% Uni UCL"]
     df_resp1b_er_pr_remarks = df_resp1b_er_pr["Remarks"]
   
@@ -807,26 +801,26 @@ def main():
     draw_plotly_resp1b_unif_pr_plot(
         x = df_resp1b_er_pr_date, 
         y1 = df_resp1b_er_pr_unif, 
-        y2 = df_resp1b_er_pr_unif_usl,
+        # y2 = df_resp1b_er_pr_unif_usl,
         y3 = df_resp1b_er_pr_unif_ucl,
         remarks = df_resp1b_er_pr_remarks
         )
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Assigning variable to each param for TEOS-1st ER & Unif PLot
-    df_resp1b_er_teos_date = df_resp1b_er_teos_1st["Date (MM/DD/YYYY)"]
-    df_resp1b_er_teos_er = df_resp1b_er_teos_1st["Etch Rate (A/Min)"]
-    df_resp1b_er_teos_usl = df_resp1b_er_teos_1st["USL"]
-    df_resp1b_er_teos_lsl = df_resp1b_er_teos_1st["LSL"]
-    df_resp1b_er_teos_ucl = df_resp1b_er_teos_1st["UCL"]
-    df_resp1b_er_teos_lcl = df_resp1b_er_teos_1st["LCL"]
-    df_resp1b_er_teos_unif = df_resp1b_er_teos_1st["% Uni"]
-    df_resp1b_er_teos_unif_usl = df_resp1b_er_teos_1st["% Uni USL"]
-    # df_resp1b_er_teos_unif_ucl = df_resp1b_er_teos_1st["% Uni UCL"]
-    df_resp1b_er_teos_remarks = df_resp1b_er_teos_1st["Remarks"]
+    df_resp1b_er_teos_date = df_resp1b_er_teos["Date (MM/DD/YYYY)"]
+    df_resp1b_er_teos_er = df_resp1b_er_teos["Etch Rate (A/Min)"]
+    df_resp1b_er_teos_usl = df_resp1b_er_teos["USL"]
+    df_resp1b_er_teos_lsl = df_resp1b_er_teos["LSL"]
+    df_resp1b_er_teos_ucl = df_resp1b_er_teos["UCL"]
+    df_resp1b_er_teos_lcl = df_resp1b_er_teos["LCL"]
+    df_resp1b_er_teos_unif = df_resp1b_er_teos["% Uni"]
+    df_resp1b_er_teos_unif_usl = df_resp1b_er_teos["% Uni USL"]
+    df_resp1b_er_teos_unif_ucl = df_resp1b_er_teos["% Uni UCL"]
+    df_resp1b_er_teos_remarks = df_resp1b_er_teos["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw TEOS-1st ER Plot (using Plotly) in Browser 
+    # Draw TEOS ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_teos_plot(
         x = df_resp1b_er_teos_date, 
         y1 = df_resp1b_er_teos_er,
@@ -838,31 +832,44 @@ def main():
         )
    
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw TEOS-1st Unif Plot (using Plotly) in Browser     
+    # Draw TEOS Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_teos_plot(
         x = df_resp1b_er_teos_date, 
         y1 = df_resp1b_er_teos_unif, 
         y2 = df_resp1b_er_teos_unif_usl,
-        # y3 = df_resp1b_er_teos_unif_ucl,
+        y3 = df_resp1b_er_teos_unif_ucl,
         remarks = df_resp1b_er_teos_remarks
         )
 
+    #****************************************************************************************************************************************************************
+    """
+    Fetch Dataframes for 
+        - SiN, 
+    """
+    # data_folder = Path(os.getcwd())
+    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
+    # excel_file = pd.ExcelFile(file_to_open)
 
+    excel_file_sht_er_sin = pd.ExcelFile(excel_file_directory)
+    df_resp1b_er_sin = excel_file_sht_er_sin.parse('SIN ER', skiprows=5)                            # copy a sheet and paste into another sheet and skiprows 5
+    df_resp1b_er_sin['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_resp1b_er_sin = df_resp1b_er_sin[sht_er_sin_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_resp1b_er_sin = df_resp1b_er_sin.dropna()			# dropping rows where at least one element is missing
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Assigning variable to each param for TEOS-2nd ER & Unif PLot
-    df_resp1b_er_sin_date = df_resp1b_er_teos_2nd["Date (MM/DD/YYYY)"]
-    df_resp1b_er_sin_er = df_resp1b_er_teos_2nd["Etch Rate (A/Min)"]
-    df_resp1b_er_sin_usl = df_resp1b_er_teos_2nd["USL"]
-    df_resp1b_er_sin_lsl = df_resp1b_er_teos_2nd["LSL"]
-    df_resp1b_er_sin_ucl = df_resp1b_er_teos_2nd["UCL"]
-    df_resp1b_er_sin_lcl = df_resp1b_er_teos_2nd["LCL"]
-    df_resp1b_er_sin_unif = df_resp1b_er_teos_2nd["% Uni"]
-    df_resp1b_er_sin_unif_usl = df_resp1b_er_teos_2nd["% Uni USL"]
-    # df_resp1b_er_sin_unif_ucl = df_resp1b_er_teos_2nd["% Uni UCL"]
-    df_resp1b_er_sin_remarks = df_resp1b_er_teos_2nd["Remarks"]
+    # Assigning variable to each param for SiN ER & Unif PLot
+    df_resp1b_er_sin_date = df_resp1b_er_sin["Date (MM/DD/YYYY)"]
+    df_resp1b_er_sin_er = df_resp1b_er_sin["Etch Rate (A/Min)"]
+    df_resp1b_er_sin_usl = df_resp1b_er_sin["USL"]
+    df_resp1b_er_sin_lsl = df_resp1b_er_sin["LSL"]
+    df_resp1b_er_sin_ucl = df_resp1b_er_sin["UCL"]
+    df_resp1b_er_sin_lcl = df_resp1b_er_sin["LCL"]
+    df_resp1b_er_sin_unif = df_resp1b_er_sin["% Uni"]
+    df_resp1b_er_sin_unif_usl = df_resp1b_er_sin["% Uni USL"]
+    df_resp1b_er_sin_unif_ucl = df_resp1b_er_sin["% Uni UCL"]
+    df_resp1b_er_sin_remarks = df_resp1b_er_sin["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw TEOS-1st ER Plot (using Plotly) in Browser 
+    # Draw SiN ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_sin_plot(
         x = df_resp1b_er_sin_date, 
         y1 = df_resp1b_er_sin_er,
@@ -874,12 +881,12 @@ def main():
         )
    
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw TEOS-1st Unif Plot (using Plotly) in Browser     
+    # Draw SiN Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_sin_plot(
         x = df_resp1b_er_sin_date, 
         y1 = df_resp1b_er_sin_unif, 
         y2 = df_resp1b_er_sin_unif_usl,
-        # y3 = df_resp1b_er_sin_unif_ucl,
+        y3 = df_resp1b_er_sin_unif_ucl,
         remarks = df_resp1b_er_sin_remarks
         )
 
