@@ -140,13 +140,13 @@
 	- "ER-BARC,PR & TEOS": `sht_resp1b_er_barc_pr_teos`
 	- "SIN ER": `sht_resp1b_er_sin`
 * Dataframes:
-	- `df_resp1b_cp`: dataframe for RESP1A CP
+	- `df_resp1b_cp`: dataframe for RESP1B CP
 	- `df_resp1b_er_barc`: dataframe for RESP1B BARC ER & Unif
 	- `df_resp1b_er_pr`: dataframe for RESP1B PR ER & Unif
 	- `df_resp1b_er_teos`: dataframe for RESP1B TEOS ER & Unif
 	- `df_resp1b_er_sin`: dataframe for RESP1B SiN ER & Unif
 * Charts:
-	- `draw_plotly_resp1b_cp_plot`: Plotly chart for RESP1A CP
+	- `draw_plotly_resp1b_cp_plot`: Plotly chart for RESP1B CP
 	- `draw_plotly_resp1b_er_barc_plot`: Plotly chart for RESP1B BARC ER
 	- `draw_plotly_resp1b_unif_barc_plot`: Plotly chart for RESP1B BARC Unif
 	- `draw_plotly_resp1b_er_pr_plot`: Plotly chart for RESP1B PR ER
@@ -156,7 +156,7 @@
 	- `draw_plotly_resp1b_er_sin_plot`: Plotly chart for RESP1B SiN ER
 	- `draw_plotly_resp1b_unif_sin_plot`: Plotly chart for RESP1B SiN Unif
 * Traces Count:
-	- `cp_plot_trace_count`: 2 for RESP1A CP
+	- `cp_plot_trace_count`: 2 for RESP1B CP
 	- `er_barc_plot_trace_count`: 5 for RESP1B BARC ER
 	- `unif_barc_plot_trace_count`: 2 for RESP1B BARC Unif
 	- `er_pr_plot_trace_count`: 5 for RESP1B PR ER
@@ -168,7 +168,37 @@
 
 ### H. REOX1A
 
+
 ### I. REOX1B
+* Sheets:
+	- "REOX1B-CP": `sht_reox1b_cp`
+	- "REOX1B-ER": `sht_reox1b_er`
+* Dataframes:
+	- `df_reox1b_cp`: dataframe for REOX1B CP
+	- `df_reox1b_er_bpsgcs`: dataframe for REOX1B BPSG_CS ER & Unif
+	- `df_reox1b_er_sincs`: dataframe for REOX1B SiN_CS ER & Unif
+	- `df_reox1b_er_teosvia`: dataframe for REOX1B TEOS ER & Unif
+	- `df_reox1b_er_arc`: dataframe for REOX1B ARC ER & Unif
+* Charts:
+	- `draw_plotly_reox1b_cp_plot`: Plotly chart for REOX1B CP
+	- `draw_plotly_reox1b_er_bpsgcs_plot`: Plotly chart for REOX1B BPSG_CS ER
+	- `draw_plotly_reox1b_unif_bpsgcs_plot`: Plotly chart for REOX1B BPSG_CS Unif
+	- `draw_plotly_reox1b_er_sincs_plot`: Plotly chart for REOX1B SiN_CS ER
+	- `draw_plotly_reox1b_unif_sincs_plot`: Plotly chart for REOX1B SiN_CS Unif
+	- `draw_plotly_reox1b_er_teosvia_plot`: Plotly chart for REOX1B TEOS ER
+	- `draw_plotly_reox1b_unif_teosvia_plot`: Plotly chart for REOX1B TEOS Unif
+	- `draw_plotly_reox1b_er_arc_plot`: Plotly chart for REOX1B ARC ER
+	- `draw_plotly_reox1b_unif_arc_plot`: Plotly chart for REOX1B ARC Unif
+* Traces Count:
+	- `cp_plot_trace_count`: 2 for REOX1B CP
+	- `er_bpsgcs_plot_trace_count`: 5 for REOX1B BPSG_CS ER
+	- `unif_bpsgcs_plot_trace_count`: 3 for REOX1B BPSG_CS Unif
+	- `er_sincs_plot_trace_count`: 5 for REOX1B SiN_CS ER
+	- `unif_sincs_plot_trace_count`: 3 for REOX1B SiN_CS Unif
+	- `er_teosvia_plot_trace_count`: 5 for REOX1B TEOS ER
+	- `unif_teosvia_plot_trace_count`: 3 for REOX1B TEOS Unif
+	- `er_arc_plot_trace_count`: 5 for REOX1B ARC ER
+	- `unif_arc_plot_trace_count`: 3 for REOX1B ARC Unif
 
 ### J. REOX1C
 
