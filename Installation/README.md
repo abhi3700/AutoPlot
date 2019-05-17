@@ -2,7 +2,9 @@
 All the packages will be installed first.
 
 ## Installation
-* The installation will happen in offline mode. 
+* The installation will happen in offline mode.
+* Follow these steps
+	
 
 ## Packages (`pkgs` in short)
 All the required packages are downloaded in this directory - "./pkgs/", as there is no Internet connection in all PCs.
