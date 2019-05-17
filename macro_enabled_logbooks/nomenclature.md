@@ -167,7 +167,25 @@
 	- `unif_sin_plot_trace_count`: 3 for RESP1B SiN Unif
 
 ### H. REOX1A
-
+* Sheets:
+	- "REOX1A-CP": `sht_reox1a_cp`
+	- "REOX1A-ER": `sht_reox1a_er`
+* Dataframes:
+	- `df_reox1a_cp`: dataframe for REOX1A CP
+	- `df_reox1a_er_sin`: dataframe for REOX1A SiN ER & Unif
+	- `df_reox1a_er_teos`: dataframe for REOX1A TEOS ER & Unif
+* Charts:
+	- `draw_plotly_reox1a_cp_plot`: Plotly chart for REOX1A CP
+	- `draw_plotly_reox1a_er_sin_plot`: Plotly chart for REOX1A SiN ER
+	- `draw_plotly_reox1a_unif_sin_plot`: Plotly chart for REOX1A SiN Unif
+	- `draw_plotly_reox1a_er_teos_plot`: Plotly chart for REOX1A TEOS ER
+	- `draw_plotly_reox1a_unif_teos_plot`: Plotly chart for REOX1A TEOS Unif
+* Traces Count:
+	- `cp_plot_trace_count`: 2 for REOX1A CP
+	- `er_sin_plot_trace_count`: 5 for REOX1A SiN ER
+	- `unif_sin_plot_trace_count`: 3 for REOX1A SiN Unif
+	- `er_teos_plot_trace_count`: 5 for REOX1A TEOS ER
+	- `unif_teos_plot_trace_count`: 3 for REOX1A TEOS Unif
 
 ### I. REOX1B
 * Sheets:
