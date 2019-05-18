@@ -1,5 +1,5 @@
 # Import packages
-import xlwings as xw
+# import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
@@ -104,7 +104,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_plot_html_file)
+    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -173,7 +173,7 @@ def draw_plotly_asbe1_er_plot(x, y1, y2, remarks):
             yaxis = dict(title= er_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_plot_html_file)
+    py.offline.plot(fig, filename= er_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -220,31 +220,30 @@ def draw_plotly_asbe1_unif_plot(x, y1, remarks):
             yaxis = dict(title= unif_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_plot_html_file)
+    py.offline.plot(fig, filename= unif_plot_html_file, auto_open= False)
 
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
 def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
+    # wb = xw.Book.caller()
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_asbe1_cp = wb.sheets['ASBE1-CP']
-    sht_asbe1_er = wb.sheets['ASBE1-ER']
+    # sht_asbe1_cp = wb.sheets['ASBE1-CP']
+    # sht_asbe1_er = wb.sheets['ASBE1-ER']
     # sht_asbe1_plot_cp = wb.sheets['CP Plot']
     # sht_asbe1_plot_er = wb.sheets['ER Plot']
+    excel_file = pd.ExcelFile(excel_file_directory)
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_asbe1_cp = sht_asbe1_cp.range('A10').options(
-        pd.DataFrame, header=1, index=False, expand='table'
-        ).value											                # fetch the data from sheet- 'ASBE1-CP'
+    df_asbe1_cp = excel_file.parse('ASBE1-CP', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     df_asbe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_cp = df_asbe1_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
     df_asbe1_cp = df_asbe1_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_asbe1_plot_cp.range('A25').options(index=False).value = df_asbe1_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    # sht_asbe1_plot_cp.range('A25').options(index=False).value = df_asbe1_cp           # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
@@ -270,7 +269,6 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file = pd.ExcelFile(excel_file_directory)
     df_asbe1_er = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asbe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_er = df_asbe1_er[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
@@ -309,12 +307,7 @@ def main():
         )
 
 
-#--------------------------------------------------------------------------------------------------------------------------------
-# User Defined Functions (UDFs)
-#--------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
-
+if __name__ == '__main__':
+    main()
 
 
