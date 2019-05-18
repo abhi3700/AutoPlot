@@ -3,7 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
-# import datetime as dt
+import datetime as dt
 # import win32api
 # import os
 # from pathlib import Path
@@ -34,9 +34,21 @@ unif_plot_ylabel = 'Uniformity (%)'    # yaxis name for Unif plot
 unif_plot_html_file = 'ASFE1_Unif-Plot.html'   # HTML filename for Unif plot
 unif_plot_trace_count = 2    # no. of traces in Unif plot
 
-# excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"	# Home laptop pendrive 
-excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"		# Office PC pendrive
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK_macro\\ASH09_QC_LOG_BOOK.xlsm"
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -47,6 +59,8 @@ excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH0
 "y3": UCL (y-axis) for CP Chart
 """
 def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
+    # x = dt.datetime(x)
+    # x = x.strftime("%m-%d-%Y %H:%M:%S")
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -240,7 +254,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_asfe1_cp_plot(
-        x = df_asfe1_cp_date, 
+        x = date_formatter(df_asfe1_cp_date), 
         y1 = df_asfe1_cp_delta_cp, 
         y2 = df_asfe1_cp_usl, 
         y3 = df_asfe1_cp_ucl,
@@ -273,7 +287,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw ER Plot (using Plotly) in Browser 
     draw_plotly_asfe1_er_plot(
-        x = df_asfe1_er_date, 
+        x = date_formatter(df_asfe1_er_date), 
         y1 = df_asfe1_er_er,
         y2 = df_asfe1_er_lsl, 
         y3 = df_asfe1_er_ucl,
@@ -284,7 +298,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Unif Plot (using Plotly) in Browser     
     draw_plotly_asfe1_unif_plot(
-        x = df_asfe1_er_date, 
+        x = date_formatter(df_asfe1_er_date), 
         y1 = df_asfe1_er_unif, 
         y2 = df_asfe1_er_unif_ucl,
         remarks = df_asfe1_er_remarks
