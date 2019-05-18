@@ -219,6 +219,24 @@
 	- `unif_arc_plot_trace_count`: 3 for REOX1B ARC Unif
 
 ### J. REOX1C
-
+* Sheets:
+	- "REOX1C-CP": `sht_reox1c_cp`
+	- "REOX1C-ER": `sht_reox1c_er`
+* Dataframes:
+	- `df_reox1c_cp`: dataframe for REOX1C CP
+	- `df_reox1c_er_arc`: dataframe for REOX1C ARC ER & Unif
+	- `df_reox1c_er_teos`: dataframe for REOX1C TEOS ER & Unif
+* Charts:
+	- `draw_plotly_reox1c_cp_plot`: Plotly chart for REOX1C CP
+	- `draw_plotly_reox1c_er_arc_plot`: Plotly chart for REOX1C ARC ER
+	- `draw_plotly_reox1c_unif_arc_plot`: Plotly chart for REOX1C ARC Unif
+	- `draw_plotly_reox1c_er_teos_plot`: Plotly chart for REOX1C TEOS ER
+	- `draw_plotly_reox1c_unif_teos_plot`: Plotly chart for REOX1C TEOS Unif
+* Traces Count:
+	- `cp_plot_trace_count`: 2 for REOX1C CP
+	- `er_arc_plot_trace_count`: 5 for REOX1C ARC ER
+	- `unif_arc_plot_trace_count`: 2 for REOX1C ARC Unif
+	- `er_teos_plot_trace_count`: 5 for REOX1C TEOS ER
+	- `unif_teos_plot_trace_count`: 2 for REOX1C TEOS Unif
 
 
