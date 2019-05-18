@@ -384,7 +384,7 @@ def main():
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_reox1a_cp = wb.sheets['REOX1A-CP']
-    sht_reox1a_er_sin_teos_teos = wb.sheets['REOX1A-ER']
+    sht_reox1a_er = wb.sheets['REOX1A-ER']
     # sht_reox1a_plot_cp = wb.sheets['CP Plot']
     # sht_reox1a_plot_barc = wb.sheets['BARC Plot']
     # sht_reox1a_plot_pr = wb.sheets['SiN Plot']
