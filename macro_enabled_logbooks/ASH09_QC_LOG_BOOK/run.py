@@ -264,7 +264,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     
-    df_asfe1_er = excel_file.parse('ASFE1-ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_asfe1_er = excel_file.parse('ASFE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asfe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_er = df_asfe1_er[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "LCL", "UCL", "Remarks", "% Uni UCL"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_asfe1_er = df_asfe1_er.dropna()                                              # dropping rows where at least one element is missing
