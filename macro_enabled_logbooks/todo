@@ -1,5 +1,8 @@
 AutoPlot
 ========
++ `auto_run.sh`:
+  1. Check if `git diff *.xlsm` is non-zero, 
+  2. `python run.py` file
 + copy charts from "../documents/." to current directory using `os` library.
 + Add a button for toggling from 'line+marker' to 'line' or 'marker'
 + Show all charts in one tab (like - multiple components in a webpage). Scroll down to view all charts for an Excel file.
