@@ -72,6 +72,20 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT0
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
 "Description": This function plots CP Chart with traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
@@ -678,6 +692,7 @@ def main():
     # sht_resp1b_plot_pr = wb.sheets['PR Plot']
     # sht_resp1b_plot_teos = wb.sheets['TEOS Plot']
     # sht_resp1b_plot_sin = wb.sheets['SiN Plot']
+    excel_file = pd.ExcelFile(excel_file_directory)
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
@@ -699,7 +714,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_resp1b_cp_plot(
-        x = df_resp1b_cp_date, 
+        x = date_formatter(df_resp1b_cp_date), 
         y1 = df_resp1b_cp_delta_cp, 
         y2 = df_resp1b_cp_usl, 
         # y3 = df_resp1b_cp_ucl,
@@ -718,8 +733,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_resp1b_er = excel_file_sht_er.parse('ER-BARC,PR & TEOS', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_resp1b_er = excel_file.parse('ER-BARC,PR & TEOS', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_resp1b_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
     df_resp1b_er = df_resp1b_er[sht_er_barc_pr_teos_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1b_barc_pr = df_resp1b_er.drop(columns='% Uni USL')      # in BARC, PR, '% Uni USL' is not defined, so drop this column.
@@ -752,7 +766,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw BARC ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_barc_plot(
-        x = df_resp1b_er_barc_date, 
+        x = date_formatter(df_resp1b_er_barc_date), 
         y1 = df_resp1b_er_barc_er,
         y2 = df_resp1b_er_barc_usl, 
         y3 = df_resp1b_er_barc_lsl,
@@ -764,7 +778,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw BARC Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_barc_plot(
-        x = df_resp1b_er_barc_date, 
+        x = date_formatter(df_resp1b_er_barc_date), 
         y1 = df_resp1b_er_barc_unif, 
         # y2 = df_resp1b_er_barc_unif_usl,
         y3 = df_resp1b_er_barc_unif_ucl,
@@ -787,7 +801,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-2nd ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_pr_plot(
-        x = df_resp1b_er_pr_date, 
+        x = date_formatter(df_resp1b_er_pr_date), 
         y1 = df_resp1b_er_pr_er,
         y2 = df_resp1b_er_pr_usl, 
         y3 = df_resp1b_er_pr_lsl,
@@ -799,7 +813,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-2nd Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_pr_plot(
-        x = df_resp1b_er_pr_date, 
+        x = date_formatter(df_resp1b_er_pr_date), 
         y1 = df_resp1b_er_pr_unif, 
         # y2 = df_resp1b_er_pr_unif_usl,
         y3 = df_resp1b_er_pr_unif_ucl,
@@ -822,7 +836,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_teos_plot(
-        x = df_resp1b_er_teos_date, 
+        x = date_formatter(df_resp1b_er_teos_date), 
         y1 = df_resp1b_er_teos_er,
         y2 = df_resp1b_er_teos_usl, 
         y3 = df_resp1b_er_teos_lsl,
@@ -834,7 +848,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_teos_plot(
-        x = df_resp1b_er_teos_date, 
+        x = date_formatter(df_resp1b_er_teos_date), 
         y1 = df_resp1b_er_teos_unif, 
         y2 = df_resp1b_er_teos_unif_usl,
         y3 = df_resp1b_er_teos_unif_ucl,
@@ -850,8 +864,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_er_sin = pd.ExcelFile(excel_file_directory)
-    df_resp1b_er_sin = excel_file_sht_er_sin.parse('SIN ER', skiprows=5)                            # copy a sheet and paste into another sheet and skiprows 5
+    df_resp1b_er_sin = excel_file.parse('SIN ER', skiprows=5)                            # copy a sheet and paste into another sheet and skiprows 5
     df_resp1b_er_sin['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
     df_resp1b_er_sin = df_resp1b_er_sin[sht_er_sin_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1b_er_sin = df_resp1b_er_sin.dropna()			# dropping rows where at least one element is missing
@@ -871,7 +884,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN ER Plot (using Plotly) in Browser 
     draw_plotly_resp1b_er_sin_plot(
-        x = df_resp1b_er_sin_date, 
+        x = date_formatter(df_resp1b_er_sin_date), 
         y1 = df_resp1b_er_sin_er,
         y2 = df_resp1b_er_sin_usl, 
         y3 = df_resp1b_er_sin_lsl,
@@ -883,7 +896,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1b_unif_sin_plot(
-        x = df_resp1b_er_sin_date, 
+        x = date_formatter(df_resp1b_er_sin_date), 
         y1 = df_resp1b_er_sin_unif, 
         y2 = df_resp1b_er_sin_unif_usl,
         y3 = df_resp1b_er_sin_unif_ucl,
