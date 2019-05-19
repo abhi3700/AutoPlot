@@ -51,6 +51,20 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNE0
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
 "Description": This function plots CP Chart with traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
@@ -411,7 +425,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_reox1a_cp_plot(
-        x = df_reox1a_cp_date, 
+        x = date_formatter(df_reox1a_cp_date), 
         y1 = df_reox1a_cp_delta_cp, 
         y2 = df_reox1a_cp_usl, 
         # y3 = df_reox1a_cp_ucl,
@@ -460,7 +474,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN ER Plot (using Plotly) in Browser 
     draw_plotly_reox1a_er_sin_plot(
-        x = df_reox1a_er_sin_date, 
+        x = date_formatter(df_reox1a_er_sin_date), 
         y1 = df_reox1a_er_sin_er,
         y2 = df_reox1a_er_sin_usl, 
         y3 = df_reox1a_er_sin_lsl,
@@ -472,7 +486,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1a_unif_sin_plot(
-        x = df_reox1a_er_sin_date, 
+        x = date_formatter(df_reox1a_er_sin_date), 
         y1 = df_reox1a_er_sin_unif, 
         y2 = df_reox1a_er_sin_unif_usl,
         y3 = df_reox1a_er_sin_unif_ucl,
@@ -495,7 +509,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS ER Plot (using Plotly) in Browser 
     draw_plotly_reox1a_er_teos_plot(
-        x = df_reox1a_er_teos_date, 
+        x = date_formatter(df_reox1a_er_teos_date), 
         y1 = df_reox1a_er_teos_er,
         y2 = df_reox1a_er_teos_usl, 
         y3 = df_reox1a_er_teos_lsl,
@@ -507,7 +521,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1a_unif_teos_plot(
-        x = df_reox1a_er_teos_date, 
+        x = date_formatter(df_reox1a_er_teos_date), 
         y1 = df_reox1a_er_teos_unif, 
         y2 = df_reox1a_er_teos_unif_usl,
         y3 = df_reox1a_er_teos_unif_ucl,
