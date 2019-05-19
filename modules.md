@@ -233,3 +233,21 @@ def draw_plotly_resp1b_unif_barc_plot(x, y1, y2, y3, remarks):
     fig = dict(data= data, layout= layout)
     py.offline.plot(fig, filename= unif_barc_plot_html_file)
 ```
+
+## Date Formatting
+```py
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
+
+```
