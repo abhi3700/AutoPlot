@@ -64,9 +64,22 @@ unif_teos_2nd_plot_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif plot
 unif_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif plot
 unif_teos_2nd_plot_trace_count = 2    # no. of traces in Nit Unif plot
 
-# excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"	# Home PC Pendrive
-excel_file_directory = "H:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber\\UNT02_CHA_QC_LOG_BOOK_as_Spacer_Chamber.xlsm"		# Office PC Pendrive
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_Ch_A_QC_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -679,14 +692,13 @@ def main():
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_resp1a_cp = wb.sheets['RESP1A-CP']
-    # sht_resp1a_cp = wb.sheets['CP']
     sht_resp1a_er = wb.sheets['RESP1A-ER']
-    # sht_resp1a_er = wb.sheets['ER']
     # sht_resp1a_plot_cp = wb.sheets['CP Plot']
     # sht_resp1a_plot_sin_1st = wb.sheets['SiN 1st Step Plot']
     # sht_resp1a_plot_sin_2nd = wb.sheets['SiN 2nd Step Plot']
     # sht_resp1a_plot_teos_1st = wb.sheets['TEOS 1st Step Plot']
     # sht_resp1a_plot_teos_2nd = wb.sheets['TEOS 2nd Step Plot']
+    excel_file = pd.ExcelFile(excel_file_directory)
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
@@ -709,7 +721,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_resp1a_cp_plot(
-        x = df_resp1a_cp_date, 
+        x = date_formatter(df_resp1a_cp_date), 
         y1 = df_resp1a_cp_delta_cp, 
         y2 = df_resp1a_cp_usl, 
         y3 = df_resp1a_cp_lsl,
@@ -730,8 +742,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_resp1a_er = excel_file_sht_er.parse('RESP1A-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_resp1a_er = excel_file.parse('RESP1A-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
     df_resp1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
     df_resp1a_er = df_resp1a_er[["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1a_teos = df_resp1a_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
@@ -767,7 +778,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-1st ER Plot (using Plotly) in Browser 
     draw_plotly_resp1a_er_sin_1st_plot(
-        x = df_resp1a_er_sin_1st_date, 
+        x = date_formatter(df_resp1a_er_sin_1st_date), 
         y1 = df_resp1a_er_sin_1st_er,
         y2 = df_resp1a_er_sin_1st_usl, 
         y3 = df_resp1a_er_sin_1st_lsl,
@@ -779,7 +790,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-1st Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1a_unif_sin_1st_plot(
-        x = df_resp1a_er_sin_1st_date, 
+        x = date_formatter(df_resp1a_er_sin_1st_date), 
         y1 = df_resp1a_er_sin_1st_unif, 
         y2 = df_resp1a_er_sin_1st_unif_usl,
         y3 = df_resp1a_er_sin_1st_unif_ucl,
@@ -802,7 +813,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-2nd ER Plot (using Plotly) in Browser 
     draw_plotly_resp1a_er_sin_2nd_plot(
-        x = df_resp1a_er_sin_2nd_date, 
+        x = date_formatter(df_resp1a_er_sin_2nd_date), 
         y1 = df_resp1a_er_sin_2nd_er,
         y2 = df_resp1a_er_sin_2nd_usl, 
         y3 = df_resp1a_er_sin_2nd_lsl,
@@ -814,7 +825,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw SiN-2nd Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1a_unif_sin_2nd_plot(
-        x = df_resp1a_er_sin_2nd_date, 
+        x = date_formatter(df_resp1a_er_sin_2nd_date), 
         y1 = df_resp1a_er_sin_2nd_unif, 
         y2 = df_resp1a_er_sin_2nd_unif_usl,
         y3 = df_resp1a_er_sin_2nd_unif_ucl,
@@ -837,7 +848,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS-1st ER Plot (using Plotly) in Browser 
     draw_plotly_resp1a_er_teos_1st_plot(
-        x = df_resp1a_er_teos_1st_date, 
+        x = date_formatter(df_resp1a_er_teos_1st_date), 
         y1 = df_resp1a_er_teos_1st_er,
         y2 = df_resp1a_er_teos_1st_usl, 
         y3 = df_resp1a_er_teos_1st_lsl,
@@ -849,7 +860,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS-1st Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1a_unif_teos_1st_plot(
-        x = df_resp1a_er_teos_1st_date, 
+        x = date_formatter(df_resp1a_er_teos_1st_date), 
         y1 = df_resp1a_er_teos_1st_unif, 
         y2 = df_resp1a_er_teos_1st_unif_usl,
         # y3 = df_resp1a_er_teos_1st_unif_ucl,
@@ -873,7 +884,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS-1st ER Plot (using Plotly) in Browser 
     draw_plotly_resp1a_er_teos_2nd_plot(
-        x = df_resp1a_er_teos_2nd_date, 
+        x = date_formatter(df_resp1a_er_teos_2nd_date), 
         y1 = df_resp1a_er_teos_2nd_er,
         y2 = df_resp1a_er_teos_2nd_usl, 
         y3 = df_resp1a_er_teos_2nd_lsl,
@@ -885,7 +896,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS-1st Unif Plot (using Plotly) in Browser     
     draw_plotly_resp1a_unif_teos_2nd_plot(
-        x = df_resp1a_er_teos_2nd_date, 
+        x = date_formatter(df_resp1a_er_teos_2nd_date), 
         y1 = df_resp1a_er_teos_2nd_unif, 
         y2 = df_resp1a_er_teos_2nd_unif_usl,
         # y3 = df_resp1a_er_teos_2nd_unif_ucl,
