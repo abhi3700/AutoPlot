@@ -1,5 +1,5 @@
 # Import packages
-import xlwings as xw
+# import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
@@ -120,7 +120,7 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_cha_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_cha_plot_html_file)
+    py.offline.plot(fig, filename= cp_cha_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_chc_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chc_plot_html_file)
+    py.offline.plot(fig, filename= cp_chc_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -255,7 +255,7 @@ def draw_plotly_reml1a_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_cha_pr_plot_html_file)
+    py.offline.plot(fig, filename= er_cha_pr_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -311,7 +311,7 @@ def draw_plotly_reml1a_unif_pr_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_cha_pr_plot_html_file)
+    py.offline.plot(fig, filename= unif_cha_pr_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -389,7 +389,7 @@ def draw_plotly_reml1c_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chc_pr_plot_html_file)
+    py.offline.plot(fig, filename= er_chc_pr_plot_html_file, auto_open= False)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -445,19 +445,19 @@ def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
             yaxis = dict(title= unif_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chc_pr_plot_html_file)
+    py.offline.plot(fig, filename= unif_chc_pr_plot_html_file, auto_open= False)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
 def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
+    # wb = xw.Book.caller()
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_reml1_cp = wb.sheets['REML1-CP']
-    sht_reml1a_er_pr = wb.sheets['PR Ch A ER']
-    sht_reml1c_er_pr = wb.sheets['PR Ch C ER']
+    # sht_reml1_cp = wb.sheets['REML1-CP']
+    # sht_reml1a_er_pr = wb.sheets['PR Ch A ER']
+    # sht_reml1c_er_pr = wb.sheets['PR Ch C ER']
     # sht_reml1_plot_cp = wb.sheets['CP Plot']
     # sht_reml1_plot_er_ch_a_pr = wb.sheets['PR Ch A Plot']
     # sht_reml1_plot_er_ch_c_pr = wb.sheets['PR Ch C Plot']
@@ -466,16 +466,14 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
-    df_reml1_cp = sht_reml1_cp.range('A9').options(
-        pd.DataFrame, header=1, index=False, expand='table'
-        ).value											                # fetch the data from sheet- 'ASBE1-CP'
+    df_reml1_cp = excel_file.parse('REML1-CP', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reml1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reml1_cp = df_reml1_cp[["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
     df_reml1_cp = df_reml1_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1_cp   	    # show the dataframe values into sheet- 'CP Plot'
-    df_reml1a_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'DPS']					# dataframe for DPS (chamber A)
+    # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1_cp           # show the dataframe values into sheet- 'CP Plot'
+    df_reml1a_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'DPS']                 # dataframe for DPS (chamber A)
     # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1a_cp           # show the dataframe values into sheet- 'CP Plot'
-    df_reml1c_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'ASP']					# dataframe for ASP (chamber C)
+    df_reml1c_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'ASP']                 # dataframe for ASP (chamber C)
     # sht_reml1_plot_cp.range('G46').options(index=False).value = df_reml1c_cp           # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
@@ -609,12 +607,6 @@ def main():
         remarks = df_reml1c_er_pr_remarks
         )
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# User Defined Functions (UDFs)
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
 
-
-
+if __name__ == '__main__':
+    main()
