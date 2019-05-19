@@ -44,8 +44,22 @@ unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
 unif_poly_plot_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
 unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT01_QC_LOG_BOOK_Ch_A\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_QC_LOG_BOOK_Ch_A.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
+# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -410,7 +424,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_repl1a_cp_plot(
-        x = df_repl1a_cp_date, 
+        x = date_formatter(df_repl1a_cp_date), 
         y1 = df_repl1a_cp_delta_cp, 
         y2 = df_repl1a_cp_usl, 
         # y3 = df_repl1a_cp_ucl,
@@ -446,7 +460,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw Nit ER Plot (using Plotly) in Browser 
     draw_plotly_repl1a_er_nit_plot(
-        x = df_repl1a_er_nit_date, 
+        x = date_formatter(df_repl1a_er_nit_date), 
         y1 = df_repl1a_er_nit_er,
         y2 = df_repl1a_er_nit_usl, 
         y3 = df_repl1a_er_nit_lsl,
@@ -458,7 +472,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Nit Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_nit_plot(
-        x = df_repl1a_er_nit_date, 
+        x = date_formatter(df_repl1a_er_nit_date), 
         y1 = df_repl1a_er_nit_unif, 
         y2 = df_repl1a_er_nit_unif_usl,
         y3 = df_repl1a_er_nit_unif_ucl,
@@ -494,7 +508,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw Poly ER Plot (using Plotly) in Browser 
     draw_plotly_repl1a_er_poly_plot(
-        x = df_repl1a_er_poly_date, 
+        x = date_formatter(df_repl1a_er_poly_date), 
         y1 = df_repl1a_er_poly_er,
         y2 = df_repl1a_er_poly_usl, 
         y3 = df_repl1a_er_poly_lsl,
@@ -506,7 +520,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Poly Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_poly_plot(
-        x = df_repl1a_er_poly_date, 
+        x = date_formatter(df_repl1a_er_poly_date), 
         y1 = df_repl1a_er_poly_unif, 
         y2 = df_repl1a_er_poly_unif_usl,
         y3 = df_repl1a_er_poly_unif_ucl,
