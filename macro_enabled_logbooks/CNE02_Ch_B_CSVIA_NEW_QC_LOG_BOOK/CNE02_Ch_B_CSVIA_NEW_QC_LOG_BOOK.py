@@ -71,6 +71,20 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNE0
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
+"Description": Date formatter to format the excel date (issue: one date less in plotly chart) as "%m-%d-%Y %H:%M:%S"
+"x": datetime list
+"return": formatted datetime list
+"""
+def date_formatter(x):
+    x_fmt = []
+    for a in x:
+        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        x_fmt.append(a)
+    return x_fmt
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+"""
 "Description": This function plots CP Chart with traces v/s Date.
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
@@ -697,7 +711,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_reox1b_cp_plot(
-        x = df_reox1b_cp_date, 
+        x = date_formatter(df_reox1b_cp_date), 
         y1 = df_reox1b_cp_delta_cp, 
         y2 = df_reox1b_cp_usl, 
         # y3 = df_reox1b_cp_ucl,
@@ -753,7 +767,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw BPSG_CS ER Plot (using Plotly) in Browser 
     draw_plotly_reox1b_er_bpsgcs_plot(
-        x = df_reox1b_er_bpsgcs_date, 
+        x = date_formatter(df_reox1b_er_bpsgcs_date), 
         y1 = df_reox1b_er_bpsgcs_er,
         y2 = df_reox1b_er_bpsgcs_usl, 
         y3 = df_reox1b_er_bpsgcs_lsl,
@@ -765,7 +779,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw BPSG_CS Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1b_unif_bpsgcs_plot(
-        x = df_reox1b_er_bpsgcs_date, 
+        x = date_formatter(df_reox1b_er_bpsgcs_date), 
         y1 = df_reox1b_er_bpsgcs_unif, 
         y2 = df_reox1b_er_bpsgcs_unif_usl,
         y3 = df_reox1b_er_bpsgcs_unif_ucl,
@@ -788,7 +802,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw ARC-2nd ER Plot (using Plotly) in Browser 
     draw_plotly_reox1b_er_sincs_plot(
-        x = df_reox1b_er_sincs_date, 
+        x = date_formatter(df_reox1b_er_sincs_date), 
         y1 = df_reox1b_er_sincs_er,
         y2 = df_reox1b_er_sincs_usl, 
         y3 = df_reox1b_er_sincs_lsl,
@@ -800,7 +814,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw ARC-2nd Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1b_unif_sincs_plot(
-        x = df_reox1b_er_sincs_date, 
+        x = date_formatter(df_reox1b_er_sincs_date), 
         y1 = df_reox1b_er_sincs_unif, 
         y2 = df_reox1b_er_sincs_unif_usl,
         y3 = df_reox1b_er_sincs_unif_ucl,
@@ -823,7 +837,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS_VIA ER Plot (using Plotly) in Browser 
     draw_plotly_reox1b_er_teosvia_plot(
-        x = df_reox1b_er_teosvia_date, 
+        x = date_formatter(df_reox1b_er_teosvia_date), 
         y1 = df_reox1b_er_teosvia_er,
         y2 = df_reox1b_er_teosvia_usl, 
         y3 = df_reox1b_er_teosvia_lsl,
@@ -835,7 +849,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw TEOS_VIA Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1b_unif_teosvia_plot(
-        x = df_reox1b_er_teosvia_date, 
+        x = date_formatter(df_reox1b_er_teosvia_date), 
         y1 = df_reox1b_er_teosvia_unif, 
         y2 = df_reox1b_er_teosvia_unif_usl,
         y3 = df_reox1b_er_teosvia_unif_ucl,
@@ -844,21 +858,21 @@ def main():
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Assigning variable to each param for ARC ER & Unif PLot
-    df_reox1b_er_arc_date = df_reox1b_er["Date (MM/DD/YYYY)"]
-    df_reox1b_er_arc_er = df_reox1b_er["Etch Rate (A/Min)"]
-    df_reox1b_er_arc_usl = df_reox1b_er["USL"]
-    df_reox1b_er_arc_lsl = df_reox1b_er["LSL"]
-    df_reox1b_er_arc_ucl = df_reox1b_er["UCL"]
-    df_reox1b_er_arc_lcl = df_reox1b_er["LCL"]
-    df_reox1b_er_arc_unif = df_reox1b_er["% Uni"]
-    df_reox1b_er_arc_unif_usl = df_reox1b_er["% Uni USL"]
-    df_reox1b_er_arc_unif_ucl = df_reox1b_er["% Uni UCL"]
-    df_reox1b_er_arc_remarks = df_reox1b_er["Remarks"]
+    df_reox1b_er_arc_date = df_reox1b_er_arc["Date (MM/DD/YYYY)"]
+    df_reox1b_er_arc_er = df_reox1b_er_arc["Etch Rate (A/Min)"]
+    df_reox1b_er_arc_usl = df_reox1b_er_arc["USL"]
+    df_reox1b_er_arc_lsl = df_reox1b_er_arc["LSL"]
+    df_reox1b_er_arc_ucl = df_reox1b_er_arc["UCL"]
+    df_reox1b_er_arc_lcl = df_reox1b_er_arc["LCL"]
+    df_reox1b_er_arc_unif = df_reox1b_er_arc["% Uni"]
+    df_reox1b_er_arc_unif_usl = df_reox1b_er_arc["% Uni USL"]
+    df_reox1b_er_arc_unif_ucl = df_reox1b_er_arc["% Uni UCL"]
+    df_reox1b_er_arc_remarks = df_reox1b_er_arc["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw ARC ER Plot (using Plotly) in Browser 
     draw_plotly_reox1b_er_arc_plot(
-        x = df_reox1b_er_arc_date, 
+        x = date_formatter(df_reox1b_er_arc_date), 
         y1 = df_reox1b_er_arc_er,
         y2 = df_reox1b_er_arc_usl, 
         y3 = df_reox1b_er_arc_lsl,
@@ -870,7 +884,7 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw ARC Unif Plot (using Plotly) in Browser     
     draw_plotly_reox1b_unif_arc_plot(
-        x = df_reox1b_er_arc_date, 
+        x = date_formatter(df_reox1b_er_arc_date), 
         y1 = df_reox1b_er_arc_unif, 
         y2 = df_reox1b_er_arc_unif_usl,
         y3 = df_reox1b_er_arc_unif_ucl,
