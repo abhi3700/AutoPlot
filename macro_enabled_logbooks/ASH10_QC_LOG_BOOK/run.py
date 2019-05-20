@@ -33,6 +33,8 @@ unif_plot_xlabel = 'Date'      # xaxis name for Unif plot
 unif_plot_ylabel = 'Uniformity (%)'    # yaxis name for Unif plot
 unif_plot_html_file = 'ASBE1_Unif-Plot.html'   # HTML filename for Unif plot
 unif_plot_trace_count = 2    # no. of traces in Unif plot
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm"
@@ -240,8 +242,8 @@ def main():
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
     df_asbe1_cp = excel_file.parse('ASBE1-CP', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_asbe1_cp = df_asbe1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_asbe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_asbe1_cp = df_asbe1_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]]        # The final dataframe with required columns
     df_asbe1_cp = df_asbe1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_asbe1_plot_cp.range('A25').options(index=False).value = df_asbe1_cp           # show the dataframe values into sheet- 'CP Plot'
 
@@ -270,8 +272,8 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     df_asbe1_er = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_asbe1_er = df_asbe1_er[sht_er_columns]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_asbe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_asbe1_er = df_asbe1_er[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_asbe1_er = df_asbe1_er.dropna()                                              # dropping rows where at least one element is missing
     # sht_asbe1_plot_er.range('A28').options(index=False).value = df_asbe1_er        # show the dataframe values into sheet- 'CP Plot'
 
