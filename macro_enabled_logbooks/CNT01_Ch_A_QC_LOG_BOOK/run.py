@@ -43,6 +43,9 @@ unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
 unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
 unif_poly_plot_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
 unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
+sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
@@ -409,7 +412,7 @@ def main():
     # Fetch Dataframe for CP Plot
     df_repl1a_cp = excel_file.parse('REPL1A-CP', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 9    
     df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1a_cp = df_repl1a_cp[["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
+    df_repl1a_cp = df_repl1a_cp[sht_cp_columns]        # The final dataframe with required columns
     df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_repl1a_plot_cp.range('A25').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
 
@@ -438,7 +441,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     df_repl1a_er_nit = excel_file.parse('REPL1A-ERNit', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9    
-    df_repl1a_er_nit = df_repl1a_er_nit[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_nit = df_repl1a_er_nit.dropna()                                              # dropping rows where at least one element is misnitg
     # sht_repl1a_plot_er_nit.range('A28').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
@@ -484,7 +487,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     df_repl1a_er_poly = excel_file.parse('REPL1A-ERPoly', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
-    df_repl1a_er_poly = df_repl1a_er_poly[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_poly = df_repl1a_er_poly.dropna()                                              # dropping rows where at least one element is misnitg
     # sht_repl1a_plot_er_poly.range('A28').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
