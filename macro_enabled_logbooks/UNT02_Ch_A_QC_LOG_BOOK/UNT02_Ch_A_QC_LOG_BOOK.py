@@ -63,6 +63,8 @@ unif_teos_2nd_plot_xlabel = 'Date'      # xaxis name for Unif plot
 unif_teos_2nd_plot_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif plot
 unif_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif plot
 unif_teos_2nd_plot_trace_count = 2    # no. of traces in Nit Unif plot
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\UNT02_Ch_A_QC_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
@@ -705,7 +707,7 @@ def main():
     df_resp1a_cp = sht_resp1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
-    df_resp1a_cp = df_resp1a_cp[["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]]        # The final dataframe with required columns
+    df_resp1a_cp = df_resp1a_cp[sht_cp_columns]        # The final dataframe with required columns
     df_resp1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_resp1a_cp = df_resp1a_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_resp1a_plot_cp.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
@@ -744,7 +746,7 @@ def main():
 
     df_resp1a_er = excel_file.parse('RESP1A-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
     df_resp1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
-    df_resp1a_er = df_resp1a_er[["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_resp1a_er = df_resp1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1a_teos = df_resp1a_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
     df_resp1a_er_sin_1st = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'SiN-1Step']
     df_resp1a_er_sin_1st = df_resp1a_er_sin_1st.dropna()
