@@ -48,6 +48,9 @@ unif_chc_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
 unif_chc_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
 unif_chc_pr_plot_html_file = 'REML1C_PR_Unif-Plot.html'   # HTML filename for Unif plot
 unif_chc_pr_plot_trace_count = 3    # no. of traces in Unif plot
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]
+sht_er_reml1a_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_reml1c_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL"]
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_02_LOG_BOOK\\CNT02_QC_LOG_BOOK_macro\\CNT02_QC_LOG_BOOK.xlsm"
@@ -468,7 +471,7 @@ def main():
     # Fetch Dataframe for CP
     df_reml1_cp = excel_file.parse('REML1-CP', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reml1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_reml1_cp = df_reml1_cp[["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]]        # The final dataframe with required columns
+    df_reml1_cp = df_reml1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reml1_cp = df_reml1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1_cp           # show the dataframe values into sheet- 'CP Plot'
     df_reml1a_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'DPS']                 # dataframe for DPS (chamber A)
@@ -519,7 +522,7 @@ def main():
 
     df_reml1a_er_pr = excel_file.parse('PR Ch A ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     
-    df_reml1a_er_pr = df_reml1a_er_pr[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reml1a_er_pr = df_reml1a_er_pr[sht_er_reml1a_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reml1a_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reml1a_er_pr = df_reml1a_er_pr.dropna()                                              # dropping rows where at least one element is missing
     # sht_plot_nit.range('A28').options(index=False).value = df_reml1a_er_pr        # show the dataframe values into sheet- 'CP Plot'
@@ -568,7 +571,7 @@ def main():
 
     df_reml1c_er_pr = excel_file.parse('PR Ch C ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     
-    df_reml1c_er_pr = df_reml1c_er_pr[["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL"]]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reml1c_er_pr = df_reml1c_er_pr[sht_er_reml1c_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reml1c_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reml1c_er_pr = df_reml1c_er_pr.dropna()                                              # dropping rows where at least one element is missing
     # sht_reml1_plot_er_ch_c_pr.range('A28').options(index=False).value = df_reml1c_er_pr        # show the dataframe values into sheet- 'CP Plot'
