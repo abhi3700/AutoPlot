@@ -36,7 +36,7 @@ unif_plot_trace_count = 2    # no. of traces in Unif plot
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "Remarks", "USL", "UCL", ]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "LCL", "UCL", "% Uni UCL"]
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK_macro\\ASH09_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
