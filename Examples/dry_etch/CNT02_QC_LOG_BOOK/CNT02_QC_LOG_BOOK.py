@@ -52,7 +52,7 @@ sht_cp_columns = ["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]
 sht_er_reml1a_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 sht_er_reml1c_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL"]
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\macro_enabled_logbooks\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_02_LOG_BOOK\\CNT02_QC_LOG_BOOK_macro\\CNT02_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
