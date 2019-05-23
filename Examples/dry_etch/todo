@@ -1,5 +1,6 @@
 AutoPlot
 ========
++ input file separate
 + `auto_run.sh`:
   1. Check if `git diff *.xlsm` is non-zero, 
   2. `python run.py` file
