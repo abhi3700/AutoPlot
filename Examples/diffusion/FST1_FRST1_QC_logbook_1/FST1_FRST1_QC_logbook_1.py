@@ -73,6 +73,7 @@ def draw_plotly_frst1_thick_plot(x, y1, y2, y3, y4, y5, y6, y7, remarks):
                     line = dict(
                         color = thick_plot_trace2_marker_border_color_cnt,
                         width = 0.5),
+                    symbol = 'diamond'
                     ),
             # text = remarks
     )
@@ -91,9 +92,11 @@ def draw_plotly_frst1_thick_plot(x, y1, y2, y3, y4, y5, y6, y7, remarks):
                     line = dict(
                         color = thick_plot_trace3_marker_border_color_btm,
                         width = 0.5),
+                    symbol = 'x',
                     ),
             # text = remarks
     )
+    go.Scatter
 
     trace4 = go.Scatter(
             x = x,
@@ -186,6 +189,7 @@ def draw_plotly_frst1_unif_plot(x, y1, y2, y3, y4, remarks):
                     line = dict(
                         color = unif_plot_trace2_marker_border_color_cnt,
                         width = 0.5),
+                    symbol = 'diamond'
                     ),
             # text = remarks
     )
@@ -204,6 +208,7 @@ def draw_plotly_frst1_unif_plot(x, y1, y2, y3, y4, remarks):
                     line = dict(
                         color = unif_plot_trace3_marker_border_color_btm,
                         width = 0.5),
+                    symbol = 'x'
                     ),
             # text = remarks
     )
@@ -269,6 +274,7 @@ def draw_plotly_frst1_cp_plot(x, y1, y2, y3, y4, remarks):
                     line = dict(
                         color = cp_plot_trace2_marker_border_color_cnt,
                         width = 0.5),
+                    symbol = 'diamond'
                     ),
             # text = remarks
     )
@@ -287,6 +293,7 @@ def draw_plotly_frst1_cp_plot(x, y1, y2, y3, y4, remarks):
                     line = dict(
                         color = cp_plot_trace3_marker_border_color_btm,
                         width = 0.5),
+                    symbol = 'x'
                     ),
             # text = remarks
     )
