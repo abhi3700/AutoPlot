@@ -1,6 +1,11 @@
 AutoPlot
 ========
-v1.0
+v1.1 -
+----
+* `auto_run.sh` script added to automatically generate plots via __Task Scheduler__ (@ 0800 hrs daily) in respective Excel file directories.
+* 
+
+v1.0 - `24-May-2019`
 ----
 * 'RUN' Button added in Excel for Execution.
 * `run.sh` file added in each Excel directory for execution without even opening the Excel file itself.

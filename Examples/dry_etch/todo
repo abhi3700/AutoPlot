@@ -1,5 +1,7 @@
 AutoPlot
 ========
++ add a sheet_name as global var.
++ match the directory in both (pendrive & network)
 + input file separate
 + `auto_run.sh`:
   1. Check if `git diff *.xlsm` is non-zero, 
