@@ -276,7 +276,7 @@ def draw_plotly_frst1_cp_plot(x, y1, y2, y3, y4, remarks):
                         width = 0.5),
                     symbol = 'diamond'
                     ),
-            # text = remarks
+            text = remarks
     )
 
     trace3 = go.Scatter(
@@ -295,7 +295,7 @@ def draw_plotly_frst1_cp_plot(x, y1, y2, y3, y4, remarks):
                         width = 0.5),
                     symbol = 'x'
                     ),
-            # text = remarks
+            text = remarks
     )
 
     trace4 = go.Scatter(
@@ -323,13 +323,13 @@ def draw_plotly_frst1_cp_plot(x, y1, y2, y3, y4, remarks):
 #====================================================================================================================================================================
 #####################################################################################################################################################################
 def main():
-    wb = xw.Book.caller()
+    # wb = xw.Book.caller()
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_frst1 = wb.sheets[sht_name]
-    sht_run_code = wb.sheets['RUN_code'] 
+    # sht_frst1 = wb.sheets[sht_name]
+    # sht_run_code = wb.sheets['RUN_code'] 
     excel_file_sht = pd.ExcelFile(excel_file_directory)
     df_frst1 = excel_file_sht.parse(sht_name, skiprows=2)
 
@@ -338,7 +338,6 @@ def main():
     # Fetch Dataframe for Thickness Plot
     df_frst1_thick = df_frst1[sht_thick_columns]        # The final dataframe with required columns
     df_frst1_thick['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_frst1_thick['Remarks'] = pd.Series(df_frst1_thick['Remarks']).fillna(method='ffill')       # fill merged cells with same values
     df_frst1_thick['Date'] = pd.Series(df_frst1_thick['Date']).fillna(method='ffill')       # fill merged cells with same values
 
     df_frst1_thick = df_frst1_thick.dropna()                                              # dropping rows where at least one element is missing
@@ -373,9 +372,9 @@ def main():
     # Fetch Dataframe for Unif Plot
     df_frst1_unif = df_frst1[sht_unif_columns]        # The final dataframe with required columns
     df_frst1_unif['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_frst1_unif['Remarks'] = pd.Series(df_frst1_unif['Remarks']).fillna(method='ffill')
-    df_frst1_unif['Date'] = pd.Series(df_frst1_unif['Date']).fillna(method='ffill')
+    df_frst1_unif['Date'] = pd.Series(df_frst1_unif['Date']).fillna(method='ffill')       # fill merged cells with same values
     df_frst1_unif = df_frst1_unif.dropna()                                              # dropping rows where at least one element is missing
+
     # sht_run_code.range('A13').options(index=False).value = df_frst1_unif         # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -402,7 +401,6 @@ def main():
     # Fetch Dataframe for CP Plot
     df_frst1_cp = df_frst1[sht_cp_columns]        # The final dataframe with required columns
     df_frst1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_frst1_cp['Remarks'] = pd.Series(df_frst1_cp['Remarks']).fillna(method='ffill')
     df_frst1_cp['Date'] = pd.Series(df_frst1_cp['Date']).fillna(method='ffill')
     df_frst1_cp = df_frst1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_run_code.range('A13').options(index=False).value = df_frst1_cp         # show the dataframe values into sheet- 'CP Plot'
@@ -430,9 +428,9 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
 
 
