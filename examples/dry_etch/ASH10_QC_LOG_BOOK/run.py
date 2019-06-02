@@ -3,6 +3,7 @@
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
@@ -11,33 +12,6 @@ import plotly.graph_objs as go
 
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for ASBE1'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'ASBE1_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 3    # no. of traces in CP plot
-er_plot_title = 'ER Plot for ASBE1'  # title for ER plot
-er_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_plot_ylabel = 'Etch Rate (A/min)'   # yaxis name for ER plot
-er_plot_html_file = 'ASBE1_ER-Plot.html'   # HTML filename for ER plot
-er_plot_trace_count = 4    # no. of traces in ER plot
-unif_plot_title = 'Uniformity Plot for ASBE1'  # title for UNIF plot
-unif_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_plot_ylabel = 'Uniformity (%)'    # yaxis name for Unif plot
-unif_plot_html_file = 'ASBE1_Unif-Plot.html'   # HTML filename for Unif plot
-unif_plot_trace_count = 2    # no. of traces in Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "Remarks"]
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\ASH10_QC_LOG_BOOK\\ASH10_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH10_QC_LOG_BOOK_macro\\ASH10_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -48,7 +22,7 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\ASH10_QC
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -233,15 +207,15 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    # sht_asbe1_cp = wb.sheets['ASBE1-CP']
-    # sht_asbe1_er = wb.sheets['ASBE1-ER']
+    # sht_asbe1_cp = wb.sheets[sht_name_cp]
+    # sht_asbe1_er = wb.sheets[sht_name_er]
     # sht_asbe1_plot_cp = wb.sheets['CP Plot']
     # sht_asbe1_plot_er = wb.sheets['ER Plot']
     excel_file = pd.ExcelFile(excel_file_directory)
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_asbe1_cp = excel_file.parse('ASBE1-CP', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_asbe1_cp = excel_file.parse(sht_name_cp, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     df_asbe1_cp = df_asbe1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_asbe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_cp = df_asbe1_cp.dropna()                                              # dropping rows where at least one element is missing
@@ -271,7 +245,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_asbe1_er = excel_file.parse('ASBE1-ER', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_asbe1_er = excel_file.parse(sht_name_er, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asbe1_er = df_asbe1_er[sht_er_columns]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_asbe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_er = df_asbe1_er.dropna()                                              # dropping rows where at least one element is missing
