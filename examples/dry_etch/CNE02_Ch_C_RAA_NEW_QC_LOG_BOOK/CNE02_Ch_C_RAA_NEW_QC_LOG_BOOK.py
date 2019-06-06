@@ -3,6 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
@@ -11,43 +12,6 @@ import plotly.graph_objs as go
 
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for REOX1C'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'REOX1C_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 2    # no. of traces in CP plot
-er_arc_plot_title = 'ARC ER Plot for REOX1C'  # title for ER plot
-er_arc_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_arc_plot_ylabel = 'ARC ER (A/min)'   # yaxis name for ER plot
-er_arc_plot_html_file = 'REOX1C_ARC_ER-Plot.html'   # HTML filename for ER plot
-er_arc_plot_trace_count = 5    # no. of traces in ER plot
-unif_arc_plot_title = 'ARC Uniformity Plot for REOX1C'  # title for Unif plot
-unif_arc_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_arc_plot_ylabel = 'ARC Unif (%)'    # yaxis name for Unif plot
-unif_arc_plot_html_file = 'REOX1C_ARC_Unif-Plot.html'   # HTML filename for Unif plot
-unif_arc_plot_trace_count = 2    # no. of traces in Unif plot
-er_teos_plot_title = 'TEOS ER Plot for REOX1C'  # title for ER plot
-er_teos_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_teos_plot_ylabel = 'TEOS ER (A/min)'   # yaxis name for ER plot
-er_teos_plot_html_file = 'REOX1C_TEOS_ER-Plot.html'   # HTML filename for ER plot
-er_teos_plot_trace_count = 5    # no. of traces in ER plot
-unif_teos_plot_title = 'TEOS Uniformity Plot for REOX1C'  # title for Unif plot
-unif_teos_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_teos_plot_ylabel = 'TEOS Unif (%)'    # yaxis name for Unif plot
-unif_teos_plot_html_file = 'REOX1C_TEOS_Unif-Plot.html'   # HTML filename for Unif plot
-unif_teos_plot_trace_count = 2    # no. of traces in Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL"]   # deleted "% Uni UCL" column
- 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\UNT_02_LOG_BOOK\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -58,7 +22,7 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNE02_Ch
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -397,8 +361,8 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_reox1c_cp = wb.sheets['REOX1C-CP']
-    sht_reox1c_er = wb.sheets['REOX1C-ER']
+    sht_reox1c_cp = wb.sheets[sht_name_cp]
+    sht_reox1c_er = wb.sheets[sht_name_er]
     # sht_reox1c_plot_cp = wb.sheets['CP Plot']
     # sht_reox1c_plot_barc = wb.sheets['BARC Plot']
     # sht_reox1c_plot_pr = wb.sheets['ARC Plot']
@@ -409,7 +373,7 @@ def main():
     # Fetch Dataframe for CP
     df_reox1c_cp = sht_reox1c_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
-        ).value                                                         # fetch the data from sheet- 'REOX1C-CP'
+        ).value                                                         # fetch the data from sheet- sht_name_cp
     df_reox1c_cp = df_reox1c_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reox1c_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reox1c_cp = df_reox1c_cp.dropna()                                              # dropping rows where at least one element is missing
@@ -444,7 +408,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_reox1c_er = excel_file_sht_er.parse('REOX1C-ER', skiprows=13)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1c_er = excel_file_sht_er.parse(sht_name_er, skiprows=13)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reox1c_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
     df_reox1c_er = df_reox1c_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reox1c_er_arc = df_reox1c_er[df_reox1c_er["Layer"] == 'ARC']
