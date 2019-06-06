@@ -10,6 +10,9 @@ from input import *
 # from pathlib import Path
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# inputs for this `run.py` file
+auto_open = False
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,7 +83,7 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -147,7 +150,7 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
             yaxis = dict(title= er_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -192,7 +195,7 @@ def draw_plotly_asfe1_unif_plot(x, y1, y2, remarks):
             yaxis = dict(title= unif_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_plot_html_file, auto_open= auto_open)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
