@@ -3,6 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
@@ -11,44 +12,6 @@ import plotly.graph_objs as go
 
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for REPL1B'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'REPL1B_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 2    # no. of traces in CP plot
-er_nit_plot_title = 'Nit ER Plot for REPL1B'  # title for Nit ER plot
-er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
-er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
-er_nit_plot_html_file = 'REPL1B_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
-er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_nit_plot_title = 'Nit Uniformity Plot for REPL1B'  # title for Nit Unif plot
-unif_nit_plot_xlabel = 'Date'      # xaxis name for Nit Unif plot
-unif_nit_plot_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif plot
-unif_nit_plot_html_file = 'REPL1B_Nit_Unif-Plot.html'   # HTML filename for Nit Unif plot
-unif_nit_plot_trace_count = 3    # no. of traces in Nit Unif plot
-er_poly_plot_title = 'Poly ER Plot for REPL1B'  # title for Poly ER plot
-er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
-er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
-er_poly_plot_html_file = 'REPL1B_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
-er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
-unif_poly_plot_title = 'Poly Uniformity Plot for REPL1B'  # title for Poly Unif plot
-unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
-unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
-unif_poly_plot_html_file = 'REPL1B_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
-unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
-sht_cp_columns =  ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
-sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT01_Ch_B_QC_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -59,7 +22,7 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT01_Ch
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -397,9 +360,9 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_repl1b_cp = wb.sheets['REPL1B-CP']
-    sht_repl1b_er_nit = wb.sheets['REPL1B-ERNit']
-    sht_repl1b_er_poly = wb.sheets['REPL1B-ERPoly']
+    sht_repl1b_cp = wb.sheets[sht_name_cp]
+    sht_repl1b_er_nit = wb.sheets[sht_name_er_nit]
+    sht_repl1b_er_poly = wb.sheets[sht_name_er_poly]
     # sht_repl1b_plot_cp = wb.sheets['CP Plot']
     # sht_repl1b_plot_er_nit = wb.sheets['Nit Plot']
     # sht_repl1b_plot_er_poly = wb.sheets['Poly Plot']
@@ -440,7 +403,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file_sht_nit = pd.ExcelFile(excel_file_directory)
-    df_repl1b_er_nit = excel_file_sht_nit.parse('REPL1B-ERNit', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1b_er_nit = excel_file_sht_nit.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1b_er_nit = df_repl1b_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1b_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
@@ -490,7 +453,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file_sht_poly = pd.ExcelFile(excel_file_directory)
-    df_repl1b_er_poly = excel_file_sht_poly.parse('REPL1B-ERPoly', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1b_er_poly = excel_file_sht_poly.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1b_er_poly = df_repl1b_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1b_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
