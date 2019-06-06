@@ -3,52 +3,19 @@
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
 # from pathlib import Path
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# inputs for this `run.py` file
+auto_open = False
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for REPL1A'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'REPL1A_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 2    # no. of traces in CP plot
-er_nit_plot_title = 'Nit ER Plot for REPL1A'  # title for Nit ER plot
-er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
-er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
-er_nit_plot_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
-er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_nit_plot_title = 'Nit Uniformity Plot for REPL1A'  # title for Nit Unif plot
-unif_nit_plot_xlabel = 'Date'      # xaxis name for Nit Unif plot
-unif_nit_plot_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif plot
-unif_nit_plot_html_file = 'REPL1A_Nit_Unif-Plot.html'   # HTML filename for Nit Unif plot
-unif_nit_plot_trace_count = 3    # no. of traces in Nit Unif plot
-er_poly_plot_title = 'Poly ER Plot for REPL1A'  # title for Poly ER plot
-er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
-er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
-er_poly_plot_html_file = 'REPL1A_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
-er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
-unif_poly_plot_title = 'Poly Uniformity Plot for REPL1A'  # title for Poly Unif plot
-unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
-unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
-unif_poly_plot_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
-unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
-sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -119,7 +86,7 @@ def draw_plotly_repl1a_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -197,7 +164,7 @@ def draw_plotly_repl1a_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_nit_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_nit_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_nit_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -253,7 +220,7 @@ def draw_plotly_repl1a_unif_nit_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_nit_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_nit_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_nit_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -331,7 +298,7 @@ def draw_plotly_repl1a_er_poly_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_poly_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_poly_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_poly_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -387,7 +354,7 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_poly_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_poly_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_poly_plot_html_file, auto_open= auto_open)
 
 
 
@@ -399,9 +366,9 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    # sht_repl1a_cp = wb.sheets['REPL1A-CP']
-    # sht_repl1a_er_nit = wb.sheets['REPL1A-ERNit']
-    # sht_repl1a_er_poly = wb.sheets['REPL1A-ERPoly']
+    # sht_repl1a_cp = wb.sheets[sht_name_cp]
+    # sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
+    # sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
     # sht_repl1a_plot_cp = wb.sheets['CP Plot']
     # sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
     # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
@@ -410,7 +377,7 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_repl1a_cp = excel_file.parse('REPL1A-CP', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 9    
+    df_repl1a_cp = excel_file.parse(sht_name_cp, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 9    
     df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[sht_cp_columns]        # The final dataframe with required columns
     df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is missing
@@ -440,7 +407,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_repl1a_er_nit = excel_file.parse('REPL1A-ERNit', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9    
+    df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9    
     df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_nit = df_repl1a_er_nit.dropna()                                              # dropping rows where at least one element is misnitg
@@ -486,7 +453,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_repl1a_er_poly = excel_file.parse('REPL1A-ERPoly', skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1a_er_poly = excel_file.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_poly = df_repl1a_er_poly.dropna()                                              # dropping rows where at least one element is misnitg
