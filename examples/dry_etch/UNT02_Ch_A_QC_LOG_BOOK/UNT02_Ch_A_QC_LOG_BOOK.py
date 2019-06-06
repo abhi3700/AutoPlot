@@ -3,6 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
@@ -11,63 +12,6 @@ import plotly.graph_objs as go
 
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for RESP1A'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'RESP1A_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 3    # no. of traces in CP plot
-er_sin_1st_plot_title = 'SiN-1st ER Plot for RESP1A'  # title for ER plot
-er_sin_1st_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_sin_1st_plot_ylabel = 'SiN-1st ER (A/min)'   # yaxis name for ER plot
-er_sin_1st_plot_html_file = 'RESP1A_SiN_1st_ER-Plot.html'   # HTML filename for ER plot
-er_sin_1st_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_sin_1st_plot_title = 'SiN-1st Uniformity Plot for RESP1A'  # title for Unif plot
-unif_sin_1st_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_sin_1st_plot_ylabel = 'SiN-1st Unif (%)'    # yaxis name for Unif plot
-unif_sin_1st_plot_html_file = 'RESP1A_SiN_1st_Unif-Plot.html'   # HTML filename for Unif plot
-unif_sin_1st_plot_trace_count = 3    # no. of traces in Nit Unif plot
-er_sin_2nd_plot_title = 'SiN-2nd ER Plot for RESP1A'  # title for ER plot
-er_sin_2nd_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_sin_2nd_plot_ylabel = 'SiN-2nd ER (A/min)'   # yaxis name for ER plot
-er_sin_2nd_plot_html_file = 'RESP1A_SiN_2nd_ER-Plot.html'   # HTML filename for ER plot
-er_sin_2nd_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_sin_2nd_plot_title = 'SiN-2nd Uniformity Plot for RESP1A'  # title for Unif plot
-unif_sin_2nd_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_sin_2nd_plot_ylabel = 'SiN-2nd Unif (%)'    # yaxis name for Unif plot
-unif_sin_2nd_plot_html_file = 'RESP1A_SiN_2nd_Unif-Plot.html'   # HTML filename for Unif plot
-unif_sin_2nd_plot_trace_count = 3    # no. of traces in Nit Unif plot
-er_teos_1st_plot_title = 'TEOS-1st ER Plot for RESP1A'  # title for ER plot
-er_teos_1st_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_teos_1st_plot_ylabel = 'TEOS-1st ER (A/min)'   # yaxis name for ER plot
-er_teos_1st_plot_html_file = 'RESP1A_TEOS_1st_ER-Plot.html'   # HTML filename for ER plot
-er_teos_1st_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_teos_1st_plot_title = 'TEOS-1st Uniformity Plot for RESP1A'  # title for Unif plot
-unif_teos_1st_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_teos_1st_plot_ylabel = 'TEOS-1st Unif (%)'    # yaxis name for Unif plot
-unif_teos_1st_plot_html_file = 'RESP1A_TEOS_1st_Unif-Plot.html'   # HTML filename for Unif plot
-unif_teos_1st_plot_trace_count = 2    # no. of traces in Nit Unif plot
-er_teos_2nd_plot_title = 'TEOS-2nd ER Plot for RESP1A'  # title for ER plot
-er_teos_2nd_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_teos_2nd_plot_ylabel = 'TEOS-2nd ER (A/min)'   # yaxis name for ER plot
-er_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_ER-Plot.html'   # HTML filename for ER plot
-er_teos_2nd_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_teos_2nd_plot_title = 'TEOS-2nd Uniformity Plot for RESP1A'  # title for Unif plot
-unif_teos_2nd_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_teos_2nd_plot_ylabel = 'TEOS-2nd Unif (%)'    # yaxis name for Unif plot
-unif_teos_2nd_plot_html_file = 'RESP1A_TEOS_2nd_Unif-Plot.html'   # HTML filename for Unif plot
-unif_teos_2nd_plot_trace_count = 2    # no. of traces in Nit Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\UNT02_Ch_A_QC_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_QC_LOG_BOOK_Ch_A_macro\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -78,7 +22,7 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\UNT02_Ch
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -693,8 +637,8 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    sht_resp1a_cp = wb.sheets['RESP1A-CP']
-    sht_resp1a_er = wb.sheets['RESP1A-ER']
+    sht_resp1a_cp = wb.sheets[sht_name_cp]
+    sht_resp1a_er = wb.sheets[sht_name_er]
     # sht_resp1a_plot_cp = wb.sheets['CP Plot']
     # sht_resp1a_plot_sin_1st = wb.sheets['SiN 1st Step Plot']
     # sht_resp1a_plot_sin_2nd = wb.sheets['SiN 2nd Step Plot']
@@ -744,7 +688,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_resp1a_er = excel_file.parse('RESP1A-ER', skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_resp1a_er = excel_file.parse(sht_name_er, skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
     df_resp1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
     df_resp1a_er = df_resp1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1a_teos = df_resp1a_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
