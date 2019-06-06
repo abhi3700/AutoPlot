@@ -3,57 +3,18 @@
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from input import *
 # import datetime as dt
 # import win32api
 # import os
 # from pathlib import Path
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# inputs for this `run.py` file
+auto_open = False
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace0) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_cha_plot_title = 'CP Plot for REML1A'  # title for CP plot
-cp_cha_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_cha_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_cha_plot_html_file = 'REML1A_CP-Plot.html'   # HTML filename for CP plot
-cp_cha_plot_trace_count = 2    # no. of traces in CP plot
-cp_chc_plot_title = 'CP Plot for REML1C'  # title for CP plot
-cp_chc_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_chc_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_chc_plot_html_file = 'REML1C_CP-Plot.html'   # HTML filename for CP plot
-cp_chc_plot_trace_count = 2    # no. of traces in CP plot
-er_cha_pr_plot_title = 'PR ER Plot for REML1A'  # title for ER plot
-er_cha_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_cha_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
-er_cha_pr_plot_html_file = 'REML1A_PR_ER-Plot.html'   # HTML filename for ER plot
-er_cha_pr_plot_trace_count = 5    # no. of traces in Nit ER plot
-unif_cha_pr_plot_title = 'PR Uniformity Plot for REML1A'  # title for Unif plot
-unif_cha_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_cha_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
-unif_cha_pr_plot_html_file = 'REML1A_PR_Unif-Plot.html'   # HTML filename for Unif plot
-unif_cha_pr_plot_trace_count = 3    # no. of traces in Nit Unif plot
-er_chc_pr_plot_title = 'PR ER Plot for REML1C'  # title for ER plot
-er_chc_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_chc_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
-er_chc_pr_plot_html_file = 'REML1C_PR_ER-Plot.html'   # HTML filename for ER plot
-er_chc_pr_plot_trace_count = 5    # no. of traces in ER plot
-unif_chc_pr_plot_title = 'PR Uniformity Plot for REML1C'  # title for Unif plot
-unif_chc_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_chc_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
-unif_chc_pr_plot_html_file = 'REML1C_PR_Unif-Plot.html'   # HTML filename for Unif plot
-unif_chc_pr_plot_trace_count = 3    # no. of traces in Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]
-sht_er_reml1a_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_reml1c_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL"]
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_02_LOG_BOOK\\CNT02_QC_LOG_BOOK_macro\\CNT02_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -64,7 +25,7 @@ excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNT02_QC
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -458,9 +419,9 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Define sheets
-    # sht_reml1_cp = wb.sheets['REML1-CP']
-    # sht_reml1a_er_pr = wb.sheets['PR Ch A ER']
-    # sht_reml1c_er_pr = wb.sheets['PR Ch C ER']
+    # sht_reml1_cp = wb.sheets[sht_name_cp]
+    # sht_reml1a_er_pr = wb.sheets[sht_name_er_cha_pr]
+    # sht_reml1c_er_pr = wb.sheets[sht_name_er_chc_pr]
     # sht_reml1_plot_cp = wb.sheets['CP Plot']
     # sht_reml1_plot_er_ch_a_pr = wb.sheets['PR Ch A Plot']
     # sht_reml1_plot_er_ch_c_pr = wb.sheets['PR Ch C Plot']
@@ -469,7 +430,7 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
-    df_reml1_cp = excel_file.parse('REML1-CP', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reml1_cp = excel_file.parse(sht_name_cp, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reml1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_reml1_cp = df_reml1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reml1_cp = df_reml1_cp.dropna()                                              # dropping rows where at least one element is missing
@@ -520,7 +481,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_reml1a_er_pr = excel_file.parse('PR Ch A ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reml1a_er_pr = excel_file.parse(sht_name_er_cha_pr, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     
     df_reml1a_er_pr = df_reml1a_er_pr[sht_er_reml1a_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reml1a_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
@@ -569,7 +530,7 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_reml1c_er_pr = excel_file.parse('PR Ch C ER', skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reml1c_er_pr = excel_file.parse(sht_name_er_chc_pr, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
     
     df_reml1c_er_pr = df_reml1c_er_pr[sht_er_reml1c_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reml1c_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
