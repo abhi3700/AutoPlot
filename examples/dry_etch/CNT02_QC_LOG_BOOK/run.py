@@ -84,7 +84,7 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_cha_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_cha_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= cp_cha_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -141,7 +141,7 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_chc_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_chc_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= cp_chc_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -219,7 +219,7 @@ def draw_plotly_reml1a_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_cha_pr_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_cha_pr_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -275,7 +275,7 @@ def draw_plotly_reml1a_unif_pr_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_cha_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_cha_pr_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_cha_pr_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -353,7 +353,7 @@ def draw_plotly_reml1c_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_chc_pr_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_chc_pr_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -409,7 +409,7 @@ def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
             yaxis = dict(title= unif_chc_pr_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_chc_pr_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_chc_pr_plot_html_file, auto_open= auto_open)
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
