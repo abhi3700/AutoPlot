@@ -1,9 +1,11 @@
 AutoPlot
 ========
-v1.1 -
+v1.1 - `06-June-2019`
 ----
 * `auto_run.sh` script added to automatically generate plots via __Task Scheduler__ (@ 0800 hrs daily) in respective Excel file directories.
-* 
+* `input.py` file created for taking all the input params in a separate file.
+
+
 
 v1.0 - `24-May-2019`
 ----
