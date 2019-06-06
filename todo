@@ -5,6 +5,5 @@
   - Assign each layer with individual button.
 + Solve the issue: "1 day advanced plotting" in plotly charts
   - https://www.ablebits.com/office-addins-blog/2015/03/11/change-date-format-excel/
-+ Auto-plot via Task scheduler daily @ 23:59 hrs
 + enable open_chart=false/true as a button on the Excel.
 + EditText Button for discarding the values (unwanted) like range. E.g. delete values > 100.
