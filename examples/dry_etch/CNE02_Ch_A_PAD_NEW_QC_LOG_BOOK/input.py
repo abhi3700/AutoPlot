@@ -52,5 +52,5 @@ sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "R
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm"
+excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNE_02_LOG_BOOK\\NEW LOGBOOK WITH MORE DATA POINTS\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm"

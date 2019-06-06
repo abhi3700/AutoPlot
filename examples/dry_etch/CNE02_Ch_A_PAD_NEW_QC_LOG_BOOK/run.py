@@ -10,7 +10,9 @@ from input import *
 # from pathlib import Path
 
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# inputs for this `run.py` file
+auto_open = False
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -81,7 +83,7 @@ def draw_plotly_reox1a_cp_plot(x, y1, y2, remarks):
             yaxis = dict(title= cp_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= cp_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -159,7 +161,7 @@ def draw_plotly_reox1a_er_sin_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_sin_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_sin_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_sin_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -215,7 +217,7 @@ def draw_plotly_reox1a_unif_sin_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_sin_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_sin_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_sin_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -293,7 +295,7 @@ def draw_plotly_reox1a_er_teos_plot(x, y1, y2, y3, y4, y5, remarks):
             yaxis = dict(title= er_teos_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= er_teos_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= er_teos_plot_html_file, auto_open= auto_open)
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -349,7 +351,7 @@ def draw_plotly_reox1a_unif_teos_plot(x, y1, y2, y3, remarks):
             yaxis = dict(title= unif_teos_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    py.offline.plot(fig, filename= unif_teos_plot_html_file, auto_open= False)
+    py.offline.plot(fig, filename= unif_teos_plot_html_file, auto_open= auto_open)
 
 
 
