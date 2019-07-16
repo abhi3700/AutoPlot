@@ -1,6 +1,5 @@
 # AutoPlot
-All the macro enabled Excel sheets belong to DRY ETCH.
-
+Generate plots automatically from Excel data -----"Just press a Button"
 <p align="left">
   <img src="./icons/autoplot_ic_launcher.png" alt="AutoPlot Icon" width="" height="">
 </p>
