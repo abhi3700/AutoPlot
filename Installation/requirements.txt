@@ -1,0 +1,4 @@
+plotly
+retrying
+pywin32
+xlwings
