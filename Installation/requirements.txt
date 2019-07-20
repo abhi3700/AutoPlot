@@ -1,4 +1,4 @@
-plotly
 retrying
+plotly
 pywin32
 xlwings
