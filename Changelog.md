@@ -1,5 +1,14 @@
 AutoPlot
 ========
+v1.2 - `15-August-2019`
+----
+* Ease the flow of data entry in example: `dry_etch`
+	- copy-paste Metrology tool data into a DMIS upload file
+	- Open Excel book, enter the first row no. of sheet, employee_code, DMIS LotID (if available)
+	- click the button for pasting the data
+
+	This can be extended for multiple layers in a book.
+
 v1.1 - `06-June-2019`
 ----
 * `auto_run.sh` script added to automatically generate plots via __Task Scheduler__ (@ 0800 hrs daily) in respective Excel file directories.

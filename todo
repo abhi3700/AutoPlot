@@ -1,16 +1,21 @@
-+ Diffusion:
+- Ease the flow of data entry in example: `dry_etch`
+  - copy-paste Metrology tool data into a DMIS upload file
+  - Open Excel book, enter the <first row no. of sheet>, <employee_code>, <DMIS LotID> (if available)
+  - click the button for pasting the data
+
+  This can be extended for multiple layers in a book.
+
+- Diffusion:
   - generate plots in one tab.
-  - `line+marker` or `marker` options with button click.
-+ Dry etch:
+  - `line+marker` or `marker` options with `enable` var.
+- Dry etch:
   - replace `import plotly.graph_objs as go` ==> `from plotly.graph_objs import Pie`
   - Assign each layer with individual button.
 
-+ Solve the issue: "1 day advanced plotting" in plotly charts
-  - https://www.ablebits.com/office-addins-blog/2015/03/11/change-date-format-excel/
-+ enable open_chart=false/true as a button on the Excel.
+- enable open_chart=false/true as a button on the Excel.
 + EditText Button for discarding the values (unwanted) like range. E.g. delete values > 100.
 
 -------------------------------------------------------------
 # Future Scope:
 - v2.0: integrate SPC rules (or Nelson)
-- v3.0: Desktop App (browser-based) for each tool
+- v3.0: Desktop App (browser-based) for each equipment/chamber.
