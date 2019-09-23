@@ -61,7 +61,6 @@ def rule_1(data_list):
 
     """TODO: color the points obtained in the list `l_out`"""
 
-# df = pd.Excel
 rule_1(np.random.randint(1900, 2000, 100))
 print('=======================================')
 control_limit_calc(np.random.randint(1900, 2000, 100))
