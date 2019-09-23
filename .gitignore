@@ -7,3 +7,6 @@
 # Allow these specific files
 !'Production log book.xlsx'
 !README.txt
+
+# ignore setup files
+Anaconda*
