@@ -1,8 +1,6 @@
 @echo off
-rem ___________________________________________________
-rem The program installs python packages for `AutoPlot`. 
-rem NOTE: First, install Anaconda with terminal activated by enabling `Not Recommended` during the installation process.
-rem ___________________________________________________
-rem Clean all cache, unused packages
-conda clean --all --index-cache --packages --yes --tempfiles 
-pause
+pip install pandas-0.24.2-cp37-cp37m-win_amd64.whl
+pip install retrying-1.3.3.tar.gz
+pip install plotly-3.9.0.tar.gz
+pip install pywin32-224-cp37-cp37m-win_amd64.whl
+pip install xlwings-0.15.10.tar.gz
