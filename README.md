@@ -24,4 +24,5 @@ Click [here](./modules.md)
 Click [here](./scripts)
 
 
-
+## REFERENCES
+* [Control Chart Rules and Interpretation](https://www.spcforexcel.com/knowledge/control-chart-basics/control-chart-rules-interpretation)
