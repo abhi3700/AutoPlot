@@ -65,15 +65,14 @@ def rule_1(data_list):
     if len(l_out) > 0:
         print("Out of Control limits.")
         return True
-    # else:
-    #     print("In spec")
-
+    else:
+        print("In spec")
+        return False
     """
     TODO: 
     - color the points obtained in the list `l_out`
     - reference: https://stackoverflow.com/a/55932006/6774636
     """
-    return False
 
 def rule_2(data_list):
     pass
@@ -81,4 +80,5 @@ control_limit_calc(np.random.randint(1900, 2000, 100))
 print('=======================================')
 rule_1(np.random.randint(1900, 2000, 100))
 print('=======================================')
-
+# print(rule_1(np.random.randint(1900, 2000, 100)))   # returns True
+# print('=======================================')
