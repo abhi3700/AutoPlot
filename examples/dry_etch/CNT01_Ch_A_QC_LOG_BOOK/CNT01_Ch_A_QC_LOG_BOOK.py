@@ -3,6 +3,10 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+import win32api         # for message box
+import numpy as np
+import math
+import statistics as stat
 from input import *
 # import datetime as dt
 # import win32api
@@ -352,24 +356,55 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
     fig = dict(data= data, layout= layout)
     py.offline.plot(fig, filename= unif_poly_plot_html_file)
 
+# ==========================================Control limit calculation===================================
+"""
+TODO: 
++ control limit calculation of last 30 wafers. Each wafer has 'n' points. So, total sample size = 30 * n
+- Integrate it on a button inside Excel files
+
+"Description": calculate the control limits (LCL, UCL) of sample (size=30) 
+               data points out of total data points
+"data_list": total data points
+"""
+def control_limit_calc(data_list):
+    mean = stat.mean(data_list)
+    var = mean/len(data_list)
+    sigma3 = 3 * math.sqrt(var)
+    # print(f'data_list: {data_list}')
+    # print(f'sigma3: {sigma3}')
+    
+    ucl = mean + sigma3
+    # print(f'UCL: {ucl}')
+    lcl = mean - sigma3
+    # print(f'LCL: {lcl}')
+
+    return lcl, ucl
 
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
+# Initialize the workbook
+wb = xw.Book.caller()
+# wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
+
+#****************************************************************************************************************************************************************
+# Define sheets
+sht_repl1a_cp = wb.sheets[sht_name_cp]
+sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
+sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
+sht_run = wb.sheets['RUN_code']     # for testing purpose
+# sht_repl1a_plot_cp = wb.sheets['CP Plot']
+# sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
+# sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
+#****************************************************************************************************************************************************************
+# Fetch Dataframe for NIT ER & UNif PLot
+# data_folder = Path(os.getcwd())
+# file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
+# excel_file = pd.ExcelFile(file_to_open)
+
+excel_file_sht = pd.ExcelFile(excel_file_directory)
+
 def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
-
-    #****************************************************************************************************************************************************************
-    # Define sheets
-    sht_repl1a_cp = wb.sheets[sht_name_cp]
-    sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
-    sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
-    sht_run = wb.sheets['RUN_code']		# for testing purpose
-    # sht_repl1a_plot_cp = wb.sheets['CP Plot']
-    # sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
-    # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
-
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
     df_repl1a_cp = sht_repl1a_cp.range('A9').options(
@@ -377,7 +412,7 @@ def main():
         ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
     df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_repl1a_cp = df_repl1a_cp.dropna()                                              # dropping rows where at least one element is missing
+    df_repl1a_cp.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     # sht_run.range('A10').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -399,17 +434,11 @@ def main():
         )
 
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for NIT ER & UNif PLot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file_sht_nit = pd.ExcelFile(excel_file_directory)
-    df_repl1a_er_nit = excel_file_sht_nit.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1a_er_nit = df_repl1a_er_nit.dropna()                                              # dropping rows where at least one element is misnitg
+    df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -452,12 +481,11 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    excel_file_sht_poly = pd.ExcelFile(excel_file_directory)
-    df_repl1a_er_poly = excel_file_sht_poly.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_repl1a_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1a_er_poly = df_repl1a_er_poly.dropna()                                              # dropping rows where at least one element is misnitg
+    df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
  
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -494,6 +522,108 @@ def main():
         remarks = df_repl1a_er_poly_remarks
         )
 
+
+#====================================================================================================================================================================
+#####################################################################################################################################################################
+def fetch_date_nit():
+    # ----------------------------------------------------------- 
+    df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+
+    df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_cl_columns]      # select desired columns
+    df_repl1a_er_nit['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is missing
+    df_repl1a_er_nit = df_repl1a_er_nit[df_repl1a_er_nit['Site'] == 'ER_point\n']
+    # sht_run.range('A20').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'RUN_code'
+
+    # populate the Date column cells with date
+    sht_run.range('U3:EKS3').clear_contents()      # clear content only
+    sht_run.range('U3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
+    return df_repl1a_er_nit
+
+
+def button_control_limit_calc_nit():
+    df_repl1a_er_nit = fetch_date_nit()
+
+    search_date_in = sht_run.range('J3').value     # input -- to be entered into search box in 'RUN_code' sheet
+    df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
+    index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+    
+    if index_no != []:
+        df_upto_search = df_repl1a_er_nit.iloc[0:index_no[-1]+1]     # returns a dataframe from index 0 to search_index. That's why 1 is added.
+        if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
+            data_last30 = []
+            for col in sht_er_nit_cl_columns[2:]:
+                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
+            lcl, ucl = control_limit_calc(data_last30)
+            sht_run.range('K3').value = lcl
+            sht_run.range('L3').value = ucl
+        else:
+            win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
+
+    elif index_no == []:
+        win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    elif sht_run.range('J13').value is None:
+        win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
+    else:
+        win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
+
+# ----------------------------------------------------------- 
+def fetch_date_poly():
+    df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+
+    df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_cl_columns]      # select desired columns
+    df_repl1a_er_poly['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is missing
+    df_repl1a_er_poly = df_repl1a_er_poly[df_repl1a_er_poly['Site'] == 'ER_point\n']
+    # sht_run.range('U20').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
+
+    # populate the Date column cells with date
+    sht_run.range('U8:EKS8').clear_contents()      # clear content only
+    sht_run.range('U8').value = df_repl1a_er_poly['Date (MM/DD/YYYY)'].tolist()
+    return df_repl1a_er_poly
+
+
+def button_control_limit_calc_poly():
+    df_repl1a_er_poly = fetch_date_poly()
+
+    search_date_in = sht_run.range('J13').value     # input -- to be entered into search box in 'RUN_code' sheet
+    df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
+    index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+    
+    if index_no != []:
+        df_upto_search = df_repl1a_er_poly.iloc[0:index_no[-1]+1]     # returns a dataframe from index 0 to search_index. That's why 1 is added.
+
+        if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
+            data_last30 = []
+            for col in sht_er_poly_cl_columns[2:]:
+                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_17
+            
+            lcl, ucl = control_limit_calc(data_last30)
+            sht_run.range('K13').value = lcl
+            sht_run.range('L13').value = ucl
+        else:
+            win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
+
+    elif index_no == []:
+        win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    elif sht_run.range('J13').value is None:
+        win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
+    else:
+        win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
+
+def date_search1_clear():   # for NIT
+    sht_run.range('U3:EKS3').clear_contents()
+    sht_run.range('U3').clear_contents()
+    sht_run.range('J3').clear_contents()
+    sht_run.range('K3').clear_contents()
+    sht_run.range('L3').clear_contents()
+
+def date_search2_clear():   # for POLY
+    sht_run.range('U8:EKP8').clear_contents()
+    sht_run.range('U8').clear_contents()
+    sht_run.range('J13').clear_contents()
+    sht_run.range('K13').clear_contents()
+    sht_run.range('L13').clear_contents()
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
