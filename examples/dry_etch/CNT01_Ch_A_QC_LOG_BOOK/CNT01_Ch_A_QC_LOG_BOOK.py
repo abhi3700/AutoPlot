@@ -368,8 +368,11 @@ TODO:
 """
 def control_limit_calc(data_list):
     mean = stat.mean(data_list)
-    var = mean/len(data_list)
-    sigma3 = 3 * math.sqrt(var)
+    sum_sq_points_mean = 0
+    for x in data_list:
+        sum_sq_points_mean += (mean - x)**2
+
+    sigma3 = 3 * math.sqrt(sum_sq_points_mean/len(data_list) - 1)
     # print(f'data_list: {data_list}')
     # print(f'sigma3: {sigma3}')
     
