@@ -526,8 +526,16 @@ def main():
         )
 
 
-#====================================================================================================================================================================
-#####################################################################################################################################################################
+#===================================================Control limit Calculation========================================================================
+################################################################################################################################################################
+#********************************************************NIT*************************************************************************************************
+def date_search1_clear():   # for NIT
+    sht_run.range('U3:EKS3').clear_contents()
+    sht_run.range('U3').clear_contents()
+    sht_run.range('J3').clear_contents()
+    sht_run.range('K3').clear_contents()
+    sht_run.range('L3').clear_contents()
+
 def fetch_date_nit():
     # ----------------------------------------------------------- 
     df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
@@ -543,7 +551,6 @@ def fetch_date_nit():
     sht_run.range('U3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
     return df_repl1a_er_nit
 
-
 def button_control_limit_calc_nit():
     df_repl1a_er_nit = fetch_date_nit()
 
@@ -551,6 +558,8 @@ def button_control_limit_calc_nit():
     df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
     index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
     
+    lcl = 0     # initialize LCL
+    ucl = 0     # initialize UCL
     if index_no != []:
         df_upto_search = df_repl1a_er_nit.iloc[0:index_no[-1]+1]     # returns a dataframe from index 0 to search_index. That's why 1 is added.
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
@@ -570,7 +579,37 @@ def button_control_limit_calc_nit():
     else:
         win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
 
-# ----------------------------------------------------------- 
+    return lcl, ucl, search_date_in
+
+def change_control_limit_nit():
+    lcl, ucl, search_date_in = button_control_limit_calc_nit()
+    
+    if lcl !=0 and ucl !=0 and search_date_in !=0:
+        df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+        
+        df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+        # sht_run.range('A23').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
+
+        index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+        if index_no != []:
+            # add 11 to get the exact cell's excel row no.
+            index_no_final = 11 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
+            for i in range(0, 300, 3):            
+                sht_repl1a_er_nit.range('AB'+str(index_no_final + i)).value = lcl
+                sht_repl1a_er_nit.range('AC'+str(index_no_final + i)).value = ucl
+        elif index_no == []:
+            win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    else:
+        win32api.MessageBox(wb.app.hwnd, "Either LCL or UCL value is zero OR there is no date mentioned.", "Change control limit")
+
+#********************************************************POLY*************************************************************************************************
+def date_search2_clear():   # for POLY
+    sht_run.range('U8:EKP8').clear_contents()
+    sht_run.range('U8').clear_contents()
+    sht_run.range('J13').clear_contents()
+    sht_run.range('K13').clear_contents()
+    sht_run.range('L13').clear_contents()
+
 def fetch_date_poly():
     df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
 
@@ -614,19 +653,29 @@ def button_control_limit_calc_poly():
     else:
         win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
 
-def date_search1_clear():   # for NIT
-    sht_run.range('U3:EKS3').clear_contents()
-    sht_run.range('U3').clear_contents()
-    sht_run.range('J3').clear_contents()
-    sht_run.range('K3').clear_contents()
-    sht_run.range('L3').clear_contents()
+    return lcl, ucl, search_date_in
 
-def date_search2_clear():   # for POLY
-    sht_run.range('U8:EKP8').clear_contents()
-    sht_run.range('U8').clear_contents()
-    sht_run.range('J13').clear_contents()
-    sht_run.range('K13').clear_contents()
-    sht_run.range('L13').clear_contents()
+def change_control_limit_poly():
+    lcl, ucl, search_date_in = button_control_limit_calc_poly()
+    
+    if lcl !=0 and ucl !=0 and search_date_in !=0:
+        df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+        
+        df_repl1a_er_poly = df_repl1a_er_poly[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+        # sht_run.range('A23').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
+
+        index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+        if index_no != []:
+            # add 11 to get the exact cell's excel row no.
+            index_no_final = 11 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
+            for i in range(0, 300, 3):            
+                sht_repl1a_er_poly.range('AE'+str(index_no_final + i)).value = lcl
+                sht_repl1a_er_poly.range('AF'+str(index_no_final + i)).value = ucl
+        elif index_no == []:
+            win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    else:
+        win32api.MessageBox(wb.app.hwnd, "Either LCL or UCL value is zero OR there is no date mentioned.", "Change control limit")
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
