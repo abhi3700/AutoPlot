@@ -608,6 +608,7 @@ def change_control_limit_nit():
             for i in range(0, 300, 3):            
                 sht_repl1a_er_nit.range('AB'+str(index_no_final + i)).value = lcl
                 sht_repl1a_er_nit.range('AC'+str(index_no_final + i)).value = ucl
+            win32api.MessageBox(wb.app.hwnd, "Now, save the excel file & then press RUN button to generate plots.", "Plot chart with new LCL, UCL")         
         elif index_no == []:
             win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
     else:
@@ -688,6 +689,7 @@ def change_control_limit_poly():
             for i in range(0, 300, 3):            
                 sht_repl1a_er_poly.range('AE'+str(index_no_final + i)).value = lcl
                 sht_repl1a_er_poly.range('AF'+str(index_no_final + i)).value = ucl
+            win32api.MessageBox(wb.app.hwnd, "Now, save the excel file & then press RUN button to generate plots.", "Plot chart with new LCL, UCL")         
         elif index_no == []:
             win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
     else:
