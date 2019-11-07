@@ -536,20 +536,51 @@ def date_search1_clear():   # for NIT
     sht_run.range('K3').clear_contents()
     sht_run.range('L3').clear_contents()
 
+'''
+NOTE: Here, "Etch Rate (A/Min)" column has been considered because we have to compare the Control limit calculation from 2 methods:
+    - M-1: take last 30 QC days. So, total data_sample = (30 * 13) points
+    - M-2: take last 30 QC days. So, total data_sample = 30 points (all `ER_avg` taken)
+'''
 def fetch_date_nit():
     # ----------------------------------------------------------- 
     df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
 
     df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_cl_columns]      # select desired columns
     df_repl1a_er_nit['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df_repl1a_er_nit["Etch Rate (A/Min)"].fillna('', inplace=True)        # replacing the empty cells with ''
+
+    nit_er_list = df_repl1a_er_nit["Etch Rate (A/Min)"].tolist()    # extract the ER column into a list
+    nit_er_list = list(filter(None, nit_er_list))        # filter '' i.e. None from the list
+    df_repl1a_er_nit.drop(columns=["Etch Rate (A/Min)"], inplace= True)    # drop the ER column from dataframe
     df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     df_repl1a_er_nit = df_repl1a_er_nit[df_repl1a_er_nit['Site'] == 'ER_point\n']
+    df_repl1a_er_nit.insert(loc= len(df_repl1a_er_nit.columns), column= "Etch Rate (A/Min)", value= nit_er_list)    # insert `nit_er_list` into the last col of current dataframe
     # sht_run.range('A20').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'RUN_code'
 
     # populate the Date column cells with date
     sht_run.range('U3:EKS3').clear_contents()      # clear content only
     sht_run.range('U3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
     return df_repl1a_er_nit
+
+def fetch_date_poly():
+    df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+
+    df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_cl_columns]      # select desired columns
+    df_repl1a_er_poly['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df_repl1a_er_poly["Etch Rate (A/Min)"].fillna('', inplace=True)        # replacing the empty cells with ''
+
+    poly_er_list = df_repl1a_er_poly["Etch Rate (A/Min)"].tolist()    # extract the ER column into a list
+    poly_er_list = list(filter(None, poly_er_list))        # filter '' i.e. None from the list
+    df_repl1a_er_poly.drop(columns=["Etch Rate (A/Min)"], inplace= True)    # drop the ER column from dataframe
+    df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is missing
+    df_repl1a_er_poly = df_repl1a_er_poly[df_repl1a_er_poly['Site'] == 'ER_point\n']
+    df_repl1a_er_poly.insert(loc= len(df_repl1a_er_poly.columns), column= "Etch Rate (A/Min)", value= poly_er_list)    # insert `poly_er_list` into the last col of current dataframe
+    # sht_run.range('U24').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
+
+    # populate the Date column cells with date
+    sht_run.range('U8:EKS8').clear_contents()      # clear content only
+    sht_run.range('U8').value = df_repl1a_er_poly['Date (MM/DD/YYYY)'].tolist()
+    return df_repl1a_er_poly
 
 def button_control_limit_calc_nit():
     df_repl1a_er_nit = fetch_date_nit()
@@ -615,9 +646,15 @@ def fetch_date_poly():
 
     df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_cl_columns]      # select desired columns
     df_repl1a_er_poly['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df_repl1a_er_poly["Etch Rate (A/Min)"].fillna('', inplace=True)        # replacing the empty cells with ''
+
+    poly_er_list = df_repl1a_er_poly["Etch Rate (A/Min)"].tolist()    # extract the ER column into a list
+    poly_er_list = list(filter(None, poly_er_list))        # filter '' i.e. None from the list
+    df_repl1a_er_poly.drop(columns=["Etch Rate (A/Min)"], inplace= True)    # drop the ER column from dataframe
     df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     df_repl1a_er_poly = df_repl1a_er_poly[df_repl1a_er_poly['Site'] == 'ER_point\n']
-    # sht_run.range('U20').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
+    df_repl1a_er_poly.insert(loc= len(df_repl1a_er_poly.columns), column= "Etch Rate (A/Min)", value= poly_er_list)    # insert `poly_er_list` into the last col of current dataframe
+    sht_run.range('U24').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
 
     # populate the Date column cells with date
     sht_run.range('U8:EKS8').clear_contents()      # clear content only
