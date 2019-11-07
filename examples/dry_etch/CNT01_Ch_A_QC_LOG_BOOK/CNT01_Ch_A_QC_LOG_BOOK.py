@@ -650,6 +650,8 @@ def button_control_limit_calc_poly():
     df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
     index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
     
+    lcl = 0     # initialize LCL
+    ucl = 0     # initialize UCL
     if index_no != []:
         df_upto_search = df_repl1a_er_poly.iloc[0:index_no[-1]+1]     # returns a dataframe from index 0 to search_index. That's why 1 is added.
 
