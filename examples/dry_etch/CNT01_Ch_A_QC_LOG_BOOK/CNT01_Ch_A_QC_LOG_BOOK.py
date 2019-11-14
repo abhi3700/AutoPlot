@@ -532,9 +532,11 @@ def main():
 def date_search1_clear():   # for NIT
     sht_run.range('U3:EKS3').clear_contents()
     sht_run.range('U3').clear_contents()
-    sht_run.range('J3').clear_contents()
-    sht_run.range('K3').clear_contents()
-    sht_run.range('L3').clear_contents()
+    sht_run.range('J5').clear_contents()
+    sht_run.range('K5').clear_contents()
+    sht_run.range('L5').clear_contents()
+    sht_run.range('K6').clear_contents()
+    sht_run.range('L6').clear_contents()
 
 '''
 NOTE: Here, "Etch Rate (A/Min)" column has been considered because we have to compare the Control limit calculation from 2 methods:
@@ -565,7 +567,7 @@ def fetch_date_nit():
 def button_control_limit_calc_nit():
     df_repl1a_er_nit = fetch_date_nit()
 
-    search_date_in = sht_run.range('J3').value     # input -- to be entered into search box in 'RUN_code' sheet
+    search_date_in = sht_run.range('J5').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
     index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
     
@@ -573,19 +575,26 @@ def button_control_limit_calc_nit():
     ucl = 0     # initialize UCL
     if index_no != []:
         df_upto_search = df_repl1a_er_nit.iloc[0:index_no[-1]+1]     # returns a dataframe from index 0 to search_index. That's why 1 is added.
+        
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
-            for col in sht_er_nit_cl_columns[2:]:
+            # ------------------M-1----------------------------------------
+            for col in sht_er_nit_cl_columns[2:14]:
                 data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K3').value = lcl
-            sht_run.range('L3').value = ucl
+            sht_run.range('K5').value = lcl
+            sht_run.range('L5').value = ucl
+            # ------------------M-2----------------------------------------
+            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # lcl, ucl = control_limit_calc(data_last30)
+            # sht_run.range('K6').value = lcl
+            # sht_run.range('L6').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 
     elif index_no == []:
         win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
-    elif sht_run.range('J13').value is None:
+    elif sht_run.range('J5').value is None:
         win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
     else:
         win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
@@ -618,9 +627,11 @@ def change_control_limit_nit():
 def date_search2_clear():   # for POLY
     sht_run.range('U8:EKP8').clear_contents()
     sht_run.range('U8').clear_contents()
-    sht_run.range('J13').clear_contents()
-    sht_run.range('K13').clear_contents()
-    sht_run.range('L13').clear_contents()
+    sht_run.range('J15').clear_contents()
+    sht_run.range('K15').clear_contents()
+    sht_run.range('L15').clear_contents()
+    sht_run.range('K16').clear_contents()
+    sht_run.range('L16').clear_contents()
 
 def fetch_date_poly():
     df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
@@ -646,7 +657,7 @@ def fetch_date_poly():
 def button_control_limit_calc_poly():
     df_repl1a_er_poly = fetch_date_poly()
 
-    search_date_in = sht_run.range('J13').value     # input -- to be entered into search box in 'RUN_code' sheet
+    search_date_in = sht_run.range('J15').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
     index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
     
@@ -657,18 +668,23 @@ def button_control_limit_calc_poly():
 
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
-            for col in sht_er_poly_cl_columns[2:]:
-                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_17
-            
+            # ------------------M-1----------------------------------------
+            for col in sht_er_poly_cl_columns[2:18]:
+                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_17            
             lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K13').value = lcl
-            sht_run.range('L13').value = ucl
+            sht_run.range('K15').value = lcl
+            sht_run.range('L15').value = ucl
+            # ------------------M-2----------------------------------------
+            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # lcl, ucl = control_limit_calc(data_last30)
+            # sht_run.range('K16').value = lcl
+            # sht_run.range('L16').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 
     elif index_no == []:
         win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
-    elif sht_run.range('J13').value is None:
+    elif sht_run.range('J15').value is None:
         win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
     else:
         win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
