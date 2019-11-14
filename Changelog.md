@@ -1,5 +1,20 @@
 AutoPlot
 ========
+v1.6 - `14-November-2019`
+----
+* 
+
+v1.5 - `14-November-2019`
+----
+* __Control limit calculation (LCL, UCL):__ Based on the last 30 (customizable) QC days's data points, the LCL & UCL of layers (like Nitride, Poly, etc..) can be automatically calculated for a specific date.
+* __Mathematics:__ 2 methods to calculate control limits.
+	- <u>M-1 (Raw data):</u> based on (last_30_QC * individual_points). E.g. for Nitride layer (13 points on wafer) ==> [30 * 13 = 390]
+	- <u>M-2 (Avg. data):</u> based on (last_30_QC_avg_points). E.g. for Nitride layer (13 points on wafer) ==> [30]
+* __User Interface (UI):__ Different buttons are added on the Excel's sheet for clearing data, fetching dates, calculating control limits, parsing LCL, UCL values. <kbd>Clear</kbd>, <kbd>Fetch</kbd>, <kbd>Calc</kbd>, <kbd>Change</kbd> buttons added for different layers in 1st example: CNT01 Ch# A
+* __Change Control limit:__ If required, the calculated LCL, UCL values can be parsed (on pressing a button) onto the excel sheet containing QC data.
+* __Frequency:__ The control limit calculation, data parsing is kept as manual as per our Fab's activity. For instance, after equipment's PM (scheduled/unscheduled) if there is a drift in the plot after QC repeatability, then the new control limits (LCL, UCL) is to be calculated and can also be parsed correspondingly onto the excel sheet containing QC data (like Etch Rate (ER), Thickness, ...).
+* __New Plot:__ Now, with the new calculated control limits (after parsing), the plot can be generated and viewed in the browser.
+
 v1.2 - `15-August-2019`
 ----
 * Ease the flow of data entry in example: `dry_etch`
