@@ -5,16 +5,9 @@
 
   This can be extended for multiple layers in a book.
 
-- Diffusion:
-  - generate plots in one tab.
-  - `line+marker` or `marker` options with `enable` var.
-- Dry etch:
-  - replace `import plotly.graph_objs as go` ==> `from plotly.graph_objs import Pie`
-  - Assign each layer with individual button.
-
-- enable open_chart=false/true as a button on the Excel.
-+ EditText Button for discarding the values (unwanted) like range. E.g. delete values > 100.
-
+-------------------------------------------------------------
+# v1.6:
+- Add contour plot (2D & 3D)
 -------------------------------------------------------------
 # Future Scope:
 - v2.0: integrate SPC rules (or Nelson)
