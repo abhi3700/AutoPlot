@@ -579,16 +579,16 @@ def button_control_limit_calc_nit():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            for col in sht_er_nit_cl_columns[2:14]:
-                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
-            lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K5').value = lcl
-            sht_run.range('L5').value = ucl
-            # ------------------M-2----------------------------------------
-            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # for col in sht_er_nit_cl_columns[2:14]:
+            #     data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             # lcl, ucl = control_limit_calc(data_last30)
-            # sht_run.range('K6').value = lcl
-            # sht_run.range('L6').value = ucl
+            # sht_run.range('K5').value = lcl
+            # sht_run.range('L5').value = ucl
+            # ------------------M-2----------------------------------------
+            data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            lcl, ucl = control_limit_calc(data_last30)
+            sht_run.range('K6').value = lcl
+            sht_run.range('L6').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 
