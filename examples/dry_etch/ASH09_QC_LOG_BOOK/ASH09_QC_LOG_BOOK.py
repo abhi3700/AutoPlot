@@ -89,11 +89,12 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
 "Description": This function plots ER Chart with `er_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
-"y2": LSL (y-axis) for ER Chart
-"y3": UCL (y-axis) for ER Chart
-"y4": LCL (y-axis) for ER Chart
+"y2": USL (y-axis) for ER Chart
+"y3": LSL (y-axis) for ER Chart
+"y4": UCL (y-axis) for ER Chart
+"y5": LCL (y-axis) for ER Chart
 """
-def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
+def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -115,7 +116,7 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'LSL',
+            name = 'USL',
             mode = 'lines',
             line = dict(
                     color = sl_color,
@@ -125,6 +126,16 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
+            name = 'LSL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    trace4 = go.Scatter(
+            x = x,
+            y = y4,
             name = 'UCL',
             mode = 'lines',
             line = dict(
@@ -132,9 +143,9 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
                     width = 3)
     )
 
-    trace4 = go.Scatter(
+    trace5 = go.Scatter(
             x = x,
-            y = y4,
+            y = y5,
             name = 'LCL',
             mode = 'lines',
             line = dict(
@@ -142,7 +153,7 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
                     width = 3)
     )
 
-    data = [trace1, trace2, trace3, trace4]
+    data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
             title = er_plot_title,
             xaxis = dict(title= er_plot_xlabel),
@@ -157,8 +168,9 @@ def draw_plotly_asfe1_er_plot(x, y1, y2, y3, y4, remarks):
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": UCL (y-axis) for Unif Chart
+"y3": USL (y-axis) for Unif Chart
 """
-def draw_plotly_asfe1_unif_plot(x, y1, y2, remarks):
+def draw_plotly_asfe1_unif_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -180,6 +192,16 @@ def draw_plotly_asfe1_unif_plot(x, y1, y2, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
+
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
             name = 'UCL',
             mode = 'lines',
             line = dict(
@@ -187,7 +209,7 @@ def draw_plotly_asfe1_unif_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_plot_title,
             xaxis = dict(title= unif_plot_xlabel),
@@ -253,11 +275,13 @@ def main():
     # Assigning variable to each param for ER & Unif PLot
     df_asfe1_er_date = df_asfe1_er["Date (MM/DD/YYYY)"]
     df_asfe1_er_er = df_asfe1_er["Etch Rate (A/Min)"]
+    df_asfe1_er_usl = df_asfe1_er["USL"]
     df_asfe1_er_ucl = df_asfe1_er["UCL"]
     df_asfe1_er_lsl = df_asfe1_er["LSL"]
     df_asfe1_er_lcl = df_asfe1_er["LCL"]
     df_asfe1_er_unif = df_asfe1_er["% Uni"]
     df_asfe1_er_unif_ucl = df_asfe1_er["% Uni UCL"]
+    df_asfe1_er_unif_usl = df_asfe1_er["% Uni USL"]
     df_asfe1_er_remarks = df_asfe1_er["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -265,9 +289,10 @@ def main():
     draw_plotly_asfe1_er_plot(
         x = date_formatter(df_asfe1_er_date), 
         y1 = df_asfe1_er_er,
-        y2 = df_asfe1_er_lsl, 
-        y3 = df_asfe1_er_ucl,
-        y4 = df_asfe1_er_lcl,
+        y2 = df_asfe1_er_usl, 
+        y3 = df_asfe1_er_lsl, 
+        y4 = df_asfe1_er_ucl,
+        y5 = df_asfe1_er_lcl,
         remarks = df_asfe1_er_remarks
         )
    
@@ -276,7 +301,8 @@ def main():
     draw_plotly_asfe1_unif_plot(
         x = date_formatter(df_asfe1_er_date), 
         y1 = df_asfe1_er_unif, 
-        y2 = df_asfe1_er_unif_ucl,
+        y2 = df_asfe1_er_unif_usl,
+        y3 = df_asfe1_er_unif_ucl,
         remarks = df_asfe1_er_remarks
         )
 

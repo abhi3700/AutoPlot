@@ -33,10 +33,13 @@ sht_name_er = 'ASFE1-ER'
 
 # Columns
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "Remarks", "USL", "UCL", ]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "LCL", "UCL", "% Uni UCL"]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni UCL", "% Uni USL"]
 
 # Date formatting for Plotly charts
 date_format = "%m-%d-%Y %H:%M:%S"
+
+# inputs for this `run.py` file
+auto_open = False
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
