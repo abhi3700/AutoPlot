@@ -19,6 +19,8 @@ er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
 er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
 er_nit_plot_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
 er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
+er_nit_contour_fname = 'REPL1A_Nit_ER-Plot_Contour.html'
+er_nit_contour_tname = 'NIT ER'
 
 # NIT Unif Plot
 unif_nit_plot_title = 'Nit Uniformity Plot for REPL1A'  # title for Nit Unif plot
@@ -33,6 +35,8 @@ er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
 er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
 er_poly_plot_html_file = 'REPL1A_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
 er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
+er_poly_contour_fname = 'REPL1A_Poly_ER-Plot_Contour.html'
+er_poly_contour_tname = 'POLY ER'
 
 # POLY Unif Plot
 unif_poly_plot_title = 'Poly Uniformity Plot for REPL1A'  # title for Poly Unif plot
@@ -53,9 +57,14 @@ sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_
 sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)"]
 N_cl = 30
+
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
 
+# Metrology tool measurement coordinates
+x_coord = [0, 0, 0, 0, 0, 0, 0, -90, -60, -30, 30, 60, 90]
+y_coord = [90, 60, 30, 0, -30, -60, -90, 0, 0, 0, 0, 0, 0]
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"

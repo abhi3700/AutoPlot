@@ -26,7 +26,7 @@ from input import *
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
@@ -356,34 +356,6 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
     fig = dict(data= data, layout= layout)
     py.offline.plot(fig, filename= unif_poly_plot_html_file)
 
-# ==========================================Control limit calculation===================================
-"""
-TODO: 
-+ control limit calculation of last 30 wafers. Each wafer has 'n' points. So, total sample size = 30 * n
-- Integrate it on a button inside Excel files
-
-"Description": calculate the control limits (LCL, UCL) of sample (size=30) 
-               data points out of total data points
-"data_list": total data points
-"""
-def control_limit_calc(data_list):
-    mean = stat.mean(data_list)
-    sum_sq_points_mean = 0
-    for x in data_list:
-        sum_sq_points_mean += (mean - x)**2
-
-    sigma3 = 3 * math.sqrt(sum_sq_points_mean/len(data_list) - 1)
-    # print(f'data_list: {data_list}')
-    # print(f'sigma3: {sigma3}')
-    
-    ucl = mean + sigma3
-    # print(f'UCL: {ucl}')
-    lcl = mean - sigma3
-    # print(f'LCL: {lcl}')
-
-    return lcl, ucl
-
-
 #====================================================================================================================================================================
 #####################################################################################################################################################################
 # Initialize the workbook
@@ -528,10 +500,34 @@ def main():
 
 #===================================================Control limit Calculation========================================================================
 ################################################################################################################################################################
+# -------------------------------UTILITY--------------------------------------------------
+"""
+"Description": calculate the control limits (LCL, UCL) of sample (size=30) 
+               data points out of total data points
+"data_list": total data points
+"""
+def control_limit_calc(data_list):
+    mean = stat.mean(data_list)
+    sum_sq_points_mean = 0
+    for x in data_list:
+        sum_sq_points_mean += (mean - x)**2
+
+    sigma3 = 3 * math.sqrt(sum_sq_points_mean/len(data_list) - 1)
+    # print(f'data_list: {data_list}')
+    # print(f'sigma3: {sigma3}')
+    
+    ucl = mean + sigma3
+    # print(f'UCL: {ucl}')
+    lcl = mean - sigma3
+    # print(f'LCL: {lcl}')
+
+    return lcl, ucl
+
+
 #********************************************************NIT*************************************************************************************************
 def date_search1_clear():   # for NIT
-    sht_run.range('U3:EKS3').clear_contents()
-    sht_run.range('U3').clear_contents()
+    sht_run.range('AA3:EKS3').clear_contents()
+    sht_run.range('AA3').clear_contents()
     sht_run.range('J5').clear_contents()
     sht_run.range('K5').clear_contents()
     sht_run.range('L5').clear_contents()
@@ -560,8 +556,8 @@ def fetch_date_nit():
     # sht_run.range('A20').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'RUN_code'
 
     # populate the Date column cells with date
-    sht_run.range('U3:EKS3').clear_contents()      # clear content only
-    sht_run.range('U3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
+    sht_run.range('AA3:EKS3').clear_contents()      # clear content only
+    sht_run.range('AA3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
     return df_repl1a_er_nit
 
 def button_control_limit_calc_nit():
@@ -569,7 +565,7 @@ def button_control_limit_calc_nit():
 
     search_date_in = sht_run.range('J5').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
-    index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+    index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in dataframe column
     
     lcl = 0     # initialize LCL
     ucl = 0     # initialize UCL
@@ -579,7 +575,7 @@ def button_control_limit_calc_nit():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            # for col in sht_er_nit_cl_columns[2:14]:
+            # for col in sht_er_nit_cl_columns[2:15]:
             #     data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             # lcl, ucl = control_limit_calc(data_last30)
             # sht_run.range('K5').value = lcl
@@ -623,10 +619,11 @@ def change_control_limit_nit():
     else:
         win32api.MessageBox(wb.app.hwnd, "Either LCL or UCL value is zero OR there is no date mentioned.", "Change control limit")
 
+
 #********************************************************POLY*************************************************************************************************
 def date_search2_clear():   # for POLY
-    sht_run.range('U8:EKP8').clear_contents()
-    sht_run.range('U8').clear_contents()
+    sht_run.range('AA8:EKP8').clear_contents()
+    sht_run.range('AA8').clear_contents()
     sht_run.range('J15').clear_contents()
     sht_run.range('K15').clear_contents()
     sht_run.range('L15').clear_contents()
@@ -646,11 +643,11 @@ def fetch_date_poly():
     df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     df_repl1a_er_poly = df_repl1a_er_poly[df_repl1a_er_poly['Site'] == 'ER_point\n']
     df_repl1a_er_poly.insert(loc= len(df_repl1a_er_poly.columns), column= "Etch Rate (A/Min)", value= poly_er_list)    # insert `poly_er_list` into the last col of current dataframe
-    sht_run.range('U24').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
+    # sht_run.range('U24').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
 
     # populate the Date column cells with date
-    sht_run.range('U8:EKS8').clear_contents()      # clear content only
-    sht_run.range('U8').value = df_repl1a_er_poly['Date (MM/DD/YYYY)'].tolist()
+    sht_run.range('AA8:EKS8').clear_contents()      # clear content only
+    sht_run.range('AA8').value = df_repl1a_er_poly['Date (MM/DD/YYYY)'].tolist()
     return df_repl1a_er_poly
 
 
@@ -659,7 +656,7 @@ def button_control_limit_calc_poly():
 
     search_date_in = sht_run.range('J15').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
-    index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
+    index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in dataframe column
     
     lcl = 0     # initialize LCL
     ucl = 0     # initialize UCL
@@ -669,7 +666,7 @@ def button_control_limit_calc_poly():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            for col in sht_er_poly_cl_columns[2:18]:
+            for col in sht_er_poly_cl_columns[2:19]:
                 data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_17            
             lcl, ucl = control_limit_calc(data_last30)
             sht_run.range('K15').value = lcl
@@ -715,13 +712,180 @@ def change_control_limit_poly():
 
 #===================================================Plot Wafer Map========================================================================
 ################################################################################################################################################################
+# --------------------------------------------------CONTOUR PLOT---------------------------------------------
+"""
+"Description": This function plots Contour (2-D) chart of ER for different layers.
+"x": x-coordinate for ER Chart
+"y": y-coordinate for ER Chart
+"z": z values for ER Chart
+"fname": filename for ER Chart
+"tname": title name for ER Chart
+"date": date for ER Chart
+"""
+def contour_plot(x, y, z, fname, tname, date):
+    trace1 = go.Contour(
+                x= x,
+                y= y,
+                z= z,
+                contours=dict(
+                            # coloring ='heatmap',
+                            showlabels = True, # show labels on contours
+                            labelfont = dict( # label font properties
+                                size = 12,
+                                color = 'white',
+                               )
+                        ),
+                )
+    
+
+    layout = dict(
+                title = 'Contour plot of ' + tname + ' on ' + date + ' for REPL1 Ch A',
+                xaxis = dict(
+                            title= 'x-axis (in mm)',
+                            # type='linear',
+                            range= [-100, 100]
+                            ),
+                yaxis = dict(
+                            title= 'y-axis (in mm)',
+                            # type='linear',
+                            range= [-100, 100]
+                            ),
+                autosize= True,
+                width=800, height=800,
+
+                )
+
+    data = [trace1]
+    # fig = dict(data= data, layout= layout)
+    fig = go.Figure(data= data, layout= layout)     # an `graph_objs` object created
+    fig.add_trace(      # added a scatter plot for showing the markers onto the contour plot
+            go.Scatter(
+                    mode='markers',
+                    x= x,
+                    y= y,
+                    opacity=0.8,
+                    marker=dict(
+                        color='#ffffff',
+                        size=10,
+                        line=dict(
+                            color='#ffffff',
+                            width= 0.5
+                        ),
+                        symbol = 'x'
+                    ),
+                    showlegend=False,
+                    text= list(range(1,14))
+            )        
+        )
+    fig.update_layout(      # added a unfilled circle from (-100, -100) to (100, 100) diagonally
+        shapes=[
+            # unfilled circle
+            go.layout.Shape(
+                type="circle",
+                xref="x",
+                yref="y",
+                x0= -100,
+                y0= -100,
+                x1= 100,
+                y1= 100,
+                line_color="#212121",
+            ),
+        ]
+    )
+    py.offline.plot(fig, filename= fname)
+
 #********************************************************NIT*************************************************************************************************
 def plot_wafermap_nit():
-    pass
+    df_repl1a_er_nit = fetch_date_nit()
+
+    search_date_in = sht_run.range('J5').value     # input -- to be entered into search box in 'RUN_code' sheet
+    df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
+    index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in dataframe column
+
+    if index_no != []:
+        if len(index_no) == 1:
+            z = df_repl1a_er_nit.iloc[index_no[-1], 2:15].tolist()
+            # sht_run.range('A25').value = z
+            contour_plot(
+                x = x_coord,
+                y = y_coord,
+                z = z,
+                fname = er_nit_contour_fname,
+                tname = er_nit_contour_tname,
+                date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
+                )
+            del z 
+        else:
+            if sht_run.range('J6').value is None:
+                win32api.MessageBox(wb.app.hwnd, "As, QC was repeated on this day. \nSo, please give entry no. from 0 to " + str(len(index_no) - 1) + " in cell-`J6`", "No. of Dates")       
+            else:
+                index_no_entry = sht_run.range('J6').value
+                z = df_repl1a_er_nit.iloc[index_no[int(index_no_entry)], 2:15].tolist()
+                sht_run.range('A25').value = z
+                del index_no_entry
+                contour_plot(
+                    x = x_coord,
+                    y = y_coord,
+                    z = z,
+                    fname = er_nit_contour_fname,
+                    tname = er_nit_contour_tname,
+                    date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
+                    ) 
+                del z
+    
+    elif index_no == []:
+        win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    elif sht_run.range('J5').value is None:
+        win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
+    else:
+        win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
+    
 
 #********************************************************POLY*************************************************************************************************
-def plot_wafermap_nit():
-    pass
+def plot_wafermap_poly():
+    df_repl1a_er_poly = fetch_date_poly()
+
+    search_date_in = sht_run.range('J15').value     # input -- to be entered into search box in 'RUN_code' sheet
+    df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
+    index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in dataframe column
+
+    if index_no != []:
+        if len(index_no) == 1:
+            z = df_repl1a_er_poly.iloc[index_no[-1], 2:19].tolist()
+            # sht_run.range('A25').value = z
+            contour_plot(
+                x = x_coord,
+                y = y_coord,
+                z = z,
+                fname = er_poly_contour_fname,
+                tname = er_poly_contour_tname,
+                date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
+                )
+            del z 
+        else:
+            if sht_run.range('J16').value is None:
+                win32api.MessageBox(wb.app.hwnd, "As, QC was repeated on this day. \nSo, please give entry no. from 0 to " + str(len(index_no) - 1) + " in cell-`J6`", "No. of Dates")       
+            else:
+                index_no_entry = sht_run.range('J16').value
+                z = df_repl1a_er_poly.iloc[index_no[int(index_no_entry)], 2:15].tolist()
+                # sht_run.range('A25').value = z
+                del index_no_entry
+                contour_plot(
+                    x = x_coord,
+                    y = y_coord,
+                    z = z,
+                    fname = er_poly_contour_fname,
+                    tname = er_poly_contour_tname,
+                    date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
+                    ) 
+                del z
+    
+    elif index_no == []:
+        win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
+    elif sht_run.range('J15').value is None:
+        win32api.MessageBox(wb.app.hwnd, "Please, enter the Date in the search box", "Search by Date")
+    else:
+        win32api.MessageBox(wb.app.hwnd, "SORRY! The Date doesn't exist.", "Search by Date")
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
@@ -729,6 +893,3 @@ def plot_wafermap_nit():
 @xw.func
 def hello(name):
     return "hello {0}".format(name)
-
-
-
