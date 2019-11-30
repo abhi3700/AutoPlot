@@ -53,18 +53,25 @@ sht_name_er_poly = 'REPL1A-ERPoly'
 # Columns
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
 sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)"]
+sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
 sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)"]
+sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)", "Result"]
 N_cl = 30
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
-# Metrology tool measurement coordinates
-x_coord = [0, 0, 0, 0, 0, 0, 0, -90, -60, -30, 30, 60, 90]
-y_coord = [90, 60, 30, 0, -30, -60, -90, 0, 0, 0, 0, 0, 0]
+""" Metrology tool measurement coordinates"""
+x_coord_nit = [0, 0, 0, 0, 0, -90, -30.06, 30.06, 90, -30.06, 30.06, -30.06, 30.06]
+y_coord_nit = [90, 30.06, 0, -30.06, -90, 0, 0, 0, 0, 30.06, -30.06, -30.06, 30.06]
+x_coord_poly = [0, 0, 0, 0, 0, 0, 0, 0, 0, -90, -67.5, -45, -22.5, 22.5, 45, 67.5, 90]
+y_coord_poly = [90, 67.5, 45, 22.5, 0, -22.5, -45, -67.5, -90, 0, 0, 0, 0, 0, 0, 0, 0]
+
+"""Skiprows"""
+skiprows_cp = 8
+skiprows_nit = 10
+skiprows_poly = 10
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"

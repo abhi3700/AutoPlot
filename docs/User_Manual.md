@@ -1,30 +1,81 @@
 # AutoPlot
 
-<p align="left">
-  <img src="../icons/autoplot_ic_launcher.png" alt="AutoPlot Icon" width="" height="">
+<p align="center">
+  <img src="../images/autoplot_wallpaper.jpg" alt="AutoPlot Wallpaper" width="" height="">
 </p>
 
+<div style="page-break-after: always;"></div>
+
+## Table of Contents
+* Introduction
+	- Design model
+	- Programming languages
+* Installation
+* Application
+    - QC charts
+    - Control limits calculation
+    - Wafer Map
+* Troubleshooting
+* Coding
+	- Modules
+* What's NEW
+* TODO
+* Changelog
+* Feedback
+* License
+
+<div style="page-break-after: always;"></div>
+
 ## Installation
-Please follow the [Installation]("../Installation") folder.
+### Python Compiler
+### Editor
+* Install [Sublime Text 3](https://www.sublimetext.com/3)
+* Install [Kite: Suggestion for Python](https://kite.com/download/)
 
-## Examples
+<div style="page-break-after: always;"></div>
+
+## Implementation
+### QC charts
 This has been implemented in different case studies like __Dry Etch__, __Wet Etch__, __Diffusion__ so far.
-### Modules
 
-## Execution
-1. ### M-1: `button-mode`
+1. ##### M-1: `button-mode`
 	- Features:
-		+ Customize the Plot with more buttons (simple, checkbox type) on the Excel sheet.
-2. ### M-2: `shell-mode`
-	```bat
-	cmd /c python run.py
-	```
-	- Features:
-		+ Here, the charts will be generated/updated in the current directory.
-		+ In the `run.py` file, the charts can be customized by editing in the script, using these:
-			* `auto_open= True` (by default, no need)
-			* `auto_open= False`
-	
-3. ### M-3: `auto-mode`
+		+ Customize the Plot with more buttons (simple, checkbox type) on the Excel sheet.	
+2. ##### M-2: `auto-mode`
 	- Features:	
 		+ `auto_run.sh` is added via `auto_run.bat` in __Task Scheduler__ to automate the process.
+
+### Control limits calculation
+### Wafer Map
+
+<div style="page-break-after: always;"></div>
+
+## Troubleshooting
+
+<div style="page-break-after: always;"></div>
+
+## Coding
+### Modules
+
+<div style="page-break-after: always;"></div>
+
+
+## What's NEW
+
+<div style="page-break-after: always;"></div>
+
+## TODO
+* [ ] `v2.0`: Integrate SPC rules (or Nelson rules)
+* [ ] `v3.0`: Web App (opens in browser) for every equipment/chamber of each Section (DRY ETCH, WET ETCH, ).
+
+<div style="page-break-after: always;"></div>
+
+## Changelog
+
+<div style="page-break-after: always;"></div>
+
+## Feedback
+
+<div style="page-break-after: always;"></div>
+
+## License

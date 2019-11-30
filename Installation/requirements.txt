@@ -1,4 +1,4 @@
 retrying
-plotly
+plotly>=4.3.0
 pywin32
 xlwings

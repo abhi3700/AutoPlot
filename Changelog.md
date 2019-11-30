@@ -1,12 +1,13 @@
 AutoPlot
 ========
-v1.6 - `14-November-2019`
+v1.6 - `27-November-2019`
 ----
 * [ ] Added __Contour plot (2D)__ for viewing Etch Rate (ER) parameter (customizable) variation across the wafer, on a specific date (of QC). Here, the contour plot is customized to 8-inch wafer (200 mm dia). Also, the data points are visible in 'x' shape. 
 * [ ] <u>Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
 
 v1.5 - `14-November-2019`
 ----
+#### <u>Major changes</u>
 * __Control limit calculation (LCL, UCL):__ Based on the last 30 (customizable) QC days's data points, the LCL & UCL of layers (like Nitride, Poly, etc..) can be automatically calculated for a specific date.
 * __Mathematics:__ 2 methods to calculate control limits.
 	- <u>M-1 (Raw data):</u> based on (last_30_QC * individual_points). E.g. for Nitride layer (13 points on wafer) ==> [30 * 13 = 390]
@@ -16,6 +17,8 @@ v1.5 - `14-November-2019`
 * __Frequency:__ The control limit calculation, data parsing is kept as manual as per our Fab's activity. For instance, after equipment's PM (scheduled/unscheduled) if there is a drift in the plot after QC repeatability, then the new control limits (LCL, UCL) is to be calculated and can also be parsed correspondingly onto the excel sheet containing QC data (like Etch Rate (ER), Thickness, ...).
 * __New Plot:__ Now, with the new calculated control limits (after parsing), the plot can be generated and viewed in the browser.
 
+#### <u>Minor changes</u>
+* Replaced 'NIL' remarks with '..'
 
 v1.1 - `06-June-2019`
 ----

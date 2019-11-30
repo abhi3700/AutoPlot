@@ -358,34 +358,38 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-# Initialize the workbook
-wb = xw.Book.caller()
-# wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
+def init():
+    # Initialize the workbook
+    wb = xw.Book.caller()
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
-#****************************************************************************************************************************************************************
-# Define sheets
-sht_repl1a_cp = wb.sheets[sht_name_cp]
-sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
-sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
-sht_run = wb.sheets['RUN_code']     # for testing purpose
-# sht_repl1a_plot_cp = wb.sheets['CP Plot']
-# sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
-# sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
-#****************************************************************************************************************************************************************
-# Fetch Dataframe for NIT ER & UNif PLot
-# data_folder = Path(os.getcwd())
-# file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-# excel_file = pd.ExcelFile(file_to_open)
+    #****************************************************************************************************************************************************************
+    # Define sheets
+    sht_repl1a_cp = wb.sheets[sht_name_cp]
+    sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
+    sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    # sht_repl1a_plot_cp = wb.sheets['CP Plot']
+    # sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
+    # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
+    #****************************************************************************************************************************************************************
+    # Fetch Dataframe for NIT ER & UNif PLot
+    # data_folder = Path(os.getcwd())
+    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
+    # excel_file = pd.ExcelFile(file_to_open)
 
-excel_file_sht = pd.ExcelFile(excel_file_directory)
+    excel_file = pd.ExcelFile(excel_file_directory)
 
-def main():
+    return wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file
+
+def button_run():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
     df_repl1a_cp = sht_repl1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
-    df_repl1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_cp['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[sht_cp_columns]        # The final dataframe with required columns
     df_repl1a_cp.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     # sht_run.range('A10').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
@@ -409,10 +413,10 @@ def main():
         )
 
     #****************************************************************************************************************************************************************
-    df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1a_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_er_nit['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
 
@@ -456,10 +460,10 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1a_er_poly = excel_file.parse(sht_name_er_poly, skiprows= skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1a_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_er_poly['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
  
@@ -524,11 +528,72 @@ def control_limit_calc(data_list):
     return lcl, ucl
 
 
+# -----------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": fetch dates from excel sheet
+"sht_name": name of the sheet
+"skiprows_no": skip the no. of rows
+"sht_cols": the list of cols to be filtered out from all cols
+"cell_cell_range": range of the cell from where past data is to be cleared
+"parse_date_cell": parse the dates from this cell from where it will be shown in the drop down option
+"""
+def fetch_date_pass(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_date_cell):
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    df = excel_file.parse(sht_name, skiprows= skiprows_no)                            # copy a sheet and paste into another sheet and skiprows 9
+
+    df = df[sht_cols]      # select desired columns
+    df['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df['Result'].fillna(method='ffill', inplace=True)         # forward fill the empty cells
+    df['Etch Rate (A/Min)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+
+    df.dropna(inplace=True)                                              # dropping rows where at least one element is missing
+    df = df[df['Site'] == 'ER_point\n']
+    df = df[df['Result'] == 'Pass']
+    # sht_run.range('A20').options(index=False).value = df      # show the dataframe values into sheet- 'RUN_code'
+
+    # populate the Date column cells with date
+    sht_run.range(clear_cell_range).clear_contents()      # clear content only
+    sht_run.range(parse_date_cell).value = df['Date (MM/DD/YYYY)'].tolist()
+    return df
+
+# -----------------------------------------------------------------------------------------------------------------------------------------------------
+"""
+"Description": fetch dates from excel sheet
+"sht_name": name of the sheet
+"skiprows_no": skip the no. of rows
+"sht_cols": the list of cols to be filtered out from all cols
+"cell_cell_range": range of the cell from where past data is to be cleared
+"parse_date_cell": parse the dates from this cell from where it will be shown in the drop down option
+"""
+def fetch_date_all(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_date_cell):
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    
+    df = excel_file.parse(sht_name, skiprows= skiprows_no)                            # copy a sheet and paste into another sheet and skiprows 9
+
+    df = df[sht_cols]      # select desired columns
+    df['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+    df['Result'].fillna(method='ffill', inplace=True)         # forward fill the empty cells
+    df['Etch Rate (A/Min)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
+
+    df.dropna(inplace=True)                                              # dropping rows where at least one element is missing
+    df = df[df['Site'] == 'ER_point\n']
+    # df = df[df['Result'] == 'Pass']
+    # sht_run.range('A20').options(index=False).value = df      # show the dataframe values into sheet- 'RUN_code'
+
+    # populate the Date column cells with date
+    sht_run.range(clear_cell_range).clear_contents()      # clear content only
+    sht_run.range(parse_date_cell).value = df['Date (MM/DD/YYYY)'].tolist()
+    return df
+
+
 #********************************************************NIT*************************************************************************************************
-def date_search1_clear():   # for NIT
-    sht_run.range('AA3:EKS3').clear_contents()
-    sht_run.range('AA3').clear_contents()
+def button_clear_nit():   # for NIT
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    sht_run.range('AA5:EKP5').clear_contents()
     sht_run.range('J5').clear_contents()
+    sht_run.range('J6').clear_contents()
     sht_run.range('K5').clear_contents()
     sht_run.range('L5').clear_contents()
     sht_run.range('K6').clear_contents()
@@ -539,29 +604,20 @@ NOTE: Here, "Etch Rate (A/Min)" column has been considered because we have to co
     - M-1: take last 30 QC days. So, total data_sample = (30 * 13) points
     - M-2: take last 30 QC days. So, total data_sample = 30 points (all `ER_avg` taken)
 '''
-def fetch_date_nit():
-    # ----------------------------------------------------------- 
-    df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+def button_fetch_date_nit_pass():
+    df = fetch_date_pass(
+        sht_name = sht_name_er_nit,
+        skiprows_no = skiprows_nit,
+        sht_cols = sht_er_nit_cl_columns,
+        clear_cell_range = 'AA5:EKP5',
+        parse_date_cell = 'AA5'
+        )
+    return df
 
-    df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_cl_columns]      # select desired columns
-    df_repl1a_er_nit['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
-    df_repl1a_er_nit["Etch Rate (A/Min)"].fillna('', inplace=True)        # replacing the empty cells with ''
+def button_calc_control_limit_nit():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
 
-    nit_er_list = df_repl1a_er_nit["Etch Rate (A/Min)"].tolist()    # extract the ER column into a list
-    nit_er_list = list(filter(None, nit_er_list))        # filter '' i.e. None from the list
-    df_repl1a_er_nit.drop(columns=["Etch Rate (A/Min)"], inplace= True)    # drop the ER column from dataframe
-    df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is missing
-    df_repl1a_er_nit = df_repl1a_er_nit[df_repl1a_er_nit['Site'] == 'ER_point\n']
-    df_repl1a_er_nit.insert(loc= len(df_repl1a_er_nit.columns), column= "Etch Rate (A/Min)", value= nit_er_list)    # insert `nit_er_list` into the last col of current dataframe
-    # sht_run.range('A20').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'RUN_code'
-
-    # populate the Date column cells with date
-    sht_run.range('AA3:EKS3').clear_contents()      # clear content only
-    sht_run.range('AA3').value = df_repl1a_er_nit['Date (MM/DD/YYYY)'].tolist()
-    return df_repl1a_er_nit
-
-def button_control_limit_calc_nit():
-    df_repl1a_er_nit = fetch_date_nit()
+    df_repl1a_er_nit = button_fetch_date_nit_pass()
 
     search_date_in = sht_run.range('J5').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
@@ -575,16 +631,16 @@ def button_control_limit_calc_nit():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            # for col in sht_er_nit_cl_columns[2:15]:
-            #     data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
-            # lcl, ucl = control_limit_calc(data_last30)
-            # sht_run.range('K5').value = lcl
-            # sht_run.range('L5').value = ucl
-            # ------------------M-2----------------------------------------
-            data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            for col in sht_er_nit_cl_columns[2:15]:
+                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K6').value = lcl
-            sht_run.range('L6').value = ucl
+            sht_run.range('K5').value = lcl
+            sht_run.range('L5').value = ucl
+            # ------------------M-2----------------------------------------
+            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # lcl, ucl = control_limit_calc(data_last30)
+            # sht_run.range('K6').value = lcl
+            # sht_run.range('L6').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 
@@ -597,11 +653,13 @@ def button_control_limit_calc_nit():
 
     return lcl, ucl, search_date_in
 
-def change_control_limit_nit():
-    lcl, ucl, search_date_in = button_control_limit_calc_nit()
+def button_change_control_limit_nit():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    lcl, ucl, search_date_in = button_calc_control_limit_nit()
     
     if lcl !=0 and ucl !=0 and search_date_in !=0:
-        df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+        df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
         
         df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
         # sht_run.range('A23').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
@@ -621,38 +679,32 @@ def change_control_limit_nit():
 
 
 #********************************************************POLY*************************************************************************************************
-def date_search2_clear():   # for POLY
-    sht_run.range('AA8:EKP8').clear_contents()
-    sht_run.range('AA8').clear_contents()
+def button_clear_poly():   # for POLY
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    sht_run.range('AA15:EKP15').clear_contents()
     sht_run.range('J15').clear_contents()
+    sht_run.range('J16').clear_contents()
     sht_run.range('K15').clear_contents()
     sht_run.range('L15').clear_contents()
     sht_run.range('K16').clear_contents()
     sht_run.range('L16').clear_contents()
 
-def fetch_date_poly():
-    df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
 
-    df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_cl_columns]      # select desired columns
-    df_repl1a_er_poly['Date (MM/DD/YYYY)'].fillna(method='ffill', inplace=True)        # forward fill the empty cells
-    df_repl1a_er_poly["Etch Rate (A/Min)"].fillna('', inplace=True)        # replacing the empty cells with ''
+def button_fetch_date_poly_pass():
+    df = fetch_date_pass(
+        sht_name = sht_name_er_poly,
+        skiprows_no = skiprows_poly, 
+        sht_cols = sht_er_poly_cl_columns, 
+        clear_cell_range = 'AA15:EKS15',
+        parse_date_cell = 'AA15'
+        )
+    return df
 
-    poly_er_list = df_repl1a_er_poly["Etch Rate (A/Min)"].tolist()    # extract the ER column into a list
-    poly_er_list = list(filter(None, poly_er_list))        # filter '' i.e. None from the list
-    df_repl1a_er_poly.drop(columns=["Etch Rate (A/Min)"], inplace= True)    # drop the ER column from dataframe
-    df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is missing
-    df_repl1a_er_poly = df_repl1a_er_poly[df_repl1a_er_poly['Site'] == 'ER_point\n']
-    df_repl1a_er_poly.insert(loc= len(df_repl1a_er_poly.columns), column= "Etch Rate (A/Min)", value= poly_er_list)    # insert `poly_er_list` into the last col of current dataframe
-    # sht_run.range('U24').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'RUN_code'
+def button_calc_control_limit_poly():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
 
-    # populate the Date column cells with date
-    sht_run.range('AA8:EKS8').clear_contents()      # clear content only
-    sht_run.range('AA8').value = df_repl1a_er_poly['Date (MM/DD/YYYY)'].tolist()
-    return df_repl1a_er_poly
-
-
-def button_control_limit_calc_poly():
-    df_repl1a_er_poly = fetch_date_poly()
+    df_repl1a_er_poly = button_fetch_date_poly_pass()
 
     search_date_in = sht_run.range('J15').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
@@ -688,11 +740,13 @@ def button_control_limit_calc_poly():
 
     return lcl, ucl, search_date_in
 
-def change_control_limit_poly():
-    lcl, ucl, search_date_in = button_control_limit_calc_poly()
+def button_change_control_limit_poly():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    lcl, ucl, search_date_in = button_calc_control_limit_poly()
     
     if lcl !=0 and ucl !=0 and search_date_in !=0:
-        df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+        df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
         
         df_repl1a_er_poly = df_repl1a_er_poly[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
         # sht_run.range('A23').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
@@ -710,9 +764,9 @@ def change_control_limit_poly():
     else:
         win32api.MessageBox(wb.app.hwnd, "Either LCL or UCL value is zero OR there is no date mentioned.", "Change control limit")
 
-#===================================================Plot Wafer Map========================================================================
+#===================================================Plot Wafer Map via Contour Plot========================================================================
 ################################################################################################################################################################
-# --------------------------------------------------CONTOUR PLOT---------------------------------------------
+# --------------------------------------------------UTILITY---------------------------------------------
 """
 "Description": This function plots Contour (2-D) chart of ER for different layers.
 "x": x-coordinate for ER Chart
@@ -795,8 +849,20 @@ def contour_plot(x, y, z, fname, tname, date):
     py.offline.plot(fig, filename= fname)
 
 #********************************************************NIT*************************************************************************************************
-def plot_wafermap_nit():
-    df_repl1a_er_nit = fetch_date_nit()
+def button_fetch_date_nit_all():
+    df = fetch_date_all(
+        sht_name = sht_name_er_nit,
+        skiprows_no = skiprows_nit,
+        sht_cols = sht_er_nit_cl_columns,
+        clear_cell_range = 'AA5:EKP5',
+        parse_date_cell = 'AA5'
+        )
+    return df
+
+def button_plot_wafermap_nit():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    df_repl1a_er_nit = button_fetch_date_nit_all()
 
     search_date_in = sht_run.range('J5').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_nit.index = pd.RangeIndex(len(df_repl1a_er_nit.index))     # reset index 
@@ -807,31 +873,29 @@ def plot_wafermap_nit():
             z = df_repl1a_er_nit.iloc[index_no[-1], 2:15].tolist()
             # sht_run.range('A25').value = z
             contour_plot(
-                x = x_coord,
-                y = y_coord,
+                x = x_coord_nit,
+                y = y_coord_nit,
                 z = z,
                 fname = er_nit_contour_fname,
                 tname = er_nit_contour_tname,
                 date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
                 )
-            del z 
         else:
             if sht_run.range('J6').value is None:
                 win32api.MessageBox(wb.app.hwnd, "As, QC was repeated on this day. \nSo, please give entry no. from 0 to " + str(len(index_no) - 1) + " in cell-`J6`", "No. of Dates")       
             else:
                 index_no_entry = sht_run.range('J6').value
                 z = df_repl1a_er_nit.iloc[index_no[int(index_no_entry)], 2:15].tolist()
-                sht_run.range('A25').value = z
+                # sht_run.range('A25').value = z
                 del index_no_entry
                 contour_plot(
-                    x = x_coord,
-                    y = y_coord,
+                    x = x_coord_nit,
+                    y = y_coord_nit,
                     z = z,
                     fname = er_nit_contour_fname,
                     tname = er_nit_contour_tname,
                     date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
                     ) 
-                del z
     
     elif index_no == []:
         win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
@@ -842,8 +906,20 @@ def plot_wafermap_nit():
     
 
 #********************************************************POLY*************************************************************************************************
-def plot_wafermap_poly():
-    df_repl1a_er_poly = fetch_date_poly()
+def button_fetch_date_poly_all():
+    df = fetch_date_all(
+        sht_name = sht_name_er_poly,
+        skiprows_no = skiprows_poly, 
+        sht_cols = sht_er_poly_cl_columns, 
+        clear_cell_range = 'AA15:EKS15',
+        parse_date_cell = 'AA15'
+        )
+    return df
+
+def button_plot_wafermap_poly():
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+
+    df_repl1a_er_poly = button_fetch_date_poly_all()
 
     search_date_in = sht_run.range('J15').value     # input -- to be entered into search box in 'RUN_code' sheet
     df_repl1a_er_poly.index = pd.RangeIndex(len(df_repl1a_er_poly.index))     # reset index 
@@ -854,31 +930,29 @@ def plot_wafermap_poly():
             z = df_repl1a_er_poly.iloc[index_no[-1], 2:19].tolist()
             # sht_run.range('A25').value = z
             contour_plot(
-                x = x_coord,
-                y = y_coord,
+                x = x_coord_poly,
+                y = y_coord_poly,
                 z = z,
                 fname = er_poly_contour_fname,
                 tname = er_poly_contour_tname,
                 date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
                 )
-            del z 
         else:
             if sht_run.range('J16').value is None:
                 win32api.MessageBox(wb.app.hwnd, "As, QC was repeated on this day. \nSo, please give entry no. from 0 to " + str(len(index_no) - 1) + " in cell-`J6`", "No. of Dates")       
             else:
                 index_no_entry = sht_run.range('J16').value
-                z = df_repl1a_er_poly.iloc[index_no[int(index_no_entry)], 2:15].tolist()
+                z = df_repl1a_er_poly.iloc[index_no[int(index_no_entry)], 2:19].tolist()
                 # sht_run.range('A25').value = z
                 del index_no_entry
                 contour_plot(
-                    x = x_coord,
-                    y = y_coord,
+                    x = x_coord_poly,
+                    y = y_coord_poly,
                     z = z,
                     fname = er_poly_contour_fname,
                     tname = er_poly_contour_tname,
                     date = str(search_date_in.strftime(date_format_contour))[:-8]    # truncate last 8 digits i.e. 00:00:00 after formatting date
                     ) 
-                del z
     
     elif index_no == []:
         win32api.MessageBox(wb.app.hwnd, "SORRY!, the date was not found.", "Search by Date")         
@@ -893,3 +967,9 @@ def plot_wafermap_poly():
 @xw.func
 def hello(name):
     return "hello {0}".format(name)
+
+
+
+if __name__ == "__main__":
+    xw.books.active.set_mock_caller()
+    button_run()

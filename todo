@@ -1,14 +1,8 @@
-- Ease the flow of data entry in example: `dry_etch`
-  - copy-paste Metrology tool data into a DMIS upload file
-  - Open Excel book, enter the <first row no. of sheet>, <employee_code>, <DMIS LotID> (if available)
-  - click the button for pasting the data
-
-  This can be extended for multiple layers in a book.
-
--------------------------------------------------------------
-# v1.6:
-- Add contour plot (2D & 3D)
++ RUN button to update the charts in the same directory.
++ Link RUN button to `run.bat` file
++ main() function to be added & the main function has to be linked
+- User manual
 -------------------------------------------------------------
 # Future Scope:
-- v2.0: integrate SPC rules (or Nelson)
-- v3.0: Desktop App (browser-based) for each equipment/chamber.
+- v2.0: Desktop App (browser-based) for each equipment/chamber.
+- v3.0: integrate SPC rules (or Nelson)
