@@ -1,7 +1,10 @@
+- User manual
+- Exception handling
+  - AttributeError: 'str' object has no attribute 'strftime'
+  
 + RUN button to update the charts in the same directory.
 + Link RUN button to `run.bat` file
 + main() function to be added & the main function has to be linked
-- User manual
 -------------------------------------------------------------
 # Future Scope:
 - v2.0: Desktop App (browser-based) for each equipment/chamber.
