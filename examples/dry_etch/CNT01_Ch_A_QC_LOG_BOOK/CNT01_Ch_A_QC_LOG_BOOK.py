@@ -39,7 +39,7 @@ def date_formatter(x):
 "y2": USL (y-axis) for CP Chart
 # "y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_repl1a_cp_plot(x, y1, y2, remarks):
+def draw_plotly_repl1a_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -68,18 +68,17 @@ def draw_plotly_repl1a_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    # data = [trace1, trace2, trace3]
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -389,7 +388,7 @@ def button_run():
     df_repl1a_cp = sht_repl1a_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- 'ASBE1-CP'
-    df_repl1a_cp['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_cp = df_repl1a_cp[sht_cp_columns]        # The final dataframe with required columns
     df_repl1a_cp.dropna(inplace=True)                                              # dropping rows where at least one element is missing
     # sht_run.range('A10').options(index=False).value = df_repl1a_cp         # show the dataframe values into sheet- 'CP Plot'
@@ -399,7 +398,7 @@ def button_run():
     df_repl1a_cp_date = df_repl1a_cp["Date (MM/DD/YYYY)"]
     df_repl1a_cp_delta_cp = df_repl1a_cp["delta CP"]
     df_repl1a_cp_usl = df_repl1a_cp["USL"]
-    # df_repl1a_cp_ucl = df_repl1a_cp["UCL"]
+    df_repl1a_cp_ucl = df_repl1a_cp["UCL"]
     df_repl1a_cp_remarks = df_repl1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -408,7 +407,7 @@ def button_run():
         x = date_formatter(df_repl1a_cp_date), 
         y1 = df_repl1a_cp_delta_cp, 
         y2 = df_repl1a_cp_usl, 
-        # y3 = df_repl1a_cp_ucl,
+        y3 = df_repl1a_cp_ucl,
         remarks = df_repl1a_cp_remarks
         )
 
@@ -416,7 +415,7 @@ def button_run():
     df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1a_er_nit['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_er_nit['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_nit.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
 
@@ -463,7 +462,7 @@ def button_run():
     df_repl1a_er_poly = excel_file.parse(sht_name_er_poly, skiprows= skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1a_er_poly = df_repl1a_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1a_er_poly['Remarks'].fillna('..', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1a_er_poly['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1a_er_poly.dropna(inplace=True)                                              # dropping rows where at least one element is misnitg
     # sht_run.range('A10').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
  
@@ -631,16 +630,16 @@ def button_calc_control_limit_nit():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            for col in sht_er_nit_cl_columns[2:15]:
-                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
-            lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K5').value = lcl
-            sht_run.range('L5').value = ucl
-            # ------------------M-2----------------------------------------
-            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # for col in sht_er_nit_cl_columns[2:15]:
+            #     data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             # lcl, ucl = control_limit_calc(data_last30)
-            # sht_run.range('K6').value = lcl
-            # sht_run.range('L6').value = ucl
+            # sht_run.range('K5').value = lcl
+            # sht_run.range('L5').value = ucl
+            # ------------------M-2----------------------------------------
+            data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            lcl, ucl = control_limit_calc(data_last30)
+            sht_run.range('K6').value = lcl
+            sht_run.range('L6').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 

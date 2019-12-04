@@ -51,7 +51,7 @@ sht_name_er_nit = 'REPL1A-ERNit'
 sht_name_er_poly = 'REPL1A-ERPoly'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
 sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
 sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
