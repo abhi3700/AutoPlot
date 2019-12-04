@@ -630,16 +630,16 @@ def button_calc_control_limit_nit():
         if len(df_upto_search) > 30:    # ensure that the length of dataframe is min. 30
             data_last30 = []
             # ------------------M-1----------------------------------------
-            # for col in sht_er_nit_cl_columns[2:15]:
-            #     data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
-            # lcl, ucl = control_limit_calc(data_last30)
-            # sht_run.range('K5').value = lcl
-            # sht_run.range('L5').value = ucl
-            # ------------------M-2----------------------------------------
-            data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            for col in sht_er_nit_cl_columns[2:15]:
+                data_last30 += df_upto_search[col].tolist()[-N_cl:]     # join the list with last 30 elements of site_1 to site_13
             lcl, ucl = control_limit_calc(data_last30)
-            sht_run.range('K6').value = lcl
-            sht_run.range('L6').value = ucl
+            sht_run.range('K5').value = lcl
+            sht_run.range('L5').value = ucl
+            # ------------------M-2----------------------------------------
+            # data_last30 = df_upto_search['Etch Rate (A/Min)'].tolist()
+            # lcl, ucl = control_limit_calc(data_last30)
+            # sht_run.range('K6').value = lcl
+            # sht_run.range('L6').value = ucl
         else:
             win32api.MessageBox(wb.app.hwnd, "There is lesser QC data points available for calculating Control limits.", "Search by Date")         
 
@@ -658,7 +658,7 @@ def button_change_control_limit_nit():
     lcl, ucl, search_date_in = button_calc_control_limit_nit()
     
     if lcl !=0 and ucl !=0 and search_date_in !=0:
-        df_repl1a_er_nit = excel_file_sht.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
+        df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
         
         df_repl1a_er_nit = df_repl1a_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
         # sht_run.range('A23').options(index=False).value = df_repl1a_er_nit        # show the dataframe values into sheet- 'CP Plot'
@@ -666,7 +666,7 @@ def button_change_control_limit_nit():
         index_no = df_repl1a_er_nit[df_repl1a_er_nit['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
         if index_no != []:
             # add 11 to get the exact cell's excel row no.
-            index_no_final = 11 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
+            index_no_final = 12 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
             for i in range(0, 300, 3):            
                 sht_repl1a_er_nit.range('AB'+str(index_no_final + i)).value = lcl
                 sht_repl1a_er_nit.range('AC'+str(index_no_final + i)).value = ucl
@@ -745,7 +745,7 @@ def button_change_control_limit_poly():
     lcl, ucl, search_date_in = button_calc_control_limit_poly()
     
     if lcl !=0 and ucl !=0 and search_date_in !=0:
-        df_repl1a_er_poly = excel_file_sht.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
+        df_repl1a_er_poly = excel_file.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
         
         df_repl1a_er_poly = df_repl1a_er_poly[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
         # sht_run.range('A23').options(index=False).value = df_repl1a_er_poly        # show the dataframe values into sheet- 'CP Plot'
@@ -753,7 +753,7 @@ def button_change_control_limit_poly():
         index_no = df_repl1a_er_poly[df_repl1a_er_poly['Date (MM/DD/YYYY)'] == search_date_in].index.tolist()     # returns a list with indices matching the search item in datframe column
         if index_no != []:
             # add 11 to get the exact cell's excel row no.
-            index_no_final = 11 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
+            index_no_final = 12 + index_no[-1]     # consider the latest/last index_no, when there is a failure in QC and it is done multiple times.
             for i in range(0, 300, 3):            
                 sht_repl1a_er_poly.range('AE'+str(index_no_final + i)).value = lcl
                 sht_repl1a_er_poly.range('AF'+str(index_no_final + i)).value = ucl
