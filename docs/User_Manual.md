@@ -15,6 +15,7 @@
   - QC charts
 	- Control limits calculation
 	- Wafer Map
+* Chart Features
 * Troubleshooting
 * Coding
 	- Modules
@@ -47,6 +48,10 @@ This has been implemented in different case studies like __Dry Etch__, __Wet Etc
 
 ### Control limits calculation
 ### Wafer Map
+
+<div style="page-break-after: always;"></div>
+
+## Chart Features
 
 <div style="page-break-after: always;"></div>
 
