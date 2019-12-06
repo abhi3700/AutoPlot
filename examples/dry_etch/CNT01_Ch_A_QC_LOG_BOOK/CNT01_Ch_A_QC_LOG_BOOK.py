@@ -7,14 +7,10 @@ import win32api         # for message box
 import numpy as np
 import math
 import statistics as stat
+import getpass
+import shutil
+import os
 from input import *
-# import datetime as dt
-# import win32api
-# import os
-# from pathlib import Path
-
-
-
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -383,6 +379,13 @@ def init():
 
 def button_run():
     wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    username = getpass.getuser()
+    # folder_path = ""
+    # folder_path = path.format(username= username)
+    for f in os.listdir("."):
+        if f.endswith(".html"):
+            os.remove(des + f)
+
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
     df_repl1a_cp = sht_repl1a_cp.range('A9').options(
@@ -410,7 +413,10 @@ def button_run():
         y3 = df_repl1a_cp_ucl,
         remarks = df_repl1a_cp_remarks
         )
-
+    try:
+        shutil.copy(src.format(username= username, filename= cp_plot_html_file), des)
+    except shutil.SameFileError:
+        pass
     #****************************************************************************************************************************************************************
     df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
     
@@ -442,7 +448,11 @@ def button_run():
         y5 = df_repl1a_er_nit_lcl,
         remarks = df_repl1a_er_nit_remarks
         )
-   
+
+    try:
+        shutil.copy(src.format(username= username, filename= er_nit_plot_html_file), des)
+    except shutil.SameFileError:
+        pass
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Nit Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_nit_plot(
@@ -453,6 +463,7 @@ def button_run():
         remarks = df_repl1a_er_nit_remarks
         )
 
+    shutil.copy(src.format(username= username, filename= unif_nit_plot_html_file), des)
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for POLY ER & Unif PLot  
     # data_folder = Path(os.getcwd())
@@ -489,7 +500,7 @@ def button_run():
         y5 = df_repl1a_er_poly_lcl,
         remarks = df_repl1a_er_poly_remarks
         )
-   
+    shutil.copy(src.format(username= username, filename= er_poly_plot_html_file), des)
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Poly Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_poly_plot(
@@ -499,6 +510,8 @@ def button_run():
         y3 = df_repl1a_er_poly_unif_ucl,
         remarks = df_repl1a_er_poly_remarks
         )
+
+    shutil.copy(src.format(username= username, filename= unif_poly_plot_html_file), des)
 
 
 #===================================================Control limit Calculation========================================================================

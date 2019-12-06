@@ -12,9 +12,9 @@
 	- Programming languages
 * Installation
 * Application
-    - QC charts
-    - Control limits calculation
-    - Wafer Map
+  - QC charts
+	- Control limits calculation
+	- Wafer Map
 * Troubleshooting
 * Coding
 	- Modules
@@ -66,7 +66,7 @@ This has been implemented in different case studies like __Dry Etch__, __Wet Etc
 
 ## TODO
 * [ ] `v2.0`: Integrate SPC rules (or Nelson rules)
-* [ ] `v3.0`: Web App (opens in browser) for every equipment/chamber of each Section (DRY ETCH, WET ETCH, ).
+* [ ] `v3.0`: Web App (opens in browser) for every equipment/chamber of each Section (DRY ETCH, WET ETCH).
 
 <div style="page-break-after: always;"></div>
 
