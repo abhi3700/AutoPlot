@@ -63,20 +63,15 @@ date_format = "%m-%d-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
 # Metrology tool measurement coordinates
-x_coord_nit = [0, 0, 0, 0, 0, -90, -30.06, 30.06, 90, -30.06, 30.06, -30.06, 30.06]
-y_coord_nit = [90, 30.06, 0, -30.06, -90, 0, 0, 0, 0, 30.06, -30.06, -30.06, 30.06]
-x_coord_poly = [0, 0, 0, 0, 0, 0, 0, 0, 0, -90, -67.5, -45, -22.5, 22.5, 45, 67.5, 90]
-y_coord_poly = [90, 67.5, 45, 22.5, 0, -22.5, -45, -67.5, -90, 0, 0, 0, 0, 0, 0, 0, 0]
+x_coord_nit_range = 'D9:P9'
+y_coord_nit_range = 'D10:P10'
+x_coord_poly_range = 'D9:T9'
+y_coord_poly_range = 'D10:T10'
 
 # Skiprows
 skiprows_cp = 8
 skiprows_nit = 10
 skiprows_poly = 10
-
-# Source & Destination directory
-path = "C:/Users/{username}/OneDrive/Documents/"
-src = path + "{filename}"
-des = "./"
 
 excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
 # excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"

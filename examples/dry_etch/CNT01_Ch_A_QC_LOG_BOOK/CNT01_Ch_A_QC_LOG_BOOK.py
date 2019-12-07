@@ -364,27 +364,22 @@ def init():
     sht_repl1a_er_nit = wb.sheets[sht_name_er_nit]
     sht_repl1a_er_poly = wb.sheets[sht_name_er_poly]
     sht_run = wb.sheets['RUN_code']     # for testing purpose
-    # sht_repl1a_plot_cp = wb.sheets['CP Plot']
-    # sht_repl1a_plot_er_nit = wb.sheets['Nit Plot']
-    # sht_repl1a_plot_er_poly = wb.sheets['Poly Plot']
     #****************************************************************************************************************************************************************
-    # Fetch Dataframe for NIT ER & UNif PLot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
+    x_coord_nit = sht_repl1a_er_nit.range(x_coord_nit_range).value
+    y_coord_nit = sht_repl1a_er_nit.range(y_coord_nit_range).value
+    x_coord_poly = sht_repl1a_er_poly.range(x_coord_poly_range).value
+    y_coord_poly = sht_repl1a_er_poly.range(y_coord_poly_range).value
+    print(x_coord_nit)
+    print(y_coord_nit)
+    print(x_coord_poly)
+    print(y_coord_poly)
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     excel_file = pd.ExcelFile(excel_file_directory)
 
-    return wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file
+    return wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file
 
 def button_run():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
-    username = getpass.getuser()
-    # folder_path = ""
-    # folder_path = path.format(username= username)
-    for f in os.listdir("."):
-        if f.endswith(".html"):
-            os.remove(des + f)
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
@@ -413,10 +408,6 @@ def button_run():
         y3 = df_repl1a_cp_ucl,
         remarks = df_repl1a_cp_remarks
         )
-    try:
-        shutil.copy(src.format(username= username, filename= cp_plot_html_file), des)
-    except shutil.SameFileError:
-        pass
     #****************************************************************************************************************************************************************
     df_repl1a_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
     
@@ -449,10 +440,6 @@ def button_run():
         remarks = df_repl1a_er_nit_remarks
         )
 
-    try:
-        shutil.copy(src.format(username= username, filename= er_nit_plot_html_file), des)
-    except shutil.SameFileError:
-        pass
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Nit Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_nit_plot(
@@ -463,7 +450,6 @@ def button_run():
         remarks = df_repl1a_er_nit_remarks
         )
 
-    shutil.copy(src.format(username= username, filename= unif_nit_plot_html_file), des)
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for POLY ER & Unif PLot  
     # data_folder = Path(os.getcwd())
@@ -500,7 +486,6 @@ def button_run():
         y5 = df_repl1a_er_poly_lcl,
         remarks = df_repl1a_er_poly_remarks
         )
-    shutil.copy(src.format(username= username, filename= er_poly_plot_html_file), des)
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Draw Poly Unif Plot (using Plotly) in Browser     
     draw_plotly_repl1a_unif_poly_plot(
@@ -510,8 +495,6 @@ def button_run():
         y3 = df_repl1a_er_poly_unif_ucl,
         remarks = df_repl1a_er_poly_remarks
         )
-
-    shutil.copy(src.format(username= username, filename= unif_poly_plot_html_file), des)
 
 
 #===================================================Control limit Calculation========================================================================
@@ -550,7 +533,7 @@ def control_limit_calc(data_list):
 "parse_date_cell": parse the dates from this cell from where it will be shown in the drop down option
 """
 def fetch_date_pass(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_date_cell):
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     df = excel_file.parse(sht_name, skiprows= skiprows_no)                            # copy a sheet and paste into another sheet and skiprows 9
 
@@ -579,7 +562,7 @@ def fetch_date_pass(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_dat
 "parse_date_cell": parse the dates from this cell from where it will be shown in the drop down option
 """
 def fetch_date_all(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_date_cell):
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
     
     df = excel_file.parse(sht_name, skiprows= skiprows_no)                            # copy a sheet and paste into another sheet and skiprows 9
 
@@ -601,7 +584,7 @@ def fetch_date_all(sht_name, skiprows_no, sht_cols, clear_cell_range, parse_date
 
 #********************************************************NIT*************************************************************************************************
 def button_clear_nit():   # for NIT
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     sht_run.range('AA5:EKP5').clear_contents()
     sht_run.range('J5').clear_contents()
@@ -627,7 +610,7 @@ def button_fetch_date_nit_pass():
     return df
 
 def button_calc_control_limit_nit():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     df_repl1a_er_nit = button_fetch_date_nit_pass()
 
@@ -666,7 +649,7 @@ def button_calc_control_limit_nit():
     return lcl, ucl, search_date_in
 
 def button_change_control_limit_nit():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     lcl, ucl, search_date_in = button_calc_control_limit_nit()
     
@@ -692,7 +675,7 @@ def button_change_control_limit_nit():
 
 #********************************************************POLY*************************************************************************************************
 def button_clear_poly():   # for POLY
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     sht_run.range('AA15:EKP15').clear_contents()
     sht_run.range('J15').clear_contents()
@@ -714,7 +697,7 @@ def button_fetch_date_poly_pass():
     return df
 
 def button_calc_control_limit_poly():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     df_repl1a_er_poly = button_fetch_date_poly_pass()
 
@@ -753,7 +736,7 @@ def button_calc_control_limit_poly():
     return lcl, ucl, search_date_in
 
 def button_change_control_limit_poly():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     lcl, ucl, search_date_in = button_calc_control_limit_poly()
     
@@ -872,7 +855,7 @@ def button_fetch_date_nit_all():
     return df
 
 def button_plot_wafermap_nit():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     df_repl1a_er_nit = button_fetch_date_nit_all()
 
@@ -929,7 +912,7 @@ def button_fetch_date_poly_all():
     return df
 
 def button_plot_wafermap_poly():
-    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, excel_file = init()
+    wb, sht_repl1a_cp, sht_repl1a_er_nit, sht_repl1a_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     df_repl1a_er_poly = button_fetch_date_poly_all()
 
@@ -976,12 +959,14 @@ def button_plot_wafermap_poly():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     xw.books.active.set_mock_caller()
     button_run()
