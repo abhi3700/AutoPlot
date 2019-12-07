@@ -1,1 +1,2 @@
-python run.py
+python CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK.py
+tskill excel
