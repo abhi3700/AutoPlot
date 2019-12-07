@@ -1,14 +1,18 @@
 AutoPlot
 ========
-v1.6.1 - `30-November-2019`
-----
-* <kbd>RUN</kbd> button is now linked to `run.bat` file which opens the chart in the browser & also creates/updates the plots in the same directory.
 
+v1.8 - `#todo`
+----
+* [ ] <u>Exception Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
+
+v1.7 - `12-December-2019`
+----
+* `run.sh` file is modified to update the charts (in the same directory) & opening in the browser. It has been linked to the `equipment_logbook.py` e.g. `CNT01_Ch_A_QC_LOG_BOOK.py` for execution. It opens the excel, update/opens the charts and then auto-close the excel file. Finally, it also kills the task - `excel.exe`.
 
 v1.6 - `27-November-2019`
 ----
-* Added __Contour plot (2D)__ for viewing Etch Rate (ER) parameter (customizable) variation across the wafer, on a specific date (of QC). Here, the contour plot is customized to 8-inch wafer (200 mm dia). Also, the data points are visible in 'x' shape. 
-* [ ] <u>Exception Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
+* Added __Contour plot (2D)__ for viewing Etch Rate (ER) parameter (customizable) variation across the wafer, on a specific date (of QC). Here, the contour plot is customized to 8-inch wafer (200 mm dia). Also, the data points are visible in 'x' shape.
+* Fetch (x,y) coordinates of the wafer from Excel file.
 
 v1.5 - `14-November-2019`
 ----
