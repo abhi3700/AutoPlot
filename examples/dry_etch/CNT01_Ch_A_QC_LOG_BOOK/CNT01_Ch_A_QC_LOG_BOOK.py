@@ -7,9 +7,6 @@ import win32api         # for message box
 import numpy as np
 import math
 import statistics as stat
-import getpass
-import shutil
-import os
 from input import *
 
 
@@ -355,7 +352,8 @@ def draw_plotly_repl1a_unif_poly_plot(x, y1, y2, y3, remarks):
 #####################################################################################################################################################################
 def init():
     # Initialize the workbook
-    wb = xw.Book.caller()
+    # wb = xw.Book.caller()
+    wb = xw.Book('CNT01_Ch_A_QC_LOG_BOOK.xlsm')
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
@@ -369,10 +367,6 @@ def init():
     y_coord_nit = sht_repl1a_er_nit.range(y_coord_nit_range).value
     x_coord_poly = sht_repl1a_er_poly.range(x_coord_poly_range).value
     y_coord_poly = sht_repl1a_er_poly.range(y_coord_poly_range).value
-    print(x_coord_nit)
-    print(y_coord_nit)
-    print(x_coord_poly)
-    print(y_coord_poly)
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     excel_file = pd.ExcelFile(excel_file_directory)
 
@@ -496,6 +490,9 @@ def button_run():
         remarks = df_repl1a_er_poly_remarks
         )
 
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Close the Excel file after it's use. This is for running from shell file.
+    wb.close()
 
 #===================================================Control limit Calculation========================================================================
 ################################################################################################################################################################
@@ -968,5 +965,4 @@ def button_plot_wafermap_poly():
 # MAIN Function call
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    xw.books.active.set_mock_caller()
     button_run()
