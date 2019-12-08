@@ -47,13 +47,24 @@ sht_name_er_nit = 'REPL1B-ERNit'
 sht_name_er_poly = 'REPL1B-ERPoly'
 
 # Columns
-sht_cp_columns =  ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
 sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
 sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)", "Result"]
+N_cl = 30
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
 
+# Metrology tool measurement coordinates
+x_coord_nit_range = 'D9:P9'
+y_coord_nit_range = 'D10:P10'
+x_coord_poly_range = 'D9:T9'
+y_coord_poly_range = 'D10:T10'
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_B_QC_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
+# Skiprows
+skiprows_cp = 8
+skiprows_nit = 10
+skiprows_poly = 10

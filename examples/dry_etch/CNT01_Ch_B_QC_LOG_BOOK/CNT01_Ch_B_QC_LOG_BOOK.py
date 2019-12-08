@@ -3,11 +3,12 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+import win32api         # for message box
+import numpy as np
+import math
+import statistics as stat
+from dir import *
 from input import *
-# import datetime as dt
-# import win32api
-# import os
-# from pathlib import Path
 
 
 
@@ -33,9 +34,9 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_repl1b_cp_plot(x, y1, y2, remarks):
+def draw_plotly_repl1b_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -64,17 +65,17 @@ def draw_plotly_repl1b_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -354,35 +355,47 @@ def draw_plotly_repl1b_unif_poly_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('CNT01_Ch_B_QC_LOG_BOOK.xlsm')
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_repl1b_cp = wb.sheets[sht_name_cp]
     sht_repl1b_er_nit = wb.sheets[sht_name_er_nit]
     sht_repl1b_er_poly = wb.sheets[sht_name_er_poly]
-    # sht_repl1b_plot_cp = wb.sheets['CP Plot']
-    # sht_repl1b_plot_er_nit = wb.sheets['Nit Plot']
-    # sht_repl1b_plot_er_poly = wb.sheets['Poly Plot']
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_nit = sht_repl1b_er_nit.range(x_coord_nit_range).value
+    y_coord_nit = sht_repl1b_er_nit.range(y_coord_nit_range).value
+    x_coord_poly = sht_repl1b_er_poly.range(x_coord_poly_range).value
+    y_coord_poly = sht_repl1b_er_poly.range(y_coord_poly_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_repl1b_cp, sht_repl1b_er_nit, sht_repl1b_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file
+
+def button_run():
+    wb, sht_repl1b_cp, sht_repl1b_er_nit, sht_repl1b_er_poly, sht_run, x_coord_nit, y_coord_nit, x_coord_poly, y_coord_poly, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
     df_repl1b_cp = sht_repl1b_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
-    df_repl1b_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1b_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1b_cp = df_repl1b_cp[sht_cp_columns]        # The final dataframe with required columns
     df_repl1b_cp = df_repl1b_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_repl1b_plot_cp.range('A25').options(index=False).value = df_repl1b_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A25').options(index=False).value = df_repl1b_cp   	    # show the dataframe values into sheet- 'CP Plot'
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_repl1b_cp_date = df_repl1b_cp["Date (MM/DD/YYYY)"]
     df_repl1b_cp_delta_cp = df_repl1b_cp["delta CP"]
     df_repl1b_cp_usl = df_repl1b_cp["USL"]
-    # df_repl1b_cp_ucl = df_repl1b_cp["UCL"]
+    df_repl1b_cp_ucl = df_repl1b_cp["UCL"]
     df_repl1b_cp_remarks = df_repl1b_cp["Remarks"]
 
 
@@ -392,23 +405,18 @@ def main():
         x = date_formatter(df_repl1b_cp_date), 
         y1 = df_repl1b_cp_delta_cp, 
         y2 = df_repl1b_cp_usl, 
-        # y3 = df_repl1b_cp_ucl,
+        y3 = df_repl1b_cp_ucl,
         remarks = df_repl1b_cp_remarks
         )
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for NIT ER & Unif Plot  
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file_sht_nit = pd.ExcelFile(excel_file_directory)
-    df_repl1b_er_nit = excel_file_sht_nit.parse(sht_name_er_nit, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1b_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1b_er_nit = df_repl1b_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_nit['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1b_er_nit['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1b_er_nit = df_repl1b_er_nit.dropna()                                              # dropping rows where at least one element is missing
-    # sht_repl1b_plot_er_nit.range('A28').options(index=False).value = df_repl1b_er_nit        # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A28').options(index=False).value = df_repl1b_er_nit        # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param for Nit ER & Unif PLot
     df_repl1b_er_nit_date = df_repl1b_er_nit["Date (MM/DD/YYYY)"]
@@ -448,17 +456,12 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for POLY ER & Unif PLot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file_sht_poly = pd.ExcelFile(excel_file_directory)
-    df_repl1b_er_poly = excel_file_sht_poly.parse(sht_name_er_poly, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_repl1b_er_poly = excel_file.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
     
     df_repl1b_er_poly = df_repl1b_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_poly['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_repl1b_er_poly['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_repl1b_er_poly = df_repl1b_er_poly.dropna()                                              # dropping rows where at least one element is missing
-    # sht_repl1b_plot_er_poly.range('A28').options(index=False).value = df_repl1b_er_poly        # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A28').options(index=False).value = df_repl1b_er_poly        # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param for Nit ER & Unif PLot
@@ -498,9 +501,15 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
 
 

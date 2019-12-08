@@ -1,0 +1,1 @@
+excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_B_QC_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
