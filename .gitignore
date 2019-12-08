@@ -10,3 +10,6 @@
 
 # ignore setup files
 Anaconda*
+
+__pycache__
+examples/dry_etch/ASH09_QC_LOG_BOOK/__pycache__
