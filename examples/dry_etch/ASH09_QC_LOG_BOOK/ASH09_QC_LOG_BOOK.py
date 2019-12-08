@@ -249,7 +249,7 @@ def button_run():
     df_asfe1_cp = sht_asfe1_cp.range('A10').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- sht_name_cp
-    df_asfe1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_asfe1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_cp = df_asfe1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_asfe1_cp = df_asfe1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_asfe1_plot_cp.range('A25').options(index=False).value = df_asfe1_cp           # show the dataframe values into sheet- 'CP Plot'
@@ -272,14 +272,9 @@ def button_run():
         )
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for ER & Unif Plot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file = pd.ExcelFile(excel_file_directory)
     df_asfe1_er = excel_file.parse(sht_name_er, skiprows=skiprows_pr)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asfe1_er = df_asfe1_er[sht_er_columns]             # The final Dataframe with 5 columns for plot: x-1, y-4
-    df_asfe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_asfe1_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_er = df_asfe1_er.dropna()                                              # dropping rows where at least one element is missing
     # sht_asfe1_plot_er.range('A28').options(index=False).value = df_asfe1_er        # show the dataframe values into sheet- 'CP Plot'
 
@@ -318,7 +313,7 @@ def button_run():
         remarks = df_asfe1_er_remarks
         )
 
-
+    wb.close()
 
 #--------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
