@@ -5,6 +5,7 @@ import plotly as py
 import plotly.graph_objs as go
 import datetime as dt
 from input import *
+from dir import *
 # import win32api
 # import os
 # from pathlib import Path
@@ -220,17 +221,28 @@ def draw_plotly_asfe1_unif_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('ASH09_QC_LOG_BOOK.xlsm')
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_asfe1_cp = wb.sheets[sht_name_cp]
     sht_asfe1_er = wb.sheets[sht_name_er]
-    # sht_asfe1_plot_cp = wb.sheets['CP Plot']
-    # sht_asfe1_plot_er = wb.sheets['ER Plot']
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_pr = sht_asfe1_er.range(x_coord_pr_range).value
+    y_coord_pr = sht_asfe1_er.range(y_coord_pr_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    excel_file = pd.ExcelFile(excel_file_directory)
 
+    return wb, sht_asfe1_cp, sht_asfe1_er, sht_run, x_coord_pr, y_coord_pr, excel_file
+
+
+def button_run():
+    wb, sht_asfe1_cp, sht_asfe1_er, sht_run, x_coord_pr, y_coord_pr, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
@@ -265,7 +277,7 @@ def main():
     # excel_file = pd.ExcelFile(file_to_open)
 
     excel_file = pd.ExcelFile(excel_file_directory)
-    df_asfe1_er = excel_file.parse(sht_name_er, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_asfe1_er = excel_file.parse(sht_name_er, skiprows=skiprows_pr)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asfe1_er = df_asfe1_er[sht_er_columns]             # The final Dataframe with 5 columns for plot: x-1, y-4
     df_asfe1_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_er = df_asfe1_er.dropna()                                              # dropping rows where at least one element is missing
@@ -311,9 +323,14 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
 
 

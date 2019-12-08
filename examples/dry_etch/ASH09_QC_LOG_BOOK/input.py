@@ -38,8 +38,9 @@ sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", 
 # Date formatting for Plotly charts
 date_format = "%m-%d-%Y %H:%M:%S"
 
-# inputs for this `run.py` file
-auto_open = False
+# Metrology tool measurement coordinates
+x_coord_pr_range = 'D9:L9'
+y_coord_pr_range = 'D10:L10'
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\ASH_09_10_LOG_BOOK\\ASH09_QC_LOG_BOOK\\ASH09_QC_LOG_BOOK.xlsm"
+# skiprows
+skiprows_pr = 10
