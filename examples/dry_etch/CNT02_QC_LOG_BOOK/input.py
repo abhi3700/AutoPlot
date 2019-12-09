@@ -54,13 +54,20 @@ sht_name_er_cha_pr = 'PR Ch A ER'
 sht_name_er_chc_pr = 'PR Ch C ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Chamber", "delta CP", "USL", "UCL", "Remarks"]
 sht_er_reml1a_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_reml1c_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL"]
+sht_er_reml1c_pr_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
 
-# excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
-excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_02_LOG_BOOK\\CNT02_QC_LOG_BOOK\\CNT02_QC_LOG_BOOK.xlsm"
+# Metrology tool measurement coordinates
+x_coord_pr_a_range = 'D9:L9'
+y_coord_pr_a_range = 'D10:L10'
+x_coord_pr_c_range = 'D9:L9'
+y_coord_pr_c_range = 'D10:L10'
 
+
+# skiprows
+skiprows_pr_a = 10
+skiprows_pr_c = 10

@@ -3,8 +3,9 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+import datetime as dt
 from input import *
-# import datetime as dt
+from dir import *
 # import win32api
 # import os
 # from pathlib import Path
@@ -32,9 +33,9 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
+def draw_plotly_reml1a_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -63,17 +64,17 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_cha_plot_title,
             xaxis = dict(title= cp_cha_plot_xlabel),
@@ -89,9 +90,9 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, remarks):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_reml1c_cp_plot(x, y1, y2, remarks):
+def draw_plotly_reml1c_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -120,17 +121,17 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_chc_plot_title,
             xaxis = dict(title= cp_chc_plot_xlabel),
@@ -357,9 +358,9 @@ def draw_plotly_reml1c_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
-# "y3": UCL (y-axis) for Unif Chart
+"y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
+def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -388,17 +389,17 @@ def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_chc_pr_plot_title,
             xaxis = dict(title= unif_chc_pr_plot_xlabel),
@@ -409,40 +410,51 @@ def draw_plotly_reml1c_unif_pr_plot(x, y1, y2, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('CNT02_QC_LOG_BOOK.xlsm')
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_reml1_cp = wb.sheets[sht_name_cp]
     sht_reml1a_er_pr = wb.sheets[sht_name_er_cha_pr]
     sht_reml1c_er_pr = wb.sheets[sht_name_er_chc_pr]
-    # sht_reml1_plot_cp = wb.sheets['CP Plot']
-    # sht_reml1_plot_er_ch_a_pr = wb.sheets['PR Ch A Plot']
-    # sht_reml1_plot_er_ch_c_pr = wb.sheets['PR Ch C Plot']
-
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_pr_a = sht_reml1a_er_pr.range(x_coord_pr_a_range).value
+    y_coord_pr_a = sht_reml1a_er_pr.range(y_coord_pr_a_range).value
+    x_coord_pr_c = sht_reml1c_er_pr.range(x_coord_pr_c_range).value
+    y_coord_pr_c = sht_reml1c_er_pr.range(y_coord_pr_c_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_reml1_cp, sht_reml1a_er_pr, sht_reml1c_er_pr, sht_run, x_coord_pr_a, y_coord_pr_a, x_coord_pr_c, y_coord_pr_c, excel_file
+
+
+def button_run():
+    wb, sht_reml1_cp, sht_reml1a_er_pr, sht_reml1c_er_pr, sht_run, x_coord_pr_a, y_coord_pr_a, x_coord_pr_c, y_coord_pr_c, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
     df_reml1_cp = sht_reml1_cp.range('A9').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
-    df_reml1_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reml1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reml1_cp = df_reml1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reml1_cp = df_reml1_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A46').options(index=False).value = df_reml1_cp   	    # show the dataframe values into sheet- 'CP Plot'
     df_reml1a_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'DPS']					# dataframe for DPS (chamber A)
-    # sht_reml1_plot_cp.range('A46').options(index=False).value = df_reml1a_cp           # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A46').options(index=False).value = df_reml1a_cp           # show the dataframe values into sheet- 'CP Plot'
     df_reml1c_cp = df_reml1_cp[df_reml1_cp["Chamber"] == 'ASP']					# dataframe for ASP (chamber C)
-    # sht_reml1_plot_cp.range('G46').options(index=False).value = df_reml1c_cp           # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('G46').options(index=False).value = df_reml1c_cp           # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_reml1a_cp_date = df_reml1a_cp["Date (MM/DD/YYYY)"]
     df_reml1a_cp_delta_cp = df_reml1a_cp["delta CP"]
     df_reml1a_cp_usl = df_reml1a_cp["USL"]
-    # df_reml1a_cp_ucl = df_reml1a_cp["UCL"]
+    df_reml1a_cp_ucl = df_reml1a_cp["UCL"]
     df_reml1a_cp_remarks = df_reml1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -450,7 +462,7 @@ def main():
     df_reml1c_cp_date = df_reml1c_cp["Date (MM/DD/YYYY)"]
     df_reml1c_cp_delta_cp = df_reml1c_cp["delta CP"]
     df_reml1c_cp_usl = df_reml1c_cp["USL"]
-    # df_reml1c_cp_ucl = df_reml1c_cp["UCL"]
+    df_reml1c_cp_ucl = df_reml1c_cp["UCL"]
     df_reml1c_cp_remarks = df_reml1c_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -459,7 +471,7 @@ def main():
         x = date_formatter(df_reml1a_cp_date), 
         y1 = df_reml1a_cp_delta_cp, 
         y2 = df_reml1a_cp_usl, 
-        # y3 = df_reml1a_cp_ucl,
+        y3 = df_reml1a_cp_ucl,
         remarks = df_reml1a_cp_remarks
         )
 
@@ -469,22 +481,18 @@ def main():
         x = date_formatter(df_reml1c_cp_date), 
         y1 = df_reml1c_cp_delta_cp, 
         y2 = df_reml1c_cp_usl, 
-        # y3 = df_reml1c_cp_ucl,
+        y3 = df_reml1c_cp_ucl,
         remarks = df_reml1c_cp_remarks
         )
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for Ch A PR i.e. DPS chamber ER & Unif PLot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    df_reml1a_er_pr = excel_file.parse(sht_name_er_cha_pr, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reml1a_er_pr = excel_file.parse(sht_name_er_cha_pr, skiprows=skiprows_pr_a)                            # copy a sheet and paste into another sheet and skiprows 8
     
     df_reml1a_er_pr = df_reml1a_er_pr[sht_er_reml1a_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_reml1a_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reml1a_er_pr['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reml1a_er_pr = df_reml1a_er_pr.dropna()                                              # dropping rows where at least one element is missing
-    # sht_plot_nit.range('A28').options(index=False).value = df_reml1a_er_pr        # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A28').options(index=False).value = df_reml1a_er_pr        # show the dataframe values into sheet- 'CP Plot'
     
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Assigning variable to each param for REML1A PR ER & Unif PLot
@@ -524,16 +532,12 @@ def main():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for Ch C PR i.e. ASP Chamber ER & Unif PLot
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    df_reml1c_er_pr = excel_file.parse(sht_name_er_chc_pr, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reml1c_er_pr = excel_file.parse(sht_name_er_chc_pr, skiprows=skiprows_pr_a)                            # copy a sheet and paste into another sheet and skiprows 8
     
     df_reml1c_er_pr = df_reml1c_er_pr[sht_er_reml1c_pr_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_reml1c_er_pr['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reml1c_er_pr['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reml1c_er_pr = df_reml1c_er_pr.dropna()                                              # dropping rows where at least one element is missing
-    # sht_reml1_plot_er_ch_c_pr.range('A28').options(index=False).value = df_reml1c_er_pr        # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A28').options(index=False).value = df_reml1c_er_pr        # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Assigning variable to each param for REML1C PR ER & Unif PLot
     df_reml1c_er_pr_date = df_reml1c_er_pr["Date (MM/DD/YYYY)"]
@@ -544,7 +548,7 @@ def main():
     df_reml1c_er_pr_lcl = df_reml1c_er_pr["LCL"]
     df_reml1c_er_pr_unif = df_reml1c_er_pr["% Uni"]
     df_reml1c_er_pr_unif_usl = df_reml1c_er_pr["% Uni USL"]
-    # df_reml1c_er_pr_unif_ucl = df_reml1c_er_pr["% Uni UCL"]
+    df_reml1c_er_pr_unif_ucl = df_reml1c_er_pr["% Uni UCL"]
     df_reml1c_er_pr_remarks = df_reml1c_er_pr["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -565,16 +569,23 @@ def main():
         x = date_formatter(df_reml1c_er_pr_date), 
         y1 = df_reml1c_er_pr_unif, 
         y2 = df_reml1c_er_pr_unif_usl,
-        # y3 = df_reml1c_er_pr_unif_ucl,
+        y3 = df_reml1c_er_pr_unif_ucl,
         remarks = df_reml1c_er_pr_remarks
         )
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
+#--------------------------------------------------------------------------------------------------------------------------------
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
+
 
 
 
