@@ -7,6 +7,7 @@ import win32api         # for message box
 import numpy as np
 import math
 import statistics as stat
+from dir import *
 from input import *
 
 
