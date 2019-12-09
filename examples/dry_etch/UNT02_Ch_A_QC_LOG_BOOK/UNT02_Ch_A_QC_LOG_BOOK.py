@@ -3,8 +3,9 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+import datetime as dt
 from input import *
-# import datetime as dt
+from dir import *
 # import win32api
 # import os
 # from pathlib import Path
@@ -33,7 +34,7 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-"y3": LSL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
 def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
@@ -67,22 +68,12 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'LSL',
+            name = 'UCL',
             mode = 'lines',
             line = dict(
-                    color = sl_color,
+                    color = cl_color,
                     width = 3)
     )
-
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
 
     data = [trace1, trace2, trace3]
     layout = dict(
@@ -445,9 +436,9 @@ def draw_plotly_resp1a_er_teos_1st_plot(x, y1, y2, y3, y4, y5, remarks):
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
-# "y3": UCL (y-axis) for Unif Chart
+"y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1a_unif_teos_1st_plot(x, y1, y2, remarks):
+def draw_plotly_resp1a_unif_teos_1st_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -476,17 +467,17 @@ def draw_plotly_resp1a_unif_teos_1st_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_teos_1st_plot_title,
             xaxis = dict(title= unif_teos_1st_plot_xlabel),
@@ -579,9 +570,9 @@ def draw_plotly_resp1a_er_teos_2nd_plot(x, y1, y2, y3, y4, y5, remarks):
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
-# "y3": UCL (y-axis) for Unif Chart
+"y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1a_unif_teos_2nd_plot(x, y1, y2, remarks):
+def draw_plotly_resp1a_unif_teos_2nd_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -610,17 +601,17 @@ def draw_plotly_resp1a_unif_teos_2nd_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_teos_2nd_plot_title,
             xaxis = dict(title= unif_teos_2nd_plot_xlabel),
@@ -631,20 +622,30 @@ def draw_plotly_resp1a_unif_teos_2nd_plot(x, y1, y2, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"		# test code
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('UNT02_Ch_A_QC_LOG_BOOK.xlsm')
+    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_resp1a_cp = wb.sheets[sht_name_cp]
     sht_resp1a_er = wb.sheets[sht_name_er]
-    # sht_resp1a_plot_cp = wb.sheets['CP Plot']
-    # sht_resp1a_plot_sin_1st = wb.sheets['SiN 1st Step Plot']
-    # sht_resp1a_plot_sin_2nd = wb.sheets['SiN 2nd Step Plot']
-    # sht_resp1a_plot_teos_1st = wb.sheets['TEOS 1st Step Plot']
-    # sht_resp1a_plot_teos_2nd = wb.sheets['TEOS 2nd Step Plot']
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_sin = sht_resp1a_er.range(x_coord_sin_range).value
+    y_coord_sin = sht_resp1a_er.range(y_coord_sin_range).value
+    x_coord_teos = sht_resp1a_er.range(x_coord_teos_range).value
+    y_coord_teos = sht_resp1a_er.range(y_coord_teos_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_resp1a_cp, sht_resp1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file
+
+
+def button_run():
+    wb, sht_resp1a_cp, sht_resp1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
@@ -652,16 +653,15 @@ def main():
         pd.DataFrame, header=1, index=False, expand='table'
         ).value											                # fetch the data from sheet- 'ASBE1-CP'
     df_resp1a_cp = df_resp1a_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_resp1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_resp1a_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_resp1a_cp = df_resp1a_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_resp1a_plot_cp.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A25').options(index=False).value = df_resp1a_cp   	    # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_resp1a_cp_date = df_resp1a_cp["Date (MM/DD/YYYY)"]
     df_resp1a_cp_delta_cp = df_resp1a_cp["delta CP"]
     df_resp1a_cp_usl = df_resp1a_cp["USL"]
-    df_resp1a_cp_lsl = df_resp1a_cp["LSL"]
-    # df_resp1a_cp_ucl = df_resp1a_cp["UCL"]
+    df_resp1a_cp_ucl = df_resp1a_cp["UCL"]
     df_resp1a_cp_remarks = df_resp1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -670,7 +670,7 @@ def main():
         x = date_formatter(df_resp1a_cp_date), 
         y1 = df_resp1a_cp_delta_cp, 
         y2 = df_resp1a_cp_usl, 
-        y3 = df_resp1a_cp_lsl,
+        y3 = df_resp1a_cp_ucl,
         remarks = df_resp1a_cp_remarks
         )
 
@@ -684,28 +684,24 @@ def main():
         - TEOS-2nd step  
     
     """
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    df_resp1a_er = excel_file.parse(sht_name_er, skiprows=14)                            # copy a sheet and paste into another sheet and skiprows 9
-    df_resp1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_resp1a_er = excel_file.parse(sht_name_er, skiprows=skiprows)                            # copy a sheet and paste into another sheet and skiprows 9
+    df_resp1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
     df_resp1a_er = df_resp1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_resp1a_teos = df_resp1a_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
+    # df_resp1a_teos = df_resp1a_er.drop(columns='% Uni UCL')      # in TEOS-1st, TEOS-2nd, '% Uni UCL' is not defined, so drop this column.
     df_resp1a_er_sin_1st = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'SiN-1Step']
     df_resp1a_er_sin_1st = df_resp1a_er_sin_1st.dropna()
     df_resp1a_er_sin_2nd = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'SiN-2Step']
     df_resp1a_er_sin_2nd = df_resp1a_er_sin_2nd.dropna()
-    df_resp1a_er_teos_1st = df_resp1a_teos[df_resp1a_teos["Layer-Step"] == 'TEOS-1Step']
+    df_resp1a_er_teos_1st = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'TEOS-1Step']
     df_resp1a_er_teos_1st = df_resp1a_er_teos_1st.dropna()
-    df_resp1a_er_teos_2nd = df_resp1a_teos[df_resp1a_teos["Layer-Step"] == 'TEOS-2Step']
+    df_resp1a_er_teos_2nd = df_resp1a_er[df_resp1a_er["Layer-Step"] == 'TEOS-2Step']
     df_resp1a_er_teos_2nd = df_resp1a_er_teos_2nd.dropna()
 
     # Display the dataframes in respective sheets
-    # sht_resp1a_plot_sin_1st.range('A25').options(index=False).value = df_resp1a_sin_1st
-    # sht_resp1a_plot_sin_2nd.range('A25').options(index=False).value = df_resp1a_sin_2nd
-    # sht_resp1a_plot_teos_1st.range('A25').options(index=False).value = df_resp1a_teos
-    # sht_resp1a_plot_teos_2nd.range('A25').options(index=False).value = df_resp1a_teos_2nd
+    # sht_run.range('A25').options(index=False).value = df_resp1a_er_sin_1st
+    # sht_run.range('A25').options(index=False).value = df_resp1a_er_sin_2nd
+    # sht_run.range('A25').options(index=False).value = df_resp1a_er_teos_1st
+    # sht_run.range('A25').options(index=False).value = df_resp1a_er_teos_2nd
 
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -788,7 +784,7 @@ def main():
     df_resp1a_er_teos_1st_lcl = df_resp1a_er_teos_1st["LCL"]
     df_resp1a_er_teos_1st_unif = df_resp1a_er_teos_1st["% Uni"]
     df_resp1a_er_teos_1st_unif_usl = df_resp1a_er_teos_1st["% Uni USL"]
-    # df_resp1a_er_teos_1st_unif_ucl = df_resp1a_er_teos_1st["% Uni UCL"]
+    df_resp1a_er_teos_1st_unif_ucl = df_resp1a_er_teos_1st["% Uni UCL"]
     df_resp1a_er_teos_1st_remarks = df_resp1a_er_teos_1st["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -809,7 +805,7 @@ def main():
         x = date_formatter(df_resp1a_er_teos_1st_date), 
         y1 = df_resp1a_er_teos_1st_unif, 
         y2 = df_resp1a_er_teos_1st_unif_usl,
-        # y3 = df_resp1a_er_teos_1st_unif_ucl,
+        y3 = df_resp1a_er_teos_1st_unif_ucl,
         remarks = df_resp1a_er_teos_1st_remarks
         )
 
@@ -824,7 +820,7 @@ def main():
     df_resp1a_er_teos_2nd_lcl = df_resp1a_er_teos_2nd["LCL"]
     df_resp1a_er_teos_2nd_unif = df_resp1a_er_teos_2nd["% Uni"]
     df_resp1a_er_teos_2nd_unif_usl = df_resp1a_er_teos_2nd["% Uni USL"]
-    # df_resp1a_er_teos_2nd_unif_ucl = df_resp1a_er_teos_2nd["% Uni UCL"]
+    df_resp1a_er_teos_2nd_unif_ucl = df_resp1a_er_teos_2nd["% Uni UCL"]
     df_resp1a_er_teos_2nd_remarks = df_resp1a_er_teos_2nd["Remarks"]
   
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
@@ -845,7 +841,7 @@ def main():
         x = date_formatter(df_resp1a_er_teos_2nd_date), 
         y1 = df_resp1a_er_teos_2nd_unif, 
         y2 = df_resp1a_er_teos_2nd_unif_usl,
-        # y3 = df_resp1a_er_teos_2nd_unif_ucl,
+        y3 = df_resp1a_er_teos_2nd_unif_ucl,
         remarks = df_resp1a_er_teos_2nd_remarks
         )
 
@@ -853,12 +849,16 @@ def main():
 
 
 
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
+#--------------------------------------------------------------------------------------------------------------------------------
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
-
-
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
 

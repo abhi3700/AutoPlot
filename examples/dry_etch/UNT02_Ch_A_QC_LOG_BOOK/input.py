@@ -74,11 +74,17 @@ sht_name_cp = 'RESP1A-CP'
 sht_name_er = 'RESP1A-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "LSL", "USL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "UCL", "USL", "Remarks"]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\UNT02_Ch_A_QC_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\UNT_02_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK\\UNT02_Ch_A_QC_LOG_BOOK.xlsm"
+# Metrology tool measurement coordinates
+x_coord_sin_range = 'E15:M15'
+y_coord_sin_range = 'E16:M16'
+x_coord_teos_range = 'E17:M17'
+y_coord_teos_range = 'E18:M18'
+
+# skiprows
+skiprows = 18
