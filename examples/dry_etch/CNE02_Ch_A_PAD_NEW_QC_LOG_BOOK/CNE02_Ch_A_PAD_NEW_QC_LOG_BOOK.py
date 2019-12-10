@@ -3,6 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from dir import *
 from input import *
 # import datetime as dt
 # import win32api
@@ -32,9 +33,9 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_reox1a_cp_plot(x, y1, y2, remarks):
+def draw_plotly_reox1a_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -63,17 +64,17 @@ def draw_plotly_reox1a_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -354,9 +355,29 @@ def draw_plotly_reox1a_unif_teos_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm')
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
+
+    #****************************************************************************************************************************************************************
+    # Define sheets
+    sht_reox1a_cp = wb.sheets[sht_name_cp]
+    sht_reox1a_er = wb.sheets[sht_name_er]
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_sin = sht_reox1a_er.range(x_coord_sin_range).value
+    y_coord_sin = sht_reox1a_er.range(y_coord_sin_range).value
+    x_coord_teos = sht_reox1a_er.range(x_coord_teos_range).value
+    y_coord_teos = sht_reox1a_er.range(y_coord_teos_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_reox1a_cp, sht_reox1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file
+
+def button_run():
+    wb, sht_reox1a_cp, sht_reox1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Define sheets
@@ -374,15 +395,15 @@ def main():
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- sht_name_cp
     df_reox1a_cp = df_reox1a_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_reox1a_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reox1a_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reox1a_cp = df_reox1a_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_reox1a_plot_cp.range('A25').options(index=False).value = df_reox1a_cp         # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A25').options(index=False).value = df_reox1a_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_reox1a_cp_date = df_reox1a_cp["Date (MM/DD/YYYY)"]
     df_reox1a_cp_delta_cp = df_reox1a_cp["delta CP"]
     df_reox1a_cp_usl = df_reox1a_cp["USL"]
-    # df_reox1a_cp_ucl = df_reox1a_cp["UCL"]
+    df_reox1a_cp_ucl = df_reox1a_cp["UCL"]
     df_reox1a_cp_remarks = df_reox1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -391,7 +412,7 @@ def main():
         x = date_formatter(df_reox1a_cp_date), 
         y1 = df_reox1a_cp_delta_cp, 
         y2 = df_reox1a_cp_usl, 
-        # y3 = df_reox1a_cp_ucl,
+        y3 = df_reox1a_cp_ucl,
         remarks = df_reox1a_cp_remarks
         )
 
@@ -402,13 +423,8 @@ def main():
         - SiN, 
         - TEOS 
     """
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_reox1a_er = excel_file_sht_er.parse(sht_name_er, skiprows=9)                            # copy a sheet and paste into another sheet and skiprows 8
-    df_reox1a_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_reox1a_er = excel_file.parse(sht_name_er, skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
     df_reox1a_er = df_reox1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reox1a_er_sin = df_reox1a_er[df_reox1a_er["Layer"] == 'SiN']
     df_reox1a_er_sin = df_reox1a_er_sin.dropna()      # dropping rows where at least one element is missing
@@ -416,9 +432,8 @@ def main():
     df_reox1a_er_teos = df_reox1a_er_teos.dropna()      # dropping rows where at least one element is missing
 
     # Display the dataframes in respective sheets
-    # sht_reox1a_plot_barc.range('A25').options(index=False).value = df_reox1a_barc
-    # sht_reox1a_plot_pr.range('A25').options(index=False).value = df_reox1a_pr
-    # sht_reox1a_plot_teos.range('A25').options(index=False).value = df_reox1a_teos
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_sin
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_teos
 
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -495,9 +510,13 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
