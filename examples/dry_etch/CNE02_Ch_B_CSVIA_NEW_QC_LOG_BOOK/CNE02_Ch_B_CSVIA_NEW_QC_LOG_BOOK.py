@@ -3,6 +3,8 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from dir import *
+from input import *
 # import datetime as dt
 # import win32api
 # import os
@@ -11,63 +13,6 @@ import plotly.graph_objs as go
 
 
 
-#==================================================================================================================================================================
-# Global variables
-line_color = '#3f51b5'      # line (trace1) color for any plot
-marker_color = '#43a047'    # marker color for any plot
-marker_border_color = '#ffffff'     # marker border color for any plot
-cl_color = '#ffa000'    # control limit line color for any plot
-sl_color = '#e53935'    # spec limit line color for any plot
-cp_plot_title = 'CP Plot for REOX1B'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'REOX1B_CP-Plot.html'   # HTML filename for CP plot
-cp_plot_trace_count = 3    # no. of traces in CP plot
-er_bpsgcs_plot_title = 'BPSG_CS ER Plot for REOX1B'  # title for ER plot
-er_bpsgcs_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_bpsgcs_plot_ylabel = 'BPSG_CS ER (A/min)'   # yaxis name for ER plot
-er_bpsgcs_plot_html_file = 'REOX1B_BPSG_CS_ER-Plot.html'   # HTML filename for ER plot
-er_bpsgcs_plot_trace_count = 5    # no. of traces in ER plot
-unif_bpsgcs_plot_title = 'BPSG_CS Uniformity Plot for REOX1B'  # title for Unif plot
-unif_bpsgcs_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_bpsgcs_plot_ylabel = 'BPSG_CS Unif (%)'    # yaxis name for Unif plot
-unif_bpsgcs_plot_html_file = 'REOX1B_BPSG_CS_Unif-Plot.html'   # HTML filename for Unif plot
-unif_bpsgcs_plot_trace_count = 2    # no. of traces in Unif plot
-er_sincs_plot_title = 'SiN_CS ER Plot for REOX1B'  # title for ER plot
-er_sincs_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_sincs_plot_ylabel = 'SiN_CS ER (A/min)'   # yaxis name for ER plot
-er_sincs_plot_html_file = 'REOX1B_SiN_CS_ER-Plot.html'   # HTML filename for ER plot
-er_sincs_plot_trace_count = 5    # no. of traces in ER plot
-unif_sincs_plot_title = 'SiN_CS Uniformity Plot for REOX1B'  # title for Unif plot
-unif_sincs_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_sincs_plot_ylabel = 'SiN_CS Unif (%)'    # yaxis name for Unif plot
-unif_sincs_plot_html_file = 'REOX1B_SiN_CS_Unif-Plot.html'   # HTML filename for Unif plot
-unif_sincs_plot_trace_count = 2    # no. of traces in Unif plot
-er_teosvia_plot_title = 'TEOS_VIA ER Plot for REOX1B'  # title for ER plot
-er_teosvia_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_teosvia_plot_ylabel = 'TEOS_VIA ER (A/min)'   # yaxis name for ER plot
-er_teosvia_plot_html_file = 'REOX1B_TEOS_VIA_ER-Plot.html'   # HTML filename for ER plot
-er_teosvia_plot_trace_count = 5    # no. of traces in ER plot
-unif_teosvia_plot_title = 'TEOS_VIA Uniformity Plot for REOX1B'  # title for Unif plot
-unif_teosvia_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_teosvia_plot_ylabel = 'TEOS_VIA Unif (%)'    # yaxis name for Unif plot
-unif_teosvia_plot_html_file = 'REOX1B_TEOS_VIA_Unif-Plot.html'   # HTML filename for Unif plot
-unif_teosvia_plot_trace_count = 3    # no. of traces in Unif plot
-er_arc_plot_title = 'ARC ER Plot for REOX1B'  # title for ER plot
-er_arc_plot_xlabel = 'Date'        # xaxis name for ER plot
-er_arc_plot_ylabel = 'ARC ER (A/min)'   # yaxis name for ER plot
-er_arc_plot_html_file = 'REOX1B_ARC_ER-Plot.html'   # HTML filename for ER plot
-er_arc_plot_trace_count = 5    # no. of traces in ER plot
-unif_arc_plot_title = 'ARC Uniformity Plot for REOX1B'  # title for Unif plot
-unif_arc_plot_xlabel = 'Date'      # xaxis name for Unif plot
-unif_arc_plot_ylabel = 'ARC Unif (%)'    # yaxis name for Unif plot
-unif_arc_plot_html_file = 'REOX1B_ARC_Unif-Plot.html'   # HTML filename for Unif plot
-unif_arc_plot_trace_count = 3    # no. of traces in Unif plot
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\Examples\\dry_etch\\CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK\\CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK\\CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK\\CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -89,9 +34,9 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_reox1b_cp_plot(x, y1, y2, remarks):
+def draw_plotly_reox1b_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -120,17 +65,17 @@ def draw_plotly_reox1b_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -677,19 +622,33 @@ def draw_plotly_reox1b_unif_arc_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('CNE02_Ch_B_CSVIA_NEW_QC_LOG_BOOK.xlsm')
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
     # Define sheets
     sht_reox1b_cp = wb.sheets['REOX1B-CP']
     sht_reox1b_er = wb.sheets['REOX1B-ER']
-    # sht_reox1b_test = wb.sheets['test']
-    # sht_reox1b_plot_bpsgcs = wb.sheets['BPSG_CS Plot']
-    # sht_reox1b_plot_sincs = wb.sheets['PR Plot']
-    # sht_reox1b_plot_teosvia = wb.sheets['TEOS_VIA Plot']
-    # sht_reox1b_plot_arc = wb.sheets['ARC Plot']
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_bpsgcs = sht_reox1b_er.range(x_coord_bpsgcs_range).value
+    y_coord_bpsgcs = sht_reox1b_er.range(y_coord_bpsgcs_range).value
+    x_coord_sincs = sht_reox1b_er.range(x_coord_sincs_range).value
+    y_coord_sincs = sht_reox1b_er.range(y_coord_sincs_range).value
+    x_coord_teosvia = sht_reox1b_er.range(x_coord_teosvia_range).value
+    y_coord_teosvia = sht_reox1b_er.range(y_coord_teosvia_range).value
+    x_coord_arc = sht_reox1b_er.range(x_coord_arc_range).value
+    y_coord_arc = sht_reox1b_er.range(y_coord_arc_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_reox1b_cp, sht_reox1b_er, sht_run, x_coord_bpsgcs, y_coord_bpsgcs, x_coord_sincs, y_coord_sincs, x_coord_teosvia, y_coord_teosvia, x_coord_arc, y_coord_arc, excel_file
+
+def button_run():
+    wb, sht_reox1b_cp, sht_reox1b_er, sht_run, x_coord_bpsgcs, y_coord_bpsgcs, x_coord_sincs, y_coord_sincs, x_coord_teosvia, y_coord_teosvia, x_coord_arc, y_coord_arc, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
@@ -697,15 +656,15 @@ def main():
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- 'REOX1B-CP'
     df_reox1b_cp = df_reox1b_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_reox1b_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reox1b_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reox1b_cp = df_reox1b_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_reox1b_plot_cp.range('A25').options(index=False).value = df_reox1b_cp         # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A25').options(index=False).value = df_reox1b_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_reox1b_cp_date = df_reox1b_cp["Date (MM/DD/YYYY)"]
     df_reox1b_cp_delta_cp = df_reox1b_cp["delta CP"]
     df_reox1b_cp_usl = df_reox1b_cp["USL"]
-    # df_reox1b_cp_ucl = df_reox1b_cp["UCL"]
+    df_reox1b_cp_ucl = df_reox1b_cp["UCL"]
     df_reox1b_cp_remarks = df_reox1b_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -714,7 +673,7 @@ def main():
         x = date_formatter(df_reox1b_cp_date), 
         y1 = df_reox1b_cp_delta_cp, 
         y2 = df_reox1b_cp_usl, 
-        # y3 = df_reox1b_cp_ucl,
+        y3 = df_reox1b_cp_ucl,
         remarks = df_reox1b_cp_remarks
         )
 
@@ -727,13 +686,8 @@ def main():
         - TEOS_VIA 
         - ARC
     """
-    # data_folder = Path(os.getcwd())
-    # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
-    # excel_file = pd.ExcelFile(file_to_open)
-
-    excel_file_sht_er = pd.ExcelFile(excel_file_directory)
-    df_reox1b_er = excel_file_sht_er.parse('REOX1B-ER', skiprows=13)                            # copy a sheet and paste into another sheet and skiprows 13
-    df_reox1b_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_reox1b_er = excel_file.parse('REOX1B-ER', skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 13
+    df_reox1b_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
     df_reox1b_er = df_reox1b_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_reox1b_er_bpsgcs = df_reox1b_er[df_reox1b_er["Layer"] == 'BPSG_CS']
     df_reox1b_er_bpsgcs = df_reox1b_er_bpsgcs.dropna()      # dropping rows where at least one element is missing
@@ -745,10 +699,10 @@ def main():
     df_reox1b_er_arc = df_reox1b_er_arc.dropna()      # dropping rows where at least one element is missing
 
     # Display the dataframes in respective sheets
-    # sht_reox1b_test.range('A5').options(index=False).value = df_reox1b_er_bpsgcs
-    # sht_reox1b_test.range('A5').options(index=False).value = df_reox1b_er_sincs
-    # sht_reox1b_test.range('A5').options(index=False).value = df_reox1b_er_teosvia
-    # sht_reox1b_test.range('A5').options(index=False).value = df_reox1b_er_arc
+    # sht_run.range('A5').options(index=False).value = df_reox1b_er_bpsgcs
+    # sht_run.range('A5').options(index=False).value = df_reox1b_er_sincs
+    # sht_run.range('A5').options(index=False).value = df_reox1b_er_teosvia
+    # sht_run.range('A5').options(index=False).value = df_reox1b_er_arc
 
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -898,9 +852,13 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()
