@@ -3,6 +3,7 @@ import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
+from dir import *
 from input import *
 # import datetime as dt
 # import win32api
@@ -33,9 +34,9 @@ def date_formatter(x):
 "x": Date (x-axis) for CP Chart
 "y1": Delta-CP (y-axis) for CP Chart
 "y2": USL (y-axis) for CP Chart
-# "y3": UCL (y-axis) for CP Chart
+"y3": UCL (y-axis) for CP Chart
 """
-def draw_plotly_resp1b_cp_plot(x, y1, y2, remarks):
+def draw_plotly_resp1b_cp_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -64,17 +65,17 @@ def draw_plotly_resp1b_cp_plot(x, y1, y2, remarks):
                     width = 3)
     )
 
-    # trace3 = go.Scatter(
-    #         x = x,
-    #         y = y3,
-    #         name = 'UCL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = cl_color,
-    #                 width = 3)
-    # )
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'UCL',
+            mode = 'lines',
+            line = dict(
+                    color = cl_color,
+                    width = 3)
+    )
 
-    data = [trace1, trace2]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -166,10 +167,10 @@ def draw_plotly_resp1b_er_barc_plot(x, y1, y2, y3, y4, y5, remarks):
 "Description": This function plots Unif Chart with traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
-# "y2": USL (y-axis) for Unif Chart
+"y2": USL (y-axis) for Unif Chart
 "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1b_unif_barc_plot(x, y1, y3, remarks):
+def draw_plotly_resp1b_unif_barc_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -188,15 +189,15 @@ def draw_plotly_resp1b_unif_barc_plot(x, y1, y3, remarks):
             text = remarks
     )
 
-    # trace2 = go.Scatter(
-    #         x = x,
-    #         y = y2,
-    #         name = 'USL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = sl_color,
-    #                 width = 3)
-    # )
+    trace2 = go.Scatter(
+            x = x,
+            y = y2,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
 
     trace3 = go.Scatter(
             x = x,
@@ -208,7 +209,7 @@ def draw_plotly_resp1b_unif_barc_plot(x, y1, y3, remarks):
                     width = 3)
     )
 
-    data = [trace1, trace3]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_barc_plot_title,
             xaxis = dict(title= unif_barc_plot_xlabel),
@@ -300,10 +301,10 @@ def draw_plotly_resp1b_er_pr_plot(x, y1, y2, y3, y4, y5, remarks):
 "Description": This function plots Unif Chart with traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
-# "y2": USL (y-axis) for Unif Chart
+"y2": USL (y-axis) for Unif Chart
 "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_resp1b_unif_pr_plot(x, y1, y3, remarks):
+def draw_plotly_resp1b_unif_pr_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -322,15 +323,15 @@ def draw_plotly_resp1b_unif_pr_plot(x, y1, y3, remarks):
             text = remarks
     )
 
-    # trace2 = go.Scatter(
-    #         x = x,
-    #         y = y2,
-    #         name = 'USL',
-    #         mode = 'lines',
-    #         line = dict(
-    #                 color = sl_color,
-    #                 width = 3)
-    # )
+    trace2 = go.Scatter(
+            x = x,
+            y = y2,
+            name = 'USL',
+            mode = 'lines',
+            line = dict(
+                    color = sl_color,
+                    width = 3)
+    )
 
     trace3 = go.Scatter(
             x = x,
@@ -342,7 +343,7 @@ def draw_plotly_resp1b_unif_pr_plot(x, y1, y3, remarks):
                     width = 3)
     )
 
-    data = [trace1, trace3]
+    data = [trace1, trace2, trace3]
     layout = dict(
             title = unif_pr_plot_title,
             xaxis = dict(title= unif_pr_plot_xlabel),
@@ -621,8 +622,10 @@ def draw_plotly_resp1b_unif_sin_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-def main():
-    wb = xw.Book.caller()
+def init():
+    # Initialize the workbook
+    # wb = xw.Book.caller()
+    wb = xw.Book('UNT02_Ch_B_QC_LOG_BOOK.xlsm')
     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
 
     #****************************************************************************************************************************************************************
@@ -630,12 +633,23 @@ def main():
     sht_resp1b_cp = wb.sheets[sht_name_cp]
     sht_resp1b_er_barc_pr_teos = wb.sheets[sht_name_er_barc_pr_teos]
     sht_resp1b_sin = wb.sheets[sht_name_er_sin]
-    # sht_resp1b_plot_cp = wb.sheets['CP Plot']
-    # sht_resp1b_plot_barc = wb.sheets['BARC Plot']
-    # sht_resp1b_plot_pr = wb.sheets['PR Plot']
-    # sht_resp1b_plot_teos = wb.sheets['TEOS Plot']
-    # sht_resp1b_plot_sin = wb.sheets['SiN Plot']
+    sht_run = wb.sheets['RUN_code']     # for testing purpose
+    #****************************************************************************************************************************************************************
+    x_coord_barc = sht_resp1b_er_barc_pr_teos.range(x_coord_barc_range).value
+    y_coord_barc = sht_resp1b_er_barc_pr_teos.range(y_coord_barc_range).value
+    x_coord_pr = sht_resp1b_er_barc_pr_teos.range(x_coord_pr_range).value
+    y_coord_pr = sht_resp1b_er_barc_pr_teos.range(y_coord_pr_range).value
+    x_coord_teos = sht_resp1b_er_barc_pr_teos.range(x_coord_teos_range).value
+    y_coord_teos = sht_resp1b_er_barc_pr_teos.range(y_coord_teos_range).value
+    x_coord_sin = sht_resp1b_sin.range(x_coord_sin_range).value
+    y_coord_sin = sht_resp1b_sin.range(y_coord_sin_range).value
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     excel_file = pd.ExcelFile(excel_file_directory)
+
+    return wb, sht_resp1b_cp, sht_resp1b_er_barc_pr_teos, sht_resp1b_sin, sht_run, x_coord_barc, y_coord_barc, x_coord_pr, y_coord_pr, x_coord_teos, y_coord_teos, x_coord_sin, y_coord_sin, excel_file
+
+def button_run():
+    wb, sht_resp1b_cp, sht_resp1b_er_barc_pr_teos, sht_resp1b_sin, sht_run, x_coord_barc, y_coord_barc, x_coord_pr, y_coord_pr, x_coord_teos, y_coord_teos, x_coord_sin, y_coord_sin, excel_file = init()
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP
@@ -643,15 +657,15 @@ def main():
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- sht_name_cp
     df_resp1b_cp = df_resp1b_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_resp1b_cp['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_resp1b_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_resp1b_cp = df_resp1b_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_resp1b_plot_cp.range('A25').options(index=False).value = df_resp1b_cp         # show the dataframe values into sheet- 'CP Plot'
+    # sht_run.range('A25').options(index=False).value = df_resp1b_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_resp1b_cp_date = df_resp1b_cp["Date (MM/DD/YYYY)"]
     df_resp1b_cp_delta_cp = df_resp1b_cp["delta CP"]
     df_resp1b_cp_usl = df_resp1b_cp["USL"]
-    # df_resp1b_cp_ucl = df_resp1b_cp["UCL"]
+    df_resp1b_cp_ucl = df_resp1b_cp["UCL"]
     df_resp1b_cp_remarks = df_resp1b_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -660,7 +674,7 @@ def main():
         x = date_formatter(df_resp1b_cp_date), 
         y1 = df_resp1b_cp_delta_cp, 
         y2 = df_resp1b_cp_usl, 
-        # y3 = df_resp1b_cp_ucl,
+        y3 = df_resp1b_cp_ucl,
         remarks = df_resp1b_cp_remarks
         )
 
@@ -676,13 +690,12 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_resp1b_er = excel_file.parse(sht_name_er_barc_pr_teos, skiprows=8)                            # copy a sheet and paste into another sheet and skiprows 8
-    df_resp1b_er['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_resp1b_er = excel_file.parse(sht_name_er_barc_pr_teos, skiprows=skiprows_barc_pr_teos)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_resp1b_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
     df_resp1b_er = df_resp1b_er[sht_er_barc_pr_teos_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_resp1b_barc_pr = df_resp1b_er.drop(columns='% Uni USL')      # in BARC, PR, '% Uni USL' is not defined, so drop this column.
-    df_resp1b_er_barc = df_resp1b_barc_pr[df_resp1b_er["Layer"] == 'BARC']
+    df_resp1b_er_barc = df_resp1b_er[df_resp1b_er["Layer"] == 'BARC']
     df_resp1b_er_barc = df_resp1b_er_barc.dropna()		# dropping rows where at least one element is missing
-    df_resp1b_er_pr = df_resp1b_barc_pr[df_resp1b_er["Layer"] == 'PR']
+    df_resp1b_er_pr = df_resp1b_er[df_resp1b_er["Layer"] == 'PR']
     df_resp1b_er_pr = df_resp1b_er_pr.dropna()			# dropping rows where at least one element is missing
     df_resp1b_er_teos = df_resp1b_er[df_resp1b_er["Layer"] == 'TEOS']
     df_resp1b_er_teos = df_resp1b_er_teos.dropna()		# dropping rows where at least one element is missing
@@ -702,7 +715,7 @@ def main():
     df_resp1b_er_barc_ucl = df_resp1b_er_barc["UCL"]
     df_resp1b_er_barc_lcl = df_resp1b_er_barc["LCL"]
     df_resp1b_er_barc_unif = df_resp1b_er_barc["% Uni"]
-    # df_resp1b_er_barc_unif_usl = df_resp1b_er_barc["% Uni USL"]
+    df_resp1b_er_barc_unif_usl = df_resp1b_er_barc["% Uni USL"]
     df_resp1b_er_barc_unif_ucl = df_resp1b_er_barc["% Uni UCL"]
     df_resp1b_er_barc_remarks = df_resp1b_er_barc["Remarks"]
   
@@ -723,7 +736,7 @@ def main():
     draw_plotly_resp1b_unif_barc_plot(
         x = date_formatter(df_resp1b_er_barc_date), 
         y1 = df_resp1b_er_barc_unif, 
-        # y2 = df_resp1b_er_barc_unif_usl,
+        y2 = df_resp1b_er_barc_unif_usl,
         y3 = df_resp1b_er_barc_unif_ucl,
         remarks = df_resp1b_er_barc_remarks
         )
@@ -737,7 +750,7 @@ def main():
     df_resp1b_er_pr_ucl = df_resp1b_er_pr["UCL"]
     df_resp1b_er_pr_lcl = df_resp1b_er_pr["LCL"]
     df_resp1b_er_pr_unif = df_resp1b_er_pr["% Uni"]
-    # df_resp1b_er_pr_unif_usl = df_resp1b_er_pr["% Uni USL"]
+    df_resp1b_er_pr_unif_usl = df_resp1b_er_pr["% Uni USL"]
     df_resp1b_er_pr_unif_ucl = df_resp1b_er_pr["% Uni UCL"]
     df_resp1b_er_pr_remarks = df_resp1b_er_pr["Remarks"]
   
@@ -758,7 +771,7 @@ def main():
     draw_plotly_resp1b_unif_pr_plot(
         x = date_formatter(df_resp1b_er_pr_date), 
         y1 = df_resp1b_er_pr_unif, 
-        # y2 = df_resp1b_er_pr_unif_usl,
+        y2 = df_resp1b_er_pr_unif_usl,
         y3 = df_resp1b_er_pr_unif_ucl,
         remarks = df_resp1b_er_pr_remarks
         )
@@ -807,8 +820,8 @@ def main():
     # file_to_open = data_folder / "ASH09_QC_LOG_BOOK.xlsm"
     # excel_file = pd.ExcelFile(file_to_open)
 
-    df_resp1b_er_sin = excel_file.parse(sht_name_er_sin, skiprows=5)                            # copy a sheet and paste into another sheet and skiprows 5
-    df_resp1b_er_sin['Remarks'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL' in "Remarks" column 
+    df_resp1b_er_sin = excel_file.parse(sht_name_er_sin, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 5
+    df_resp1b_er_sin['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
     df_resp1b_er_sin = df_resp1b_er_sin[sht_er_sin_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
     df_resp1b_er_sin = df_resp1b_er_sin.dropna()			# dropping rows where at least one element is missing
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -853,9 +866,13 @@ def main():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # User Defined Functions (UDFs)
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@xw.func
-def hello(name):
-    return "hello {0}".format(name)
+# @xw.func
+# def hello(name):
+#     return "hello {0}".format(name)
 
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# MAIN Function call
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    button_run()

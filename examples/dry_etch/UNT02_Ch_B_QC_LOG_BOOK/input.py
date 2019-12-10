@@ -74,13 +74,26 @@ sht_name_cp = 'RESP1B-CP'
 sht_name_er_barc_pr_teos = 'ER-BARC,PR & TEOS'
 sht_name_er_sin = 'SIN ER'
 
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
 sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\UNT02_Ch_B_QC_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\UNT_02_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK\\UNT02_Ch_B_QC_LOG_BOOK.xlsm"
+# Metrology tool measurement coordinates
+x_coord_barc_range = 'F7:N7'
+y_coord_barc_range = 'F8:N8'
+x_coord_pr_range = 'F9:N9'
+y_coord_pr_range = 'F10:N10'
+x_coord_teos_range = 'F11:N11'
+y_coord_teos_range = 'F12:N12'
+x_coord_sin_range = 'E7:Q7'
+y_coord_sin_range = 'E8:Q8'
+
+# Skiprows
+skiprows_cp = 8
+skiprows_barc_pr_teos = 12
+skiprows_nit = 8
