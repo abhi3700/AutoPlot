@@ -46,11 +46,19 @@ sht_name_cp = 'REOX1C-CP'
 sht_name_er = 'REOX1C-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "Remarks"]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL"]   # deleted "% Uni UCL" column
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]   # deleted "% Uni UCL" column
  
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
 
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNE_02_LOG_BOOK\\NEW LOGBOOK WITH MORE DATA POINTS\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK\\CNE02_Ch_C_RAA_NEW_QC_LOG_BOOK.xlsm"
+# Metrology tool measurement coordinates
+x_coord_arc_range = 'D9:L9'
+y_coord_arc_range = 'D10:L10'
+x_coord_teos_range = 'D11:L11'
+y_coord_teos_range = 'D12:L12'
+
+# Skiprows
+skiprows_cp = 8
+skiprows_er = 12
