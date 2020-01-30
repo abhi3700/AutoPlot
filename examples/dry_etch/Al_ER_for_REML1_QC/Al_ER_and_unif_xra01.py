@@ -4,26 +4,36 @@ import plotly.graph_objs as go
 import pandas as pd
 
 # ----------------------------------------------------------------------
-# input vars
+# input vars for XRA01
 filename_pre = 'Al_PRE_Contour_plot_XRA_'
 filename_er = 'Al_ER_Contour_plot_XRA_'
 titlename_pre = 'PRE-Thickness'
 titlename_er = 'ER'
 
 excel_file_directory = 'Al_ER_and_unif.xlsx'
+cols = ['site_1', 'site_2', 'site_3', 'site_4', 'site_5', 'site_6', 'site_7',
+        'site_8', 'site_9', 'site_10', 'site_11', 'site_12', 'site_13']
+        
+sht_name = '13 pt XRA Al ER'
+skiprows_ = 11
+coords_x = [0,0,30,0,-30,0,60,0,-60,0,90,0,-90]
+coords_y = [0,-30,0,30,0,-60,0,60,0,-90,0,90,0]
+
+row_list_pre = [0, 3, 6, 9, 12]
+row_list_er = [2, 5, 8, 11, 14]
+
 
 # ----------------------------------------------------------------------
 # Read data from a csv
-df = pd.read_excel(excel_file_directory, sheet_name= '13 pt XRA Al ER', skiprows= 11)
+df = pd.read_excel(excel_file_directory, sheet_name= sht_name, skiprows= skiprows_)
 
-df = df[['site_1', 'site_2', 'site_3', 'site_4', 'site_5', 'site_6', 'site_7',
-        'site_8', 'site_9', 'site_10', 'site_11', 'site_12', 'site_13']]
+df = df[cols]
 
 # print(df)
 # print(df.iloc[2].tolist())
 
-x1 = [0,0,30,0,-30,0,60,0,-60,0,90,0,-90]
-y1 = [0,-30,0,30,0,-60,0,60,0,-90,0,90,0]
+x1 = coords_x
+y1 = coords_y
 
 def contour_plot(i, l, fname, tname):
     trace1 = go.Contour(
@@ -97,8 +107,6 @@ def contour_plot(i, l, fname, tname):
     )
     py.offline.plot(fig, filename= fname + str(l.index(i)+1) + '.html')
 
-row_list_pre = [0, 3, 6, 9, 12]
-row_list_er = [2, 5, 8, 11, 14]
 
 for i in row_list_pre:
     contour_plot(i, row_list_pre, filename_pre, titlename_pre)

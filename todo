@@ -1,16 +1,5 @@
-- 2 updates in all 9 QC logbooks: 
-  [1] --> replace NIL with '.'
-  [2] --> add coordinates & skiprows
-  [3] --> add main function 
-  + ASFE1
-  + ASBE1
-  + REML1
-  + REPL1B
-  + RESP1A
-  + RESP1B
-  + REOX1A
-  + REOX1B
-  + REOX1C
+- check version & notify if there is any error.
+- modify dir 'ch_1.xlsm'
 - v1.5 & v1.6 & v1.7 in all equipments
   + REPL1A
   - REPL1B
@@ -25,9 +14,6 @@
 - User manual
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
-+ RUN button to update the charts in the same directory.
-+ Link RUN button to `run.bat` file
-+ main() function to be added & the main function has to be linked
 -------------------------------------------------------------
 # Future Work:
 - v2.0: Desktop App (browser-based) for each equipment/chamber.
