@@ -20,24 +20,29 @@ cols = ['site_1', 'site_2', 'site_3', 'site_4', 'site_5', 'site_6', 'site_7',
         'site_43', 'site_44', 'site_45', 'site_46', 'site_47', 'site_48', 'site_49']
 
 sht_name = '49 pt MTRS1 Al Rs'
+sht_name_coords = 'MTRS1_49 pt values'
 skiprows_ = 11
-coords_x = [0,0,30,0,-30,0,60,0,-60,0,90,0,-90]
-coords_y = [0,-30,0,30,0,-60,0,60,0,-90,0,90,0]
+skiprows_coords = 0
 
-row_list_pre = [2, 7, 12, 17, 22]
-row_list_er = [4, 9, 14, 19, 24]
+# coords_x = [0,0,30,0,-30,0,60,0,-60,0,90,0,-90]
+# coords_y = [0,-30,0,30,0,-60,0,60,0,-90,0,90,0]
+
+row_list_pre = [2, 7, 12, 17, 22, 27]
+row_list_er = [4, 9, 14, 19, 24, 29]
 
 # ----------------------------------------------------------------------
 # Read data from a csv
 df = pd.read_excel(excel_file_directory, sheet_name= sht_name, skiprows= skiprows_)
-
-df = df[cols]
-
 # print(df)
-# print(df.iloc[2].tolist())
+df_coords = pd.read_excel(excel_file_directory, sheet_name= sht_name_coords, skiprows= skiprows_coords)
+# print(df_coords)
 
-x1 = coords_x
-y1 = coords_y
+
+x1 = df_coords['x'].tolist()
+y1 = df_coords['y'].tolist()
+
+# print(x1)
+# print(y1)
 
 def contour_plot(i, l, fname, tname):
     trace1 = go.Contour(
