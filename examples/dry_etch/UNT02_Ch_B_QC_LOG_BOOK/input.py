@@ -75,7 +75,8 @@ sht_name_er_barc_pr_teos = 'ER-BARC,PR & TEOS'
 sht_name_er_sin = 'SIN ER'
 
 sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
-sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
+# sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
+sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "STDEV", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 
