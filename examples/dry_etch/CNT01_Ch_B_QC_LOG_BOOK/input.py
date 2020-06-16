@@ -6,38 +6,69 @@ marker_border_color = '#ffffff'     # marker border color for any plot
 cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
 
-# dtype1 Plot
-dtype1_plot_title = 'dtype1 Plot for ch_1'  # title for dtype1 plot
-dtype1_plot_xlabel = 'Date'   # xaxis name for dtype1 plot
-dtype1_plot_ylabel = 'delta dtype1 (no.s)'     # yaxis name for dtype1 plot
-dtype1_plot_html_file = 'ch_1_dtype1-Plot.html'   # HTML filename for dtype1 plot
-dtype1_plot_trace_count = 2    # no. of traces in dtype1 plot
+# CP Plot
+cp_plot_title = 'CP Plot for REPL1B'  # title for CP plot
+cp_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_html_file = 'REPL1B_CP-Plot.html'   # HTML filename for CP plot
+cp_plot_trace_count = 2    # no. of traces in CP plot
 
-# dtype2 ER Plot
-er_dtype2_plot_title = 'dtype2 ER Plot for ch_1'  # title for dtype2 ER plot
-er_dtype2_plot_xlabel = 'Date'        # xaxis name for dtype2 ER plot
-er_dtype2_plot_ylabel = 'dtype2 ER (A/min)'   # yaxis name for dtype2 ER plot
-er_dtype2_plot_html_file = 'ch_1_dtype2_ER-Plot.html'   # HTML filename for dtype2 ER plot
-er_dtype2_plot_trace_count = 5    # no. of traces in dtype2 ER plot
+# NIT ER Plot
+er_nit_plot_title = 'Nit ER Plot for REPL1B'  # title for Nit ER plot
+er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
+er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
+er_nit_plot_html_file = 'REPL1B_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
+er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
+er_nit_contour_fname = 'REPL1B_Nit_ER-Plot_Contour.html'
+er_nit_contour_tname = 'NIT ER'
 
-# dtype2 Unif Plot
-unif_dtype2_plot_title = 'dtype2 Uniformity Plot for ch_1'  # title for dtype2 Unif plot
-unif_dtype2_plot_xlabel = 'Date'      # xaxis name for dtype2 Unif plot
-unif_dtype2_plot_ylabel = 'dtype2 Unif (%)'    # yaxis name for dtype2 Unif plot
-unif_dtype2_plot_html_file = 'ch_1_dtype2_Unif-Plot.html'   # HTML filename for dtype2 Unif plot
-unif_dtype2_plot_trace_count = 3    # no. of traces in dtype2 Unif plot
+# NIT Unif Plot
+unif_nit_plot_title = 'Nit Uniformity Plot for REPL1B'  # title for Nit Unif plot
+unif_nit_plot_xlabel = 'Date'      # xaxis name for Nit Unif plot
+unif_nit_plot_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif plot
+unif_nit_plot_html_file = 'REPL1B_Nit_Unif-Plot.html'   # HTML filename for Nit Unif plot
+unif_nit_plot_trace_count = 3    # no. of traces in Nit Unif plot
+
+# POLY ER Plot
+er_poly_plot_title = 'Poly ER Plot for REPL1B'  # title for Poly ER plot
+er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
+er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
+er_poly_plot_html_file = 'REPL1B_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
+er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
+er_poly_contour_fname = 'REPL1B_Poly_ER-Plot_Contour.html'
+er_poly_contour_tname = 'POLY ER'
+
+# POLY Unif Plot
+unif_poly_plot_title = 'Poly Uniformity Plot for REPL1B'  # title for Poly Unif plot
+unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
+unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
+unif_poly_plot_html_file = 'REPL1B_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
+unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
 
 # Sheet names
-sht_name_dtype1 = 'dtype_1'
-sht_name_er_dtype2 = 'dtype_2'
+sht_name_cp = 'REPL1B-CP'
+sht_name_er_nit = 'REPL1B-ERNit'
+sht_name_er_poly = 'REPL1B-ERPoly'
 
 # Columns
-sht_dtype1_columns = ["Date (MM/DD/YYYY)", "delta dtype1", "USL", "UCL", "Remarks"]
-sht_er_dtype2_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
+sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
+sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
+sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)", "Result"]
+N_cl = 30
 
 # Date formatter
 date_format = "%m-%d-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
+
+# Metrology tool measurement coordinates
+x_coord_nit_range = 'D9:P9'
+y_coord_nit_range = 'D10:P10'
+x_coord_poly_range = 'D9:T9'
+y_coord_poly_range = 'D10:T10'
 
 # Skiprows
-skiprows_dtype1 = 8
-skiprows_dtype2 = 10
+skiprows_cp = 8
+skiprows_nit = 10
+skiprows_poly = 10
