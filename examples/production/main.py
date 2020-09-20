@@ -167,10 +167,10 @@ data = []
 for df in  dfs:
     c = df['marker_color'].tolist()[0]
     trace = go.Scatter3d(
-                    x= df[cols[0]].tolist(),
-                    y= df[cols[3]].tolist(),
-                    z= df[cols[4]].tolist(),
-                    name=df[cols[1]].tolist()[0],
+                    x= df[cols[0]].tolist(),        # Area eff
+                    y= df[cols[2]].tolist(),        # Device name
+                    z= df[cols[4]].tolist(),        # yield
+                    name=df[cols[2]].tolist()[0],   # legend: Device name
                     mode='markers',
                     marker = dict(
                             color = c,
@@ -179,7 +179,7 @@ for df in  dfs:
                                 color = trace_all_marker_border_color,
                                 width = 0.5),
                             ),
-                    text = df[cols[2]].tolist()
+                    text = df[cols[3]].tolist()     # Lot ID
                 )
     data.append(trace)
 
