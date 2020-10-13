@@ -158,4 +158,4 @@ layout = dict(
 
 
 fig = dict(data= data, layout= layout)
-# py.offline.plot(fig, filename= plot_filename)
+py.offline.plot(fig, filename= plot_filename)
