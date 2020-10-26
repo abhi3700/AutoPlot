@@ -1,7 +1,11 @@
 #==================================================================================================================================================================
 # Global variables
 line_color = '#3f51b5'      # line (trace0) color for any plot
+line_color_2 = '#80deea'      # line (trace1) color for any plot
+line_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_color = '#43a047'    # marker color for any plot
+marker_color_2 = '#80deea'      # line (trace1) color for any plot
+marker_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_border_color = '#ffffff'     # marker border color for any plot
 cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
@@ -51,7 +55,7 @@ sht_name_er_nit = 'REPL1A-ERNit'
 sht_name_er_poly = 'REPL1A-ERPoly'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
 sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
 sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
@@ -72,6 +76,3 @@ y_coord_poly_range = 'D10:T10'
 skiprows_cp = 8
 skiprows_nit = 10
 skiprows_poly = 10
-
-excel_file_directory = "I:\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
-# excel_file_directory = "\\\\vmfg\\VFD FILE SERVER\\SECTIONS\\DRY ETCH\\QC Log Book\\Final QC Log Book\\CNT_01_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK\\CNT01_Ch_A_QC_LOG_BOOK.xlsm"
