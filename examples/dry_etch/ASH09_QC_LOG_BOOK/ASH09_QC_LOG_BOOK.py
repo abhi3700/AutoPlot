@@ -31,17 +31,19 @@ def date_formatter(x):
 """
 "Description": This function plots CP Chart with `cp_plot_trace_count` traces v/s Date.
 "x": Date (x-axis) for CP Chart
-"y1": Delta-CP (y-axis) for CP Chart
-"y2": USL (y-axis) for CP Chart
-"y3": UCL (y-axis) for CP Chart
+"y1": Delta-CP 0.16u (y-axis) for CP Chart
+"y2": Delta-CP 0.5u (y-axis) for CP Chart
+"y3": Delta-CP AC (y-axis) for CP Chart
+"y4": USL (y-axis) for CP Chart
+"y5": UCL (y-axis) for CP Chart
 """
-def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
+def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     # x = dt.datetime(x)
     # x = x.strftime("%m-%d-%Y %H:%M:%S")
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP',
+            name = 'delta-CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -59,6 +61,42 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
+            name = 'delta-CP 0.5u',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color_2,
+                    width = 2),
+            marker = dict(
+                    color = marker_color_2,
+                    size = 8,
+                    line = dict(
+                        color = marker_border_color,
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace3 = go.Scatter(
+            x = x,
+            y = y3,
+            name = 'delta-CP AC',
+            mode = 'lines+markers',
+            line = dict(
+                    color = line_color_3,
+                    width = 2),
+            marker = dict(
+                    color = marker_color_3,
+                    size = 8,
+                    line = dict(
+                        color = marker_border_color,
+                        width = 0.5),
+                    ),
+            text = remarks
+    )
+
+    trace4 = go.Scatter(
+            x = x,
+            y = y4,
             name = 'USL',
             mode = 'lines',
             line = dict(
@@ -66,9 +104,9 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
                     width = 3)
     )
 
-    trace3 = go.Scatter(
+    trace5 = go.Scatter(
             x = x,
-            y = y3,
+            y = y5,
             name = 'UCL',
             mode = 'lines',
             line = dict(
@@ -76,7 +114,7 @@ def draw_plotly_asfe1_cp_plot(x, y1, y2, y3, remarks):
                     width = 3)
     )
 
-    data = [trace1, trace2, trace3]
+    data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
@@ -246,18 +284,22 @@ def button_run():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_asfe1_cp = sht_asfe1_cp.range('A10').options(
+    df_asfe1_cp = sht_asfe1_cp.range('A11').options(
         pd.DataFrame, header=1, index=False, expand='table'
         ).value                                                         # fetch the data from sheet- sht_name_cp
-    df_asfe1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_cp = df_asfe1_cp[sht_cp_columns]        # The final dataframe with required columns
+    df_asfe1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
+    df_asfe1_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_asfe1_cp['Delta CP AC'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_cp = df_asfe1_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_asfe1_plot_cp.range('A25').options(index=False).value = df_asfe1_cp           # show the dataframe values into sheet- 'CP Plot'
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_asfe1_cp_date = df_asfe1_cp["Date (MM/DD/YYYY)"]
-    df_asfe1_cp_delta_cp = df_asfe1_cp["delta CP"]
+    df_asfe1_cp_delta_cp_1 = df_asfe1_cp["Delta CP 0.16u"]
+    df_asfe1_cp_delta_cp_2 = df_asfe1_cp["Delta CP 0.5u"]
+    df_asfe1_cp_delta_cp_3 = df_asfe1_cp["Delta CP AC"]
     df_asfe1_cp_usl = df_asfe1_cp["USL"]
     df_asfe1_cp_ucl = df_asfe1_cp["UCL"]
     df_asfe1_cp_remarks = df_asfe1_cp["Remarks"]
@@ -265,9 +307,11 @@ def button_run():
     # Draw CP Plot (using Plotly) in Browser 
     draw_plotly_asfe1_cp_plot(
         x = date_formatter(df_asfe1_cp_date), 
-        y1 = df_asfe1_cp_delta_cp, 
-        y2 = df_asfe1_cp_usl, 
-        y3 = df_asfe1_cp_ucl,
+        y1 = df_asfe1_cp_delta_cp_1, 
+        y2 = df_asfe1_cp_delta_cp_2, 
+        y3 = df_asfe1_cp_delta_cp_3, 
+        y4 = df_asfe1_cp_usl, 
+        y5 = df_asfe1_cp_ucl,
         remarks = df_asfe1_cp_remarks
         )
     #****************************************************************************************************************************************************************
