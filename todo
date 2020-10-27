@@ -1,19 +1,8 @@
-- check version & notify if there is any error.
-- modify dir 'ch_1.xlsm'
-- v1.5 & v1.6 & v1.7 in all equipments
-  + REPL1A
-  - REPL1B
-  - ASFE1
-  - ASBE1
-  - REML1
-  - RESP1A
-  - RESP1B
-  - REOX1A
-  - REOX1B
-  - REOX1C
 - User manual
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
+ - Analytics Alert Manager (AAM):
+   + notify if the trend >= UCL, USL
 -------------------------------------------------------------
 # Future Work:
 - v2.0: Desktop App (browser-based) for each equipment/chamber.
