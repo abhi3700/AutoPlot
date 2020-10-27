@@ -1,7 +1,11 @@
 #==================================================================================================================================================================
 # Global variables
 line_color = '#3f51b5'      # line (trace0) color for any plot
+line_color_2 = '#80deea'      # line (trace1) color for any plot
+line_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_color = '#43a047'    # marker color for any plot
+marker_color_2 = '#80deea'      # line (trace1) color for any plot
+marker_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_border_color = '#ffffff'     # marker border color for any plot
 cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
@@ -74,9 +78,8 @@ sht_name_cp = 'RESP1B-CP'
 sht_name_er_barc_pr_teos = 'ER-BARC,PR & TEOS'
 sht_name_er_sin = 'SIN ER'
 
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
-# sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
-sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "STDEV", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
+sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 
