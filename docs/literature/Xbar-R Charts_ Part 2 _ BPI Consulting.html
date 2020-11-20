@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2 -->
+<html class="js js no-touch csstransforms3d csstransitions csstransforms webkit chrome win js" lang="en" dir="ltr" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="https://www.spcforexcel.com/files/SPC%20Logo.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="April 2005 In this issue: Bag Weight Process X-R Chart Interpreting the Charts Is the Process Capable? Summary Quick Links This month is the second in a multi-part publication on X-R charts. Last month we introduced the chart and provided the steps in constructing an X-R chart. This month, we will look at a detailed">
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)">
+<link rel="canonical" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2">
+<link rel="shortlink" href="https://www.spcforexcel.com/node/136">
+<meta property="og:site_name" content="BPI Consulting">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2">
+<meta property="og:title" content="Xbar-R Charts: Part 2">
+<meta property="og:description" content="April 2005 In this issue: Bag Weight Process X-R Chart Interpreting the Charts Is the Process Capable? Summary Quick Links This month is the second in a multi-part publication on X-R charts. Last month we introduced the chart and provided the steps in constructing an X-R chart. This month, we will look at a detailed example of an X-R chart. The X-R chart is a type of control chart that can be used with variables data. Like most other variables control charts, it is actually two charts. One chart is for subgroup averages ( X). The other chart is for subgroup ranges (R).">
+<meta property="og:updated_time" content="2015-02-16T10:47:57-06:00">
+<meta property="article:published_time" content="2005-04-01T21:31:39-06:00">
+<meta property="article:modified_time" content="2015-02-16T10:47:57-06:00">
+<title>Xbar-R Charts: Part 2 | BPI Consulting</title>
+<!-- Call bootstrap.css before $scripts to resolve @import conflict with respond.js -->
+<link rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/css_Rfmd9Q6O3bhXIlxXURMsfzT5Evdez6ikMYvesfs9Klw.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/css_hdVTe-8z9fTDat-8PIPDJcpLDPK-67pxrXH1oJGRpgk.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/css_mFv-a5qjlHUuMLUX4YVWUsMUl1UnrDO9CJSEVu1SkNE.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/skin.less" media="all">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery-extend-3.4.0.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery-html-prefilter-3.5.0-backport.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.once.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/drupal.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/uc_file.js.download"></script>
+<script type="text/javascript" defer="defer" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/admin_menu_dropdown.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.colorbox-min.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/colorbox.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/colorbox_style.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/googleanalytics.js.download"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-564805-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/modernizr.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/bootstrap.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.easing.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.cookie.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/owl.carousel.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.flipshow.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.isotope.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.prettyPhoto.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jflickrfeed.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.mapmarker.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.stellar.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.gmap.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.knob.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/magnific-popup.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/mediaelement-and-player.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.validate.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/jquery.appear.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/mobile-menu.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/theme.plugins.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/theme.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/view.home.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/sticky.js.download"></script>
+<script type="text/javascript" src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/custom.js.download"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"porto_sub","theme_token":"r-qrLa8DqjkOHBJzOW1KA9joSOIKh1bn5CyclEpFiLs","js":{"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.8\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/ubercart\/uc_file\/uc_file.js":1,"sites\/all\/modules\/admin_menu_dropdown\/admin_menu_dropdown.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"0":1,"sites\/all\/themes\/Porto\/vendor\/modernizr.js":1,"sites\/all\/themes\/Porto\/vendor\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.easing.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.cookie.js":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.carousel.js":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/js\/jquery.flipshow.js":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.js":1,"sites\/all\/themes\/Porto\/vendor\/prettyPhoto\/js\/jquery.prettyPhoto.js":1,"sites\/all\/themes\/Porto\/vendor\/jflickrfeed\/jflickrfeed.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.mapmarker.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.stellar.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.gmap.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.knob.js":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/magnific-popup.js":1,"sites\/all\/themes\/Porto\/vendor\/mediaelement\/mediaelement-and-player.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.validate.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.appear.js":1,"sites\/all\/themes\/Porto\/js\/mobile-menu.js":1,"sites\/all\/themes\/Porto\/js\/theme.plugins.js":1,"sites\/all\/themes\/Porto\/js\/theme.js":1,"sites\/all\/themes\/Porto\/js\/views\/view.home.js":1,"sites\/all\/themes\/Porto\/js\/sticky.js":1,"sites\/all\/themes\/Porto_sub\/js\/custom.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"sites\/all\/modules\/ubercart\/uc_file\/uc_file.css":1,"sites\/all\/modules\/ubercart\/uc_order\/uc_order.css":1,"sites\/all\/modules\/ubercart\/uc_product\/uc_product.css":1,"sites\/all\/modules\/ubercart\/uc_store\/uc_store.css":1,"modules\/user\/user.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/uc_discounts_alt\/uc_discounts\/uc_discounts.css":1,"sites\/all\/modules\/admin_menu_dropdown\/admin_menu_dropdown.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/node_comment_block\/node-comment-block.css":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.carousel.css":1,"sites\/all\/themes\/Porto\/vendor\/font-awesome\/css\/font-awesome.css":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.theme.css":1,"sites\/all\/themes\/Porto\/vendor\/prettyPhoto\/css\/prettyPhoto.css":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/css\/component.css":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/magnific-popup.css":1,"sites\/all\/themes\/Porto\/vendor\/mediaelement\/mediaelementplayer.css":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.css":1,"sites\/all\/themes\/Porto\/css\/theme.css":1,"sites\/all\/themes\/Porto\/css\/theme-elements.css":1,"sites\/all\/themes\/Porto\/css\/theme-animate.css":1,"sites\/all\/themes\/Porto\/css\/theme-blog.css":1,"sites\/all\/themes\/Porto\/css\/theme-responsive.css":1,"sites\/all\/themes\/Porto\/css\/drupal-styles.css":1,"sites\/all\/themes\/Porto_sub\/css\/custom.css":1,"sites\/all\/themes\/Porto\/css\/less\/skin.less":1}},"admin_menu_dropdown":{"key":"`","default":0},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px","specificPagesDefaultValue":"admin*\nimagebrowser*\nimg_assist*\nimce*\nnode\/add\/*\nnode\/*\/edit\nprint\/*\nprintpdf\/*\nsystem\/ajax\nsystem\/ajax\/*"},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackColorbox":1},"urlIsAjaxTrusted":{"\/knowledge\/variable-control-charts\/xbar-r-charts-part-2":true}});
+//--><!]]>
+</script>
+
+
+<!-- VWO, 120214 - amb m21 -->
+<!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type="text/javascript">
+var _vwo_code=(function(){
+var account_id=107634,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+// DO NOT EDIT BELOW THIS LINE
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script><script src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/j.php" type="text/javascript"></script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+
+
+<!-- IE Fix for HTML5 Tags -->
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE]>
+  <link rel="stylesheet" href="/sites/all/themes/Porto/css/ie.css">
+<![endif]-->
+
+<!--[if lte IE 8]>
+  <script src="/sites/all/themes/Porto/vendor/respond.js"></script>
+<![endif]-->
+
+<!-- Web Fonts  -->
+<link href="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/css" rel="stylesheet" type="text/css">
+
+<!-- User defined CSS --><style type="text/css">div.field-name-field-categories { display: inline-block; }
+.node-article.node-teaser h2 { margin-bottom: 20px; }</style><!-- End user defined CSS --></head>
+
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-136 node-type-newsletter  sticky-menu-active" style="padding-top: 106px;">
+
+<div class="body">
+  <header id="header">
+    <div class="container">
+
+      	      	    
+            <h1 class="logo logo-sticky-active">
+	      <a href="https://www.spcforexcel.com/" title="Home" rel="home" id="logo">
+	        <img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/SPC-for-Excel-logo-web.png" alt="Home" height="90" width="90" data-sticky-height="80" style="display: inline-block; overflow: hidden; width: 82px; height: 80px; top: 28px;">
+	      </a>
+      </h1>
+	    
+	          <div id="name-and-slogan" class="hidden">
+
+                              <div id="site-name" class="hidden">
+	            <a href="https://www.spcforexcel.com/" title="Home" rel="home"><span>BPI Consulting</span></a>
+	          </div>
+                  
+        
+      </div> <!-- /#name-and-slogan -->
+	    
+	    	    <div class="search">
+	        
+<form action="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2" method="post" id="search-block-form" accept-charset="UTF-8"><div>
+<div class="input-group"> 
+  <input title="Enter the terms you wish to search for." class="form-control search form-text" placeholder="Search..." value="" type="text" id="edit-search-block-form--2" name="search_block_form" size="40" maxlength="128"><span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="icon icon-search"></i></button></span><input type="hidden" name="form_build_id" value="form-u1eI6uKJeDLJmSBfsgejC0EumFO0HaWMYSjPtFh0QV0">
+<input type="hidden" name="form_id" value="search_block_form">
+</div>
+</div></form>	    </div>
+	    
+      <!-- /branding -->
+      <div id="header-top">
+          <div class="region region-header-top">
+    <div id="block-menu-menu-secondary-menu" class="block block-menu">
+
+    
+  <div class="content">
+    <ul class="menu"><li class="first leaf"><a href="https://www.spcforexcel.com/support" title="">Support</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/contact-us" title="">Contact Us</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/revision-history-for-spc-for-excel-version-6" title="Revisions to SPC for Excel Version 6">Revision History</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/cart" title="">View Cart</a></li>
+<li class="last leaf"><a href="https://www.spcforexcel.com/user" title="">My Account</a></li>
+</ul>  </div>
+</div>
+  </div>
+      </div>
+
+	    <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+				<i class="icon icon-bars"></i>
+			</button>
+
+    </div>
+
+    <div class="navbar-collapse nav-main-collapse collapse">
+		  <div class="container">
+
+        
+        <nav class="nav-main">
+          <div class="region region-header-menu">
+    <div id="block-system-main-menu" class="block block-system block-menu">
+
+    
+  <div class="content">
+    <ul class="nav nav-pills nav-main" id="mainMenu"><li><a href="https://www.spcforexcel.com/home">Home</a></li><li class="dropdown 9811"><a class="dropdown-toggle extra" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#"></a><a href="https://www.spcforexcel.com/spc-software" class="dropdown-toggle disabled">SPC Software</a><ul class="dropdown-menu"><li><a href="https://www.spcforexcel.com/spc-software" title="Information about the SPC for Excel software">SPC for Excel Software</a></li><li><a href="https://www.spcforexcel.com/spc-software/demo" title="SPC for Excel Demo">Download the Free Demo</a></li><li><a href="https://www.spcforexcel.com/spc-software/statistical-tools-spc-for-excel" title="Lists the statistical tools in the SPC for Excel software">Statistical Tools in SPC for Excel</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/control-charts" title="Control Charts with SPC for Excel">Control Charts</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/process-capability" title="Process Capability with SPC for Excel">Process Capability</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/gage-rr" title="Gage R&amp;R Analysis with SPC for Excel">Gage R&amp;R Analysis</a></li><li><a href="https://www.spcforexcel.com/spc-software/systems-requirements-user-support-and-upgrades" title="Support, Upgrades, Requirements with SPC for Excel">Support, Upgrades, Requirements</a></li><li><a href="https://www.spcforexcel.com/spc-software/customer-testimonials" title="Customer Stories with SPC for Excel">Customer Stories</a></li></ul></li><li><a href="https://www.spcforexcel.com/spc-training">SPC Training</a></li><li><a href="https://www.spcforexcel.com/spc-consulting" title="">SPC Consulting</a></li><li><a href="https://www.spcforexcel.com/spc-knowledge-base" title="Our collection of publications and articles on statistical analysis of data">SPC Knowledge Base</a></li><li><a href="https://www.spcforexcel.com/ordering-information">Pricing/Ordering</a></li><li><a href="https://www.spcforexcel.com/about-us">About Us</a></li></ul>  </div>
+</div>
+  </div>
+        </nav>
+
+		  </div>
+    </div>
+
+	</header>
+	<!-- end header -->
+
+	<div role="main" class="main">
+
+	  	  <section class="page-top breadcrumb-wrap">
+		  <div class="container">
+		    				<div class="row">
+					<div class="col-md-12">
+						<h2>Xbar-R Charts: Part 2</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+	  
+	  	  <div id="content" class="content full">
+	    <div class="container">
+	      <div class="row">
+	      			    
+					<div class="col-md-9">
+
+			     				      			      
+					    <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+    
+  <div class="content">
+    <div id="node-136" class="node node-newsletter clearfix">
+
+  
+      
+  
+  <div class="content">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p style="text-align: center;"><b>April 2005</b></p>
+<p> In this issue:</p>
+<ul>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#barWeightProcess"> Bag Weight Process</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#xBarRChart"> <span style="text-decoration: overline;">X</span>-R Chart</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#interpretingCharts"> Interpreting the Charts</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#isProcessCapable"> Is the Process Capable?</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#summary">Summary</a><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#s"></a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#quick_links">Quick Links</a></li>
+</ul>
+<p>This month is the second in a multi-part publication on&nbsp; <span style="text-decoration: overline;">X</span>-R charts. Last month we introduced the chart and provided the steps in constructing an&nbsp; <span style="text-decoration: overline;">X</span>-R chart. This month, we will look at a detailed example of an&nbsp; <span style="text-decoration: overline;">X</span>-R chart. The&nbsp; <span style="text-decoration: overline;">X</span>-R chart is a type of control chart that can be used with variables data. Like most other variables control charts, it is actually two charts. One chart is for subgroup averages ( <span style="text-decoration: overline;">X</span>). The other chart is for subgroup ranges (R). These charts are a very powerful tool for monitoring variation in a process and detecting changes in either the average or the amount of variation in the process.</p>
+<h3><a name="barWeightProcess" title="barWeightProcess" id="barWeightProcess" class="anchor-fix"></a></h3>
+<h3>Bag Weight Process</h3>
+<p><img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/bagdata.gif" alt="Bag Data" width="329" height="415" style="display: block; margin-left: auto; margin-right: auto;" class="floatLeft"></p>
+<p>A process involves the filling of bags with sand. Each bag is supposed to weigh a minimum of 50 pounds. The process has an automatic method of weighing the bags. Once the bag reaches 50 pounds, the filling operation is supposed to stop. To determine how much variation there is in the bag weights, an operator takes the first four bags filled each hour and manually weighs them using a calibrated scale. The data are shown in the table.</p>
+<p>We want to use an&nbsp; <span style="text-decoration: overline;">X</span>-R chart to find out if this process is consistent and predictable (in control) as well as if it is capable of producing bag weights with a minimum of 50 pounds.</p>
+<p>The calculations needed to construct the&nbsp; <span style="text-decoration: overline;">X</span>-R chart were covered in last month's e-zine. For practice, you can copy the data from this e-zine into Excel and see if you can get the same results as shown below. The subgroup size is 4. For the data above, the following averages and control limits can be generated.</p>
+<p>For the <span style="text-decoration: overline;">X</span> chart:</p>
+<p>Average = 50.49<br> UCL = 50.81<br> LCL = 50.16</p>
+<p>For the range chart:<br> Average = 0.44<br> UCL = 1.00<br> LCL = None</p>
+<p>The&nbsp; <span style="text-decoration: overline;">X</span>-R charts are shown below. Are these charts in control? For information on interpreting control charts, please see our past publication on our website. Interpreting control charts was covered in April 2004.</p>
+<h3><a name="xBarRChart" title="xBarRChart" id="xBarRChart" class="anchor-fix"></a></h3>
+<h3><span style="text-decoration: overline;">X</span>-R Chart</h3>
+<p>&nbsp;</p>
+<p><img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/xbarweight.gif" alt="XBar Weight" width="494" height="267" style="display: block; margin-left: auto; margin-right: auto;" class="center"></p>
+<p> <img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/rweight.gif" alt="R Weight" width="494" height="267" style="display: block; margin-left: auto; margin-right: auto;"></p>
+
+<p>&nbsp;<a name="interpretingCharts" title="interpretingCharts" id="interpretingCharts" class="anchor-fix"></a></p>
+<h3>Interpreting the Charts</h3>
+<p> The&nbsp; <span style="text-decoration: overline;">X&nbsp;</span> and R charts above are in statistical control. This means that the process is consistent and predictable. There are only common causes of variation present (see the January 2004 e-zine on variation for more information on common and special causes of variation).</p>
+<p>What does it mean for a range chart to be in statistical control? It means that variation within the subgroup is consistent from subgroup to subgroup. For the bag weight example, it means that the range between the heaviest bag and lightest bag is the "same" for all bag weights. There is no statistical difference between these ranges. The average range will be 0.44 pounds but it can vary anywhere from 0 to 1 pounds. Since the range chart is in control, you can estimate the standard deviation using the formula provided in last month's e-zine. The standard deviation is 0.21</p>
+<p>What does it mean for the <span style="text-decoration: overline;">X</span> chart to be in statistical control? It means that the variation between subgroup averages is the same from subgroup to subgroup. For the bag weight example, it means that there is no statistical difference between the subgroup averages. As long as the process stays the same, we can predict the average bag weights for the four samples. The long-term average will be 50.49. The average will vary from 50.16 to 50.81.</p>
+<h3><a name="isProcessCapable" title="isProcessCapable" id="isProcessCapable" class="anchor-fix"></a></h3>
+<h3>Is the Process Capable?</h3>
+<p>&nbsp;</p>
+
+<p><img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/cpkweight.gif" alt="CPK Weight" width="494" height="267" style="display: block; margin-left: auto; margin-right: auto;" class="center"></p>
+<p>Can the process meet the specification of having a minimum bag weight of 50? Be careful here. The <span style="text-decoration: overline;">X</span> chart plots the subgroup averages. The LCL on the&nbsp; <span style="text-decoration: overline;">X</span> chart is 50.16. This means that the average of the four bag weights will not be below 50.16 as long as the process stays the same. However, the specification deals with individual bag weights, not averages. Individual values will vary more than the subgroup averages. Just because you do not have any subgroup averages below 50, does not mean that you will not have any individual bag weights below 50.</p>
+<p>Information process capability is given on our website. We have a three-part series on process capability. The process capability chart for the bag weight process is shown in the figure above. What can you conclude about the process capability?</p>
+<p>Note that the data in the table do not have any bag weights below 50. However, the process capability analysis shows that the Cpk = 0.74. Since this is less than 1, it means that there is out-of-specification material - some bags will weigh less than 50 pounds. The analysis predicts about 1% of the bags will weigh less than 50 pounds. The only way to prevent any underweight bags from going to the customer with the current process is to inspect 100% of the bags. Of course, the best approach would be to improve the process - to move the average higher or reduce the amount of variation - so no bags will be produced that weigh less than 50 pounds.</p>
+<p><a name="summary" id="summary" class="anchor-fix"></a></p>
+<h3>Summary</h3>
+<p>This publication showed how to create an <span style="text-decoration: overline;">X</span>-R chart using bag weights as an example.&nbsp; The process was in statistical control.&nbsp; Being in statistical control does not mean that the process is capable.&nbsp; The&nbsp; process capability chart showed that the process was not capable.&nbsp; To make it capable, the process has to be fundamentally change.</p>
+<p style="text-align: left;"></p>
+<p style="text-align: left;"><a name="quick_links" id="quick_links" class="anchor-fix"></a></p>
+<p style="text-align: left;">
+</p><div id="block-block-3" class="block block-block">
+<div class="content">
+<h3>Quick Links</h3>
+<p><a href="https://www.spcforexcel.com/spc-software">SPC for Excel Software</a></p>
+<p><a href="https://www.spcforexcel.com/home">Visit our home page</a></p>
+<p><a href="https://www.spcforexcel.com/spc-training">SPC Training</a></p>
+<p><a href="https://www.spcforexcel.com/spc-consulting">SPC Consulting</a></p>
+<p><a href="https://www.spcforexcel.com/ordering-information">Ordering Information</a></p>
+<p>Thanks so much for reading our publication. We hope you find it informative and useful. Happy charting and may the data always support your position.</p>
+<p> Sincerely,</p>
+<p> Dr. Bill McNeese<br> BPI Consulting, LLC</p>
+<p><a href="https://www.linkedin.com/in/billmcneese"> <img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/btn_viewmy_160x33.png" alt="View Bill McNeese&#39;s profile on LinkedIn" width="160" height="33"> </a></p>
+<h4>Connect with Us</h4>
+<p><a href="https://www.facebook.com/spcforexcel" target="_blank" title="Connect with us on Facebook"><em class="icon icon-3x icon-facebook-square" style="color: #45619d;">&nbsp;</em></a> <a href="https://www.linkedin.com/company/spc-for-excel" target="_blank" title="Connect with us on LinkedIn"><em class="icon icon-3x icon-linkedin-square" style="color: #0f7cb7;">&nbsp;</em></a> <a href="https://twitter.com/SpcforExcel" target="_blank" title="Follow us on Twitter"><em class="icon icon-3x icon-twitter-square" style="color: #1DA1F2;">&nbsp;</em></a>  <a href="https://www.youtube.com/channel/UCnogTilST4u1z_TQFops_LQ" target="_blank" title="Connect with us on YouTube"><em class="icon icon-3x icon-youtube-square" style="color: #cc181e;">&nbsp;</em></a></p>
+</div>
+</div>
+
+<p style="text-align: left;"></p>
+</div></div></div>  </div>
+
+  
+  
+</div>
+  </div>
+</div>
+  </div>
+
+					</div>
+
+				  				  <div class="col-md-3">
+				      <div class="region region-sidebar-right">
+    
+<div id="block-block-18" class="block block-block">
+
+    <h4>SPC for Excel</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/catalog/software" class="btn btn-lg btn-primary">Buy&nbsp;Now </a></p>
+<p style="text-align: center;"></p>
+<p style="text-align: center;"><a href="https://www.spcforexcel.com/spc-software/demo" class="btn btn-lg btn-warning">Try Free</a></p>
+<p style="text-align: center;"></p>
+<p style="text-align: center;"><a href="https://www.capterra.com/reviews/124809/SPC-for-Excel?utm_source=vendor&amp;utm_medium=badge&amp;utm_campaign=capterra_reviews_badge"> <img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/c9f22b7bb511d3e05c53fc7a232ce89b.png" alt="capterra" title="capterra"></a></p>
+  </div>
+</div>
+<div id="block-menu-block-2" class="block block-menu-block">
+
+    <h4>Variable Control Charts</h4>
+  
+  <div class="content">
+    <div class="menu-block-wrapper menu-block-2 menu-name-menu-knowledge-base-menu parent-mlid-0 menu-level-2">
+  <ul class="menu"><li class="first leaf menu-mlid-12986"><a href="https://www.spcforexcel.com/spc-for-excel-publications-category" title="">&lt;&lt; Return to Categories</a></li>
+<li class="leaf menu-mlid-13020"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-1">Xbar-R Charts: Part 1</a></li>
+<li class="leaf active-trail active menu-mlid-13021"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2" class="active-trail active">Xbar-R Charts: Part 2</a></li>
+<li class="leaf menu-mlid-13022"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/individuals-control-charts">Individuals Control Charts</a></li>
+<li class="leaf menu-mlid-13023"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/chunky-data-and-control-charts">Chunky Data and Control Charts</a></li>
+<li class="leaf menu-mlid-13024"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/rare-events-and-x-mr-charts">Rare Events and X-mR Charts</a></li>
+<li class="leaf menu-mlid-13025"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1">Xbar-s Control Charts: Part 1</a></li>
+<li class="leaf menu-mlid-13026"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-2">Xbar-s Control Charts: Part 2</a></li>
+<li class="leaf menu-mlid-13027"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-mr-r-betweenwithin-control-chart">Xbar-mR-R (Between/Within) Control Chart</a></li>
+<li class="leaf menu-mlid-13028"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/control-charts-and-non-normal-data">Control Charts and Non-Normal Data</a></li>
+<li class="leaf menu-mlid-13029"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/keeping-process-target-cusum-charts">Keeping the Process on Target: CUSUM Charts</a></li>
+<li class="leaf menu-mlid-13030"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/keeping-process-target-ewma-chart">Keeping the Process on Target: EWMA Chart</a></li>
+<li class="leaf menu-mlid-13354"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/comparing-individuals-charts-attributes-charts">Comparing Individuals Charts to Attributes Charts</a></li>
+<li class="leaf menu-mlid-18543"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/medians-individuals-control-chart">Medians and the Individuals Control Chart</a></li>
+<li class="leaf menu-mlid-17636"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/hotelling-t2-control-chart">Multivariate Control Charts:  The Hotelling T2 Control Chart</a></li>
+<li class="last leaf menu-mlid-13480"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/z-mr-control-charts">z-mR Control Charts for Short Production Runs</a></li>
+</ul></div>
+  </div>
+</div>
+<div id="block-block-5" class="block block-block">
+
+    <h4>SPC Knowledge Base</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/spc-knowledge-base-signup"><img src="./Xbar-R Charts_ Part 2 _ BPI Consulting_files/80subscribebuttonorange.jpg" alt="subscribe button" title="subscribe-button" width="80" height="80"></a></p>
+<p>Sign up for our FREE monthly publication featuring SPC techniques and other statistical topics.</p>
+  </div>
+</div>
+<div id="block-block-19" class="block block-block">
+
+    <h4>Customer Stories</h4>
+  
+  <div class="content">
+    <p><a href="https://www.spcforexcel.com/spc-software/customer-testimonials">Click here</a> to see what our customers say about SPC for Excel!</p>
+  </div>
+</div>
+<div id="block-block-1" class="block block-block">
+
+    <h4>SPC Around the World</h4>
+  
+  <div class="content">
+    <p>SPC for Excel is used in over 60 countries internationally.&nbsp; <a href="https://www.spcforexcel.com/spc-for-excel-used-internationally" rel="nofollow">Click here for a list of those countries.</a></p>
+  </div>
+</div>
+<div id="block-block-20" class="block block-block">
+
+    <h4>Questions?</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/contact-us">Contact Us</a></p>
+  </div>
+</div>
+<div id="block-block-15" class="block block-block">
+
+    <h4>Connect with Us</h4>
+  
+  <div class="content">
+    <p>
+<a href="https://www.facebook.com/spcforexcel" target="_blank" title="Connect with us on Facebook"><em class="icon icon-3x icon-facebook-square" style="color: #45619d;">&nbsp;</em></a>
+ <!--<a href="https://plus.google.com/u/0/b/112490535975760615454/+Spcforexcel/posts" target="_blank" title="Connect with us on Google+"><em class="icon icon-3x icon-google-plus-square" style="color: #dd4b39;">&nbsp;</em></a> -->
+<a href="https://www.linkedin.com/company/spc-for-excel" target="_blank" title="Connect with us on LinkedIn"><em class="icon icon-3x icon-linkedin-square" style="color: #0f7cb7;">&nbsp;</em></a> 
+<a href="https://twitter.com/SpcforExcel" target="_blank" title="Follow us on Twitter"><em class="icon icon-3x icon-twitter-square" style="color: #1DA1F2;">&nbsp;</em></a> 
+<a href="https://www.youtube.com/channel/UCnogTilST4u1z_TQFops_LQ" target="_blank" title="Connect with us on YouTube"><em class="icon icon-3x icon-youtube-square" style="color: #CC181E;">&nbsp;</em></a>
+</p>
+
+
+  </div>
+</div>  </div>
+				  </div>
+				  
+			  </div>
+	    </div>
+	  </div>
+
+	</div>
+
+  
+  <footer id="footer">
+    
+	  <div class="footer-copyright">
+	    <div class="container">
+	      <div class="row">
+			    <div class="col-md-6">
+
+					  					    					  
+			    </div>
+			    <div class="col-md-6">
+
+					  					      <div class="region region-footer-bottom-right">
+    <div id="block-block-13" class="block block-block">
+
+    
+  <div class="content">
+    <p style="text-align: right">Copyright © 2020 BPI Consulting, LLC. All Rights Reserved.<br> Site developed and hosted by <a href="https://elfcc.com/" rel="nofollow">ELF Computer Consultants</a>.</p>  </div>
+</div>
+  </div>
+					  
+			    </div>
+	      </div>
+	    </div>
+	  </div>
+	</footer>
+
+</div>
+
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><a class="scroll-to-top visible" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a></body></html>

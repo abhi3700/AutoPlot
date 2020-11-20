@@ -1,0 +1,11 @@
+(function ($) {
+  
+  $(document).ready(function() {
+  
+    $(".region-content a:not([href])").each(function() {
+	  $(this).addClass('anchor-fix');
+	});
+  
+  });
+  
+})(jQuery);

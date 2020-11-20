@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1 -->
+<html class="js js no-touch csstransforms3d csstransitions csstransforms webkit chrome win js" lang="en" dir="ltr" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="shortcut icon" href="https://www.spcforexcel.com/files/SPC%20Logo.png" type="image/png">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="September 2008 In This Issue Introduction Understanding X-s Control Charts When to Use Steps in Construction Control Chart Constants Summary Quick Links This month&#39;s publication is the first part of a two part series on X-s charts. The X-s chart is often overlooked in favor of the X-R chart. But, the X-s chart might">
+<meta name="generator" content="Drupal 7 (https://www.drupal.org)">
+<link rel="canonical" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1">
+<link rel="shortlink" href="https://www.spcforexcel.com/node/111">
+<meta property="og:site_name" content="BPI Consulting">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1">
+<meta property="og:title" content="Xbar-s Control Charts: Part 1">
+<meta property="og:description" content="September 2008 In This Issue Introduction Understanding X-s Control Charts When to Use Steps in Construction Control Chart Constants Summary Quick Links This month&#39;s publication is the first part of a two part series on X-s charts. The X-s chart is often overlooked in favor of the X-R chart. But, the X-s chart might actually be the better chart to use. This month we will introduce X-s charts and describe how they are constructed. Next month we will look at a detailed example of an X-s chart. Introduction to X-s Control Charts The most common control chart for years has been the X-R chart.">
+<meta property="og:updated_time" content="2015-09-04T13:38:30-05:00">
+<meta property="article:published_time" content="2008-09-01T10:42:01-05:00">
+<meta property="article:modified_time" content="2015-09-04T13:38:30-05:00">
+<title>Xbar-s Control Charts: Part 1 | BPI Consulting</title>
+<!-- Call bootstrap.css before $scripts to resolve @import conflict with respond.js -->
+<link rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/css_Rfmd9Q6O3bhXIlxXURMsfzT5Evdez6ikMYvesfs9Klw.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/css_hdVTe-8z9fTDat-8PIPDJcpLDPK-67pxrXH1oJGRpgk.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/css_mFv-a5qjlHUuMLUX4YVWUsMUl1UnrDO9CJSEVu1SkNE.css" media="all">
+<link type="text/css" rel="stylesheet" href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/skin.less" media="all">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery-extend-3.4.0.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery-html-prefilter-3.5.0-backport.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.once.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/drupal.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/uc_file.js.download"></script>
+<script type="text/javascript" defer="defer" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/admin_menu_dropdown.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.colorbox-min.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/colorbox.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/colorbox_style.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/googleanalytics.js.download"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-564805-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/modernizr.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/bootstrap.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.easing.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.cookie.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/owl.carousel.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.flipshow.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.isotope.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.prettyPhoto.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jflickrfeed.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.mapmarker.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.stellar.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.gmap.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.knob.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/magnific-popup.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/mediaelement-and-player.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.validate.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/jquery.appear.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/mobile-menu.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/theme.plugins.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/theme.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/view.home.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/sticky.js.download"></script>
+<script type="text/javascript" src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/custom.js.download"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":{"theme":"porto_sub","theme_token":"jVdU-1SwPMUx-IdoTxT5armx9jTIYGHM5tzHVcyt4VA","js":{"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.8\/jquery.min.js":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/ubercart\/uc_file\/uc_file.js":1,"sites\/all\/modules\/admin_menu_dropdown\/admin_menu_dropdown.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"0":1,"sites\/all\/themes\/Porto\/vendor\/modernizr.js":1,"sites\/all\/themes\/Porto\/vendor\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.easing.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.cookie.js":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.carousel.js":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/js\/jquery.flipshow.js":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.js":1,"sites\/all\/themes\/Porto\/vendor\/prettyPhoto\/js\/jquery.prettyPhoto.js":1,"sites\/all\/themes\/Porto\/vendor\/jflickrfeed\/jflickrfeed.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.mapmarker.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.stellar.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.gmap.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.knob.js":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/magnific-popup.js":1,"sites\/all\/themes\/Porto\/vendor\/mediaelement\/mediaelement-and-player.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.validate.js":1,"sites\/all\/themes\/Porto\/vendor\/jquery.appear.js":1,"sites\/all\/themes\/Porto\/js\/mobile-menu.js":1,"sites\/all\/themes\/Porto\/js\/theme.plugins.js":1,"sites\/all\/themes\/Porto\/js\/theme.js":1,"sites\/all\/themes\/Porto\/js\/views\/view.home.js":1,"sites\/all\/themes\/Porto\/js\/sticky.js":1,"sites\/all\/themes\/Porto_sub\/js\/custom.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"modules\/comment\/comment.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"sites\/all\/modules\/ubercart\/uc_file\/uc_file.css":1,"sites\/all\/modules\/ubercart\/uc_order\/uc_order.css":1,"sites\/all\/modules\/ubercart\/uc_product\/uc_product.css":1,"sites\/all\/modules\/ubercart\/uc_store\/uc_store.css":1,"modules\/user\/user.css":1,"modules\/forum\/forum.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/uc_discounts_alt\/uc_discounts\/uc_discounts.css":1,"sites\/all\/modules\/admin_menu_dropdown\/admin_menu_dropdown.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/node_comment_block\/node-comment-block.css":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.carousel.css":1,"sites\/all\/themes\/Porto\/vendor\/font-awesome\/css\/font-awesome.css":1,"sites\/all\/themes\/Porto\/vendor\/owl-carousel\/owl.theme.css":1,"sites\/all\/themes\/Porto\/vendor\/prettyPhoto\/css\/prettyPhoto.css":1,"sites\/all\/themes\/Porto\/vendor\/circle-flip-slideshow\/css\/component.css":1,"sites\/all\/themes\/Porto\/vendor\/magnific-popup\/magnific-popup.css":1,"sites\/all\/themes\/Porto\/vendor\/mediaelement\/mediaelementplayer.css":1,"sites\/all\/themes\/Porto\/vendor\/isotope\/jquery.isotope.css":1,"sites\/all\/themes\/Porto\/css\/theme.css":1,"sites\/all\/themes\/Porto\/css\/theme-elements.css":1,"sites\/all\/themes\/Porto\/css\/theme-animate.css":1,"sites\/all\/themes\/Porto\/css\/theme-blog.css":1,"sites\/all\/themes\/Porto\/css\/theme-responsive.css":1,"sites\/all\/themes\/Porto\/css\/drupal-styles.css":1,"sites\/all\/themes\/Porto_sub\/css\/custom.css":1,"sites\/all\/themes\/Porto\/css\/less\/skin.less":1}},"admin_menu_dropdown":{"key":"`","default":0},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Close","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px","specificPagesDefaultValue":"admin*\nimagebrowser*\nimg_assist*\nimce*\nnode\/add\/*\nnode\/*\/edit\nprint\/*\nprintpdf\/*\nsystem\/ajax\nsystem\/ajax\/*"},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackColorbox":1},"urlIsAjaxTrusted":{"\/knowledge\/variable-control-charts\/xbar-s-control-charts-part-1":true}});
+//--><!]]>
+</script>
+
+
+<!-- VWO, 120214 - amb m21 -->
+<!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type="text/javascript">
+var _vwo_code=(function(){
+var account_id=107634,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+// DO NOT EDIT BELOW THIS LINE
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script><script src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/j.php" type="text/javascript"></script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+
+
+<!-- IE Fix for HTML5 Tags -->
+<!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE]>
+  <link rel="stylesheet" href="/sites/all/themes/Porto/css/ie.css">
+<![endif]-->
+
+<!--[if lte IE 8]>
+  <script src="/sites/all/themes/Porto/vendor/respond.js"></script>
+<![endif]-->
+
+<!-- Web Fonts  -->
+<link href="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/css" rel="stylesheet" type="text/css">
+
+<!-- User defined CSS --><style type="text/css">div.field-name-field-categories { display: inline-block; }
+.node-article.node-teaser h2 { margin-bottom: 20px; }</style><!-- End user defined CSS --></head>
+
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-111 node-type-newsletter  sticky-menu-active" style="padding-top: 106px;">
+
+<div class="body">
+  <header id="header">
+    <div class="container">
+
+      	      	    
+            <h1 class="logo logo-sticky-active">
+	      <a href="https://www.spcforexcel.com/" title="Home" rel="home" id="logo">
+	        <img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/SPC-for-Excel-logo-web.png" alt="Home" height="90" width="90" data-sticky-height="80" style="display: inline-block; overflow: hidden; width: 82px; height: 80px; top: 28px;">
+	      </a>
+      </h1>
+	    
+	          <div id="name-and-slogan" class="hidden">
+
+                              <div id="site-name" class="hidden">
+	            <a href="https://www.spcforexcel.com/" title="Home" rel="home"><span>BPI Consulting</span></a>
+	          </div>
+                  
+        
+      </div> <!-- /#name-and-slogan -->
+	    
+	    	    <div class="search">
+	        
+<form action="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1" method="post" id="search-block-form" accept-charset="UTF-8"><div>
+<div class="input-group"> 
+  <input title="Enter the terms you wish to search for." class="form-control search form-text" placeholder="Search..." value="" type="text" id="edit-search-block-form--2" name="search_block_form" size="40" maxlength="128"><span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="icon icon-search"></i></button></span><input type="hidden" name="form_build_id" value="form-HXjiMligtd_DJl4HaYhs94C7LRQexwzSHMO_yW9edhs">
+<input type="hidden" name="form_id" value="search_block_form">
+</div>
+</div></form>	    </div>
+	    
+      <!-- /branding -->
+      <div id="header-top">
+          <div class="region region-header-top">
+    <div id="block-menu-menu-secondary-menu" class="block block-menu">
+
+    
+  <div class="content">
+    <ul class="menu"><li class="first leaf"><a href="https://www.spcforexcel.com/support" title="">Support</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/contact-us" title="">Contact Us</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/revision-history-for-spc-for-excel-version-6" title="Revisions to SPC for Excel Version 6">Revision History</a></li>
+<li class="leaf"><a href="https://www.spcforexcel.com/cart" title="">View Cart</a></li>
+<li class="last leaf"><a href="https://www.spcforexcel.com/user" title="">My Account</a></li>
+</ul>  </div>
+</div>
+  </div>
+      </div>
+
+	    <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+				<i class="icon icon-bars"></i>
+			</button>
+
+    </div>
+
+    <div class="navbar-collapse nav-main-collapse collapse">
+		  <div class="container">
+
+        
+        <nav class="nav-main">
+          <div class="region region-header-menu">
+    <div id="block-system-main-menu" class="block block-system block-menu">
+
+    
+  <div class="content">
+    <ul class="nav nav-pills nav-main" id="mainMenu"><li><a href="https://www.spcforexcel.com/home">Home</a></li><li class="dropdown 9811"><a class="dropdown-toggle extra" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#"></a><a href="https://www.spcforexcel.com/spc-software" class="dropdown-toggle disabled">SPC Software</a><ul class="dropdown-menu"><li><a href="https://www.spcforexcel.com/spc-software" title="Information about the SPC for Excel software">SPC for Excel Software</a></li><li><a href="https://www.spcforexcel.com/spc-software/demo" title="SPC for Excel Demo">Download the Free Demo</a></li><li><a href="https://www.spcforexcel.com/spc-software/statistical-tools-spc-for-excel" title="Lists the statistical tools in the SPC for Excel software">Statistical Tools in SPC for Excel</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/control-charts" title="Control Charts with SPC for Excel">Control Charts</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/process-capability" title="Process Capability with SPC for Excel">Process Capability</a></li><li><a href="https://www.spcforexcel.com/spc-for-excel/gage-rr" title="Gage R&amp;R Analysis with SPC for Excel">Gage R&amp;R Analysis</a></li><li><a href="https://www.spcforexcel.com/spc-software/systems-requirements-user-support-and-upgrades" title="Support, Upgrades, Requirements with SPC for Excel">Support, Upgrades, Requirements</a></li><li><a href="https://www.spcforexcel.com/spc-software/customer-testimonials" title="Customer Stories with SPC for Excel">Customer Stories</a></li></ul></li><li><a href="https://www.spcforexcel.com/spc-training">SPC Training</a></li><li><a href="https://www.spcforexcel.com/spc-consulting" title="">SPC Consulting</a></li><li><a href="https://www.spcforexcel.com/spc-knowledge-base" title="Our collection of publications and articles on statistical analysis of data">SPC Knowledge Base</a></li><li><a href="https://www.spcforexcel.com/ordering-information">Pricing/Ordering</a></li><li><a href="https://www.spcforexcel.com/about-us">About Us</a></li></ul>  </div>
+</div>
+  </div>
+        </nav>
+
+		  </div>
+    </div>
+
+	</header>
+	<!-- end header -->
+
+	<div role="main" class="main">
+
+	  	  <section class="page-top breadcrumb-wrap">
+		  <div class="container">
+		    				<div class="row">
+					<div class="col-md-12">
+						<h2>Xbar-s Control Charts: Part 1</h2>
+					</div>
+				</div>
+			</div>
+		</section>
+	  
+	  	  <div id="content" class="content full">
+	    <div class="container">
+	      <div class="row">
+	      			    
+					<div class="col-md-9">
+
+			     				      			      
+					    <div class="region region-content">
+    <div id="block-system-main" class="block block-system">
+
+    
+  <div class="content">
+    <div id="node-111" class="node node-newsletter clearfix">
+
+  
+      
+  
+  <div class="content">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even"><p align="center">September 2008</p>
+<p>In This Issue</p>
+<ul>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#introduction">Introduction</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#understanding">Understanding&nbsp;<span style="color: #000000;" color="#000000"> <span style="text-decoration: overline;">X</span>-s</span> Control Charts</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#whentouse">When to Use</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#constructing">Steps in Construction</a></li>
+<li><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#constants">Control Chart Constants</a></li>
+<li>
+<div style="text-align: left;"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#summary">Summary</a></div>
+</li>
+<li>
+<div style="text-align: left;"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#quick_links">Quick Links</a><br>&nbsp;</div>
+</li>
+</ul>
+<p>This month's&nbsp;publication is the first part of a two part series on&nbsp; <span style="text-decoration: overline;">X</span>-s charts. The&nbsp; <span style="text-decoration: overline;">X</span>-s chart is often overlooked in favor of the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. But, the&nbsp; <span style="text-decoration: overline;">X</span>-s chart might actually be the better chart to use. This month we will introduce&nbsp; <span style="text-decoration: overline;">X</span>-s charts and describe how they are constructed. Next month we will look at a detailed example of an&nbsp; <span style="text-decoration: overline;">X</span>-s chart.</p>
+<p><a name="introduction" title="introduction" id="introduction" class="anchor-fix"></a></p>
+<h3>Introduction to&nbsp; <span style="text-decoration: overline;">X</span>-s Control Charts</h3>
+<p>The most common control chart for years has been the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. This control chart uses the range to measure the variation within a subgroup. For the measurements within a subgroup, the range is the maximum - minimum value. The range is an easy concept to understand - and to calculate. This was important when the control chart calculations had to be done by hand or with a calculator. But with computer software, this is no longer an issue. One problem with the&nbsp; <span style="text-decoration: overline;">X</span>-R chart is that the range becomes a poorer and poorer measure of within-subgroup variation as the subgroup size increases. A different method is needed for the larger subgroup sizes. This is where the&nbsp; <span style="text-decoration: overline;">X</span>-s chart provides the solution. This month's newsletter introduces the&nbsp; <span style="text-decoration: overline;">X</span>-s chart.</p>
+<p>This type of control chart is used with variables data - data that is taken along a continuum. Time, density, weight, and length are examples of variables data. Like most other variables control charts, it is actually two charts. One chart is for the subgroup averages ( <span style="text-decoration: overline;">X</span>). The other chart is for the subgroup standard deviations (s).</p>
+<p><a name="understanding" title="understanding" id="understanding" class="anchor-fix"></a></p>
+<h3>Understanding the&nbsp; <span style="text-decoration: overline;">X</span>-s Control Chart</h3>
+<p>In the past, there has been reluctance to use the&nbsp; <span style="text-decoration: overline;">X</span>-s chart in place of the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. The standard deviation is just not as easy to understand as the range. Plus, there was the calculation issue.</p>
+<p> Yet, the&nbsp; <span style="text-decoration: overline;">X</span>-s chart is very similar to the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. The major difference is that the subgroup standard deviation is plotted when using the&nbsp; <span style="text-decoration: overline;">X</span>-s chart, while the subgroup range is plotted when using the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. One advantage of using the standard deviation instead of the range is that the standard deviation takes into account all the data, not just the maximum and the minimum. The constants used to calculate the control limits and to estimate the process standard deviation are different for the&nbsp; <span style="text-decoration: overline;">X</span>-s chart than for the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. As for the&nbsp; <span style="text-decoration: overline;">X</span>-R chart, frequent data and a method of rationally subgrouping the data are required to use the Xbar-s chart.</p>
+<p> The figures below are an example of an&nbsp; <span style="text-decoration: overline;">X</span>-s chart. A company is tracking performance of a bagging machine. Each bag should contain a minimum of 50 pounds (lbs) of sand. Ten bags are weighed at the start of each hour. This provides frequent data as well as a method of rationally subgrouping the data. The ten bags are used to form a subgroup, so the subgroup size (n) is 10. The average weight of the ten bags is calculated. This is the subgroup average ( <span style="text-decoration: overline;">X</span>). The standard deviation of the ten bags is calculated. This is the subgroup standard deviation (s). </p>
+<p> The figure below is the&nbsp; <span style="text-decoration: overline;">X</span> chart. The&nbsp; <span style="text-decoration: overline;">X</span> values are plotted on this chart. Three lines are plotted on the chart. The middle line is the overall process averag; &nbsp;the upper line is the upper control limit; and the lower line is the lower control limit.</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/xbarchart.png" alt="Xbar Chart" width="423" height="222"></div>
+<p>The figure below is the s chart. The subgroup standard deviations are plotted on this chart. Three lines are plotted on this chart as well. The middle line is the average standard deviation ( <span style="text-decoration: overline;">s</span>). The other two lines are the upper and lower control limits for the subgroup standard deviations.</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/schart.png" alt="s Chart" width="423" height="222"></div>
+<p> The bagging process represented by control charts above is in statistical control. Since the s chart is in statistical control, this means that the variation between the individual bag weights (the within-hour variation) is consistent over time. We don't know what the next s value will be, but we do know that it will be between 0.06 and 0.34 with a long term average of 0.2. Since the&nbsp; <span style="text-decoration: overline;">X</span> chart is in statistical control, the variation in subgroup averages (the hour-to-hour variation) is consistent over time. The next result will be between 50.1 and 50.49 with a long term average of 50.3. The process is consistent and predictable in the near future.</p>
+<p><a name="whentouse" title="whentouse" id="whentouse" class="anchor-fix"></a></p>
+<h3>When to Use&nbsp; <span style="text-decoration: overline;">X</span>-s Control Charts</h3>
+<p>&nbsp;<span style="text-decoration: overline;">X</span>-s charts are used to analyze a process operating over time. Like all control charts, they will send a signal when a special cause of variation is present. You can use&nbsp; <span style="text-decoration: overline;">X</span>-s charts for any subgroup size greater than 1. This means they can be used in place of&nbsp; <span style="text-decoration: overline;">X</span>-s charts all the time. But, you definitely should use the&nbsp; <span style="text-decoration: overline;">X</span>-s charts when the subgroup size is 10 or more. The standard deviation gives a better estimate of the variation in large subgroups than the range does.</p>
+<p>Data has to be frequently available (multiple samples per hour, day, or week). The subgroups should be formed with rational subgrouping in mind. In the bag weight example above, the subgroups were formed so that the&nbsp; <span style="text-decoration: overline;">X</span> chart examined the variation in the average bag weight for the subgroup from hour to hour while the s chart examined the variation within the subgroup from hour to hour. Selecting ten bags at the start of the hour helps minimize the variation in the s chart and causes the out of control situations to appear on the&nbsp; <span style="text-decoration: overline;">X</span> chart.</p>
+<p> In situations where either the&nbsp; <span style="text-decoration: overline;">X</span>-s chart or the&nbsp; <span style="text-decoration: overline;">X</span>-R chart can be used (small subgroups), the choice is one of convenience more than anything. The control charts will generally look very much alike and you will reach the same conclusions.</p>
+<p><a name="constructing" title="constructing" id="constructing" class="anchor-fix"></a></p>
+<h3>The Steps in Constructing an&nbsp; <span style="text-decoration: overline;">X</span>-s Control Chart&nbsp;</h3>
+<p>The steps in constructing the&nbsp; <span style="text-decoration: overline;">X</span>-s chart are given below. Most of the time you will use a software program to generate control charts. However, it is important to understand how the control charts are constructed and the steps in constructing them.</p>
+<p><b>1. Gather the data.</b></p>
+<blockquote><p>Select the subgroup size (n). Typical subgroup sizes for an&nbsp; <span style="text-decoration: overline;">X</span>-s chart are 10 or more. However, you can use the&nbsp; <span style="text-decoration: overline;">X</span>-s chart with any size subgroup of two or more. The concept of rational subgroup should be considered. The objective is to minimize the amount of variation within a subgroup. This helps you "see" the variation in the averages chart easier.</p>
+<p>Select the frequency with which the data will be collected. This will be part of the rational subgrouping. Time is always important in taking data and in interpreting the data. Data should be collected in the order in which they are generated (in most cases).</p>
+<p>Select the number of subgroups (k) to be collected before control limits are calculated. You can start a control chart with only 5 subgroups. You will need to recalculate the averages and control limits for each new subgroup until you have at least twenty subgroups of data.</p>
+<p>For each subgroup, record the individual sample results. For each subgroup, calculate the subgroup average ( <span style="text-decoration: overline;">X</span>): where X1, X2, etc. are the individual sample results and n is the subgroup size:</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/xbar.png" alt="Xbar Calculation Figure" width="260" height="57"></div>
+</blockquote>
+<blockquote><p>For each subgroup, calculate the subgroup standard deviation:</p>
+<p>&nbsp;</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/scal.png" alt="Standard Deviation Calcuation Figure" width="144" height="72"></div>
+</blockquote>
+<p><b>2. Plot the data.</b></p>
+<blockquote><p>Select the scales for the x and y axes for both the&nbsp; <span style="text-decoration: overline;">X</span> and s charts</p>
+</blockquote>
+<blockquote><p>Plot the subgroup standard deviations (s) on the s chart and connect consecutive points with a straight line.</p>
+</blockquote>
+<blockquote><p>Plot the subgroup averages on the&nbsp; <span style="text-decoration: overline;">X</span> chart and connect consecutive points with a straight line.</p>
+</blockquote>
+<p><b>3. Calculate the overall process averages and control limits.</b></p>
+<blockquote><p>Calculate the average standard deviation (<span style="text-decoration: overline;">s</span>), where s1, s2, etc. are the standard deviations for subgroups 1, 2, etc. and k is the number of subgroups:</p>
+<p>&nbsp;</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/sbar.png" alt="Average Standard Deviation Calculation Figure" width="246" height="57"></div>
+</blockquote>
+<blockquote><p>Plot s on the&nbsp;s chart as a solid line and label.</p>
+</blockquote>
+<blockquote><p>Calculate the overall process average, where&nbsp; <span style="text-decoration: overline;">X</span><sub>1</sub>,&nbsp; <span style="text-decoration: overline;">X</span><sub>2</sub>, etc. are the subgroup averages for subgroups 1, 2, etc:</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/xbarcal.png" alt="X double bar calculation figure" width="278" height="71"></div>
+</blockquote>
+<blockquote><p>Plot the overall process average on the&nbsp; <span style="text-decoration: overline;">X</span> chart as a solid line and label.</p>
+</blockquote>
+<blockquote><p>Calculate the control limits for the s chart. The upper control limit is given by UCLs. The lower control limit is given by LCLs. B4 and B3 are control chart constants that depend on the subgroup size.</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/slimits.png" alt="s Control Limits Figure" width="117" height="81"></div>
+</blockquote>
+<blockquote><p>Plot the control limits on the chart as dashed lines and label.</p>
+</blockquote>
+<blockquote><p>Calculate the control limits for the&nbsp; <span style="text-decoration: overline;">X </span>chart. The upper control limit is given by UCLX. The lower control limit is given by LCLX. A3 is a control chart constant that depends on the subgroup size.</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/xbarlimits.png" alt="Xbar Control Limits Calculations Figure" width="167" height="87"></div>
+</blockquote>
+<blockquote><p>Plot the control limits on the&nbsp; <span style="text-decoration: overline;">X</span> chart as dashed lines and label.</p>
+</blockquote>
+<p><b>4. Interpret both charts for statistical control.</b></p>
+<blockquote><p>Always consider variation first. If the s chart is out of control, the control limits on the&nbsp; <span style="text-decoration: overline;">X</span> chart are not valid since you do not have a good estimate of <span style="text-decoration: overline;">s</span>. All tests for statistical control apply to the&nbsp; <span style="text-decoration: overline;">X </span>chart. Points beyond the control limits, number of runs and length of runs apply to the s chart.</p>
+</blockquote>
+<p><b>5. Calculate the process standard deviation, if appropriate.</b></p>
+<blockquote><p>If the s chart is in statistical control, the process standard deviation can be calculated as:</p>
+</blockquote>
+<p>&nbsp;</p>
+<div style="text-align: center;"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/standarddeviation1.png" alt="Standard Deviation Calculation Figure" width="102" height="61"></div>
+<blockquote><p>c4 is a control chart constant that depends on subgroup size.</p>
+<p>If the control charts indicate that the process is in statistical control, extend the control limits into the future and monitor the process performance using these control limits. If the control charts indicated that there are special causes of variation, find the reason for the special cause of variation and remove it from the process. Once you have 20 points in a row in statistical control, recalculate the control limits based on that data, and use those limits in the future.</p>
+</blockquote>
+<p><a name="constants" title="constants" id="constants" class="anchor-fix"></a></p>
+<h3>&nbsp;<span style="text-decoration: overline;">X</span>-s Control Chart Constants</h3>
+<p>Below are the control charts constants for the&nbsp; <span style="text-decoration: overline;">X</span>-schart for subgroup sizes up to 25.</p>
+<table align="center" style="width: 30%; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="0">
+<colgroup><col width="64" style="width: 48pt;" span="5"></colgroup>
+<tbody>
+<tr height="24" style="height: 18pt;">
+<td width="64" height="24" align="center" class="xl22" style="height: 18pt; width: 48pt;"><span>n</span></td>
+<td width="64" align="center" class="xl22" style="width: 48pt; padding-bottom: 0in; padding-top: 0in;"><span>A<span class="font5"><sub>3</sub></span></span></td>
+<td width="64" align="center" class="xl22" style="width: 48pt; padding-bottom: 0in; padding-top: 0in;"><span>B<span class="font5"><sub>3</sub></span></span></td>
+<td width="64" align="center" class="xl22" style="width: 48pt; padding-bottom: 0in; padding-top: 0in;"><span>B<span class="font5"><sub>4</sub></span></span></td>
+<td width="64" align="center" class="xl22" style="width: 48pt; padding-bottom: 0in; padding-top: 0in;"><span>c<span class="font5"><sub>4</sub></span></span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>2</span></td>
+<td align="center" class="xl23" x:num="2.6589999999999998"><span>2.659</span></td>
+<td align="center" class="xl23"><span>&nbsp;</span></td>
+<td align="center" class="xl23" x:num="3.2669999999999999"><span>3.267</span></td>
+<td align="center" class="xl23" x:num="0.79790000000000005"><span>0.7979</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>3</span></td>
+<td align="center" class="xl23" x:num="1.954"><span>1.954</span></td>
+<td align="center" class="xl23"><span>&nbsp;</span></td>
+<td align="center" class="xl23" x:num="2.5680000000000001"><span>2.568</span></td>
+<td align="center" class="xl23" x:num="0.88619999999999999"><span>0.8862</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>4</span></td>
+<td align="center" class="xl23" x:num="1.6279999999999999"><span>1.628</span></td>
+<td align="center" class="xl23"><span>&nbsp;</span></td>
+<td align="center" class="xl23" x:num="2.266"><span>2.266</span></td>
+<td align="center" class="xl23" x:num="0.92130000000000001"><span>0.9213</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>5</span></td>
+<td align="center" class="xl23" x:num="1.427"><span>1.427</span></td>
+<td align="center" class="xl23"><span>&nbsp;</span></td>
+<td align="center" class="xl23" x:num="2.089"><span>2.089</span></td>
+<td align="center" class="xl23" x:num="00.94"><span>0.94</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>6</span></td>
+<td align="center" class="xl23" x:num="1.2869999999999999"><span>1.287</span></td>
+<td align="center" class="xl23" x:num="00.03"><span>0.03</span></td>
+<td align="center" class="xl23"><span>1.97</span></td>
+<td align="center" class="xl23" x:num="0.95150000000000001"><span>0.9515</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>7</span></td>
+<td align="center" class="xl23" x:num="1.1819999999999999"><span>1.182</span></td>
+<td align="center" class="xl23" x:num="0.11799999999999999"><span>0.118</span></td>
+<td align="center" class="xl23" x:num="1.8819999999999999"><span>1.882</span></td>
+<td align="center" class="xl23" x:num="0.95940000000000003"><span>0.9594</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>8</span></td>
+<td align="center" class="xl23" x:num="1.099"><span>1.099</span></td>
+<td align="center" class="xl23" x:num="0.185"><span>0.185</span></td>
+<td align="center" class="xl23" x:num="1.8149999999999999"><span>1.815</span></td>
+<td align="center" class="xl23" x:num="0.96499999999999997"><span>0.965</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>9</span></td>
+<td align="center" class="xl23" x:num="1.032"><span>1.032</span></td>
+<td align="center" class="xl23" x:num="0.23899999999999999"><span>0.239</span></td>
+<td align="center" class="xl23" x:num="1.7609999999999999"><span>1.761</span></td>
+<td align="center" class="xl23" x:num="0.96930000000000005"><span>0.9693</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>10</span></td>
+<td align="center" class="xl23" x:num="0.97499999999999998"><span>0.975</span></td>
+<td align="center" class="xl23" x:num="0.28399999999999997"><span>0.284</span></td>
+<td align="center" class="xl23" x:num="1.716"><span>1.716</span></td>
+<td align="center" class="xl23" x:num="0.97270000000000001"><span>0.9727</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>11</span></td>
+<td align="center" class="xl23" x:num="0.92700000000000005"><span>0.927</span></td>
+<td align="center" class="xl23" x:num="0.32100000000000001"><span>0.321</span></td>
+<td align="center" class="xl23" x:num="1.679"><span>1.679</span></td>
+<td align="center" class="xl23" x:num="0.97540000000000004"><span>0.9754</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>12</span></td>
+<td align="center" class="xl23" x:num="0.88600000000000001"><span>0.886</span></td>
+<td align="center" class="xl23" x:num="0.35399999999999998"><span>0.354</span></td>
+<td align="center" class="xl23" x:num="1.6459999999999999"><span>1.646</span></td>
+<td align="center" class="xl23" x:num="0.97760000000000002"><span>0.9776</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>13</span></td>
+<td align="center" class="xl23" x:num="00.85"><span>0.85</span></td>
+<td align="center" class="xl23" x:num="0.38200000000000001"><span>0.382</span></td>
+<td align="center" class="xl23" x:num="1.6180000000000001"><span>1.618</span></td>
+<td align="center" class="xl23" x:num="0.97940000000000005"><span>0.9794</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>14</span></td>
+<td align="center" class="xl23" x:num="0.81699999999999995"><span>0.817</span></td>
+<td align="center" class="xl23" x:num="0.40600000000000003"><span>0.406</span></td>
+<td align="center" class="xl23" x:num="1.5940000000000001"><span>1.594</span></td>
+<td align="center" class="xl23" x:num="0.98099999999999998"><span>0.981</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>15</span></td>
+<td align="center" class="xl23" x:num="0.78900000000000003"><span>0.789</span></td>
+<td align="center" class="xl23" x:num="0.42799999999999999"><span>0.428</span></td>
+<td align="center" class="xl23" x:num="1.5720000000000001"><span>1.572</span></td>
+<td align="center" class="xl23" x:num="0.98229999999999995"><span>0.9823</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>16</span></td>
+<td align="center" class="xl23" x:num="0.76300000000000001"><span>0.763</span></td>
+<td align="center" class="xl23" x:num="0.44800000000000001"><span>0.448</span></td>
+<td align="center" class="xl23" x:num="1.552"><span>1.552</span></td>
+<td align="center" class="xl23" x:num="0.98350000000000004"><span>0.9835</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>17</span></td>
+<td align="center" class="xl23" x:num="0.73899999999999999"><span>0.739</span></td>
+<td align="center" class="xl23" x:num="0.46600000000000003"><span>0.466</span></td>
+<td align="center" class="xl23" x:num="1.534"><span>1.534</span></td>
+<td align="center" class="xl23" x:num="0.98450000000000004"><span>0.9845</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>18</span></td>
+<td align="center" class="xl23" x:num="0.71799999999999997"><span>0.718</span></td>
+<td align="center" class="xl23" x:num="0.48199999999999998"><span>0.482</span></td>
+<td align="center" class="xl23" x:num="1.518"><span>1.518</span></td>
+<td align="center" class="xl23" x:num="0.98540000000000005"><span>0.9854</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>19</span></td>
+<td align="center" class="xl23" x:num="0.69799999999999995"><span>0.698</span></td>
+<td align="center" class="xl23" x:num="0.497"><span>0.497</span></td>
+<td align="center" class="xl23" x:num="1.5029999999999999"><span>1.503</span></td>
+<td align="center" class="xl23" x:num="0.98619999999999997"><span>0.9862</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>20</span></td>
+<td align="center" class="xl23" x:num="00.68"><span>0.68</span></td>
+<td align="center" class="xl23" x:num="00.51"><span>0.51</span></td>
+<td align="center" class="xl23"><span>1.49</span></td>
+<td align="center" class="xl23" x:num="0.9869"><span>0.9869</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>21</span></td>
+<td align="center" class="xl23" x:num="0.66300000000000003"><span>0.663</span></td>
+<td align="center" class="xl23" x:num="0.52300000000000002"><span>0.523</span></td>
+<td align="center" class="xl23" x:num="1.4770000000000001"><span>1.477</span></td>
+<td align="center" class="xl23" x:num="0.98760000000000003"><span>0.9876</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>22</span></td>
+<td align="center" class="xl23" x:num="0.64700000000000002"><span>0.647</span></td>
+<td align="center" class="xl23" x:num="0.53400000000000003"><span>0.534</span></td>
+<td align="center" class="xl23" x:num="1.466"><span>1.466</span></td>
+<td align="center" class="xl23" x:num="0.98819999999999997"><span>0.9882</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>23</span></td>
+<td align="center" class="xl23" x:num="0.63300000000000001"><span>0.633</span></td>
+<td align="center" class="xl23" x:num="0.54500000000000004"><span>0.545</span></td>
+<td align="center" class="xl23" x:num="1.4550000000000001"><span>1.455</span></td>
+<td align="center" class="xl23" x:num="0.98870000000000002"><span>0.9887</span></td>
+</tr>
+<tr height="21" style="height: 15.75pt;">
+<td height="21" align="center" class="xl23" style="height: 15.75pt;"><span>24</span></td>
+<td align="center" class="xl23" x:num="0.61899999999999999"><span>0.619</span></td>
+<td align="center" class="xl23" x:num="0.55500000000000005"><span>0.555</span></td>
+<td align="center" class="xl23" x:num="1.4450000000000001"><span>1.445</span></td>
+<td align="center" class="xl23" x:num="0.98919999999999997"><span>0.9892</span></td>
+</tr>
+<tr height="20" style="height: 15pt;">
+<td height="20" align="center" class="xl24" style="height: 15pt;"><span>25</span></td>
+<td align="center" class="xl24" x:num="0.60599999999999998"><span>0.606</span></td>
+<td align="center" class="xl24" x:num="0.56499999999999995"><span>0.565</span></td>
+<td align="center" class="xl24" x:num="1.4350000000000001"><span>1.435</span></td>
+<td align="center" class="xl24" x:num="0.98960000000000004"><span>0.9896</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Next month, we will continue our look at the&nbsp; <span style="text-decoration: overline;">X</span>-s control chart.</p>
+<p style="text-align: left;"><a name="summary" id="summary" class="anchor-fix"></a></p>
+<h3 style="text-align: left;">Summary</h3>
+<p style="text-align: left;">This month’s publication has introduced the <span style="text-decoration: overline;">X</span>-s control chart.&nbsp; Like most other variables control charts, it is actually two charts. One chart is for the subgroup averages ( <span style="text-decoration: overline;">X</span>). The other chart is for the subgroup standard deviations (s).&nbsp;&nbsp;The&nbsp; <span style="text-decoration: overline;">X</span>-s chart is very similar to the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. The major difference is that the subgroup standard deviation is plotted when using the&nbsp; <span style="text-decoration: overline;">X</span>-s chart, while the subgroup range is plotted when using the&nbsp; <span style="text-decoration: overline;">X</span>-R chart. One advantage of using the standard deviation instead of the range is that the standard deviation takes into account all the data, not just the maximum and the minimum.&nbsp; An example of an <span style="text-decoration: overline;">X</span>-s&nbsp;chart was introduced.&nbsp;&nbsp; The steps in constructing the chart were covered&nbsp;and&nbsp;t he constants used to calculate the control limits and to estimate the process standard deviation were given.</p>
+<p style="text-align: left;"><a name="quick_links" id="quick_links" class="anchor-fix"></a></p>
+<p style="text-align: left;">
+</p><div id="block-block-3" class="block block-block">
+<div class="content">
+<h3>Quick Links</h3>
+<p><a href="https://www.spcforexcel.com/spc-software">SPC for Excel Software</a></p>
+<p><a href="https://www.spcforexcel.com/home">Visit our home page</a></p>
+<p><a href="https://www.spcforexcel.com/spc-training">SPC Training</a></p>
+<p><a href="https://www.spcforexcel.com/spc-consulting">SPC Consulting</a></p>
+<p><a href="https://www.spcforexcel.com/ordering-information">Ordering Information</a></p>
+<p>Thanks so much for reading our publication. We hope you find it informative and useful. Happy charting and may the data always support your position.</p>
+<p> Sincerely,</p>
+<p> Dr. Bill McNeese<br> BPI Consulting, LLC</p>
+<p><a href="https://www.linkedin.com/in/billmcneese"> <img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/btn_viewmy_160x33.png" alt="View Bill McNeese&#39;s profile on LinkedIn" width="160" height="33"> </a></p>
+<h4>Connect with Us</h4>
+<p><a href="https://www.facebook.com/spcforexcel" target="_blank" title="Connect with us on Facebook"><em class="icon icon-3x icon-facebook-square" style="color: #45619d;">&nbsp;</em></a> <a href="https://www.linkedin.com/company/spc-for-excel" target="_blank" title="Connect with us on LinkedIn"><em class="icon icon-3x icon-linkedin-square" style="color: #0f7cb7;">&nbsp;</em></a> <a href="https://twitter.com/SpcforExcel" target="_blank" title="Follow us on Twitter"><em class="icon icon-3x icon-twitter-square" style="color: #1DA1F2;">&nbsp;</em></a>  <a href="https://www.youtube.com/channel/UCnogTilST4u1z_TQFops_LQ" target="_blank" title="Connect with us on YouTube"><em class="icon icon-3x icon-youtube-square" style="color: #cc181e;">&nbsp;</em></a></p>
+</div>
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</div></div></div>  </div>
+
+  
+  
+</div>
+  </div>
+</div>
+  </div>
+
+					</div>
+
+				  				  <div class="col-md-3">
+				      <div class="region region-sidebar-right">
+    
+<div id="block-block-18" class="block block-block">
+
+    <h4>SPC for Excel</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/catalog/software" class="btn btn-lg btn-primary">Buy&nbsp;Now </a></p>
+<p style="text-align: center;"></p>
+<p style="text-align: center;"><a href="https://www.spcforexcel.com/spc-software/demo" class="btn btn-lg btn-warning">Try Free</a></p>
+<p style="text-align: center;"></p>
+<p style="text-align: center;"><a href="https://www.capterra.com/reviews/124809/SPC-for-Excel?utm_source=vendor&amp;utm_medium=badge&amp;utm_campaign=capterra_reviews_badge"> <img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/c9f22b7bb511d3e05c53fc7a232ce89b.png" alt="capterra" title="capterra"></a></p>
+  </div>
+</div>
+<div id="block-menu-block-2" class="block block-menu-block">
+
+    <h4>Variable Control Charts</h4>
+  
+  <div class="content">
+    <div class="menu-block-wrapper menu-block-2 menu-name-menu-knowledge-base-menu parent-mlid-0 menu-level-2">
+  <ul class="menu"><li class="first leaf menu-mlid-12986"><a href="https://www.spcforexcel.com/spc-for-excel-publications-category" title="">&lt;&lt; Return to Categories</a></li>
+<li class="leaf menu-mlid-13020"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-1">Xbar-R Charts: Part 1</a></li>
+<li class="leaf menu-mlid-13021"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-r-charts-part-2">Xbar-R Charts: Part 2</a></li>
+<li class="leaf menu-mlid-13022"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/individuals-control-charts">Individuals Control Charts</a></li>
+<li class="leaf menu-mlid-13023"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/chunky-data-and-control-charts">Chunky Data and Control Charts</a></li>
+<li class="leaf menu-mlid-13024"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/rare-events-and-x-mr-charts">Rare Events and X-mR Charts</a></li>
+<li class="leaf active-trail active menu-mlid-13025"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1" class="active-trail active">Xbar-s Control Charts: Part 1</a></li>
+<li class="leaf menu-mlid-13026"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-2">Xbar-s Control Charts: Part 2</a></li>
+<li class="leaf menu-mlid-13027"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-mr-r-betweenwithin-control-chart">Xbar-mR-R (Between/Within) Control Chart</a></li>
+<li class="leaf menu-mlid-13028"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/control-charts-and-non-normal-data">Control Charts and Non-Normal Data</a></li>
+<li class="leaf menu-mlid-13029"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/keeping-process-target-cusum-charts">Keeping the Process on Target: CUSUM Charts</a></li>
+<li class="leaf menu-mlid-13030"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/keeping-process-target-ewma-chart">Keeping the Process on Target: EWMA Chart</a></li>
+<li class="leaf menu-mlid-13354"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/comparing-individuals-charts-attributes-charts">Comparing Individuals Charts to Attributes Charts</a></li>
+<li class="leaf menu-mlid-18543"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/medians-individuals-control-chart">Medians and the Individuals Control Chart</a></li>
+<li class="leaf menu-mlid-17636"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/hotelling-t2-control-chart">Multivariate Control Charts:  The Hotelling T2 Control Chart</a></li>
+<li class="last leaf menu-mlid-13480"><a href="https://www.spcforexcel.com/knowledge/variable-control-charts/z-mr-control-charts">z-mR Control Charts for Short Production Runs</a></li>
+</ul></div>
+  </div>
+</div>
+<div id="block-block-5" class="block block-block">
+
+    <h4>SPC Knowledge Base</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/spc-knowledge-base-signup"><img src="./Xbar-s Control Charts_ Part 1 _ BPI Consulting_files/80subscribebuttonorange.jpg" alt="subscribe button" title="subscribe-button" width="80" height="80"></a></p>
+<p>Sign up for our FREE monthly publication featuring SPC techniques and other statistical topics.</p>
+  </div>
+</div>
+<div id="block-block-19" class="block block-block">
+
+    <h4>Customer Stories</h4>
+  
+  <div class="content">
+    <p><a href="https://www.spcforexcel.com/spc-software/customer-testimonials">Click here</a> to see what our customers say about SPC for Excel!</p>
+  </div>
+</div>
+<div id="block-block-1" class="block block-block">
+
+    <h4>SPC Around the World</h4>
+  
+  <div class="content">
+    <p>SPC for Excel is used in over 60 countries internationally.&nbsp; <a href="https://www.spcforexcel.com/spc-for-excel-used-internationally" rel="nofollow">Click here for a list of those countries.</a></p>
+  </div>
+</div>
+<div id="block-block-20" class="block block-block">
+
+    <h4>Questions?</h4>
+  
+  <div class="content">
+    <p style="text-align: center;"><a href="https://www.spcforexcel.com/contact-us">Contact Us</a></p>
+  </div>
+</div>
+<div id="block-block-15" class="block block-block">
+
+    <h4>Connect with Us</h4>
+  
+  <div class="content">
+    <p>
+<a href="https://www.facebook.com/spcforexcel" target="_blank" title="Connect with us on Facebook"><em class="icon icon-3x icon-facebook-square" style="color: #45619d;">&nbsp;</em></a>
+ <!--<a href="https://plus.google.com/u/0/b/112490535975760615454/+Spcforexcel/posts" target="_blank" title="Connect with us on Google+"><em class="icon icon-3x icon-google-plus-square" style="color: #dd4b39;">&nbsp;</em></a> -->
+<a href="https://www.linkedin.com/company/spc-for-excel" target="_blank" title="Connect with us on LinkedIn"><em class="icon icon-3x icon-linkedin-square" style="color: #0f7cb7;">&nbsp;</em></a> 
+<a href="https://twitter.com/SpcforExcel" target="_blank" title="Follow us on Twitter"><em class="icon icon-3x icon-twitter-square" style="color: #1DA1F2;">&nbsp;</em></a> 
+<a href="https://www.youtube.com/channel/UCnogTilST4u1z_TQFops_LQ" target="_blank" title="Connect with us on YouTube"><em class="icon icon-3x icon-youtube-square" style="color: #CC181E;">&nbsp;</em></a>
+</p>
+
+
+  </div>
+</div>  </div>
+				  </div>
+				  
+			  </div>
+	    </div>
+	  </div>
+
+	</div>
+
+  
+  <footer id="footer">
+    
+	  <div class="footer-copyright">
+	    <div class="container">
+	      <div class="row">
+			    <div class="col-md-6">
+
+					  					    					  
+			    </div>
+			    <div class="col-md-6">
+
+					  					      <div class="region region-footer-bottom-right">
+    <div id="block-block-13" class="block block-block">
+
+    
+  <div class="content">
+    <p style="text-align: right">Copyright © 2020 BPI Consulting, LLC. All Rights Reserved.<br> Site developed and hosted by <a href="https://elfcc.com/" rel="nofollow">ELF Computer Consultants</a>.</p>  </div>
+</div>
+  </div>
+					  
+			    </div>
+	      </div>
+	    </div>
+	  </div>
+	</footer>
+
+</div>
+
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><a class="scroll-to-top visible" href="https://www.spcforexcel.com/knowledge/variable-control-charts/xbar-s-control-charts-part-1#" id="scrollToTop"><i class="icon icon-chevron-up icon-white"></i></a></body></html>
