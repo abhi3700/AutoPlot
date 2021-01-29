@@ -1,3 +1,4 @@
+- create custom css in AutoPlot GUI for shadow
 - User manual
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
