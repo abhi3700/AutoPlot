@@ -2,7 +2,7 @@
     Steps:
     ======
     1. [x] card for 'Software name'- "AutoPlot"
-    2. [ ] Dropdown menu for 'Sections' - "DRY ETCH", "WET ETCH",...
+    2. [x] Dropdown menu for 'Sections' - "DRY ETCH", "WET ETCH",...
     3. [ ] Navigation bar for 'Equipments' - ASFE1, ASBE1, REML1, REOX1, REPL1, RESP1
     4. [ ] nested Navigation bar for 'Chambers' - 'Ch A', 'Ch C'
     5. [ ] nested Navigation bar for 'Charts type' - 'CP', 'ER', 'Unif'
