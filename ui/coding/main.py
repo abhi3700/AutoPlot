@@ -45,7 +45,7 @@ autoplot_layout = dbc.Col([
     dbc.Row(autoplot_subtitle)
     ],
     align="center",
-    className="m-3"
+    className="m-2"
     )
 
 # =======================================================================================================
