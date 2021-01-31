@@ -22,6 +22,7 @@ autoplot_title = dbc.Card(
                 dbc.DropdownMenu(
                     label="AutoPlot",
                     children= [
+                        dbc.DropdownMenuItem("Home"),
                         dbc.DropdownMenuItem("CMP"),
                         dbc.DropdownMenuItem("Diffusion"),
                         dbc.DropdownMenuItem("Dry Etch"),
@@ -50,17 +51,34 @@ autoplot_title = dbc.Card(
 
 # -------------------------------------------------------------------------------------------------------
 # "AutoPlot" subtitle in paragraph
-autoplot_subtitle = html.P(html.B("FAB QC Monitor"), className="ml-2",  style={"color": "#9e9e9e", "font-size": "15px"})
-
+autoplot_subtitle = html.P(html.B("FAB QC Monitor"), style={"color": "#9e9e9e", "font-size": "15px", "width":"2", "background-color": "#000000"})
+# -------------------------------------------------------------------------------------------------------
+# add a badge of area
+fab_area = dbc.Badge("Dry Etch", id="fab-area", className="ml-1", pill=True, style={"color": "#ffffff", "background-color": "#ff8f00", "font-size": "14px"})
 # -------------------------------------------------------------------------------------------------------
 # "AutoPlot" layout as a col of 2 rows
-autoplot_layout = dbc.Col([ 
-    dbc.Row(autoplot_title), 
-    dbc.Row(autoplot_subtitle)
+autoplot_layout = dbc.Col(
+    [ 
+        dbc.Row(autoplot_title), 
+        dbc.Row(
+            [
+                html.Span(
+                    html.H1(
+                    [
+                        html.B("FAB QC Monitor | "),            # autoplot_subtitle
+                        fab_area                                # fab_area
+                    ],                               
+                    className="ml-2 mt-1 autoplot-subtitle"
+                    )
+                )
+            ],
+        )
     ],
     align="center",
     className="m-2"
     )
+
+# callback for changing fab_area text (badge) by clicking dropdown menu
 
 # =======================================================================================================
 

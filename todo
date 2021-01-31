@@ -1,4 +1,3 @@
-- create custom css in AutoPlot GUI for shadow
 - User manual
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
@@ -7,4 +6,6 @@
 -------------------------------------------------------------
 # Future Work:
 - v2.0: Desktop App (browser-based) for each equipment/chamber.
+  - change text of fab_area badge using callback
+  - add nav bar for equipments
 - v3.0: integrate SPC rules (or Nelson)
