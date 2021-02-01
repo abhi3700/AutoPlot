@@ -93,7 +93,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
             label="ASFE1",
             group=True,
             color="#00e676",
-            className="area-equipments-layout",
+            className="area-equipments-layout text-white",
             style={"color": "#ffffff"}
         ),
         dbc.DropdownMenu(
@@ -122,6 +122,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch A",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                         dbc.DropdownMenu(
                             [
@@ -132,6 +133,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch C",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                     ],
                     vertical=True,
@@ -158,7 +160,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch A",
                             direction="right",
                             group=True,
-                            className="area-equipments-layout",
+                            color="#ffffff",
                         ),
                         dbc.DropdownMenu(
                             [
@@ -175,6 +177,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch B",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                         dbc.DropdownMenu(
                             [
@@ -187,6 +190,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch C",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                     ],
                     vertical=True,
@@ -213,6 +217,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch A",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                         dbc.DropdownMenu(
                             [
@@ -225,6 +230,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch B",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                     ],
                     vertical=True,
@@ -255,6 +261,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch A",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                         dbc.DropdownMenu(
                             [
@@ -271,6 +278,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
                             label="Ch B",
                             direction="right",
                             group=True,
+                            color="#ffffff",
                         ),
                     ],
                     vertical=True,
@@ -283,7 +291,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
             className="area-equipments-layout",
         ),
     ],
-    className="area-equipments-layout",
+    className="area-equipments-layout text-white",
 )
 
 area_equipments_layout = area_equipments_layout_dryetch
@@ -293,7 +301,6 @@ app.layout = html.Div(
         autoplot_layout,
         area_equipments_layout,
     ],
-    # className="disable-scroll"
 )
 
 if __name__ == '__main__':

@@ -12,11 +12,15 @@ Source: https://css-tricks.com/snippets/css/css-box-shadow/
 
 .area-equipments-layout{
 	background-color: #00e676;
-	color: #ffffff;
+	color: #ffffff !important;
 	display: flex;				/*		fill horizontal to 100%	for buttongroup		*/
 	width: 100%;				/*		fill horizontal to 100%	for buttongroup children		*/
 }
 
-.disable-scroll{
+.dropdown-item:hover{background-color: #00e676 !important; color:#ffffff;}
+
+/*.disable-scroll{
 	overflow: hidden;
-}
+	overflow-x: hidden;
+	overflow-y: hidden;
+}*/
