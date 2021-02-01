@@ -10,14 +10,19 @@ Source: https://css-tricks.com/snippets/css/css-box-shadow/
 	font-size: 14px
 }
 
+.area-equipments-name{
+	font-weight: bold;
+}
 .area-equipments-layout{
 	background-color: #00e676;
 	color: #ffffff !important;
-	display: flex;				/*		fill horizontal to 100%	for buttongroup		*/
+	display: flex;				/* 		fill horizontal to 100%	for buttongroup		*/
+	/*flexWrap: wrap;*/
 	width: 100%;				/*		fill horizontal to 100%	for buttongroup children		*/
 }
 
 .dropdown-item:hover{background-color: #00e676 !important; color:#ffffff;}
+/*.dropdown-item:active{background-color: #00e676 !important; color:#000000;}*/
 
 /*.disable-scroll{
 	overflow: hidden;

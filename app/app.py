@@ -51,10 +51,10 @@ autoplot_title = dbc.Card(
 
 # -------------------------------------------------------------------------------------------------------
 # "AutoPlot" subtitle in paragraph
-autoplot_subtitle = html.P(html.B("FAB QC Monitor"), style={"color": "#9e9e9e", "font-size": "15px", "background-color": "#000000"})
+# autoplot_subtitle = html.P(html.B("FAB QC Monitor"), style={"color": "#9e9e9e", "font-size": "15px", "background-color": "#000000"})
 # -------------------------------------------------------------------------------------------------------
 # add a badge of area
-fab_area = dbc.Badge("Dry Etch", id="fab-area", className="ml-1", pill=True, style={"color": "#ffffff", "background-color": "#ff8f00", "font-size": "14px"})
+fab_area = dbc.Badge("Dry Etch", id="fab-area", className="ml-1 autoplot-shadow", pill=True, style={"color": "#424242", "background-color": "#ff8f00", "font-size": "14px"})
 # -------------------------------------------------------------------------------------------------------
 # "AutoPlot" layout as a col of 2 rows
 autoplot_layout = dbc.Col(
@@ -65,7 +65,7 @@ autoplot_layout = dbc.Col(
                 html.Span(
                     html.H1(
                     [
-                        html.B("FAB QC Monitor | "),            # autoplot_subtitle
+                        html.B("FAB QC Monitor  | "),            # autoplot_subtitle
                         fab_area                                # fab_area
                     ],                               
                     className="ml-2 mt-1 autoplot-subtitle"
@@ -93,8 +93,8 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
             label="ASFE1",
             group=True,
             color="#00e676",
-            className="area-equipments-layout text-white",
-            style={"color": "#ffffff"}
+            className="area-equipments-layout area-equipments-name",
+            style={"color": "#ffffff", "font-weight": "bold"}
         ),
         dbc.DropdownMenu(
             [
@@ -291,7 +291,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
             className="area-equipments-layout",
         ),
     ],
-    className="area-equipments-layout text-white",
+    className="area-equipments-layout",
 )
 
 area_equipments_layout = area_equipments_layout_dryetch
