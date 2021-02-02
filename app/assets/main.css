@@ -24,6 +24,10 @@ Source: https://css-tricks.com/snippets/css/css-box-shadow/
 .dropdown-item:hover{background-color: #00e676 !important; color:#ffffff;}
 /*.dropdown-item:active{background-color: #00e676 !important; color:#000000;}*/
 
+/*.dropdown-menu{
+	display: block;
+}
+*/
 /*.disable-scroll{
 	overflow: hidden;
 	overflow-x: hidden;

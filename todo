@@ -6,6 +6,14 @@
 -------------------------------------------------------------
 # Future Work:
 - v2.0: Desktop App (browser-based) for each equipment/chamber.
-  - change text of fab_area badge using callback
-  - add nav bar for equipments
+	- UI
+	  - change text of fab_area badge using callback
+	  - add nav bar for equipments
+	  - show items on hovering over dropdownmenu here - https://bootsnipp.com/snippets/KXR7x
+	- database
+		- create sql-DB for each equipment-chamber
+	- upload from MTOP1/MTOP2 to database	
+		- Data upload to DB using Excel UI
+	- subscribe to App updates via email
+	- documentation
 - v3.0: integrate SPC rules (or Nelson)
