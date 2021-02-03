@@ -11,7 +11,10 @@
 import dash
 import dash_bootstrap_components as dbc
 import dash_html_components as html
+import dash_core_components as dcc
+from dash.dependencies import Input, Output, State
 from fab_areas.dryetch.layout import area_equipments_layout_dryetch
+from fab_areas.dryetch.equipments.ASFE1.ASFE1 import cp_chart, er_chart, unif_chart
 
 # external JavaScript files
 # external_scripts = [
@@ -44,15 +47,15 @@ autoplot_title = dbc.Card(
                 dbc.DropdownMenu(
                     label="AutoPlot",
                     children= [
-                        dbc.DropdownMenuItem("Home"),
-                        dbc.DropdownMenuItem("CMP"),
-                        dbc.DropdownMenuItem("Diffusion"),
-                        dbc.DropdownMenuItem("Dry Etch"),
-                        dbc.DropdownMenuItem("Implant"),
-                        dbc.DropdownMenuItem("Photo"),
-                        dbc.DropdownMenuItem("Thin Film"),
-                        dbc.DropdownMenuItem("Wet Etch"),
-                        dbc.DropdownMenuItem("Yield"),
+                        dbc.DropdownMenuItem(id= "home-id", "Home"),
+                        dbc.DropdownMenuItem(id= "cmp-id", "CMP"),
+                        dbc.DropdownMenuItem(id= "diffusion-id", "Diffusion"),
+                        dbc.DropdownMenuItem(id= "dryetch-id", "Dry Etch"),
+                        dbc.DropdownMenuItem(id= "implant-id", "Implant"),
+                        dbc.DropdownMenuItem(id= "photo-id", "Photo"),
+                        dbc.DropdownMenuItem(id= "thinfilm-id", "Thin Film"),
+                        dbc.DropdownMenuItem(id= "wetetch-id", "Wet Etch"),
+                        dbc.DropdownMenuItem(id= "yield-id", "Yield"),
                     ],
                     bs_size="lg",
                     color="success",
@@ -76,7 +79,7 @@ autoplot_title = dbc.Card(
 # autoplot_subtitle = html.P(html.B("FAB QC Monitor"), style={"color": "#9e9e9e", "font-size": "15px", "background-color": "#000000"})
 # -------------------------------------------------------------------------------------------------------
 # add a badge of area
-fab_area = dbc.Badge("Dry Etch", id="fab-area", className="ml-1 autoplot-shadow", pill=True, style={"color": "#424242", "background-color": "#ff8f00", "font-size": "14px"})
+fab_area = dbc.Badge(children="Home", id="fab-area", className="ml-1 autoplot-shadow", pill=True, style={"color": "#424242", "background-color": "#ff8f00", "font-size": "14px"})
 # -------------------------------------------------------------------------------------------------------
 # "AutoPlot" layout as a col of 2 rows
 autoplot_layout = dbc.Col(
@@ -97,20 +100,50 @@ autoplot_layout = dbc.Col(
         )
     ],
     align="center",
-    className="m-2"
+    className="m-2",
     )
 
 # callback for changing fab_area text (badge) by clicking dropdown menu
-
+@app.callback(
+    Output('fab-area', 'children'),
+    [
+        Input('home-id', 'children'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+        Input('asfe1-cp-chart', 'toggle'),
+    ]
+)
+def update_fabarea_badge(input):
+    children = input
 # =======================================================================================================
 # "buttongroup with nested dropdownmenu" for area equipments
 
 area_equipments_layout = area_equipments_layout_dryetch
+
+# =======================================================================================================
+# container for graph
+generate_chart = dcc.Graph(id='area-equip-ch-chart', figure={})
+
+@app.callback(
+    Output('area-equip-ch-chart', 'figure'),
+    Input('asfe1-cp-chart', 'toggle')
+)
+def creatify_chart(input_toggle):
+    if input_toggle:
+        fig = cp_chart()
+        return fig
+    else:
+        return None
 # =======================================================================================================
 app.layout = html.Div(
     [
         autoplot_layout,
         area_equipments_layout,
+        html.Div(generate_chart),
     ],
 )
 
