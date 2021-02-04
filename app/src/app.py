@@ -15,6 +15,9 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
 
+import json
+import jsonpickle
+
 # area layouts
 from fab_areas.home.layout import area_equipments_layout_home
 from fab_areas.cmp.layout import area_equipments_layout_cmp
@@ -27,7 +30,9 @@ from fab_areas.wetetch.layout import area_equipments_layout_wetetch
 from fab_areas.yieldtdd.layout import area_equipments_layout_yield
 
 # area equipments
-from fab_areas.dryetch.equipments.ASFE1.ASFE1 import cp_chart, er_chart, unif_chart
+# Dry Etch
+from fab_areas.dryetch.equipments.ASFE1.ASFE1 import asfe1_cp_chart, asfe1_er_chart, asfe1_unif_chart
+from fab_areas.dryetch.equipments.ASBE1.ASBE1 import asbe1_cp_chart, asbe1_er_chart, asbe1_unif_chart
 
 # external JavaScript files
 # external_scripts = [
@@ -184,29 +189,39 @@ def update_fabarea_badge(*args):
 
 # =======================================================================================================
 # container for graph
-chart = dcc.Graph(id='area-equip-ch-chart', figure={})
+chart = dcc.Graph(id='area-equip-ch-chart')
 
 @app.callback(
     Output('area-equip-ch-chart', 'figure'),
     [
+        # ASFE1
         Input('asfe1-cp-chart', 'n_clicks'),
         Input('asfe1-er-chart', 'n_clicks'),
         Input('asfe1-unif-chart', 'n_clicks'),
+        # ASBE1
+        Input('asbe1-cp-chart', 'n_clicks'),
+        Input('asbe1-er-chart', 'n_clicks'),
+        Input('asbe1-unif-chart', 'n_clicks'),
     ]
 )
-def updated_chart(*args):
+def update_chart(*args):
     chart_func = {
-            'asfe1-cp-chart': cp_chart,
-            'asfe1-er-chart': er_chart,
-            'asfe1-unif-chart': unif_chart,
+            # ASFE1
+            'asfe1-cp-chart': asfe1_cp_chart(),
+            'asfe1-er-chart': asfe1_er_chart(),
+            'asfe1-unif-chart': asfe1_unif_chart(),
+            # ASBE1
+            'asbe1-cp-chart': asbe1_cp_chart(),
+            'asbe1-er-chart': asbe1_er_chart(),
+            'asbe1-unif-chart': asbe1_unif_chart(),
     }
     ctx = dash.callback_context
 
     if not ctx.triggered:
-        fig = ""
+        fig = {}
     else:
         button_id = ctx.triggered[0]['prop_id'].split(".")[0]
-        fig = {chart_func[button_id]}
+        fig = chart_func[button_id]
         
     return fig
 # =======================================================================================================
