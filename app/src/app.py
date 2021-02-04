@@ -47,15 +47,15 @@ autoplot_title = dbc.Card(
                 dbc.DropdownMenu(
                     label="AutoPlot",
                     children= [
-                        dbc.DropdownMenuItem(id= "home-id", "Home"),
-                        dbc.DropdownMenuItem(id= "cmp-id", "CMP"),
-                        dbc.DropdownMenuItem(id= "diffusion-id", "Diffusion"),
-                        dbc.DropdownMenuItem(id= "dryetch-id", "Dry Etch"),
-                        dbc.DropdownMenuItem(id= "implant-id", "Implant"),
-                        dbc.DropdownMenuItem(id= "photo-id", "Photo"),
-                        dbc.DropdownMenuItem(id= "thinfilm-id", "Thin Film"),
-                        dbc.DropdownMenuItem(id= "wetetch-id", "Wet Etch"),
-                        dbc.DropdownMenuItem(id= "yield-id", "Yield"),
+                        dbc.DropdownMenuItem("Home", id= "home-id"),
+                        dbc.DropdownMenuItem("CMP", id= "cmp-id"),
+                        dbc.DropdownMenuItem("Diffusion", id= "diffusion-id"),
+                        dbc.DropdownMenuItem("Dry Etch", id= "dryetch-id"),
+                        dbc.DropdownMenuItem("Implant", id= "implant-id"),
+                        dbc.DropdownMenuItem("Photo", id= "photo-id"),
+                        dbc.DropdownMenuItem("Thin Film", id= "thinfilm-id"),
+                        dbc.DropdownMenuItem("Wet Etch", id= "wetetch-id"),
+                        dbc.DropdownMenuItem("Yield", id= "yield-id"),
                     ],
                     bs_size="lg",
                     color="success",
@@ -103,29 +103,55 @@ autoplot_layout = dbc.Col(
     className="m-2",
     )
 
-# callback for changing fab_area text (badge) by clicking dropdown menu
+# callback for changing fab_area text (badge) by clicking dropdown menu item
 @app.callback(
     Output('fab-area', 'children'),
     [
-        Input('home-id', 'children'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
-        Input('asfe1-cp-chart', 'toggle'),
+        Input('home-id', 'n_clicks'),
+        Input('cmp-id', 'n_clicks'),
+        Input('diffusion-id', 'n_clicks'),
+        Input('dryetch-id', 'n_clicks'),
+        Input('implant-id', 'n_clicks'),
+        Input('photo-id', 'n_clicks'),
+        Input('thinfilm-id', 'n_clicks'),
+        Input('wetetch-id', 'n_clicks'),
+        Input('yield-id', 'n_clicks'),
     ]
 )
-def update_fabarea_badge(input):
-    children = input
+def update_fabarea_badge(*args):
+    # create a dict for mapping the button-id with desired label
+    fabarea_label = { 
+                        'home-id': 'Home',
+                        'cmp-id': 'CMP',
+                        'diffusion-id': 'Diffusion',
+                        'dryetch-id': 'Dry Etch',
+                        'implant-id': 'Implant',
+                        'thinfilm-id': 'Thin Film',
+                        'photo-id': 'Photo',
+                        'wetetch-id': 'Wet Etch',
+                        'yield-id': 'Yield',
+                    }
+
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        out_text = "Home"
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split(".")[0]
+        # print(ctx.triggered[0])
+        # print(button_id)
+        out_text = fabarea_label[button_id]
+
+    return out_text
 # =======================================================================================================
 # "buttongroup with nested dropdownmenu" for area equipments
 
 area_equipments_layout = area_equipments_layout_dryetch
 
+
+# callback for changing area_equipments_layout (button_group) by change of badge text
 # =======================================================================================================
 # container for graph
+"""
 generate_chart = dcc.Graph(id='area-equip-ch-chart', figure={})
 
 @app.callback(
@@ -138,12 +164,14 @@ def creatify_chart(input_toggle):
         return fig
     else:
         return None
+
+"""
 # =======================================================================================================
 app.layout = html.Div(
     [
         autoplot_layout,
         area_equipments_layout,
-        html.Div(generate_chart),
+        # html.Div(generate_chart),
     ],
 )
 
