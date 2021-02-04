@@ -8,12 +8,25 @@
     5. [x] nested Navigation bar for 'Charts type' - 'CP', 'ER', 'Unif'
     6. [ ] callback functions for pressing dropdown menus - ASFE1-CP Chart, likewise....
 """
+# dash libs
 import dash
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
+
+# area layouts
+from fab_areas.home.layout import area_equipments_layout_home
+from fab_areas.cmp.layout import area_equipments_layout_cmp
+from fab_areas.diffusion.layout import area_equipments_layout_diffusion
 from fab_areas.dryetch.layout import area_equipments_layout_dryetch
+from fab_areas.implant.layout import area_equipments_layout_implant
+from fab_areas.photo.layout import area_equipments_layout_photo
+from fab_areas.thinfilm.layout import area_equipments_layout_thinfilm
+from fab_areas.wetetch.layout import area_equipments_layout_wetetch
+from fab_areas.yieldtdd.layout import area_equipments_layout_yield
+
+# area equipments
 from fab_areas.dryetch.equipments.ASFE1.ASFE1 import cp_chart, er_chart, unif_chart
 
 # external JavaScript files
@@ -103,9 +116,21 @@ autoplot_layout = dbc.Col(
     className="m-2",
     )
 
-# callback for changing fab_area text (badge) by clicking dropdown menu item
+# =======================================================================================================
+# "buttongroup with nested dropdownmenu" for area equipments
+
+area_equipments_layout = html.Div(
+        area_equipments_layout_dryetch, 
+        id= "area-equipment-layout",
+    )
+
+
+# callback for changing "fab_area text (badge)" & "area_equipment_layout" by clicking dropdown menu item
 @app.callback(
-    Output('fab-area', 'children'),
+    [
+        Output('fab-area', 'children'),
+        Output('area-equipment-layout', 'children'),
+    ],
     [
         Input('home-id', 'n_clicks'),
         Input('cmp-id', 'n_clicks'),
@@ -131,47 +156,65 @@ def update_fabarea_badge(*args):
                         'wetetch-id': 'Wet Etch',
                         'yield-id': 'Yield',
                     }
+    area_layout = { 
+                    'home-id': area_equipments_layout_home,
+                    'cmp-id': area_equipments_layout_cmp,
+                    'diffusion-id': area_equipments_layout_diffusion,
+                    'dryetch-id': area_equipments_layout_dryetch,
+                    'implant-id': area_equipments_layout_implant,
+                    'thinfilm-id': area_equipments_layout_thinfilm,
+                    'photo-id': area_equipments_layout_photo,
+                    'wetetch-id': area_equipments_layout_wetetch,
+                    'yield-id': area_equipments_layout_yield,
+                }
+
 
     ctx = dash.callback_context
     if not ctx.triggered:
         out_text = "Home"
+        out_layout = area_equipments_layout_dryetch
     else:
         button_id = ctx.triggered[0]['prop_id'].split(".")[0]
         # print(ctx.triggered[0])
         # print(button_id)
         out_text = fabarea_label[button_id]
+        out_layout = area_layout[button_id]
 
-    return out_text
-# =======================================================================================================
-# "buttongroup with nested dropdownmenu" for area equipments
+    return out_text, out_layout
 
-area_equipments_layout = area_equipments_layout_dryetch
-
-
-# callback for changing area_equipments_layout (button_group) by change of badge text
 # =======================================================================================================
 # container for graph
-"""
-generate_chart = dcc.Graph(id='area-equip-ch-chart', figure={})
+chart = dcc.Graph(id='area-equip-ch-chart', figure={})
 
 @app.callback(
     Output('area-equip-ch-chart', 'figure'),
-    Input('asfe1-cp-chart', 'toggle')
+    [
+        Input('asfe1-cp-chart', 'n_clicks'),
+        Input('asfe1-er-chart', 'n_clicks'),
+        Input('asfe1-unif-chart', 'n_clicks'),
+    ]
 )
-def creatify_chart(input_toggle):
-    if input_toggle:
-        fig = cp_chart()
-        return fig
-    else:
-        return None
+def updated_chart(*args):
+    chart_func = {
+            'asfe1-cp-chart': cp_chart,
+            'asfe1-er-chart': er_chart,
+            'asfe1-unif-chart': unif_chart,
+    }
+    ctx = dash.callback_context
 
-"""
+    if not ctx.triggered:
+        fig = ""
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split(".")[0]
+        fig = {chart_func[button_id]}
+        
+    return fig
 # =======================================================================================================
 app.layout = html.Div(
     [
         autoplot_layout,
         area_equipments_layout,
-        # html.Div(generate_chart),
+        html.Div(chart),
     ],
 )
 
