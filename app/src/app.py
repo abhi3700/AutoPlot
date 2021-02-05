@@ -15,9 +15,6 @@ import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
 
-import json
-import jsonpickle
-
 # area layouts
 from fab_areas.home.layout import area_equipments_layout_home
 from fab_areas.cmp.layout import area_equipments_layout_cmp
@@ -176,7 +173,8 @@ def update_fabarea_badge(*args):
 
     ctx = dash.callback_context
     if not ctx.triggered:
-        out_text = "Home"
+        # out_text = "Home"
+        out_text = "Dry Etch"
         out_layout = area_equipments_layout_dryetch
     else:
         button_id = ctx.triggered[0]['prop_id'].split(".")[0]
@@ -189,7 +187,17 @@ def update_fabarea_badge(*args):
 
 # =======================================================================================================
 # container for graph
-chart = dcc.Graph(id='area-equip-ch-chart')
+chart = html.Div( 
+            [
+                dcc.Graph(id='area-equip-ch-chart', className= "full-height")
+            ],
+            style={
+                "background-color": "#EF9A9A",
+                "height": "auto",
+            },
+            className="full-height",
+        )
+
 
 @app.callback(
     Output('area-equip-ch-chart', 'figure'),
@@ -229,7 +237,7 @@ app.layout = html.Div(
     [
         autoplot_layout,
         area_equipments_layout,
-        html.Div(chart),
+        chart,
     ],
 )
 

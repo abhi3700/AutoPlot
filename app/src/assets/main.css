@@ -33,3 +33,7 @@ Source: https://css-tricks.com/snippets/css/css-box-shadow/
 	overflow-x: hidden;
 	overflow-y: hidden;
 }*/
+
+.full-height {
+  height: 100%;
+}
