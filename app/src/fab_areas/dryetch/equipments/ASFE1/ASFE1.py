@@ -1,21 +1,8 @@
-"""
-    TODO:
-        - [ ] disable date_formatter() func. once the cloud is ready.
-
-"""
-
 # Import packages
-# import xlwings as xw
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
 import datetime as dt
-# from input import *
-# from dir import *
-# import win32api
-# import os
-# from pathlib import Path
-
 
 #========================================INPUT===========================================================================================================
 # Global variables

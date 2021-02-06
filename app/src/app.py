@@ -30,6 +30,7 @@ from fab_areas.yieldtdd.layout import area_equipments_layout_yield
 # Dry Etch
 from fab_areas.dryetch.equipments.ASFE1.ASFE1 import asfe1_cp_chart, asfe1_er_chart, asfe1_unif_chart
 from fab_areas.dryetch.equipments.ASBE1.ASBE1 import asbe1_cp_chart, asbe1_er_chart, asbe1_unif_chart
+from fab_areas.dryetch.equipments.REML1.REML1 import reml1a_cp_chart, reml1c_cp_chart, reml1a_pr_er_chart, reml1a_pr_unif_chart, reml1c_pr_er_chart, reml1c_pr_unif_chart
 
 # external JavaScript files
 # external_scripts = [
@@ -210,6 +211,15 @@ chart = html.Div(
         Input('asbe1-cp-chart', 'n_clicks'),
         Input('asbe1-er-chart', 'n_clicks'),
         Input('asbe1-unif-chart', 'n_clicks'),
+        # REML1
+        Input('reml1a-cp-chart', 'n_clicks'),
+        Input('reml1a-pr-er-chart', 'n_clicks'),
+        Input('reml1a-pr-unif-chart', 'n_clicks'),
+        # Input('reml1a-al-er-chart', 'n_clicks'),
+        # Input('reml1a-al-unif-chart', 'n_clicks'),
+        Input('reml1c-cp-chart', 'n_clicks'),
+        Input('reml1c-pr-er-chart', 'n_clicks'),
+        Input('reml1c-pr-unif-chart', 'n_clicks'),
     ]
 )
 def update_chart(*args):
@@ -222,6 +232,15 @@ def update_chart(*args):
             'asbe1-cp-chart': asbe1_cp_chart(),
             'asbe1-er-chart': asbe1_er_chart(),
             'asbe1-unif-chart': asbe1_unif_chart(),
+            # REML1
+            'reml1a-cp-chart': reml1a_cp_chart(),
+            'reml1a-pr-er-chart': reml1a_pr_er_chart(),
+            'reml1a-pr-unif-chart': reml1a_pr_unif_chart(),
+            # 'reml1a-al-er-chart': reml1a_al_er_chart(),
+            # 'reml1a-al-unif-chart': reml1a_al_unif_chart(),
+            'reml1c-cp-chart': reml1c_cp_chart(),
+            'reml1c-pr-er-chart': reml1c_pr_er_chart(),
+            'reml1c-pr-unif-chart': reml1c_pr_unif_chart(),
     }
     ctx = dash.callback_context
 
