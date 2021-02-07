@@ -2,7 +2,7 @@
 import pandas as pd
 import plotly as py
 import plotly.graph_objs as go
-import datetime as dt
+# import datetime as dt
 
 #==================================================================================================================================================================
 # Global variables
@@ -18,42 +18,42 @@ sl_color = '#e53935'    # spec limit line color for any plot
 
 # ChA CP Plot
 cp_cha_plot_title = 'CP Plot for REML1A'  # title for CP plot
-cp_cha_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_cha_plot_xlabel = 'Date (MM/DD/YYYY)'   # xaxis name for CP plot
 cp_cha_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
 cp_cha_plot_html_file = 'REML1A_CP-Plot.html'   # HTML filename for CP plot
 cp_cha_plot_trace_count = 2    # no. of traces in CP plot
 
 # ChC CP Plot
 cp_chc_plot_title = 'CP Plot for REML1C'  # title for CP plot
-cp_chc_plot_xlabel = 'Date'   # xaxis name for CP plot
+cp_chc_plot_xlabel = 'Date (MM/DD/YYYY)'   # xaxis name for CP plot
 cp_chc_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
 cp_chc_plot_html_file = 'REML1C_CP-Plot.html'   # HTML filename for CP plot
 cp_chc_plot_trace_count = 2    # no. of traces in CP plot
 
 # ChA PR ER Plot
 er_cha_pr_plot_title = 'PR ER Plot for REML1A'  # title for ER plot
-er_cha_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_cha_pr_plot_xlabel = 'Date (MM/DD/YYYY)'        # xaxis name for ER plot
 er_cha_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
 er_cha_pr_plot_html_file = 'REML1A_PR_ER-Plot.html'   # HTML filename for ER plot
 er_cha_pr_plot_trace_count = 5    # no. of traces in Nit ER plot
 
 # ChA PR Unif Plot
 unif_cha_pr_plot_title = 'PR Uniformity Plot for REML1A'  # title for Unif plot
-unif_cha_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_cha_pr_plot_xlabel = 'Date (MM/DD/YYYY)'      # xaxis name for Unif plot
 unif_cha_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
 unif_cha_pr_plot_html_file = 'REML1A_PR_Unif-Plot.html'   # HTML filename for Unif plot
 unif_cha_pr_plot_trace_count = 3    # no. of traces in Nit Unif plot
 
 # ChC PR ER Plot
 er_chc_pr_plot_title = 'PR ER Plot for REML1C'  # title for ER plot
-er_chc_pr_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_chc_pr_plot_xlabel = 'Date (MM/DD/YYYY)'        # xaxis name for ER plot
 er_chc_pr_plot_ylabel = 'PR ER (A/min)'   # yaxis name for ER plot
 er_chc_pr_plot_html_file = 'REML1C_PR_ER-Plot.html'   # HTML filename for ER plot
 er_chc_pr_plot_trace_count = 5    # no. of traces in ER plot
 
 # ChC PR Unif Plot
 unif_chc_pr_plot_title = 'PR Uniformity Plot for REML1C'  # title for Unif plot
-unif_chc_pr_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_chc_pr_plot_xlabel = 'Date (MM/DD/YYYY)'      # xaxis name for Unif plot
 unif_chc_pr_plot_ylabel = 'PR Unif (%)'    # yaxis name for Unif plot
 unif_chc_pr_plot_html_file = 'REML1C_PR_Unif-Plot.html'   # HTML filename for Unif plot
 unif_chc_pr_plot_trace_count = 3    # no. of traces in Unif plot

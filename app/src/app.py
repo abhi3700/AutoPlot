@@ -31,6 +31,8 @@ from fab_areas.yieldtdd.layout import area_equipments_layout_yield
 from fab_areas.dryetch.equipments.ASFE1.ASFE1 import asfe1_cp_chart, asfe1_er_chart, asfe1_unif_chart
 from fab_areas.dryetch.equipments.ASBE1.ASBE1 import asbe1_cp_chart, asbe1_er_chart, asbe1_unif_chart
 from fab_areas.dryetch.equipments.REML1.REML1 import reml1a_cp_chart, reml1c_cp_chart, reml1a_pr_er_chart, reml1a_pr_unif_chart, reml1c_pr_er_chart, reml1c_pr_unif_chart
+from fab_areas.dryetch.equipments.REPL1.REPL1A import repl1a_cp_chart, repl1a_nit_er_chart, repl1a_nit_unif_chart, repl1a_poly_er_chart, repl1a_poly_unif_chart
+from fab_areas.dryetch.equipments.REPL1.REPL1B import repl1b_cp_chart, repl1b_nit_er_chart, repl1b_nit_unif_chart, repl1b_poly_er_chart, repl1b_poly_unif_chart
 
 # external JavaScript files
 # external_scripts = [
@@ -188,16 +190,15 @@ def update_fabarea_badge(*args):
 
 # =======================================================================================================
 # container for graph
-chart = html.Div( 
+chart = html.Div(
             [
-                dcc.Graph(id='area-equip-ch-chart', className= "full-height")
+                dcc.Graph(id='area-equip-ch-chart')
             ],
             style={
-                "background-color": "#EF9A9A",
+                # "background-color": "#EF9A9A",
                 "height": "auto",
             },
-            className="full-height",
-        )
+    )
 
 
 @app.callback(
@@ -220,6 +221,18 @@ chart = html.Div(
         Input('reml1c-cp-chart', 'n_clicks'),
         Input('reml1c-pr-er-chart', 'n_clicks'),
         Input('reml1c-pr-unif-chart', 'n_clicks'),
+        # REPL1A
+        Input('repl1a-cp-chart', 'n_clicks'),
+        Input('repl1a-nit-er-chart', 'n_clicks'),
+        Input('repl1a-nit-unif-chart', 'n_clicks'),
+        Input('repl1a-poly-er-chart', 'n_clicks'),
+        Input('repl1a-poly-unif-chart', 'n_clicks'),
+        # REPL1B
+        Input('repl1b-cp-chart', 'n_clicks'),
+        Input('repl1b-nit-er-chart', 'n_clicks'),
+        Input('repl1b-nit-unif-chart', 'n_clicks'),
+        Input('repl1b-poly-er-chart', 'n_clicks'),
+        Input('repl1b-poly-unif-chart', 'n_clicks'),
     ]
 )
 def update_chart(*args):
@@ -241,6 +254,18 @@ def update_chart(*args):
             'reml1c-cp-chart': reml1c_cp_chart(),
             'reml1c-pr-er-chart': reml1c_pr_er_chart(),
             'reml1c-pr-unif-chart': reml1c_pr_unif_chart(),
+            # REPL1A
+            'repl1a-cp-chart': repl1a_cp_chart(),
+            'repl1a-nit-er-chart': repl1a_nit_er_chart(),
+            'repl1a-nit-unif-chart': repl1a_nit_unif_chart(),
+            'repl1a-poly-er-chart': repl1a_poly_er_chart(),
+            'repl1a-poly-unif-chart': repl1a_poly_unif_chart(),
+            # REPL1B
+            'repl1b-cp-chart': repl1b_cp_chart(),
+            'repl1b-nit-er-chart': repl1b_nit_er_chart(),
+            'repl1b-nit-unif-chart': repl1b_nit_unif_chart(),
+            'repl1b-poly-er-chart': repl1b_poly_er_chart(),
+            'repl1b-poly-unif-chart': repl1b_poly_unif_chart(),
     }
     ctx = dash.callback_context
 
