@@ -1,7 +1,11 @@
 #==================================================================================================================================================================
 # Global variables
-line_color = '#3f51b5'      # line (trace1) color for any plot
+line_color = '#3f51b5'      # line (trace0) color for any plot
+line_color_2 = '#80deea'      # line (trace1) color for any plot
+line_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_color = '#43a047'    # marker color for any plot
+marker_color_2 = '#80deea'      # line (trace1) color for any plot
+marker_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_border_color = '#ffffff'     # marker border color for any plot
 cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
@@ -70,11 +74,11 @@ unif_arc_plot_html_file = 'REOX1B_ARC_Unif-Plot.html'   # HTML filename for Unif
 unif_arc_plot_trace_count = 3    # no. of traces in Unif plot
 
 # Sheet names
-sht_name_cp = 'REOX1A-CP'
-sht_name_er = 'REOX1A-ER'
+sht_name_cp = 'REOX1B-CP'
+sht_name_er = 'REOX1B-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta CP", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 # Metrology tool measurement coordinates
@@ -88,5 +92,5 @@ x_coord_arc_range = 'E15:M15'
 y_coord_arc_range = 'E16:M16'
 
 # Skiprows
-skiprows_cp = 8
+skiprows_cp = 9
 skiprows_er = 16
