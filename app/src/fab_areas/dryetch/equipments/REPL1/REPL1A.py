@@ -69,7 +69,7 @@ sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site
 N_cl = 30
 
 # Date formatter
-date_format = "%m-%d-%Y %H:%M:%S"
+date_format = "%d-%m-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
 # Metrology tool measurement coordinates

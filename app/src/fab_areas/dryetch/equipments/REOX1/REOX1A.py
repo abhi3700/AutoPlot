@@ -4,6 +4,7 @@ import plotly as py
 import plotly.graph_objs as go
 # import datetime as dt
 
+
 #==================================================================================================================================================================
 # Global variables
 line_color = '#3f51b5'      # line (trace0) color for any plot
@@ -17,73 +18,64 @@ cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
 
 # CP Plot
-cp_plot_title = 'CP Plot for REPL1B'  # title for CP plot
+cp_plot_title = 'CP Plot for REOX1A'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
 cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
-cp_plot_html_file = 'REPL1B_CP-Plot.html'   # HTML filename for CP plot
+cp_plot_html_file = 'REOX1A_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
-# NIT ER Plot
-er_nit_plot_title = 'Nit ER Plot for REPL1B'  # title for Nit ER plot
-er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
-er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
-er_nit_plot_html_file = 'REPL1B_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
-er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
-er_nit_contour_fname = 'REPL1B_Nit_ER-Plot_Contour.html'
-er_nit_contour_tname = 'NIT ER'
+# SiN ER Plot
+er_sin_plot_title = 'SiN ER Plot for REOX1A'  # title for ER plot
+er_sin_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_sin_plot_ylabel = 'SiN ER (A/min)'   # yaxis name for ER plot
+er_sin_plot_html_file = 'REOX1A_SiN_ER-Plot.html'   # HTML filename for ER plot
+er_sin_plot_trace_count = 5    # no. of traces in ER plot
 
-# NIT Unif Plot
-unif_nit_plot_title = 'Nit Uniformity Plot for REPL1B'  # title for Nit Unif plot
-unif_nit_plot_xlabel = 'Date'      # xaxis name for Nit Unif plot
-unif_nit_plot_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif plot
-unif_nit_plot_html_file = 'REPL1B_Nit_Unif-Plot.html'   # HTML filename for Nit Unif plot
-unif_nit_plot_trace_count = 3    # no. of traces in Nit Unif plot
+# SiN Unif Plot
+unif_sin_plot_title = 'SiN Uniformity Plot for REOX1A'  # title for Unif plot
+unif_sin_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_sin_plot_ylabel = 'SiN Unif (%)'    # yaxis name for Unif plot
+unif_sin_plot_html_file = 'REOX1A_SiN_Unif-Plot.html'   # HTML filename for Unif plot
+unif_sin_plot_trace_count = 3    # no. of traces in Unif plot
 
-# POLY ER Plot
-er_poly_plot_title = 'Poly ER Plot for REPL1B'  # title for Poly ER plot
-er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
-er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
-er_poly_plot_html_file = 'REPL1B_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
-er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
-er_poly_contour_fname = 'REPL1B_Poly_ER-Plot_Contour.html'
-er_poly_contour_tname = 'POLY ER'
+# TEOS ER Plot
+er_teos_plot_title = 'TEOS ER Plot for REOX1A'  # title for ER plot
+er_teos_plot_xlabel = 'Date'        # xaxis name for ER plot
+er_teos_plot_ylabel = 'TEOS ER (A/min)'   # yaxis name for ER plot
+er_teos_plot_html_file = 'REOX1A_TEOS_ER-Plot.html'   # HTML filename for ER plot
+er_teos_plot_trace_count = 5    # no. of traces in ER plot
 
-# POLY Unif Plot
-unif_poly_plot_title = 'Poly Uniformity Plot for REPL1B'  # title for Poly Unif plot
-unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
-unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
-unif_poly_plot_html_file = 'REPL1B_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
-unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
+# TEOS Unif Plot
+unif_teos_plot_title = 'TEOS Uniformity Plot for REOX1A'  # title for Unif plot
+unif_teos_plot_xlabel = 'Date'      # xaxis name for Unif plot
+unif_teos_plot_ylabel = 'TEOS Unif (%)'    # yaxis name for Unif plot
+unif_teos_plot_html_file = 'REOX1A_TEOS_Unif-Plot.html'   # HTML filename for Unif plot
+unif_teos_plot_trace_count = 3    # no. of traces in Unif plot
 
 # Sheet names
-sht_name_cp = 'REPL1B-CP'
-sht_name_er_nit = 'REPL1B-ERNit'
-sht_name_er_poly = 'REPL1B-ERPoly'
+sht_name_cp = 'REOX1A-CP'
+sht_name_er = 'REOX1A-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
-sht_er_nit_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_nit_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "Etch Rate (A/Min)", "Result"]
-sht_er_poly_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "LSL", "USL", "LCL", "UCL", "Remarks", "% Uni USL", "% Uni UCL"]
-sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site_3", "site_4", "site_5", "site_6", "site_7", "site_8", "site_9", "site_10", "site_11", "site_12", "site_13", "site_14", "site_15", "site_16", "site_17", "Etch Rate (A/Min)", "Result"]
-N_cl = 30
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.2u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 # Date formatter
 date_format = "%d-%m-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
 # Metrology tool measurement coordinates
-x_coord_nit_range = 'D9:P9'
-y_coord_nit_range = 'D10:P10'
-x_coord_poly_range = 'D9:T9'
-y_coord_poly_range = 'D10:T10'
+x_coord_sin_range = 'D9:L9'
+y_coord_sin_range = 'D10:L10'
+x_coord_teos_range = 'D11:L11'
+y_coord_teos_range = 'D12:L12'
 
 # Skiprows
 skiprows_cp = 9
-skiprows_nit = 10
-skiprows_poly = 10
+skiprows_er = 12
+
 # =================================================================================================================================================================
-excel_file_directory = "F:\\Coding\\github_repos\\AutoPlot\\examples\\dry_etch\\CNT01_Ch_B_QC_LOG_BOOK\\CNT01_Ch_B_QC_LOG_BOOK.xlsm"
+excel_file_directory = "F:\\Coding\\github_repos\\AutoPlot\\examples\\dry_etch\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK\\CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
@@ -101,19 +93,19 @@ def date_formatter(x):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots CP Chart with `cp_plot_trace_count` traces v/s Date.
+"Description": This function plots CP Chart with traces v/s Date.
 "x": Date (x-axis) for CP Chart
-"y1": Delta-CP 0.16u (y-axis) for CP Chart
+"y1": Delta-CP 0.2u (y-axis) for CP Chart
 "y2": Delta-CP 0.5u (y-axis) for CP Chart
 "y3": Delta-CP AC (y-axis) for CP Chart
 "y4": USL (y-axis) for CP Chart
 "y5": UCL (y-axis) for CP Chart
 """
-def draw_plotly_repl1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
+def draw_plotly_reox1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.16u',
+            name = 'delta-CP 0.2u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -196,7 +188,7 @@ def draw_plotly_repl1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_nit_plot_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": USL (y-axis) for ER Chart
@@ -204,7 +196,7 @@ def draw_plotly_repl1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
 "y4": UCL (y-axis) for ER Chart
 "y5": LCL (y-axis) for ER Chart
 """
-def draw_plotly_repl1b_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
+def draw_plotly_reox1a_er_sin_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -265,23 +257,23 @@ def draw_plotly_repl1b_er_nit_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_nit_plot_title,
-            xaxis = dict(title= er_nit_plot_xlabel),
-            yaxis = dict(title= er_nit_plot_ylabel)
+            title = er_sin_plot_title,
+            xaxis = dict(title= er_sin_plot_xlabel),
+            yaxis = dict(title= er_sin_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    # py.offline.plot(fig, filename= er_nit_plot_html_file)
+    # py.offline.plot(fig, filename= er_sin_plot_html_file)
     return fig
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_nit_plot_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
 "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_repl1b_unif_nit_plot(x, y1, y2, y3, remarks):
+def draw_plotly_reox1a_unif_sin_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -322,17 +314,17 @@ def draw_plotly_repl1b_unif_nit_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_nit_plot_title,
-            xaxis = dict(title= unif_nit_plot_xlabel),
-            yaxis = dict(title= unif_nit_plot_ylabel)
+            title = unif_sin_plot_title,
+            xaxis = dict(title= unif_sin_plot_xlabel),
+            yaxis = dict(title= unif_sin_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    # py.offline.plot(fig, filename= unif_nit_plot_html_file)
+    # py.offline.plot(fig, filename= unif_sin_plot_html_file)
     return fig
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots ER Chart with `er_poly_plot_trace_count` traces v/s Date.
+"Description": This function plots ER Chart with traces v/s Date.
 "x": Date (x-axis) for ER Chart
 "y1": ER (y-axis) for ER Chart
 "y2": USL (y-axis) for ER Chart
@@ -340,7 +332,7 @@ def draw_plotly_repl1b_unif_nit_plot(x, y1, y2, y3, remarks):
 "y4": UCL (y-axis) for ER Chart
 "y5": LCL (y-axis) for ER Chart
 """
-def draw_plotly_repl1b_er_poly_plot(x, y1, y2, y3, y4, y5, remarks):
+def draw_plotly_reox1a_er_teos_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -401,23 +393,23 @@ def draw_plotly_repl1b_er_poly_plot(x, y1, y2, y3, y4, y5, remarks):
 
     data = [trace1, trace2, trace3, trace4, trace5]
     layout = dict(
-            title = er_poly_plot_title,
-            xaxis = dict(title= er_poly_plot_xlabel),
-            yaxis = dict(title= er_poly_plot_ylabel)
+            title = er_teos_plot_title,
+            xaxis = dict(title= er_teos_plot_xlabel),
+            yaxis = dict(title= er_teos_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    # py.offline.plot(fig, filename= er_poly_plot_html_file)
+    # py.offline.plot(fig, filename= er_teos_plot_html_file)
     return fig
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 """
-"Description": This function plots Unif Chart with `unif_poly_plot_trace_count` traces v/s Date.
+"Description": This function plots Unif Chart with traces v/s Date.
 "x": Date (x-axis) for Unif Chart
 "y1": Unif (y-axis) for Unif Chart
 "y2": USL (y-axis) for Unif Chart
 "y3": UCL (y-axis) for Unif Chart
 """
-def draw_plotly_repl1b_unif_poly_plot(x, y1, y2, y3, remarks):
+def draw_plotly_reox1a_unif_teos_plot(x, y1, y2, y3, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
@@ -458,163 +450,192 @@ def draw_plotly_repl1b_unif_poly_plot(x, y1, y2, y3, remarks):
 
     data = [trace1, trace2, trace3]
     layout = dict(
-            title = unif_poly_plot_title,
-            xaxis = dict(title= unif_poly_plot_xlabel),
-            yaxis = dict(title= unif_poly_plot_ylabel)
+            title = unif_teos_plot_title,
+            xaxis = dict(title= unif_teos_plot_xlabel),
+            yaxis = dict(title= unif_teos_plot_ylabel)
         )
     fig = dict(data= data, layout= layout)
-    # py.offline.plot(fig, filename= unif_poly_plot_html_file)
+    # py.offline.plot(fig, filename= unif_teos_plot_html_file)
     return fig
-
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
+# def init():
+#     # Initialize the workbook
+#     # wb = xw.Book.caller()
+#     # wb = xw.Book('CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm')
+#     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
+
+#     #****************************************************************************************************************************************************************
+#     # Define sheets
+#     sht_reox1a_cp = wb.sheets[sht_name_cp]
+#     sht_reox1a_er = wb.sheets[sht_name_er]
+#     sht_run = wb.sheets['RUN_code']     # for testing purpose
+#     #****************************************************************************************************************************************************************
+#     x_coord_sin = sht_reox1a_er.range(x_coord_sin_range).value
+#     y_coord_sin = sht_reox1a_er.range(y_coord_sin_range).value
+#     x_coord_teos = sht_reox1a_er.range(x_coord_teos_range).value
+#     y_coord_teos = sht_reox1a_er.range(y_coord_teos_range).value
+#     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+#     excel_file = pd.ExcelFile(excel_file_directory)
+
+#     return wb, sht_reox1a_cp, sht_reox1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file
+
 excel_file = pd.ExcelFile(excel_file_directory)
 
-def repl1b_cp_chart():
-    # Fetch Dataframe for CP Plot
-    df_repl1b_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 9
-    df_repl1b_cp = df_repl1b_cp[sht_cp_columns]        # The final dataframe with required columns
-    df_repl1b_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_cp['Delta CP AC'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_cp = df_repl1b_cp.dropna()                                              # dropping rows where at least one element is missing
-    # sht_run.range('A25').options(index=False).value = df_repl1b_cp        # show the dataframe values into sheet- 'CP Plot'
-    
+def reox1a_cp_chart():
+    df_reox1a_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_cp = df_reox1a_cp[sht_cp_columns]        # The final dataframe with required columns
+    df_reox1a_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
+    df_reox1a_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reox1a_cp['Delta CP AC'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_reox1a_cp = df_reox1a_cp.dropna()                                              # dropping rows where at least one element is missing
+    # sht_run.range('A25').options(index=False).value = df_reox1a_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
-    df_repl1b_cp_date = df_repl1b_cp["Date (MM/DD/YYYY)"]
-    df_repl1b_cp_delta_cp_1 = df_repl1b_cp["Delta CP 0.16u"]
-    df_repl1b_cp_delta_cp_2 = df_repl1b_cp["Delta CP 0.5u"]
-    df_repl1b_cp_delta_cp_3 = df_repl1b_cp["Delta CP AC"]
-    df_repl1b_cp_usl = df_repl1b_cp["USL"]
-    df_repl1b_cp_ucl = df_repl1b_cp["UCL"]
-    df_repl1b_cp_remarks = df_repl1b_cp["Remarks"]
-
+    df_reox1a_cp_date = df_reox1a_cp["Date (MM/DD/YYYY)"]
+    df_reox1a_cp_delta_cp_1 = df_reox1a_cp["Delta CP 0.2u"]
+    df_reox1a_cp_delta_cp_2 = df_reox1a_cp["Delta CP 0.5u"]
+    df_reox1a_cp_delta_cp_3 = df_reox1a_cp["Delta CP AC"]
+    df_reox1a_cp_usl = df_reox1a_cp["USL"]
+    df_reox1a_cp_ucl = df_reox1a_cp["UCL"]
+    df_reox1a_cp_remarks = df_reox1a_cp["Remarks"]
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
     # Draw CP Plot (using Plotly) in Browser 
-    return draw_plotly_repl1b_cp_plot(
-        x = date_formatter(df_repl1b_cp_date), 
-        y1 = df_repl1b_cp_delta_cp_1, 
-        y2 = df_repl1b_cp_delta_cp_2, 
-        y3 = df_repl1b_cp_delta_cp_3, 
-        y4 = df_repl1b_cp_usl, 
-        y5 = df_repl1b_cp_ucl,
-        remarks = df_repl1b_cp_remarks
+    return draw_plotly_reox1a_cp_plot(
+        x = date_formatter(df_reox1a_cp_date), 
+        y1 = df_reox1a_cp_delta_cp_1, 
+        y2 = df_reox1a_cp_delta_cp_2, 
+        y3 = df_reox1a_cp_delta_cp_3, 
+        y4 = df_reox1a_cp_usl, 
+        y5 = df_reox1a_cp_ucl,
+        remarks = df_reox1a_cp_remarks
     )
 
-def repl1b_nit_er_chart():
-    # Fetch Dataframe for NIT ER & Unif Plot  
-    df_repl1b_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
-    
-    df_repl1b_er_nit = df_repl1b_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_nit['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_er_nit = df_repl1b_er_nit.dropna()                                              # dropping rows where at least one element is missing
-    # sht_run.range('A28').options(index=False).value = df_repl1b_er_nit        # show the dataframe values into sheet- 'CP Plot'
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for Nit ER & Unif PLot
-    df_repl1b_er_nit_date = df_repl1b_er_nit["Date (MM/DD/YYYY)"]
-    df_repl1b_er_nit_er = df_repl1b_er_nit["Etch Rate (A/Min)"]
-    df_repl1b_er_nit_usl = df_repl1b_er_nit["USL"]
-    df_repl1b_er_nit_lsl = df_repl1b_er_nit["LSL"]
-    df_repl1b_er_nit_ucl = df_repl1b_er_nit["UCL"]
-    df_repl1b_er_nit_lcl = df_repl1b_er_nit["LCL"]
-    df_repl1b_er_nit_remarks = df_repl1b_er_nit["Remarks"]
+def reox1a_sin_er_chart():
+    df_reox1a_er = excel_file.parse(sht_name_er, skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
+    df_reox1a_er = df_reox1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reox1a_er_sin = df_reox1a_er[df_reox1a_er["Layer"] == 'SiN']
+    df_reox1a_er_sin = df_reox1a_er_sin.dropna()      # dropping rows where at least one element is missing
+
+    # Display the dataframes in respective sheets
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_sin
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_teos
+
 
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Draw Nit ER Plot (using Plotly) in Browser 
-    return draw_plotly_repl1b_er_nit_plot(
-        x = date_formatter(df_repl1b_er_nit_date), 
-        y1 = df_repl1b_er_nit_er,
-        y2 = df_repl1b_er_nit_usl, 
-        y3 = df_repl1b_er_nit_lsl,
-        y4 = df_repl1b_er_nit_ucl,
-        y5 = df_repl1b_er_nit_lcl,
-        remarks = df_repl1b_er_nit_remarks
-    )
+    # Assigning variable to each param for SiN ER & Unif PLot
+    df_reox1a_er_sin_date = df_reox1a_er_sin["Date (MM/DD/YYYY)"]
+    df_reox1a_er_sin_er = df_reox1a_er_sin["Etch Rate (A/Min)"]
+    df_reox1a_er_sin_usl = df_reox1a_er_sin["USL"]
+    df_reox1a_er_sin_lsl = df_reox1a_er_sin["LSL"]
+    df_reox1a_er_sin_ucl = df_reox1a_er_sin["UCL"]
+    df_reox1a_er_sin_lcl = df_reox1a_er_sin["LCL"]
+    df_reox1a_er_sin_remarks = df_reox1a_er_sin["Remarks"]
+  
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Draw SiN ER Plot (using Plotly) in Browser 
+    return draw_plotly_reox1a_er_sin_plot(
+        x = date_formatter(df_reox1a_er_sin_date), 
+        y1 = df_reox1a_er_sin_er,
+        y2 = df_reox1a_er_sin_usl, 
+        y3 = df_reox1a_er_sin_lsl,
+        y4 = df_reox1a_er_sin_ucl,
+        y5 = df_reox1a_er_sin_lcl,
+        remarks = df_reox1a_er_sin_remarks
+        )
    
-def repl1b_nit_unif_chart():
-    # Fetch Dataframe for NIT ER & Unif Plot  
-    df_repl1b_er_nit = excel_file.parse(sht_name_er_nit, skiprows=skiprows_nit)                            # copy a sheet and paste into another sheet and skiprows 9
-    
-    df_repl1b_er_nit = df_repl1b_er_nit[sht_er_nit_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_nit['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_er_nit = df_repl1b_er_nit.dropna()                                              # dropping rows where at least one element is missing
-    # sht_run.range('A28').options(index=False).value = df_repl1b_er_nit        # show the dataframe values into sheet- 'CP Plot'
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for Nit ER & Unif PLot
-    df_repl1b_er_nit_date = df_repl1b_er_nit["Date (MM/DD/YYYY)"]
-    df_repl1b_er_nit_unif = df_repl1b_er_nit["% Uni"]
-    df_repl1b_er_nit_unif_usl = df_repl1b_er_nit["% Uni USL"]
-    df_repl1b_er_nit_unif_ucl = df_repl1b_er_nit["% Uni UCL"]
-    df_repl1b_er_nit_remarks = df_repl1b_er_nit["Remarks"]
-   
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw Nit Unif Plot (using Plotly) in Browser     
-    return draw_plotly_repl1b_unif_nit_plot(
-        x = date_formatter(df_repl1b_er_nit_date), 
-        y1 = df_repl1b_er_nit_unif, 
-        y2 = df_repl1b_er_nit_unif_usl,
-        y3 = df_repl1b_er_nit_unif_ucl,
-        remarks = df_repl1b_er_nit_remarks
-    )
+def reox1a_sin_unif_chart():
+    df_reox1a_er = excel_file.parse(sht_name_er, skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
+    df_reox1a_er = df_reox1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reox1a_er_sin = df_reox1a_er[df_reox1a_er["Layer"] == 'SiN']
+    df_reox1a_er_sin = df_reox1a_er_sin.dropna()      # dropping rows where at least one element is missing
 
-def repl1b_poly_er_chart():
-    # Fetch Dataframe for POLY ER & Unif PLot
-    df_repl1b_er_poly = excel_file.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
-    
-    df_repl1b_er_poly = df_repl1b_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_poly['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_er_poly = df_repl1b_er_poly.dropna()                                              # dropping rows where at least one element is missing
-    # sht_run.range('A28').options(index=False).value = df_repl1b_er_poly        # show the dataframe values into sheet- 'CP Plot'
+    # Display the dataframes in respective sheets
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_sin
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_teos
 
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for Nit ER & Unif PLot
-    df_repl1b_er_poly_date = df_repl1b_er_poly["Date (MM/DD/YYYY)"]
-    df_repl1b_er_poly_er = df_repl1b_er_poly["Etch Rate (A/Min)"]
-    df_repl1b_er_poly_usl = df_repl1b_er_poly["USL"]
-    df_repl1b_er_poly_lsl = df_repl1b_er_poly["LSL"]
-    df_repl1b_er_poly_ucl = df_repl1b_er_poly["UCL"]
-    df_repl1b_er_poly_lcl = df_repl1b_er_poly["LCL"]
-    df_repl1b_er_poly_remarks = df_repl1b_er_poly["Remarks"]
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------
-    # Draw Poly ER Plot (using Plotly) in Browser 
-    return draw_plotly_repl1b_er_poly_plot(
-        x = date_formatter(df_repl1b_er_poly_date), 
-        y1 = df_repl1b_er_poly_er,
-        y2 = df_repl1b_er_poly_usl, 
-        y3 = df_repl1b_er_poly_lsl,
-        y4 = df_repl1b_er_poly_ucl,
-        y5 = df_repl1b_er_poly_lcl,
-        remarks = df_repl1b_er_poly_remarks
+    # Assigning variable to each param for SiN ER & Unif PLot
+    df_reox1a_er_sin_date = df_reox1a_er_sin["Date (MM/DD/YYYY)"]
+    df_reox1a_er_sin_unif = df_reox1a_er_sin["% Uni"]
+    df_reox1a_er_sin_unif_usl = df_reox1a_er_sin["% Uni USL"]
+    df_reox1a_er_sin_unif_ucl = df_reox1a_er_sin["% Uni UCL"]
+    df_reox1a_er_sin_remarks = df_reox1a_er_sin["Remarks"]
+  
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
+    # Draw SiN Unif Plot (using Plotly) in Browser     
+    return draw_plotly_reox1a_unif_sin_plot(
+        x = date_formatter(df_reox1a_er_sin_date), 
+        y1 = df_reox1a_er_sin_unif, 
+        y2 = df_reox1a_er_sin_unif_usl,
+        y3 = df_reox1a_er_sin_unif_ucl,
+        remarks = df_reox1a_er_sin_remarks
     )
-   
-def repl1b_poly_unif_chart():
-    # Fetch Dataframe for POLY ER & Unif PLot
-    df_repl1b_er_poly = excel_file.parse(sht_name_er_poly, skiprows=skiprows_poly)                            # copy a sheet and paste into another sheet and skiprows 9
-    
-    df_repl1b_er_poly = df_repl1b_er_poly[sht_er_poly_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
-    df_repl1b_er_poly['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
-    df_repl1b_er_poly = df_repl1b_er_poly.dropna()                                              # dropping rows where at least one element is missing
-    # sht_run.range('A28').options(index=False).value = df_repl1b_er_poly        # show the dataframe values into sheet- 'CP Plot'
 
+def reox1a_teos_er_chart():
+    df_reox1a_er = excel_file.parse(sht_name_er, skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
+    df_reox1a_er = df_reox1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reox1a_er_teos = df_reox1a_er[df_reox1a_er["Layer"] == 'TEOS']
+    df_reox1a_er_teos = df_reox1a_er_teos.dropna()      # dropping rows where at least one element is missing
+
+    # Display the dataframes in respective sheets
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_sin
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_teos
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # Assigning variable to each param for TEOS ER & Unif PLot
+    df_reox1a_er_teos_date = df_reox1a_er_teos["Date (MM/DD/YYYY)"]
+    df_reox1a_er_teos_er = df_reox1a_er_teos["Etch Rate (A/Min)"]
+    df_reox1a_er_teos_usl = df_reox1a_er_teos["USL"]
+    df_reox1a_er_teos_lsl = df_reox1a_er_teos["LSL"]
+    df_reox1a_er_teos_ucl = df_reox1a_er_teos["UCL"]
+    df_reox1a_er_teos_lcl = df_reox1a_er_teos["LCL"]
+    df_reox1a_er_teos_remarks = df_reox1a_er_teos["Remarks"]
+  
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Assigning variable to each param for Nit ER & Unif PLot
-    df_repl1b_er_poly_date = df_repl1b_er_poly["Date (MM/DD/YYYY)"]
-    df_repl1b_er_poly_unif = df_repl1b_er_poly["% Uni"]
-    df_repl1b_er_poly_unif_usl = df_repl1b_er_poly["% Uni USL"]
-    df_repl1b_er_poly_unif_ucl = df_repl1b_er_poly["% Uni UCL"]
-    df_repl1b_er_poly_remarks = df_repl1b_er_poly["Remarks"]
-   
+    # Draw TEOS ER Plot (using Plotly) in Browser 
+    return draw_plotly_reox1a_er_teos_plot(
+        x = date_formatter(df_reox1a_er_teos_date), 
+        y1 = df_reox1a_er_teos_er,
+        y2 = df_reox1a_er_teos_usl, 
+        y3 = df_reox1a_er_teos_lsl,
+        y4 = df_reox1a_er_teos_ucl,
+        y5 = df_reox1a_er_teos_lcl,
+        remarks = df_reox1a_er_teos_remarks
+    )
+
+def reox1a_teos_unif_chart():
+    df_reox1a_er = excel_file.parse(sht_name_er, skiprows=skiprows_er)                            # copy a sheet and paste into another sheet and skiprows 8
+    df_reox1a_er['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.' in "Remarks" column 
+    df_reox1a_er = df_reox1a_er[sht_er_columns]             # The final Dataframe with 7 columns for plot: x-1, y-6
+    df_reox1a_er_teos = df_reox1a_er[df_reox1a_er["Layer"] == 'TEOS']
+    df_reox1a_er_teos = df_reox1a_er_teos.dropna()      # dropping rows where at least one element is missing
+
+    # Display the dataframes in respective sheets
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_sin
+    # sht_run.range('A25').options(index=False).value = df_reox1a_er_teos
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------
+    # Assigning variable to each param for TEOS ER & Unif PLot
+    df_reox1a_er_teos_date = df_reox1a_er_teos["Date (MM/DD/YYYY)"]
+    df_reox1a_er_teos_unif = df_reox1a_er_teos["% Uni"]
+    df_reox1a_er_teos_unif_usl = df_reox1a_er_teos["% Uni USL"]
+    df_reox1a_er_teos_unif_ucl = df_reox1a_er_teos["% Uni UCL"]
+    df_reox1a_er_teos_remarks = df_reox1a_er_teos["Remarks"]
+     
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    # Draw Poly Unif Plot (using Plotly) in Browser     
-    return draw_plotly_repl1b_unif_poly_plot(
-        x = date_formatter(df_repl1b_er_poly_date), 
-        y1 = df_repl1b_er_poly_unif, 
-        y2 = df_repl1b_er_poly_unif_usl,
-        y3 = df_repl1b_er_poly_unif_ucl,
-        remarks = df_repl1b_er_poly_remarks
+    # Draw TEOS Unif Plot (using Plotly) in Browser     
+    return draw_plotly_reox1a_unif_teos_plot(
+        x = date_formatter(df_reox1a_er_teos_date), 
+        y1 = df_reox1a_er_teos_unif, 
+        y2 = df_reox1a_er_teos_unif_usl,
+        y3 = df_reox1a_er_teos_unif_ucl,
+        remarks = df_reox1a_er_teos_remarks
     )
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -630,4 +651,3 @@ def repl1b_poly_unif_chart():
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # if __name__ == "__main__":
 #     button_run()
-
