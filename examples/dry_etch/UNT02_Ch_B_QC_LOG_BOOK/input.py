@@ -78,7 +78,7 @@ sht_name_cp = 'RESP1B-CP'
 sht_name_er_barc_pr_teos = 'ER-BARC,PR & TEOS'
 sht_name_er_sin = 'SIN ER'
 
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP > 0.16u", "Delta CP > 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
@@ -98,6 +98,6 @@ x_coord_sin_range = 'E7:Q7'
 y_coord_sin_range = 'E8:Q8'
 
 # Skiprows
-skiprows_cp = 8
+skiprows_cp = 9
 skiprows_barc_pr_teos = 12
 skiprows_nit = 8

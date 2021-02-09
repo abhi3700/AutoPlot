@@ -6,7 +6,7 @@
     3. [x] Navigation bar for 'Equipments' - ASFE1, ASBE1, REML1, REOX1, REPL1, RESP1
     4. [x] nested Navigation bar for 'Chambers' - 'Ch A', 'Ch C'
     5. [x] nested Navigation bar for 'Charts type' - 'CP', 'ER', 'Unif'
-    6. [ ] callback functions for pressing dropdown menus - ASFE1-CP Chart, likewise....
+    6. [x] callback functions for pressing dropdown menus - ASFE1-CP Chart, likewise....
 """
 # dash libs
 import dash
@@ -36,6 +36,8 @@ from fab_areas.dryetch.equipments.REOX1.REOX1B import reox1b_cp_chart, reox1b_bp
 from fab_areas.dryetch.equipments.REOX1.REOX1C import reox1c_cp_chart, reox1c_arc_er_chart, reox1c_arc_unif_chart, reox1c_teos_er_chart, reox1c_teos_unif_chart
 from fab_areas.dryetch.equipments.REPL1.REPL1A import repl1a_cp_chart, repl1a_nit_er_chart, repl1a_nit_unif_chart, repl1a_poly_er_chart, repl1a_poly_unif_chart
 from fab_areas.dryetch.equipments.REPL1.REPL1B import repl1b_cp_chart, repl1b_nit_er_chart, repl1b_nit_unif_chart, repl1b_poly_er_chart, repl1b_poly_unif_chart
+from fab_areas.dryetch.equipments.RESP1.RESP1A import resp1a_cp_chart, resp1a_sin1st_er_chart, resp1a_sin1st_unif_chart, resp1a_sin2nd_er_chart, resp1a_sin2nd_unif_chart, resp1a_teos1st_er_chart, resp1a_teos1st_unif_chart, resp1a_teos2nd_er_chart, resp1a_teos2nd_unif_chart
+from fab_areas.dryetch.equipments.RESP1.RESP1B import resp1b_cp_chart, resp1b_barc_er_chart, resp1b_barc_unif_chart, resp1b_pr_er_chart, resp1b_pr_unif_chart, resp1b_teos_er_chart, resp1b_teos_unif_chart, resp1b_sin_er_chart, resp1b_sin_unif_chart
 
 # external JavaScript files
 # external_scripts = [
@@ -258,6 +260,27 @@ chart = html.Div(
         Input('repl1b-nit-unif-chart', 'n_clicks'),
         Input('repl1b-poly-er-chart', 'n_clicks'),
         Input('repl1b-poly-unif-chart', 'n_clicks'),
+        # RESP1A
+        Input('resp1a-cp-chart', 'n_clicks'),
+        Input('resp1a-sin1st-er-chart', 'n_clicks'),
+        Input('resp1a-sin1st-unif-chart', 'n_clicks'),
+        Input('resp1a-sin2nd-er-chart', 'n_clicks'),
+        Input('resp1a-sin2nd-unif-chart', 'n_clicks'),
+        Input('resp1a-teos1st-er-chart', 'n_clicks'),
+        Input('resp1a-teos1st-unif-chart', 'n_clicks'),
+        Input('resp1a-teos2nd-er-chart', 'n_clicks'),
+        Input('resp1a-teos2nd-unif-chart', 'n_clicks'),
+        # RESP1B
+        Input('resp1b-cp-chart', 'n_clicks'),
+        Input('resp1b-barc-er-chart', 'n_clicks'),
+        Input('resp1b-barc-unif-chart', 'n_clicks'),
+        Input('resp1b-pr-er-chart', 'n_clicks'),
+        Input('resp1b-pr-unif-chart', 'n_clicks'),
+        Input('resp1b-teos-er-chart', 'n_clicks'),
+        Input('resp1b-teos-unif-chart', 'n_clicks'),
+        Input('resp1b-sin-er-chart', 'n_clicks'),
+        Input('resp1b-sin-unif-chart', 'n_clicks'),
+
     ]
 )
 def update_chart(*args):
@@ -313,6 +336,26 @@ def update_chart(*args):
             'repl1b-nit-unif-chart': repl1b_nit_unif_chart(),
             'repl1b-poly-er-chart': repl1b_poly_er_chart(),
             'repl1b-poly-unif-chart': repl1b_poly_unif_chart(),
+            # RESP1A
+            'resp1a-cp-chart': resp1a_cp_chart(),
+            'resp1a-sin1st-er-chart': resp1a_sin1st_er_chart(),
+            'resp1a-sin1st-unif-chart': resp1a_sin1st_unif_chart(),
+            'resp1a-sin2nd-er-chart': resp1a_sin2nd_er_chart(),
+            'resp1a-sin2nd-unif-chart': resp1a_sin2nd_unif_chart(),
+            'resp1a-teos1st-er-chart': resp1a_teos1st_er_chart(),
+            'resp1a-teos1st-unif-chart': resp1a_teos1st_unif_chart(),
+            'resp1a-teos2nd-er-chart': resp1a_teos2nd_er_chart(),
+            'resp1a-teos2nd-unif-chart': resp1a_teos2nd_er_chart(),
+            # RESP1B
+            'resp1b-cp-chart': resp1b_cp_chart(),
+            'resp1b-barc-er-chart': resp1b_barc_er_chart(),
+            'resp1b-barc-unif-chart': resp1b_barc_unif_chart(),
+            'resp1b-pr-er-chart': resp1b_pr_er_chart(),
+            'resp1b-pr-unif-chart': resp1b_pr_unif_chart(),
+            'resp1b-teos-er-chart': resp1b_teos_er_chart(),
+            'resp1b-teos-unif-chart': resp1b_teos_unif_chart(),
+            'resp1b-sin-er-chart': resp1b_sin_er_chart(),
+            'resp1b-sin-unif-chart': resp1b_sin_unif_chart(),
     }
     ctx = dash.callback_context
 

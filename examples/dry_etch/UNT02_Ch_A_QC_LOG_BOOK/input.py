@@ -76,7 +76,7 @@ sht_name_cp = 'RESP1A-CP'
 sht_name_er = 'RESP1A-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP > 0.16u", "Delta CP > 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Layer-Step", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 # Date formatter
@@ -89,4 +89,5 @@ x_coord_teos_range = 'E17:M17'
 y_coord_teos_range = 'E18:M18'
 
 # skiprows
-skiprows = 18
+skiprows_cp = 9
+skiprows_er = 18
