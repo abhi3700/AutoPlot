@@ -27,36 +27,71 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
         ),
         dbc.DropdownMenu(
             [
-                dbc.ButtonGroup(
-                    [
-                        dbc.DropdownMenu(
-                            [
-                                dbc.DropdownMenuItem("CP Chart", id="reml1a-cp-chart"),
-                                dbc.DropdownMenuItem("PR ER Chart", id="reml1a-pr-er-chart"),
-                                dbc.DropdownMenuItem("PR Unif Chart", id="reml1a-pr-unif-chart"),
-                                dbc.DropdownMenuItem("Al ER Chart", id="reml1a-al-er-chart"),
-                                dbc.DropdownMenuItem("Al Unif Chart", id="reml1a-al-unif-chart"),
-                            ],
-                            label="Ch A",
-                            direction="right",
-                            group=True,
-                            color="#ffffff",
-                        ),
-                        dbc.DropdownMenu(
-                            [
-                                dbc.DropdownMenuItem("CP Chart", id="reml1c-cp-chart"),
-                                dbc.DropdownMenuItem("PR ER Chart", id="reml1c-pr-er-chart"),
-                                dbc.DropdownMenuItem("PR Unif Chart", id="reml1c-pr-unif-chart"),
-                            ],
-                            label="Ch C",
-                            direction="right",
-                            group=True,
-                            color="#ffffff",
-                        ),
-                    ],
-                    vertical=True,
-                    className="area-equipments-layout",
+                dbc.Collapse(
+                    dbc.ButtonGroup(
+                        [
+                            dbc.DropdownMenu(
+                                [
+                                    dbc.DropdownMenuItem("CP Chart", id="reml1a-cp-chart"),
+                                    dbc.DropdownMenuItem("PR ER Chart", id="reml1a-pr-er-chart"),
+                                    dbc.DropdownMenuItem("PR Unif Chart", id="reml1a-pr-unif-chart"),
+                                    dbc.DropdownMenuItem("Al ER Chart", id="reml1a-al-er-chart"),
+                                    dbc.DropdownMenuItem("Al Unif Chart", id="reml1a-al-unif-chart"),
+                                ],
+                                label="Ch A",
+                                direction="right",
+                                group=True,
+                                color="#ffffff",
+                            ),
+                            dbc.DropdownMenu(
+                                [
+                                    dbc.DropdownMenuItem("CP Chart", id="reml1c-cp-chart"),
+                                    dbc.DropdownMenuItem("PR ER Chart", id="reml1c-pr-er-chart"),
+                                    dbc.DropdownMenuItem("PR Unif Chart", id="reml1c-pr-unif-chart"),
+                                ],
+                                label="Ch C",
+                                direction="right",
+                                group=True,
+                                color="#ffffff",
+                            ),
+                        ],
+                        vertical=True,
+                        className="area-equipments-layout",
+                    ),
+                    id='reml1-collapse',
+                    is_open= True,
                 )
+                # dbc.ButtonGroup(
+                #     [
+                #         dbc.DropdownMenu(
+                #             [
+                #                 dbc.DropdownMenuItem("CP Chart", id="reml1a-cp-chart"),
+                #                 dbc.DropdownMenuItem("PR ER Chart", id="reml1a-pr-er-chart"),
+                #                 dbc.DropdownMenuItem("PR Unif Chart", id="reml1a-pr-unif-chart"),
+                #                 dbc.DropdownMenuItem("Al ER Chart", id="reml1a-al-er-chart"),
+                #                 dbc.DropdownMenuItem("Al Unif Chart", id="reml1a-al-unif-chart"),
+                #             ],
+                #             label="Ch A",
+                #             direction="right",
+                #             group=True,
+                #             color="#ffffff",
+                #         ),
+                #         dbc.DropdownMenu(
+                #             [
+                #                 dbc.DropdownMenuItem("CP Chart", id="reml1c-cp-chart"),
+                #                 dbc.DropdownMenuItem("PR ER Chart", id="reml1c-pr-er-chart"),
+                #                 dbc.DropdownMenuItem("PR Unif Chart", id="reml1c-pr-unif-chart"),
+                #             ],
+                #             label="Ch C",
+                #             direction="right",
+                #             group=True,
+                #             color="#ffffff",
+                #         ),
+                #     ],
+                #     vertical=True,
+                #     className="area-equipments-layout",
+                # )
+
             ],
             label="REML1",
             group=True,
@@ -206,6 +241,7 @@ area_equipments_layout_dryetch = dbc.ButtonGroup(
             label="RESP1",
             group=True,
             color="#00e676",
+            # id= "dryetch-resp1",
             className="area-equipments-layout",
         ),
     ],

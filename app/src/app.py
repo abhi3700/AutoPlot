@@ -201,13 +201,17 @@ chart = html.Div(
             ],
             style={
                 # "background-color": "#EF9A9A",
-                "height": "auto",
+                # "height": "auto",
             },
     )
 
 
 @app.callback(
-    Output('area-equip-ch-chart', 'figure'),
+    [
+        Output('area-equip-ch-chart', 'figure'),
+        # Output('dryetch-resp1', 'className'),
+        Output('reml1-collapse', 'is_open'),
+    ],
     [
         # ASFE1
         Input('asfe1-cp-chart', 'n_clicks'),
@@ -280,10 +284,14 @@ chart = html.Div(
         Input('resp1b-teos-unif-chart', 'n_clicks'),
         Input('resp1b-sin-er-chart', 'n_clicks'),
         Input('resp1b-sin-unif-chart', 'n_clicks'),
-
+    ],
+    [
+        State("reml1-collapse", "is_open")
     ]
 )
-def update_chart(*args):
+def update_chart(*args
+    # , is_open
+    ):
     chart_func = {
             # ASFE1
             'asfe1-cp-chart': asfe1_cp_chart(),
@@ -361,11 +369,17 @@ def update_chart(*args):
 
     if not ctx.triggered:
         fig = {}
+        # classname = "area-equipments-layout"
+        collapse_state_open = True
     else:
         button_id = ctx.triggered[0]['prop_id'].split(".")[0]
         fig = chart_func[button_id]
+        # classname = "area-equipments-layout d-block"
+        collapse_state_open = False
         
-    return fig
+    return fig, collapse_state_open
+    # return fig
+    # return fig, classname
 # =======================================================================================================
 app.layout = html.Div(
     [
