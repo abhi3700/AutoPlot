@@ -1,13 +1,3 @@
-"""
-    Steps:
-    ======
-    1. [x] card for 'Software name'- "AutoPlot"
-    2. [x] Dropdown menu for 'Sections' - "DRY ETCH", "WET ETCH",...
-    3. [x] Navigation bar for 'Equipments' - ASFE1, ASBE1, REML1, REOX1, REPL1, RESP1
-    4. [x] nested Navigation bar for 'Chambers' - 'Ch A', 'Ch C'
-    5. [x] nested Navigation bar for 'Charts type' - 'CP', 'ER', 'Unif'
-    6. [x] callback functions for pressing dropdown menus - ASFE1-CP Chart, likewise....
-"""
 # dash libs
 import dash
 import dash_bootstrap_components as dbc
@@ -39,6 +29,8 @@ from fab_areas.dryetch.equipments.REPL1.REPL1B import repl1b_cp_chart, repl1b_ni
 from fab_areas.dryetch.equipments.RESP1.RESP1A import resp1a_cp_chart, resp1a_sin1st_er_chart, resp1a_sin1st_unif_chart, resp1a_sin2nd_er_chart, resp1a_sin2nd_unif_chart, resp1a_teos1st_er_chart, resp1a_teos1st_unif_chart, resp1a_teos2nd_er_chart, resp1a_teos2nd_unif_chart
 from fab_areas.dryetch.equipments.RESP1.RESP1B import resp1b_cp_chart, resp1b_barc_er_chart, resp1b_barc_unif_chart, resp1b_pr_er_chart, resp1b_pr_unif_chart, resp1b_teos_er_chart, resp1b_teos_unif_chart, resp1b_sin_er_chart, resp1b_sin_unif_chart
 
+
+# ==========================================================================================================================================================================
 # external JavaScript files
 # external_scripts = [
 #     # {'src': 'bootstrap.min.js'},
