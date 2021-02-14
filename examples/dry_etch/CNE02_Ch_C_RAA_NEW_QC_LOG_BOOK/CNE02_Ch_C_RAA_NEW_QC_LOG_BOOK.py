@@ -40,7 +40,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.16u',
+            name = 'Delta CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -58,7 +58,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -76,7 +76,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -421,16 +421,16 @@ def button_run():
     df_reox1c_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reox1c_cp = df_reox1c_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reox1c_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
-    df_reox1c_cp['delta-CP 0.5u'].fillna('.', inplace=True)        # replacing the empty cells with '.'
-    df_reox1c_cp['delta-CP AC'].fillna('.', inplace=True)        # replacing the empty cells with '.'
+    df_reox1c_cp['Delta CP 0.5u'].fillna('.', inplace=True)        # replacing the empty cells with '.'
+    df_reox1c_cp['Delta CP AC'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reox1c_cp = df_reox1c_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_run.range('A25').options(index=False).value = df_reox1c_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_reox1c_cp_date = df_reox1c_cp["Date (MM/DD/YYYY)"]
-    df_reox1c_cp_delta_cp_1 = df_reox1c_cp["delta-CP 0.16u"]
-    df_reox1c_cp_delta_cp_2 = df_reox1c_cp["delta-CP 0.5u"]
-    df_reox1c_cp_delta_cp_3 = df_reox1c_cp["delta-CP AC"]
+    df_reox1c_cp_delta_cp_1 = df_reox1c_cp["Delta CP 0.16u"]
+    df_reox1c_cp_delta_cp_2 = df_reox1c_cp["Delta CP 0.5u"]
+    df_reox1c_cp_delta_cp_3 = df_reox1c_cp["Delta CP AC"]
     df_reox1c_cp_usl = df_reox1c_cp["USL"]
     df_reox1c_cp_ucl = df_reox1c_cp["UCL"]
     df_reox1c_cp_remarks = df_reox1c_cp["Remarks"]
