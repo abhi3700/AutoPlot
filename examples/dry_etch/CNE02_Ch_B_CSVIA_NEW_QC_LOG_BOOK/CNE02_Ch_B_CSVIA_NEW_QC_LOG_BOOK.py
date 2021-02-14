@@ -23,7 +23,7 @@ from input import *
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
