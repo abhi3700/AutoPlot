@@ -199,20 +199,20 @@ chart = html.Div(
 
 
 @app.callback(
-    [
+    # [
         Output('area-equip-ch-chart', 'figure'),
         # Output('dryetch-resp1', 'className'),
-        Output('reml1-collapse', 'is_open'),
-    ],
+        # Output('reml1-collapse', 'is_open'),
+    # ],
     [
-        # ASFE1
-        Input('asfe1-cp-chart', 'n_clicks'),
-        Input('asfe1-er-chart', 'n_clicks'),
-        Input('asfe1-unif-chart', 'n_clicks'),
         # ASBE1
         Input('asbe1-cp-chart', 'n_clicks'),
         Input('asbe1-er-chart', 'n_clicks'),
         Input('asbe1-unif-chart', 'n_clicks'),
+        # ASFE1
+        Input('asfe1-cp-chart', 'n_clicks'),
+        Input('asfe1-er-chart', 'n_clicks'),
+        Input('asfe1-unif-chart', 'n_clicks'),
         # REML1
         Input('reml1a-cp-chart', 'n_clicks'),
         Input('reml1a-pr-er-chart', 'n_clicks'),
@@ -277,22 +277,22 @@ chart = html.Div(
         Input('resp1b-sin-er-chart', 'n_clicks'),
         Input('resp1b-sin-unif-chart', 'n_clicks'),
     ],
-    [
-        State("reml1-collapse", "is_open")
-    ]
+    # [
+    #     State("reml1-collapse", "is_open")
+    # ]
 )
 def update_chart(*args
     # , is_open
     ):
     chart_func = {
-            # ASFE1
-            'asfe1-cp-chart': asfe1_cp_chart(),
-            'asfe1-er-chart': asfe1_er_chart(),
-            'asfe1-unif-chart': asfe1_unif_chart(),
             # ASBE1
             'asbe1-cp-chart': asbe1_cp_chart(),
             'asbe1-er-chart': asbe1_er_chart(),
             'asbe1-unif-chart': asbe1_unif_chart(),
+            # ASFE1
+            'asfe1-cp-chart': asfe1_cp_chart(),
+            'asfe1-er-chart': asfe1_er_chart(),
+            'asfe1-unif-chart': asfe1_unif_chart(),
             # REML1
             'reml1a-cp-chart': reml1a_cp_chart(),
             'reml1a-pr-er-chart': reml1a_pr_er_chart(),
@@ -362,15 +362,15 @@ def update_chart(*args
     if not ctx.triggered:
         fig = {}
         # classname = "area-equipments-layout"
-        collapse_state_open = True
+        # collapse_state_open = True
     else:
         button_id = ctx.triggered[0]['prop_id'].split(".")[0]
         fig = chart_func[button_id]
         # classname = "area-equipments-layout d-block"
-        collapse_state_open = False
+        # collapse_state_open = False
         
-    return fig, collapse_state_open
-    # return fig
+    return fig
+    # return fig, collapse_state_open
     # return fig, classname
 # =======================================================================================================
 app.layout = html.Div(
