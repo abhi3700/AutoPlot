@@ -19,7 +19,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for RESP1B'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'RESP1B_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
@@ -84,13 +84,13 @@ sht_name_cp = 'RESP1B-CP'
 sht_name_er_barc_pr_teos = 'ER-BARC,PR & TEOS'
 sht_name_er_sin = 'SIN ER'
 
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP > 0.16u", "Delta CP > 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_barc_pr_teos_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 sht_er_sin_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
 
 # Date formatter
-date_format = "%m-%d-%Y %H:%M:%S"
+date_format = "%d-%m-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
 # Metrology tool measurement coordinates
@@ -139,7 +139,7 @@ def draw_plotly_resp1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP > 0.16u',
+            name = 'Delta CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -157,7 +157,7 @@ def draw_plotly_resp1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP > 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -175,7 +175,7 @@ def draw_plotly_resp1b_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -773,7 +773,7 @@ def resp1b_cp_chart():
     df_resp1b_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
     df_resp1b_cp = df_resp1b_cp[sht_cp_columns]        # The final dataframe with required columns
     df_resp1b_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
-    df_resp1b_cp['Delta CP > 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
+    df_resp1b_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_resp1b_cp['Delta CP AC'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
     df_resp1b_cp = df_resp1b_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_run.range('A25').options(index=False).value = df_resp1b_cp         # show the dataframe values into sheet- 'CP Plot'
@@ -781,8 +781,8 @@ def resp1b_cp_chart():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_resp1b_cp_date = df_resp1b_cp["Date (MM/DD/YYYY)"]
-    df_resp1b_cp_delta_cp_1 = df_resp1b_cp["Delta CP > 0.16u"]
-    df_resp1b_cp_delta_cp_2 = df_resp1b_cp["Delta CP > 0.5u"]
+    df_resp1b_cp_delta_cp_1 = df_resp1b_cp["Delta CP 0.16u"]
+    df_resp1b_cp_delta_cp_2 = df_resp1b_cp["Delta CP 0.5u"]
     df_resp1b_cp_delta_cp_3 = df_resp1b_cp["Delta CP AC"]
     df_resp1b_cp_usl = df_resp1b_cp["USL"]
     df_resp1b_cp_ucl = df_resp1b_cp["UCL"]
