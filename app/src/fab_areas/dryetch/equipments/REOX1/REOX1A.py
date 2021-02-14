@@ -20,7 +20,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for REOX1A'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'REOX1A_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
@@ -105,7 +105,7 @@ def draw_plotly_reox1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.2u',
+            name = 'Delta CP 0.2u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -123,7 +123,7 @@ def draw_plotly_reox1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -141,7 +141,7 @@ def draw_plotly_reox1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -460,27 +460,6 @@ def draw_plotly_reox1a_unif_teos_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-# def init():
-#     # Initialize the workbook
-#     # wb = xw.Book.caller()
-#     # wb = xw.Book('CNE02_Ch_A_PAD_NEW_QC_LOG_BOOK.xlsm')
-#     # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
-
-#     #****************************************************************************************************************************************************************
-#     # Define sheets
-#     sht_reox1a_cp = wb.sheets[sht_name_cp]
-#     sht_reox1a_er = wb.sheets[sht_name_er]
-#     sht_run = wb.sheets['RUN_code']     # for testing purpose
-#     #****************************************************************************************************************************************************************
-#     x_coord_sin = sht_reox1a_er.range(x_coord_sin_range).value
-#     y_coord_sin = sht_reox1a_er.range(y_coord_sin_range).value
-#     x_coord_teos = sht_reox1a_er.range(x_coord_teos_range).value
-#     y_coord_teos = sht_reox1a_er.range(y_coord_teos_range).value
-#     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-#     excel_file = pd.ExcelFile(excel_file_directory)
-
-#     return wb, sht_reox1a_cp, sht_reox1a_er, sht_run, x_coord_sin, y_coord_sin, x_coord_teos, y_coord_teos, excel_file
-
 excel_file = pd.ExcelFile(excel_file_directory)
 
 def reox1a_cp_chart():
