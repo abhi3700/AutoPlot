@@ -13,7 +13,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for REOX1A'  # title for CP plot
 cp_plot_xlabel = 'Date (MM/DD/YYYY)'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'REOX1A_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
