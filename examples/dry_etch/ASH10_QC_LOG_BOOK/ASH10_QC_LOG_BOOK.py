@@ -41,7 +41,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.16u',
+            name = 'Delta CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -59,7 +59,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -77,7 +77,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -282,9 +282,7 @@ def button_run():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_asbe1_cp = sht_asbe1_cp.range('A11').options(
-        pd.DataFrame, header=1, index=False, expand='table'
-        ).value											                # fetch the data from sheet- sht_name_cp
+    df_asbe1_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asbe1_cp = df_asbe1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_asbe1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_asbe1_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
