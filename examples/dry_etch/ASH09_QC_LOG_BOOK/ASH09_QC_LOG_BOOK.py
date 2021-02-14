@@ -284,9 +284,7 @@ def button_run():
 
     #****************************************************************************************************************************************************************
     # Fetch Dataframe for CP Plot
-    df_asfe1_cp = sht_asfe1_cp.range('A11').options(
-        pd.DataFrame, header=1, index=False, expand='table'
-        ).value                                                         # fetch the data from sheet- sht_name_cp
+    df_asfe1_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
     df_asfe1_cp = df_asfe1_cp[sht_cp_columns]        # The final dataframe with required columns
     df_asfe1_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with 'NIL'
     df_asfe1_cp['Delta CP 0.5u'].fillna('NIL', inplace=True)        # replacing the empty cells with 'NIL'
