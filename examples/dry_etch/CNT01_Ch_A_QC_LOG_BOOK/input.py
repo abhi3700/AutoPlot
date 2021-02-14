@@ -12,14 +12,14 @@ sl_color = '#e53935'    # spec limit line color for any plot
 
 # CP Plot
 cp_plot_title = 'CP Plot for REPL1A'  # title for CP plot
-cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_xlabel = 'Date (DD/MM/YYYY)'   # xaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'REPL1A_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
 # NIT ER Plot
 er_nit_plot_title = 'Nit ER Plot for REPL1A'  # title for Nit ER plot
-er_nit_plot_xlabel = 'Date'        # xaxis name for Nit ER plot
+er_nit_plot_xlabel = 'Date (DD/MM/YYYY)'        # xaxis name for Nit ER plot
 er_nit_plot_ylabel = 'Nit ER (A/min)'   # yaxis name for Nit ER plot
 er_nit_plot_html_file = 'REPL1A_Nit_ER-Plot.html'   # HTML filename for Nit ER plot
 er_nit_plot_trace_count = 5    # no. of traces in Nit ER plot
@@ -28,14 +28,14 @@ er_nit_contour_tname = 'NIT ER'
 
 # NIT Unif Plot
 unif_nit_plot_title = 'Nit Uniformity Plot for REPL1A'  # title for Nit Unif plot
-unif_nit_plot_xlabel = 'Date'      # xaxis name for Nit Unif plot
+unif_nit_plot_xlabel = 'Date (DD/MM/YYYY)'      # xaxis name for Nit Unif plot
 unif_nit_plot_ylabel = 'Nit Unif (%)'    # yaxis name for Nit Unif plot
 unif_nit_plot_html_file = 'REPL1A_Nit_Unif-Plot.html'   # HTML filename for Nit Unif plot
 unif_nit_plot_trace_count = 3    # no. of traces in Nit Unif plot
 
 # POLY ER Plot
 er_poly_plot_title = 'Poly ER Plot for REPL1A'  # title for Poly ER plot
-er_poly_plot_xlabel = 'Date'        # xaxis name for Poly ER plot
+er_poly_plot_xlabel = 'Date (DD/MM/YYYY)'        # xaxis name for Poly ER plot
 er_poly_plot_ylabel = 'Poly ER (A/min)'   # yaxis name for Poly ER plot
 er_poly_plot_html_file = 'REPL1A_Poly_ER-Plot.html'   # HTML filename for Poly ER plot
 er_poly_plot_trace_count = 5    # no. of traces in Poly ER plot
@@ -44,7 +44,7 @@ er_poly_contour_tname = 'POLY ER'
 
 # POLY Unif Plot
 unif_poly_plot_title = 'Poly Uniformity Plot for REPL1A'  # title for Poly Unif plot
-unif_poly_plot_xlabel = 'Date'      # xaxis name for Poly Unif plot
+unif_poly_plot_xlabel = 'Date (DD/MM/YYYY)'      # xaxis name for Poly Unif plot
 unif_poly_plot_ylabel = 'Poly Unif (%)'    # yaxis name for Poly Unif plot
 unif_poly_plot_html_file = 'REPL1A_Poly_Unif-Plot.html'   # HTML filename for Poly Unif plot
 unif_poly_plot_trace_count = 3    # no. of traces in Poly Unif plot
@@ -63,7 +63,7 @@ sht_er_poly_cl_columns = ["Date (MM/DD/YYYY)", "Site", "site_1", "site_2", "site
 N_cl = 30
 
 # Date formatter
-date_format = "%m-%d-%Y %H:%M:%S"
+date_format = "%d-%m-%Y %H:%M:%S"
 date_format_contour = "%d-%m-%Y %H:%M:%S"
 
 # Metrology tool measurement coordinates
@@ -73,6 +73,6 @@ x_coord_poly_range = 'D9:T9'
 y_coord_poly_range = 'D10:T10'
 
 # Skiprows
-skiprows_cp = 8
+skiprows_cp = 9
 skiprows_nit = 10
 skiprows_poly = 10
