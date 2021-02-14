@@ -19,7 +19,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for REOX1C'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'REOX1C_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 2    # no. of traces in CP plot
 
@@ -56,7 +56,7 @@ sht_name_cp = 'REOX1C-CP'
 sht_name_er = 'REOX1C-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "delta-CP 0.16u", "delta-CP 0.5u", "delta-CP AC", "USL", "UCL", "Remarks"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]   # deleted "% Uni UCL" column
  
 # Date formatter
@@ -101,7 +101,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.16u',
+            name = 'Delta CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -119,7 +119,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -137,7 +137,7 @@ def draw_plotly_reox1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -463,16 +463,16 @@ def reox1c_cp_chart():
     df_reox1c_cp = excel_file.parse(sht_name_cp, skiprows=skiprows_cp)                            # copy a sheet and paste into another sheet and skiprows 8
     df_reox1c_cp = df_reox1c_cp[sht_cp_columns]        # The final dataframe with required columns
     df_reox1c_cp['Remarks'].fillna('.', inplace=True)        # replacing the empty cells with '.'
-    df_reox1c_cp['delta-CP 0.5u'].fillna('.', inplace=True)        # replacing the empty cells with '.'
-    df_reox1c_cp['delta-CP AC'].fillna('.', inplace=True)        # replacing the empty cells with '.'
+    df_reox1c_cp['Delta CP 0.5u'].fillna('.', inplace=True)        # replacing the empty cells with '.'
+    df_reox1c_cp['Delta CP AC'].fillna('.', inplace=True)        # replacing the empty cells with '.'
     df_reox1c_cp = df_reox1c_cp.dropna()                                              # dropping rows where at least one element is missing
     # sht_run.range('A25').options(index=False).value = df_reox1c_cp         # show the dataframe values into sheet- 'CP Plot'
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_reox1c_cp_date = df_reox1c_cp["Date (MM/DD/YYYY)"]
-    df_reox1c_cp_delta_cp_1 = df_reox1c_cp["delta-CP 0.16u"]
-    df_reox1c_cp_delta_cp_2 = df_reox1c_cp["delta-CP 0.5u"]
-    df_reox1c_cp_delta_cp_3 = df_reox1c_cp["delta-CP AC"]
+    df_reox1c_cp_delta_cp_1 = df_reox1c_cp["Delta CP 0.16u"]
+    df_reox1c_cp_delta_cp_2 = df_reox1c_cp["Delta CP 0.5u"]
+    df_reox1c_cp_delta_cp_3 = df_reox1c_cp["Delta CP AC"]
     df_reox1c_cp_usl = df_reox1c_cp["USL"]
     df_reox1c_cp_ucl = df_reox1c_cp["UCL"]
     df_reox1c_cp_remarks = df_reox1c_cp["Remarks"]
