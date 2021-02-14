@@ -19,7 +19,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for REOX1B'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'REOX1B_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 3    # no. of traces in CP plot
 
@@ -87,6 +87,10 @@ sht_name_er = 'REOX1B-ER'
 sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "USL", "UCL", "Remarks"]
 sht_er_columns = ["Date (MM/DD/YYYY)", "Layer", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni USL", "% Uni UCL"]
 
+# Date formatter
+date_format = "%d-%m-%Y %H:%M:%S"
+date_format_contour = "%d-%m-%Y %H:%M:%S"
+
 # Metrology tool measurement coordinates
 x_coord_bpsgcs_range = 'E9:M9'
 y_coord_bpsgcs_range = 'D10:L10'
@@ -113,7 +117,7 @@ excel_file_directory = "F:\\Coding\\github_repos\\AutoPlot\\examples\\dry_etch\\
 def date_formatter(x):
     x_fmt = []
     for a in x:
-        a = a.strftime("%m-%d-%Y %H:%M:%S")
+        a = a.strftime(date_format)
         x_fmt.append(a)
     return x_fmt
 
