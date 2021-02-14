@@ -19,14 +19,14 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # ChA CP Plot
 cp_cha_plot_title = 'CP Plot for REML1A'  # title for CP plot
 cp_cha_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_cha_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_cha_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_cha_plot_html_file = 'REML1A_CP-Plot.html'   # HTML filename for CP plot
 cp_cha_plot_trace_count = 2    # no. of traces in CP plot
 
 # ChC CP Plot
 cp_chc_plot_title = 'CP Plot for REML1C'  # title for CP plot
 cp_chc_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_chc_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_chc_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_chc_plot_html_file = 'REML1C_CP-Plot.html'   # HTML filename for CP plot
 cp_chc_plot_trace_count = 2    # no. of traces in CP plot
 
@@ -113,7 +113,7 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.2u',
+            name = 'Delta CP 0.2u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -131,7 +131,7 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -149,7 +149,7 @@ def draw_plotly_reml1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -209,7 +209,7 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.2u',
+            name = 'Delta CP 0.2u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -227,7 +227,7 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -245,7 +245,7 @@ def draw_plotly_reml1c_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
