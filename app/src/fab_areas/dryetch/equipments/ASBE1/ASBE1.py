@@ -19,7 +19,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for ASBE1'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'ASBE1_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 3    # no. of traces in CP plot
 
@@ -86,7 +86,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace1 = go.Scatter(
             x = x,
             y = y1,
-            name = 'delta-CP 0.16u',
+            name = 'Delta CP 0.16u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color,
@@ -104,7 +104,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace2 = go.Scatter(
             x = x,
             y = y2,
-            name = 'delta-CP 0.5u',
+            name = 'Delta CP 0.5u',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_2,
@@ -122,7 +122,7 @@ def draw_plotly_asbe1_cp_plot(x, y1, y2, y3, y4, y5, remarks):
     trace3 = go.Scatter(
             x = x,
             y = y3,
-            name = 'delta-CP AC',
+            name = 'Delta CP AC',
             mode = 'lines+markers',
             line = dict(
                     color = line_color_3,
@@ -305,28 +305,7 @@ def draw_plotly_asbe1_unif_plot(x, y1, y2, y3, remarks):
 
 #====================================================================================================================================================================
 #####################################################################################################################################################################
-"""
-def init():
-    # Initialize the workbook
-    # wb = xw.Book.caller()
-    wb = xw.Book('ASH10_QC_LOG_BOOK.xlsm')
-    # wb.sheets[0].range("A1").value = "Hello xlwings!"     # test code
-
-    #****************************************************************************************************************************************************************
-    sht_asbe1_cp = wb.sheets[sht_name_cp]
-    sht_asbe1_er = wb.sheets[sht_name_er]
-    sht_run = wb.sheets['RUN_code']     # for testing purpose
-    #****************************************************************************************************************************************************************
-    x_coord_pr = sht_asbe1_er.range(x_coord_pr_range).value
-    y_coord_pr = sht_asbe1_er.range(y_coord_pr_range).value
-    #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
-    excel_file = pd.ExcelFile(excel_file_directory)
-
-    return wb, sht_asbe1_cp, sht_asbe1_er, sht_run, x_coord_pr, y_coord_pr, excel_file
-"""
-
 excel_file = pd.ExcelFile(excel_file_directory)
-
 
 def asbe1_cp_chart():
     # Fetch Dataframe for CP Plot
