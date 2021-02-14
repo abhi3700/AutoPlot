@@ -19,7 +19,7 @@ sl_color = '#e53935'    # spec limit line color for any plot
 # CP Plot
 cp_plot_title = 'CP Plot for ASFE1'  # title for CP plot
 cp_plot_xlabel = 'Date'   # xaxis name for CP plot
-cp_plot_ylabel = 'delta CP (no.s)'     # yaxis name for CP plot
+cp_plot_ylabel = 'Delta CP (no.s)'     # yaxis name for CP plot
 cp_plot_html_file = 'ASFE1_CP-Plot.html'   # HTML filename for CP plot
 cp_plot_trace_count = 3    # no. of traces in CP plot
 
