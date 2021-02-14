@@ -792,8 +792,8 @@ def resp1a_cp_chart():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------    
     # Assigning variable to each param
     df_resp1a_cp_date = df_resp1a_cp["Date (MM/DD/YYYY)"]
-    df_resp1a_cp_delta_cp_1 = df_resp1a_cp["Delta CP > 0.16u"]
-    df_resp1a_cp_delta_cp_2 = df_resp1a_cp["Delta CP > 0.5u"]
+    df_resp1a_cp_delta_cp_1 = df_resp1a_cp["Delta CP 0.16u"]
+    df_resp1a_cp_delta_cp_2 = df_resp1a_cp["Delta CP 0.5u"]
     df_resp1a_cp_delta_cp_3 = df_resp1a_cp["Delta CP AC"]
     df_resp1a_cp_usl = df_resp1a_cp["USL"]
     df_resp1a_cp_ucl = df_resp1a_cp["UCL"]
