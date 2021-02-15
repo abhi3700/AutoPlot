@@ -11,6 +11,8 @@ line_color = '#3f51b5'      # line (trace0) color for any plot
 line_color_2 = '#80deea'      # line (trace1) color for any plot
 line_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_color = '#43a047'    # marker color for any plot
+marker_color_2 = '#80deea'      # line (trace1) color for any plot
+marker_color_3 = '#a5d6a7'      # line (trace2) color for any plot
 marker_border_color = '#ffffff'     # marker border color for any plot
 cl_color = '#ffa000'    # control limit line color for any plot
 sl_color = '#e53935'    # spec limit line color for any plot
@@ -154,7 +156,7 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
                     color = line_color_2,
                     width = 2),
             marker = dict(
-                    color = marker_color,
+                    color = marker_color_2,
                     size = 8,
                     line = dict(
                         color = marker_border_color,
@@ -172,7 +174,7 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
                     color = line_color_3,
                     width = 2),
             marker = dict(
-                    color = marker_color,
+                    color = marker_color_3,
                     size = 8,
                     line = dict(
                         color = marker_border_color,

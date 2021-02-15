@@ -66,7 +66,7 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
                     color = line_color_2,
                     width = 2),
             marker = dict(
-                    color = marker_color,
+                    color = marker_color_2,
                     size = 8,
                     line = dict(
                         color = marker_border_color,
@@ -84,7 +84,7 @@ def draw_plotly_resp1a_cp_plot(x, y1, y2, y3, y4, y5, remarks):
                     color = line_color_3,
                     width = 2),
             marker = dict(
-                    color = marker_color,
+                    color = marker_color_3,
                     size = 8,
                     line = dict(
                         color = marker_border_color,
