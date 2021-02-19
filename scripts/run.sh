@@ -1,1 +1,2 @@
-python run.py
+python main.py
+tskill excel

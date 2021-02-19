@@ -8,7 +8,8 @@
 * [x] nested Navigation bar for 'Charts type' - 'CP', 'ER', 'Unif'
 * [ ] callback functions for pressing multi-level dropdown menus items-  ASFE1-CP Chart, etc...
 * [ ] Dashboard
-    - [ ] no. of charts representation in pie chart
+    - [ ] no. of charts representation in pie chart for each equipments
+        - total 59 charts
     - [ ] QC frequency for all equipments
     - [ ] QC procedure for each equipment
 
