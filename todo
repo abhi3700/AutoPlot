@@ -1,4 +1,5 @@
 - User manual
+- <u>Exception Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
  - Analytics Alert Manager (AAM):

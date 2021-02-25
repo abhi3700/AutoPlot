@@ -1,9 +1,9 @@
 AutoPlot
 ========
 
-v1.8 - `#todo`
+v1.8 - `25-02-2021`
 ----
-* [ ] <u>Exception Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
+* AutoPlot Web App is released with all data in Excel logbooks.
 
 v1.7 - `12-December-2019`
 ----
