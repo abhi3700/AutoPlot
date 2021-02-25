@@ -5,6 +5,10 @@ v1.8 - `25-02-2021`
 ----
 * AutoPlot Web App is released with all data in Excel logbooks.
 
+v1.7.5 - `15-02-2021`
+----
+* "View time series chart with multiple size particle visualization for an Equipment chamber
+
 v1.7 - `12-December-2019`
 ----
 * `run.sh` file is modified to update the charts (in the same directory) & opening in the browser. It has been linked to the `equipment_logbook.py` e.g. `CNT01_Ch_A_QC_LOG_BOOK.py` for execution. It opens the excel, update/opens the charts and then auto-close the excel file. Finally, it also kills the task - `excel.exe`.
