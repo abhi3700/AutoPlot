@@ -1,7 +1,7 @@
 {
 	"wafer_types": {
 		"cp": "NOX 1000",
-		"er": ["Nit 2800", "Poly 5000"],
+		"er": ["Nit 2800", "Poly 5000"]
 	},
 	"control_limits": {
 		"specs": [
@@ -10,13 +10,13 @@
 					"lsl": "",
 					"usl": "",
 					"lcl": "",
-					"ucl": "",
+					"ucl": ""
 				},
 				"23022021": {
 					"lsl": "",
 					"usl": "",
 					"lcl": "",
-					"ucl": "",
+					"ucl": ""
 				}
 			}
 		]
