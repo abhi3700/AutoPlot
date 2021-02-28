@@ -1,5 +1,7 @@
 import json
 
+# ============================================================================================
+# Read from file
 with open('./info.json') as f:
     data = json.load(f)
 
@@ -45,3 +47,7 @@ print(f'Poly\'s 1st x-coordinate: {coordinates_poly[0][0]}')
 # print the 1st y-coordinate of Poly
 print(f'Poly\'s 1st y-coordinate: {coordinates_poly[0][1]}')
 
+# ============================================================================================
+# Read from file
+with open('./info.json') as f:
+    data = json.load(f)
