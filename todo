@@ -1,20 +1,25 @@
-- User manual
 - <u>Exception Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
- - Analytics Alert Manager (AAM):
-   + notify if the trend >= UCL, USL
+- Analytics Alert Manager (AAM):
+   - notify if the trend >= UCL, USL
 -------------------------------------------------------------
 # Future Work:
-- v2.0: Desktop App (browser-based) for each equipment/chamber.
+v2.0: Desktop App (browser-based) for each equipment/chamber.
 	- UI
-	  - change text of fab_area badge using callback
-	  - add nav bar for equipments
+	  + change text of fab_area badge using callback
+	  + add nav bar for equipments
 	  - show items on hovering over dropdownmenu here - https://bootsnipp.com/snippets/KXR7x
 	- database
-		- create sql-DB for each equipment-chamber
+		- create sql-DB template for a equipment-chamber
+		- create json-DB for a equipment-chamber
 	- upload from MTOP1/MTOP2 to database	
 		- Data upload to DB using Excel UI
 	- subscribe to App updates via email
 	- documentation
-- v3.0: integrate SPC rules (or Nelson)
+	- draw a fitting line dates <from> <to>
+	-------------------------------------------------------------
+v3.0: 
+	- integrate SPC (or Nelson) rules
+	- 2-sigma or 3-sigma
+
