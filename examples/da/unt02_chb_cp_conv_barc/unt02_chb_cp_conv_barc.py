@@ -49,7 +49,7 @@ def draw_plotly_resp1b_cp_plot(x, x1_1, x1_2, y1_1, y1_2, y2, y3, y4, y5, remark
             x = x1_1,
             y = y1_1,
             name = 'Delta CP 0.16u CONV',
-            mode = 'markers',
+            mode = 'lines+markers',
             line = dict(
                     color = line_color,
                     width = 2),
@@ -67,7 +67,7 @@ def draw_plotly_resp1b_cp_plot(x, x1_1, x1_2, y1_1, y1_2, y2, y3, y4, y5, remark
             x = x1_2,
             y = y1_2,
             name = 'Delta CP 0.16u BARC',
-            mode = 'markers',
+            mode = 'lines+markers',
             line = dict(
                     color = line_color_4,
                     width = 2),
@@ -137,7 +137,7 @@ def draw_plotly_resp1b_cp_plot(x, x1_1, x1_2, y1_1, y1_2, y2, y3, y4, y5, remark
                     width = 3)
     )
 
-    data = [trace1_1, trace1_2, trace2, trace3, trace4, trace5]
+    data = [trace2, trace1_1, trace1_2, trace3, trace4, trace5]
     layout = dict(
             title = cp_plot_title,
             xaxis = dict(title= cp_plot_xlabel),
