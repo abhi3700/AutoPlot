@@ -1,4 +1,4 @@
-#==================================================================================================================================================================
+# ==================================================================================================================================================================
 # Global variables
 line_color = '#3f51b5'      # line (trace0) color for any plot
 line_color_2 = '#80deea'      # line (trace1) color for any plot
@@ -36,8 +36,10 @@ sht_name_cp = 'ASFE1-CP'
 sht_name_er = 'ASFE1-ER'
 
 # Columns
-sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u", "Delta CP 0.5u", "Delta CP AC", "Remarks", "USL", "UCL", ]
-sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni", "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni UCL", "% Uni USL"]
+sht_cp_columns = ["Date (MM/DD/YYYY)", "Delta CP 0.16u",
+                  "Delta CP 0.5u", "Delta CP AC", "Remarks", "USL", "UCL", ]
+sht_er_columns = ["Date (MM/DD/YYYY)", "Etch Rate (A/Min)", "% Uni",
+                  "Remarks", "LSL", "USL", "LCL", "UCL", "% Uni UCL", "% Uni USL"]
 
 # Date formatting for Plotly charts
 date_format = "%d-%m-%Y %H:%M:%S"
