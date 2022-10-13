@@ -8,3 +8,6 @@
 
 __pycache__
 Installation/setup_files
+
+# mac
+.DS_Store
