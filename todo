@@ -1,3 +1,5 @@
+- Shift the codebase to Rust based. Preliminary research done [here](https://github.com/abhi3700/autoplot-rs.git).
+-------------------------------------------------------------
 - <u>Exception Error Handling:</u> Software error in case of incorrect date format by user during data entry, has been replaced with user-friendly `Windows OS' Msgbox-based` notification system.
 - Exception handling
   - AttributeError: 'str' object has no attribute 'strftime'
